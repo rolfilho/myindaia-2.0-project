@@ -1,0 +1,21 @@
+***************************************************************************
+***                    DLL de Integração com MyLogin                    ***
+***************************************************************************
+
+---- A função abaixo é necessária para criar o form de comunicação, caso não seja chamada todas as demais solicitações retornarão nulas
+---- Não é criado automaticamente para não ficar na memória caso não seja necessário
+
+function StartupSystem: Boolean;
+
+
+---- Retornam um ponteiro com a solicitação. Porém para o Delphi 7 chega com nulos no meio.
+---- Ex. Um login ABC retorna como A#0B#0C#0 devendo ser feito um loop para pegar apenas os que não forem #0 até encontrar #0#0
+
+function GetLoginName: PChar;
+function GetPassword: PChar;
+function GetUserCode: PChar;
+function GetUserName: PChar;
+function GetUserEmail: PChar;
+function GetCargoCode: PChar;
+function GetCargoName: PChar;
+

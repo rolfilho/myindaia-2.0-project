@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{496D2454-8D31-4BDF-A241-2F026FB9EBF5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TMService.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Token.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TMService">
+        <MSBuild Projects="TMService.dproj"/>
+    </Target>
+    <Target Name="TMService:Clean">
+        <MSBuild Projects="TMService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TMService:Make">
+        <MSBuild Projects="TMService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Token">
+        <MSBuild Projects="Token.dproj"/>
+    </Target>
+    <Target Name="Token:Clean">
+        <MSBuild Projects="Token.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Token:Make">
+        <MSBuild Projects="Token.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TMService;Token"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TMService:Clean;Token:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TMService:Make;Token:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

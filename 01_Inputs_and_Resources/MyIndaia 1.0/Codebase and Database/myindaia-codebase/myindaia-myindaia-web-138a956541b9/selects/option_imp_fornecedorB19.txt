@@ -1,0 +1,26 @@
+
+<option value=17831>A.C.M.</option>
+<option value=17076>AZELIS</option>
+<option value=17564>BAUM</option>
+<option value=17202>BAUM KUNSTSTOFFE GMBH</option>
+<option value=16185>BILFINGER MAINTENANCE NORD GMBH</option>
+<option value=16924>CP PUMPEN</option>
+<option value=17077>DE IJSSEL COATINGS BV</option>
+<option value=17025>DSM COMPOSITE RESINS AG</option>
+<option value=17200>EMERSON SICE S.R.L</option>
+<option value=17458>ERRE.DI S.R.L.</option>
+<option value=17459>FORMATURA INIEZIONE POLIMERI</option>
+<option value=17460>GEORG FISCHER</option>
+<option value=17201>KCH MATERIALS GMBH</option>
+<option value=17199>M.P.L. DI FESTA ENRICO & C. (S.N.C.)</option>
+<option value=17197>NUOVA BULLONERIA ITALIANA</option>
+<option value=17915>S.T.E.G.I. SRL</option>
+<option value=17457>SCHUTZ ITALIA S.R.L.</option>
+<option value=16991>SEI Rota & C</option>
+<option value=16616>SGL CARBON GMBH</option>
+<option value=17198>SICOM SRL</option>
+<option value=17075>STEULER-KC</option>
+<option value=17078>Syrgis Performance Initiators AB,</option>
+<option value=17079>Syrgis Performance Initiators, Inc</option>
+<option value=16998>TELMOTOR</option>
+<option value=17916>WIKA ITALIANA</option>

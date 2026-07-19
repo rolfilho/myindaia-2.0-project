@@ -1,0 +1,498 @@
+{
+Tabela de situação da DU-E
+Código	Descrição
+1	Em elaboração
+10	Registrada
+11	Declaração Apresentada para Despacho
+15	ACD em processamento
+20	Liberada sem conferência Aduaneira canal verde
+21	Selecionada para conferência canal laranja ou vermelho
+25	Embarque antecipado autorizado
+26	Embarque antecipado pendente de autorização
+30	Em análise fiscal
+35	Concluída análise fiscal
+40	Desembaraçada
+70	Averbada
+80	Cancelada pelo Exportador
+81	Cancelada por Expiração de Prazo
+82	Cancelada pela Aduana
+83	Cancelada pela Aduana a pedido do exportador
+86	Interrompida
+
+Tabela de indicação de bloqueio - indicadorBloqueio:
+Código	Descrição
+1	Bloqueado
+2	Desbloqueado
+
+Tabela de situação da carga - situacaoCarga:
+Código	Descrição
+1	Estocada
+2	Em Trânsito
+3	Carga Completamente Exportada
+4	Não se aplica
+
+Tabela de controle administrativo - controleAdministrativo:
+Código	Descrição
+1	Deferido
+2	Dispensado
+3	Pendente
+4	Em processamento
+5	Impedido
+}
+unit IntegracaoDue;
+
+interface
+
+uses System.Classes, Xml.xmldom, Xml.XMLIntf, Xml.XMLDoc,
+  IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL,
+  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP, System.SysUtils,
+  System.Generics.Collections,
+  DueConsultaCompleta, uConsultaAtoConcessorio;
+
+
+type
+
+  TTpConsulta = (tcCompleta, tcResumida);
+
+
+  TCertificados = class
+  private
+    FCodigo: Integer;
+    FNomeArquivo: string;
+    FOrdem: Integer;
+  public
+    property Codigo: Integer read FCodigo write FCodigo;
+    property NomeArquivo: string read FNomeArquivo write FNomeArquivo;
+    property Ordem: Integer read FOrdem write FOrdem;
+  end;
+
+  TDue = class
+  private
+    FProducao: Boolean;
+    FHttp: TIdHTTP;
+    FIOHandler: TIdSSLIOHandlerSocketOpenSSL;
+    FRespostaStr: string;
+    FRespostaStrAtosConcessorios: string;
+    FCodigoResposta: Integer;
+    FAutenticado: Boolean;
+    FDueCompleta: TRoot;
+    FAtosConcessorios: TRootAtosConcessorios;
+    function GetUrlAtosConcessorios(NrDue: String): String;
+  protected
+    Token: string;
+    CSRF: string;
+    function GetUrlBase: string;
+    function GetUrlAutenticacao: string;
+    function GetUrlConsulta: string;
+    function GetUrlConsultaCompleta: string;
+    function GetUrlEnvio: string;
+    procedure GaranteAutenticacao( CodigoDespachante: Integer ; ForceAtutenticao: Boolean = false);
+  public
+    procedure ConsultaTeste(const Due: string; tpConsulta: TtpConsulta;
+      CodigoDespachante: Integer; ForceAtutenticao: Boolean);
+    property RespostaStr: string read FRespostaStr;
+    property DueCompleta: TRoot read FDueCompleta;
+    property AtosConcessorios: TRootAtosConcessorios read FAtosConcessorios;
+    property CodigoRespost: Integer read FCodigoResposta;
+  public
+    procedure Teste;
+    function Autenticar (CodigoDespachante: Integer ): Boolean;
+    procedure Consulta(const Due: string; tpConsulta: TtpConsulta ;  CodigoDespachante: Integer ; ForceAtutenticao: Boolean = false);
+    procedure Enviar(const NrProcesso, XML: string);
+    constructor Create(Producao: Boolean);
+    destructor Destroy; override;
+  end;
+
+var  Certificados: TObjectList<TCertificados>; certificado: TCertificados;
+
+
+implementation
+
+{ TDue }
+
+uses KrUtil;
+
+function TDue.Autenticar( CodigoDespachante: Integer ): Boolean;
+var
+  StringList: TStrings;
+  vNomeCertificado: String;
+  Certificado: TCertificados;
+begin
+
+  StringList := TStringList.Create;
+  try
+//    LogDebug('FHttp.Request.Clear;');
+    FHttp.Request.Clear;
+    {FHttp.Request.BasicAuthentication := False;
+    FHttp.Request.Connection := 'keep-alive';
+    FHttp.Request.CacheControl := 'max-age=0';
+    FHttp.Request.Accept := 'application/json, text/plain, */*';
+    FHttp.Request.AcceptEncoding := 'gzip, deflate, br';
+    FHttp.Request.AcceptLanguage := 'en,pt;q=0.9,pt-BR;q=0.8';
+    FHttp.Request.UserAgent := 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36';
+    FHttp.Request.AcceptEncoding := 'gzip, deflate';
+    FHttp.Request.AcceptLanguage := 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4';
+    }
+    FHttp.Request.BasicAuthentication := False;
+    FHttp.Request.ContentType := 'application/json';
+    FHttp.Request.Accept := 'application/json';//'application/json, text/plain, */*';
+    //FHttp.Request.AcceptCharSet := 'UTF-8';
+    //FHttp.Response.ResponseText := 'UTF-8';
+    FHttp.Request.UserAgent := 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36';
+    FHttp.Request.AcceptEncoding := 'gzip, deflate, br';
+    FHttp.Request.AcceptLanguage := 'en,pt;q=0.9,pt-BR;q=0.8';
+    FHttp.Request.CacheControl := 'no-cache';
+    FHttp.BoundPortMax := 5000;
+
+//    LogDebug('GetPath='+GetLocalPath);
+
+    for certificado in certificados do
+      if certificado.FCodigo =  CodigoDespachante then
+        vNomeCertificado := certificado.NomeArquivo;
+
+
+    FIOHandler.SSLOptions.CertFile     :=  GetLocalPath +'certificados\'+  vNomeCertificado+'.pem';
+    FIOHandler.SSLOptions.RootCertFile :=  GetLocalPath +'certificados\'+  vNomeCertificado+'.pem';
+    FIOHandler.SSLOptions.KeyFile      :=  GetLocalPath +'certificados\'+  vNomeCertificado+'.key';
+
+    FIOHandler.SSLOptions.Method       := sslvSSLv23;
+    FIOHandler.SSLOptions.Mode         := sslmClient;
+    FIOHandler.SSLOptions.SSLVersions  := [sslvSSLv2,sslvSSLv3,sslvTLSv1,sslvTLSv1_1,sslvTLSv1_2];
+    FIOHandler.SSLOptions.VerifyDepth  := 2;
+    FIOHandler.SSLOptions.VerifyMode   := [];
+    FHttp.Request.Referer := GetUrlAutenticacao;
+    FHttp.Request.CustomHeaders.Values['role-type']:= 'IMPEXP';
+
+    FHttp.Post(GetUrlAutenticacao, StringList);
+//    LogDebug('FHttp.Response.ResponseCode = '+FHttp.Response.ResponseCode.ToString);
+    if FHttp.Response.ResponseCode = 200 then
+    begin
+      FAutenticado := True;
+      Result := True;
+      Token := FHttp.Response.RawHeaders.Values['set-token'];
+//      LogDebug('Token='+Token);
+      CSRF := FHttp.Response.RawHeaders.Values['x-csrf-token'];
+//      LogDebug('CSRF='+CSRF)
+    end
+    else
+    begin
+      FAutenticado := False;
+      Result := False;
+      FRespostaStr := FHttp.ResponseText;
+    end;
+  finally
+    StringList.Free;
+  end;
+end;
+
+function StreamToString(aStream: TStream): string;
+var
+  SS: TStringStream;
+begin
+  if aStream <> nil then
+  begin
+    SS := TStringStream.Create('');
+    try
+      SS.CopyFrom(aStream, 0);  // No need to position at 0 nor provide size
+      Result := SS.DataString;
+    finally
+      SS.Free;
+    end;
+  end else
+  begin
+    Result := '';
+  end;
+end;
+
+
+{
+procedure TDue.Consulta(const Due: string);
+var
+  Response: TStringStream;
+begin
+  GaranteAutenticacao;
+  Response := TStringStream.Create('');
+  try
+    FHttp.Request.CustomHeaders.Clear;
+    FHttp.Request.Clear;
+    FHttp.Request.ContentType := 'application/json';
+    FHttp.Request.ContentEncoding := 'raw';
+    FHttp.Request.BasicAuthentication := False;
+    FHttp.Request.AcceptCharSet := 'UTF-8';
+    FHttp.Request.Accept := 'application/json, text/plain, */*';
+    FHttp.Response.CharSet := 'UTF-8';
+    FHttp.Request.UserAgent := 'Mozilla/3.0 (compatible;Indy Library)';
+    //FHttp.Request.UserAgent := 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36';
+    FHttp.Request.AcceptEncoding := 'gzip, deflate';
+    FHttp.Request.AcceptLanguage := 'pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4';
+    FHttp.Request.CustomHeaders.Values['Authorization']:= Token;
+    FHttp.Request.CustomHeaders.Values['X-CSRF-Token']:= CSRF;
+    //FHttp.Request.CustomHeaders.Values['numero']:= Due;
+    //FHttp.Request.Referer := GetUrlConsulta;
+    //FHttp.Get(GetUrlConsulta+'?numero='+Due, Response);
+    FHttp.Get('https://portalunico.siscomex.gov.br/due/api/due/listar-due-consulta?due=18BR0003548065', Response);
+    FRespostaStr := Response.DataString;
+    //FResposta := TRespostaConsultaResumida.FromJsonString(FRespostaStr);
+    //FResposta := FHttp.ResponseText;
+//    LogDebug('FResposta='+FRespostaStr);
+  finally
+    Response.Free;
+  end;
+end;
+}
+
+procedure TDue.Teste;
+var
+  FRespostaStr: TStringList;
+begin
+
+  FRespostaStr := TStringList.Create;
+  try
+    FRespostaStr.LoadFromFile('D:\INDAIA\Temp\testeDUE.json');
+    DueCompleta.AsJson := StringReplace(FRespostaStr.Text, '+0000', '', [rfReplaceAll]) ;
+  finally
+    FRespostaStr.Free;
+  end;
+end;
+
+procedure TDue.Consulta(const Due: string; tpConsulta: TtpConsulta; CodigoDespachante: Integer ; ForceAtutenticao: Boolean);
+var
+  Response: TStringStream;
+  GravarString : TStringList;
+  Resposta, url, vDue: String;
+begin
+  GaranteAutenticacao(CodigoDespachante, ForceAtutenticao);
+  Response := TStringStream.Create('');
+
+  GravarString := TStringList.Create;
+  try
+    FHttp.Request.CustomHeaders.Clear;
+
+    FHttp.Request.CustomHeaders.Values['authorization']:= Token;
+    FHttp.Request.CustomHeaders.Values['x-csrf-token']:= CSRF;
+    if tpConsulta = tcCompleta then
+    begin
+      vDue := Due;
+      FHttp.Get(GetUrlConsultaCompleta + vDue, Response);
+      FRespostaStr := RemoveCaracteresEstranhosFormularyFill(Response.DataString);
+      GravarString.text := FRespostaStr;
+//      GravarString.SaveToFile(vDue+'.json');
+      GravarString.SaveToFile('ultimadue.json');
+
+      if not FRespostaStr.IsEmpty then
+      begin
+        FRespostaStr := StringReplace(FRespostaStr, '+0000', '', [rfReplaceAll]) ;
+        FRespostaStr := StringReplace(FRespostaStr, '-0200', '', [rfReplaceAll]) ;
+        DueCompleta.AsJson := StringReplace(FRespostaStr, '-0300', '', [rfReplaceAll]) ;
+      end;
+
+//      FHttp.Get(GetUrlConsulta+'?numero='+vDue, ResponseResumido);
+//      GravarString.text := RemoveCaracteresEstranhosFormularyFill(ResponseResumido.DataString);
+//      GravarString.SaveToFile('UltimaDueResConsultada.json');
+    end;
+
+  finally
+    Response.Free;
+    GravarString.free;
+  end;
+end;
+
+procedure TDue.ConsultaTeste(const Due: string; tpConsulta: TtpConsulta; CodigoDespachante: Integer ; ForceAtutenticao: Boolean);
+var
+  Response: TStringStream;
+  ResponseAtosConcessorios: TStringStream;
+  GravarString : TStringList;
+  Resposta, url, vDue: String;
+begin
+  GaranteAutenticacao(CodigoDespachante, ForceAtutenticao);
+  Response := TStringStream.Create('');
+  ResponseAtosConcessorios := TStringStream.Create('');
+
+  GravarString := TStringList.Create;
+  try
+    FHttp.Request.CustomHeaders.Clear;
+
+//    FHttp.Request.ContentType := 'application/xml';
+//    FHttp.Request.ContentEncoding := 'binary';
+//    FHttp.Request.AcceptCharSet := 'UTF-8';
+    FHttp.Request.Accept := 'application/json';
+//    FHttp.Response.CharSet := 'UTF-8';
+//    FHttp.Request.UserAgent := 'Mozilla/3.0 (compatible;Indy Library)';
+    FHttp.Request.CustomHeaders.Values['authorization']:= Token;
+    FHttp.Request.CustomHeaders.Values['x-csrf-token']:= CSRF;
+    FHttp.Request.CustomHeaders.Values['accept']:= 'application/json';
+//    FHttp.re
+
+    if tpConsulta = tcCompleta then
+    begin
+      vDue := Due;
+      vDue := '22BR0002053908';//'21BR0001139779';
+//    FHttp.Get(GetUrlConsultaCompleta + Due, Response);
+//      FHttp.Get(GetUrlConsultaCompleta + vDue, Response);
+
+      url := GetUrlAtosConcessorios(vDue);
+//      Resposta := FHttp.Get(url);
+      FHttp.Get(url, ResponseAtosConcessorios);
+
+      if Fhttp.Response.ResponseCode = 200 then
+      begin
+//        FRespostaStr := RemoveCaracteresEstranhosFormularyFill(Response.DataString);
+        FRespostaStrAtosConcessorios := ResponseAtosConcessorios.DataString;
+//        FRespostaStrAtosConcessorios := ResponseAtosConcessorios.;
+
+      end;
+
+//      (*
+      //TESTE
+//      GravarString.Add(FRespostaStr);
+//      GravarString.SaveToFile('D:\INDAIA\Temp\testeDUE.json');
+//      GravarString.Clear;
+//      GravarString.Add(FRespostaStrAtosConcessorios);
+//      GravarString.SaveToFile('D:\INDAIA\Temp\testeDUE2.json');
+//      exit;
+//      *)
+
+      if not FRespostaStr.IsEmpty then
+      begin
+        DueCompleta.AsJson := StringReplace(FRespostaStr, '+0000', '', [rfReplaceAll]) ;
+        exit;
+      end;
+
+//      if not FRespostaStrAtosConcessorios.IsEmpty then
+//      begin
+//        AtosConcessorios.AsJson := StringReplace(FRespostaStrAtosConcessorios, '+0000', '', [rfReplaceAll]) ;
+//        exit;
+//      end;
+
+    end;
+
+  finally
+    Response.Free;
+    GravarString.free;
+  end;
+end;
+
+constructor TDue.Create(Producao: Boolean);
+begin
+  FProducao := Producao;
+  FHttp := TidHttp.Create(nil);
+  FIOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
+  FHttp.IOHandler := FIOHandler;
+  FDueCompleta := TRoot.Create;
+  FAtosConcessorios := TRootAtosConcessorios.Create;
+end;
+
+destructor TDue.Destroy;
+begin
+  FDueCompleta.Free;
+  FAtosConcessorios.Free;
+  inherited;
+end;
+
+procedure TDue.Enviar(const NrProcesso, XML: string);
+var
+  Response: TStringStream;
+  XArquivo : TMemoryStream;
+  XMLText : TStringStream;
+  List: TStringList;
+  ListRejeitada: TStringList;
+  XMLDoc: TXMLDocument;
+  URL: String;
+  RespostaCod, RespostaMsg: String;
+  //Criteria: TCriteria;
+  Pasta: string;
+  Arquivo: string;
+begin
+//  GaranteAutenticacao;
+  Response := TStringStream.Create('');
+  XMLText := TStringStream.Create('');
+  XArquivo := TMemoryStream.Create;
+  XMLDoc := TXMLDocument.Create(nil);
+  List := TStringList.Create;
+  try
+    XMLDoc.LoadFromXML(XML);
+    List.Text :=  XML;
+    List.Text := StringReplace(List.Text, '#$D#$A', '', [rfReplaceAll]);
+    List.SaveToStream(XMLText);
+    XArquivo.LoadFromStream(XMLText);
+
+    FHttp.Request.CustomHeaders.Clear;
+    FHttp.Request.Clear;
+    FHttp.Request.ContentType := 'application/xml';
+    FHttp.Request.ContentEncoding := 'raw';
+    FHttp.Request.AcceptCharSet := 'UTF-8';
+    FHttp.Request.Accept := 'application/xml';
+    FHttp.Response.CharSet := 'UTF-8';
+    FHttp.Request.UserAgent := 'Mozilla/3.0 (compatible;Indy Library)';
+    FHttp.Request.CustomHeaders.Values['authorization']:= Token;
+    FHttp.Request.CustomHeaders.Values['x-csrf-token']:= CSRF;
+    FHttp.Request.Referer := URL;
+
+    Pasta := GetLocalPath + 'TransmissorDUE\xml\Rejeitados';
+    ForceDirectories(Pasta);
+    Arquivo := Pasta + '\' + NrProcesso + '.xml';
+    try
+      FHttp.Post(URL , XArquivo, Response);
+      FCodigoResposta := FHttp.Response.ResponseCode;
+      if FCodigoResposta = 200 then
+      begin
+        FRespostaStr := UTF8Encode(Response.DataString + #13);
+        //LerRespostaSucesso(UTF8Encode(Response.DataString), FHttp.Response.ResponseCode, FHttp.Response.Date);
+      end;
+    except
+    on E:EIdHTTPProtocolException do
+      begin
+        FCodigoResposta := FHttp.Response.ResponseCode;
+        FRespostaStr := e.ErrorMessage + #13;
+      end;
+    end;
+  finally
+    FreeAndNil(Response);
+    FreeAndNil(XMLText);
+    FreeAndNil(XArquivo);
+    FreeAndNil(XMLDoc);
+    FreeAndNil(List);
+  end;
+end;
+
+procedure TDue.GaranteAutenticacao( CodigoDespachante: Integer ; ForceAtutenticao: Boolean);
+begin
+  if ForceAtutenticao or not FAutenticado then
+    if not Autenticar(CodigoDespachante) then
+      raise Exception.Create('Não foi possível autenticar.'+#13#10+FHttp.ResponseText);
+end;
+
+function TDue.GetUrlAutenticacao: string;
+begin
+   Result := GetUrlBase + '/portal/api/autenticar';
+end;
+
+function TDue.GetUrlBase: string;
+begin
+  if FProducao then
+    Result := 'https://portalunico.siscomex.gov.br'
+  else
+    Result := 'https://val.portalunico.siscomex.gov.br';
+end;
+
+function TDue.GetUrlConsulta: string;
+begin
+  Result := GetUrlBase + '/due/api/ext/due/consultarDadosResumidosDUE';
+end;
+
+function TDue.GetUrlConsultaCompleta: string;
+begin
+  Result := GetUrlBase + '/due/api/ext/due/numero-da-due/';
+end;
+
+function TDue.GetUrlEnvio: string;
+begin
+  Result := GetUrlBase + '/due/api/ext/due';
+end;
+
+function TDue.GetUrlAtosConcessorios(NrDue: String): String;
+begin
+  Result := GetUrlBase + '/due/api/ext/due/'+NrDue+'/drawback/isencao/atos-concessorios';
+end;
+
+end.

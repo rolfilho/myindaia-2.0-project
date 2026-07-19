@@ -1,0 +1,340 @@
+unit uRelatorioExpo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  Excel2000, OleServer, ComObj, DateTimePicker.Interposer,
+  DmBroker, Vcl.Mask;
+
+type
+
+  TfrmRelatorioExpo = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    lblResultado: TLabel;
+    ProgressBar1: TProgressBar;
+    Label4: TLabel;
+    edtNrDue: TEdit;
+    edtCNPJ: TEdit;
+    Label1: TLabel;
+    Label3: TLabel;
+    Label2: TLabel;
+    Panel3: TPanel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    edtDataInicial: TMaskEdit;
+    edtDataFinal: TMaskEdit;
+    procedure Panel4Click(Sender: TObject);
+    procedure Panel5Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    function ValidarPreenchimento: boolean;
+    procedure RelDrawbackDUE;
+
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorioExpo: TfrmRelatorioExpo;
+
+implementation
+
+{$R *.dfm}
+
+uses FireDAC.Comp.Client, ParametrosDoSistema;
+
+
+
+function MyInc(var value: integer; valueInc: integer = 1): integer;
+begin
+  value := value + 1;
+  result := value;
+end;
+
+procedure TfrmRelatorioExpo.RelDrawbackDUE;
+var
+  Excel, xlWorkB, oSheet                                 : Variant;
+  vLinha, vColuna, ctLinha, nColuna, nLinhaTitulo,
+  vPrimeiraLinha, vCont,i,x,vTotalEventos                : Integer;
+  vTimeStamp                                             : string;
+  tem_dados                                              : boolean;
+  mDados : TFDMemTable;
+  titulo: String;
+
+//  procedure PreencheData(ALinha, AColuna: Integer; Data: string);
+//  begin
+//    oSheet.Cells[ ALinha, AColuna ].NumberFormat        := 'dd/mm/aaaa';
+//    oSheet.Cells[ ALinha, AColuna ].HorizontalAlignment := 3;
+//
+//    if (Data <> 'N/A') and (trim(Data) <> '') then
+//    begin
+//      oSheet.Cells[ ALinha, AColuna ].Value := StrToDate(Data)//FormatDateTime('dd/mm/yyyy', Data)
+//    end
+//    else
+//      oSheet.Cells[ ALinha, AColuna ].Value := Data;
+//  end;
+
+  function TrataValor(value: String): String;
+  var
+    txtInicio: String;
+  begin
+    result := Copy(value, 0, 100);
+    txtInicio := copy(result, 0, 1);
+    if txtInicio = '=' then
+      result := StringReplace(result, '=', '*', [rfReplaceAll]);
+  end;
+
+
+  function TituloOuTipoErrado(Titulo: String; Linha, Coluna: Integer): Boolean;
+  begin
+    result := False;
+
+    if (vLinha = nLinhaTitulo) then
+    begin
+      Excel.Cells[ vLinha, MyInc(vColuna) ].value := Titulo;
+      Excel.Cells[ vLinha, vColuna ].Font.Bold := True;
+      Excel.Cells[ vLinha, vColuna ].WrapText  := True;
+      Excel.Cells[ vLinha, vColuna ].HorizontalAlignment  := 3;
+      Excel.Cells[ vLinha, vColuna ].VerticalAlignment  := 2;
+      Excel.Cells[ vLinha, vColuna ].RowHeight  := 30;
+
+
+      //      Excel.WorkBooks[1].worksheets[1].rows[nLinhaTitulo].HorizontalAlignment  := xlHAlignCenter;
+//      Excel.WorkBooks[1].worksheets[1].rows(nLinhaTitulo).VerticalAlignment  := xlVAlignCenter;
+//      Excel.WorkBooks[1].worksheets[1].rows(nLinhaTitulo).RowHeight := 30;
+
+      Result := True;
+    end
+  end;
+
+  procedure PreencheCelula(Titulo: String; aValue: String; TipoNumero: Boolean = false); overload;
+  begin
+    if TituloOuTipoErrado(Titulo, vLinha, vColuna) then
+      exit;
+
+    Excel.Cells[ vLinha, MyInc(vColuna) ].value := aValue;
+    if not TipoNumero then
+    begin
+      Excel.Cells[ vLinha, vColuna ].WrapText  := false;
+      Excel.Cells[ vLinha, vColuna ].NumberFormat  := '@';
+    end
+    else
+      Excel.Cells[ vLinha, vColuna ].NumberFormat  := '##0';
+
+
+
+  end;
+
+  procedure PreencheCelula(Titulo: String; aValue: Double; NrFormatacao: String = '#.##0,00'); overload;
+  begin
+    if TituloOuTipoErrado(Titulo, vLinha, vColuna) then
+      exit;
+
+    Excel.Cells[ vLinha, MyInc(vColuna) ].value := aValue;
+    Excel.Cells[ vLinha, vColuna ].NumberFormat := NrFormatacao;
+  end;
+
+  procedure PreencheCelula(Titulo: String; aValue: TDateTime); overload;
+  begin
+    if TituloOuTipoErrado(Titulo, vLinha, vColuna) then
+      exit;
+
+    if aValue = 0 then
+      Excel.Cells[ vLinha, MyInc(vColuna) ].value := ''
+    else
+      Excel.Cells[ vLinha, MyInc(vColuna) ].value := aValue;
+  end;
+
+begin
+  Excel   := CreateOLEObject('Excel.Application');
+  try
+
+//    xlWorkB       := Excel.Workbooks.Open(GetPath+'DUEsAverbadas.xlsx');
+    vTimeStamp    := FormatDateTime('ddmmyyyyhhnnsszz', Now);
+
+    Excel.WorkBooks.add(1);
+    titulo := 'Relatório Exportação';
+    Excel.caption := titulo;
+    Excel.WorkBooks[1].worksheets[1].name := titulo;
+
+    mdados := TFDMemTable.Create(nil);
+    mdados.Data := dmdBroker.qryRelatorioExpo.Data;
+
+    ProgressBar1.Visible := true;
+    ProgressBar1.Min := 0;
+    ProgressBar1.Max := mdados.RecordCount;
+
+    try
+      tem_dados := False;
+      nLinhaTitulo := 1;
+      mdados.First;
+
+      while not mdados.Eof do
+      begin
+        tem_dados := True;
+        vLinha    := vLinha +1;
+        vColuna := 0;
+        ProgressBar1.Position := mdados.RecNo;
+
+
+//        PreencheCelula('Importador Nome', mdados.FieldByName('importadorNome').AsString, mbos);
+
+        PreencheCelula('Nº Registro', mdados.FieldByName('NrDue').AsString);
+        PreencheCelula('Data Registro', mdados.FieldByName('DataRegistro').AsDateTime);
+        PreencheCelula('Data Embarque', mdados.FieldByName('DataEmbarque').AsDateTime);
+        PreencheCelula('Nº RUC', mdados.FieldByName('NrRuc').AsString);
+        PreencheCelula('Situação', mdados.FieldByName('Situacao').AsString);
+        PreencheCelula('Bloqueio', mdados.FieldByName('Bloqueio').AsString);
+        PreencheCelula('Canal', mdados.FieldByName('Canal').AsString);
+        PreencheCelula('Chave de Acesso', mdados.FieldByName('ChaveDeAcesso').AsString, true);
+//        PreencheCelula('CNPJ', '' (* mdados.FieldByName('		').AsString *));
+//        PreencheCelula('Declarante', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('CNPJ', mdados.FieldByName('DeclaranteNrDocumento').AsString, true);
+        PreencheCelula('Tipo Documento', mdados.FieldByName('DeclaranteTpDocumento'	).AsString);
+        PreencheCelula('Exportador', mdados.FieldByName('DeclaranteNome').AsString);
+        PreencheCelula('Código Pais Exportador', mdados.FieldByName('DeclaranteNacCodigo').AsString, true);
+        PreencheCelula('Nome País Exportador', mdados.FieldByName('DeclaranteNacNome').AsString);
+        PreencheCelula('Sigla País Exportador', mdados.FieldByName('DeclaranteNacNomeResumido').AsString);
+        PreencheCelula('Estrangeiro', mdados.FieldByName('DeclaranteEstrangeiro').AsString);
+        PreencheCelula('NºItem', mdados.FieldByName('ItensNumero').AsString, true);
+        PreencheCelula('Código NCM', mdados.FieldByName('ItensNcmCodigo').AsString, true);
+        PreencheCelula('Descrição NCM', mdados.FieldByName('ItensNcmDescricao').AsString);
+        PreencheCelula('Código Produto', mdados.FieldByName('ItensItemNFExpoCodProduto').AsString);
+        PreencheCelula('Descrição Item', mdados.FieldByName('ItensDescricaoMercadoria').AsString);
+        PreencheCelula('Quantidade Estatística', mdados.FieldByName('ItensQtdUnidEstatistica').AsFloat, '#.##0,00000');
+        PreencheCelula('Unidade Estatística', mdados.FieldByName('ItensNcmUnidMedEstatistica').AsString);
+        PreencheCelula('Quantidade Comercializada', mdados.FieldByName('ItensQtdUnidComercializada').AsFloat, '#.##0,00000');
+        PreencheCelula('Unidade Comercializada', mdados.FieldByName('ItensUnidComercializada').AsString);
+        PreencheCelula('Peso Líquido Total Item', mdados.FieldByName('ItensPesoLiqTotal').AsFloat, '#.##0,00000');
+        PreencheCelula('Total MLE', mdados.FieldByName('ItensValorMercLocalEmbarque').AsFloat);
+        PreencheCelula('Total MCV', mdados.FieldByName('ItensValorMercCondicaoVenda').AsFloat);
+        PreencheCelula('Total MLE R$', mdados.FieldByName('ItensValorMercLocalEmbarqueEmReais').AsFloat);
+        PreencheCelula('Nr. Ato Concessório', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('Item Ato Concessório', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('Qtde Item Ato Concessório', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('Vlr com Cobertura Item Ato Concessório', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('Vlr sem Cobertura Item Ato Concessório', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('Chave Acesso Nota Fiscal', mdados.FieldByName('ItensitemNFExpoNFChaveAcesso').AsString);
+        PreencheCelula('Número Nota Fiscal', mdados.FieldByName('ItensItemNFExpoNFNumero').AsString, true);
+        PreencheCelula('Item NF', mdados.FieldByName('ItensItemNFExpoNrItem').AsString, true);
+        PreencheCelula('Modelo', mdados.FieldByName('ItensItemNFExpoNFModelo').AsString);
+        PreencheCelula('Série', mdados.FieldByName('tensItemNFExpoNFSerie').AsString);
+        PreencheCelula('UF Emissor', mdados.FieldByName('ItensItemNFExpoNFUfEmissor').AsString);
+        PreencheCelula('Emitente', mdados.FieldByName('ItensItemNFExpoNFIdEmitenteNumero').AsString, true);
+        PreencheCelula('CNPJ', mdados.FieldByName('ItensItemNFExpoNFIdEmitenteCnpj').AsString);
+        PreencheCelula('CPF', mdados.FieldByName('ItensItemNFExpoNFIdEmitenteCpf').AsString);
+        PreencheCelula('Finalidade', mdados.FieldByName('ItensItemNFExpoNFFinalidade').AsString);
+        PreencheCelula('Nota Fiscal Eletronica', mdados.FieldByName('ItensItemNFExpoNfNfEletronica').AsString);
+        PreencheCelula('CFOP', mdados.FieldByName('ItensItemNFExpoCfop').AsString, true);
+        PreencheCelula('Moeda', mdados.FieldByName('MoedaCodigo').AsString, true);
+        PreencheCelula('Incoterm', mdados.FieldByName('ItensCondVendaCodigo').AsString, true);
+        PreencheCelula('Importador', mdados.FieldByName('ItensNomeImportador').AsString);
+        PreencheCelula('Endereço', mdados.FieldByName('ItensEnderecoImportador').AsString);
+        PreencheCelula('País Destino', mdados.FieldByName('ItensPaisDestinoCodigo').AsString, true);
+        PreencheCelula('País Importador', mdados.FieldByName('PaisImportadorCodigo').AsString, true);
+        PreencheCelula('Enq. 1', mdados.FieldByName('itensEnquadramento01Codigo').AsString, true);
+        PreencheCelula('Enq. 2', mdados.FieldByName('itensEnquadramento02Codigo').AsString, true);
+        PreencheCelula('Enq. 3', mdados.FieldByName('itensEnquadramento03Codigo').AsString, true);
+        PreencheCelula('Enq. 4', mdados.FieldByName('itensEnquadramento04Codigo').AsString, true);
+        PreencheCelula('URF Despacho', mdados.FieldByName('UnidLocalDespachoCodigo').AsString, true);
+        PreencheCelula('URF Embarque', mdados.FieldByName('UnidLocalEmbarqueCodigo').AsString, true);
+        PreencheCelula('Embarque Recinto Alfandegado', mdados.FieldByName('EmbarqueRecintoAlfandegado').AsString);
+        PreencheCelula('Despacho Recinto Alfandegado', mdados.FieldByName('DespachoRecintoAlfandegado').AsString);
+        PreencheCelula('Impedido Embarque', mdados.FieldByName('ImpedidoEmbarque').AsString);
+        PreencheCelula('Informações Complementares', TrataValor(mdados.FieldByName('InformacoesComplementares').AsString));
+        PreencheCelula('Data Conversão', mdados.FieldByName('ItensDataConversao').AsDateTime);
+//      PreencheCelula('Tratamento Prioritário', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('% Comissão', '' (* mdados.FieldByName('		').AsString *));
+        PreencheCelula('Recinto Aduaneiro Despacho', mdados.FieldByName('RecintoAduaneiroDespachoCodigo').AsString, true);
+        PreencheCelula('Recinto Aduaneiro Embarque', mdados.FieldByName('RecintoAduaneiroEmbarqueCodigo').AsString, true);
+        PreencheCelula('Responsável pelo ACD', mdados.FieldByName('ResponsavelPeloACD').AsString);
+        PreencheCelula('Despacho Recinto Domiciliar', mdados.FieldByName('DespachoRecintoDomiciliar').AsString);
+        PreencheCelula('Data do CCE', mdados.FieldByName('DataCCE').AsDateTime);
+        PreencheCelula('Data de Criação', mdados.FieldByName('DataCriacao').AsDateTime);
+        PreencheCelula('DAT', mdados.FieldByName('dat').AsString);
+        PreencheCelula('OEA', mdados.FieldByName('oea').AsString);
+        PreencheCelula('Recuperado Em', mdados.FieldByName('DataDueImportada').AsDateTime);
+//        PreencheCelula('Vinculada', '' (* mdados.FieldByName('		').AsString *));
+//        PreencheCelula('Origem', '' (* mdados.FieldByName('		').AsString *));
+
+        if vLinha > nLinhaTitulo then
+          mdados.Next;
+      end;
+
+      Excel.WorkBooks[1].worksheets[1].Columns.ColumnWidth := 15;
+      Excel.WorkBooks[1].worksheets[1].Columns.AutoFilter;
+
+    except
+      on e:Exception do
+      begin
+        showmessage('Erro - Relatório RED: ' + e.Message);
+      end
+    end;
+  finally
+    mdados.Free;
+    Excel.Visible := true;
+    ProgressBar1.Visible := false;
+  end;
+end;
+
+function TfrmRelatorioExpo.ValidarPreenchimento: boolean;
+begin
+  result:= true;
+  if Trim(edtNrDue.Text) <> '' then
+    exit;
+
+//  if (Trim(edtCNPJ.Text) = '')  then
+//  begin
+//    ShowMessage('Obrigatório o preenchimento do CNPJ ou Nr Due.');
+//    edtCNPJ.SetFocus;
+//    result:= False;
+//  end;
+
+  if (StrToDateTime(edtDataInicial.text) > StrToDateTime(edtDataFinal.text)) then
+  begin
+    ShowMessage('A data inicial deve ser menor ou igual a data final.');
+    edtDataInicial.SetFocus;
+    result:= False;
+  end;
+
+end;
+
+procedure TfrmRelatorioExpo.FormShow(Sender: TObject);
+begin
+  edtDataInicial.SetFocus;
+  edtDataInicial.Text := FormatDateTime('dd/mm/yyyy', now - 30);
+  edtDataFinal.Text := FormatDateTime('dd/mm/yyyy', now);
+
+  if Parametros.ModoTeste then
+    edtDataInicial.Text := FormatDateTime('dd/mm/yyyy', now -  1095);
+end;
+
+procedure TfrmRelatorioExpo.Panel4Click(Sender: TObject);
+begin
+
+  if not ValidarPreenchimento then
+    exit;
+  dmdBroker.GeraConsultaRelatorioExpo(StrToDateTime(edtDataInicial.text), StrToDateTime(edtDataFinal.text), edtCNPJ.text, edtNrDue.text);
+  lblResultado.Visible := true;
+  lblResultado.Caption := 'Resultado da pesquisa: ' + IntToStr(dmdBroker.qryRelatorioExpo.RecordCount);
+
+end;
+
+procedure TfrmRelatorioExpo.Panel5Click(Sender: TObject);
+begin
+  if dmdBroker.qryRelatorioExpo.RecordCount > 0 then
+    RelDrawbackDUE
+  else
+    showmessage('Não foi encontrado resultado de pesquisa para exportação.');
+
+end;
+
+end.

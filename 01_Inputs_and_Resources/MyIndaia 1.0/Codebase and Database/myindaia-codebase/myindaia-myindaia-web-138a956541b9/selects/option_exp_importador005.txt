@@ -1,0 +1,12 @@
+
+<option value=03159>A LABRIDIS GRAPHIC ARTS S S ANONYME (03159)</option>
+<option value=03004>BASF AG (03004)</option>
+<option value=00883>BASF AG (00883)</option>
+<option value=03245>BASF DRUCKSYSTEME GMBH (03245)</option>
+<option value=03198>BASF Printing Systems Ltd. (03198)</option>
+<option value=03020>BASF SYSTEMES D'IMPRESSION (03020)</option>
+<option value=01789>BASF TINTAS GRÁFICAS  S.A. (01789)</option>
+<option value=02556>Basf Vernice e Inchiostrispa. (02556)</option>
+<option value=02410>HIELOMATIC C.A. (02410)</option>
+<option value=02849>Pedro Weinstocky cia  S.A (02849)</option>
+<option value=03068>SERVIGRAF S.A (03068)</option>

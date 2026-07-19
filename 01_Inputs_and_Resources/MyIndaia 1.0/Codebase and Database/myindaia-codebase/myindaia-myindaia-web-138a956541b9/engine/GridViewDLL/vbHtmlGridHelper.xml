@@ -1,0 +1,98 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+vbHtmlGridHelper
+</name>
+</assembly>
+<members>
+<member name="T:vbHtmlGridHelper.GridViewSummary">
+	<summary>
+ A class that represents a summary operation defined to a column
+ </summary>
+</member><member name="T:vbHtmlGridHelper.GridViewSummaryList">
+	<summary>
+ Summary description for GridViewSummaryList
+ </summary>
+</member><member name="E:vbHtmlGridHelper.GridViewHelper.GroupStart">
+	<summary>
+ Event triggered when a new group starts
+ </summary>
+</member><member name="E:vbHtmlGridHelper.GridViewHelper.GroupEnd">
+	<summary>
+ Event triggered when a group ends
+ </summary>
+</member><member name="E:vbHtmlGridHelper.GridViewHelper.GroupHeader">
+	<summary>
+ Event triggered after a row for group header be inserted
+ </summary>
+</member><member name="E:vbHtmlGridHelper.GridViewHelper.GroupSummary">
+	<summary>
+ Event triggered after a row for group summary be inserted
+ </summary>
+</member><member name="E:vbHtmlGridHelper.GridViewHelper.GeneralSummary">
+	<summary>
+ Event triggered after the general summaries be generated
+ </summary>
+</member><member name="E:vbHtmlGridHelper.GridViewHelper.FooterDataBound">
+	<summary>
+ Event triggered when the footer is databound
+ </summary>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.EvaluateEquals(vbHtmlGridHelper.GridViewGroup,System.Object)">
+	<summary>
+ Compares the actual group values with the values of the current dataitem
+ </summary>
+	<param name="g"></param>
+	<param name="dataitem"></param>
+	<returns></returns>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.InsertGridRow(System.Web.UI.WebControls.GridViewRow,vbHtmlGridHelper.GridViewGroup)">
+	<summary>
+ Inserts a grid row. Only cells required for the summary results
+ will be created (except if GenerateAllCellsOnSummaryRow is true).
+ The group will be checked for columns with summary
+ </summary>
+	<param name="beforeRow"></param>
+	<param name="g"></param>
+	<returns></returns>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.GenerateGeneralSummaries(System.Web.UI.WebControls.GridViewRowEventArgs)">
+	<summary>
+ Generates the general summaries in the grid. 
+ </summary>
+	<param name="e">GridViewRowEventArgs</param>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.ResolveCellIndex(System.Web.UI.WebControls.GridViewRow,System.Int32)">
+	<summary>
+ Identifies the equivalent index on a row that contains cells with colspan
+ </summary>
+	<param name="row"></param>
+	<param name="colIndex"></param>
+	<returns></returns>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.HideColumnsWithoutGroupSummary">
+	<summary>
+ This method must be called to hide columns that doesn't 
+ have any summary operation when we are using a suppress group
+ </summary>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.SetInvisibleColumnsWithoutGroupSummary">
+	<summary>
+ Legacy name...
+ </summary>
+</member><member name="M:vbHtmlGridHelper.GridViewHelper.InsertGridRow(System.Web.UI.WebControls.GridViewRow)">
+	<summary>
+  Inserts a grid row with one cell only
+ </summary>
+	<param name="beforeRow"></param>
+	<returns></returns>
+</member><member name="T:vbHtmlGridHelper.GridViewHelper">
+	<summary>
+ A class to allow you to add summaries and groups to a GridView, easily!
+ </summary>
+</member><member name="T:vbHtmlGridHelper.GridViewGroupList">
+	<summary>
+ Summary description for GridViewGroupList
+ </summary>
+</member><member name="T:vbHtmlGridHelper.GridViewGroup">
+	<summary>
+ A class that represents a group consisting of a set of columns
+ </summary>
+</member>
+</members>
+</doc>

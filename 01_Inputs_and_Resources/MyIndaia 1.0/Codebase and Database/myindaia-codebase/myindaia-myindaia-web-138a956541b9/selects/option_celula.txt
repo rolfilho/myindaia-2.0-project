@@ -1,0 +1,21 @@
+
+<option value=93>Atendimento - Bridgestone</option>
+<option value=91>Atendimento - Celina</option>
+<option value=12>Atendimento - Genivaldo Silva</option>
+<option value=07>Atendimento - Giliardi Sousa</option>
+<option value=90>Atendimento - Nelson</option>
+<option value=15>Atendimento - Rio de Janeiro</option>
+<option value=11>Atendimento - Terceirização</option>
+<option value=89>Atendimento Marjorie Kiyotani</option>
+<option value=79>Célula - CA</option>
+<option value=87>Célula - CN</option>
+<option value=72>Célula - CV</option>
+<option value=74>Célula - Diversos</option>
+<option value=81>Célula - RM</option>
+<option value=75>Célula - SSZ</option>
+<option value=92>Célula - WJ</option>
+<option value=03>Célula Guarulhos</option>
+<option value=04>Célula Recife</option>
+<option value=19>Célula Uruguaiana</option>
+<option value=05>Célula Viracopos</option>
+<option value=46>MyIndaiá WEB</option>

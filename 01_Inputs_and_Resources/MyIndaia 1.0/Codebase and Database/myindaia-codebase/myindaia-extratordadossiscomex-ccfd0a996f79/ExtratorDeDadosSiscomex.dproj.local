@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/08/24 12:33:58.000.226,C:\Projetos\Delphi\ExtratorDadosSiscomex\Utils.pas=</Transaction>
+    <Transaction>2024/01/31 09:37:10.000.078,=C:\Projetos\Delphi\ExtratorDadosSiscomex\Unit2.pas</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="DateTimePicker.Interposer.pas"/>
+    <File Path="DiLeituraXML.pas"/>
+    <File Path="DmBroker.pas"/>
+    <File Path="DmBroker.dfm"/>
+    <File Path="DueConsultaCompleta.pas"/>
+    <File Path="IntegracaoDue.pas"/>
+    <File Path="KrUtil.pas"/>
+    <File Path="ParametrosDoSistema.pas"/>
+    <File Path="Pkg.Json.DTO.pas"/>
+    <File Path="Principal.pas"/>
+    <File Path="Principal.dfm"/>
+    <File Path="uCadastroDespachantes.pas"/>
+    <File Path="uCadastroDespachantes.dfm"/>
+    <File Path="uConsultaAtoConcessorio.pas"/>
+    <File Path="uGerarCertificado.pas"/>
+    <File Path="uGerarCertificado.dfm"/>
+    <File Path="uIntegracaoDI.pas"/>
+    <File Path="uIntegracaoDI.dfm"/>
+    <File Path="uIntegracaoDue.pas"/>
+    <File Path="uIntegracaoDue.dfm"/>
+    <File Path="uRelatorioExpo.pas"/>
+    <File Path="uRelatorioExpo.dfm"/>
+    <File Path="uRelatorioImpo.pas"/>
+    <File Path="uRelatorioImpo.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

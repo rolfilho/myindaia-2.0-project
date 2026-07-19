@@ -1,0 +1,1410 @@
+unit DmBroker;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Winapi.Windows, Dialogs, System.Generics.Collections,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.VCLUI.Wait, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
+  FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  FireDAC.Phys.MSSQL, FireDAC.Phys.MSSQLDef, IdTCPConnection, IdTCPClient,
+  IdExplicitTLSClientServerBase, IdMessageClient, IdSMTPBase, IdSMTP, IdMessage,
+  IdBaseComponent, IdComponent, IdIOHandler, IdIOHandlerSocket,
+  IdIOHandlerStack, IdSSL, IdSSLOpenSSL, IdText, IdAttachmentFile, System.StrUtils,
+  Datasnap.DBClient, Datasnap.Provider, IntegracaoDue, DueConsultaCompleta, DiLeituraXML;
+
+type
+  TStringArray = array of String;
+
+  TDisplay = procedure(aValue: String) of object;
+
+  TdmdBroker = class(TDataModule)
+    dbBroker: TFDConnection;
+    qryInsertDue: TFDQuery;
+    qryRelatorioExpo: TFDQuery;
+    dtsRelatorioExpo: TDataSource;
+    qryFilaExpo: TFDQuery;
+    dtsFilaExpo: TDataSource;
+    qryInsertDi: TFDQuery;
+    qryRelatorioImpo: TFDQuery;
+    dtsRelatorioImpo: TDataSource;
+    qrySelectCertificados: TFDQuery;
+    dtsCadDespachantes: TDataSource;
+    qryCadDespachantes: TFDQuery;
+    qryHistoricoDi: TFDQuery;
+    qryDeleteDi: TFDQuery;
+    qryHistoricoDue: TFDQuery;
+    qryDeleteDue: TFDQuery;
+    qrySelectCertificadosCodigo: TFDAutoIncField;
+    qrySelectCertificadosNomeDespachante: TStringField;
+    qrySelectCertificadosNomeArquivo: TStringField;
+    qrySelectCertificadosOrdemConsulta: TIntegerField;
+    qrySelectCertificadosVencimento: TSQLTimeStampField;
+    qryFilaExpoNrDue: TStringField;
+    qryFilaExpoDataControle: TSQLTimeStampField;
+    qryFilaExpoDataDueImportada: TSQLTimeStampField;
+    qryFilaExpoCodigoCertificadoDespachante: TIntegerField;
+    qryFilaExpoNomeDespachante: TStringField;
+    qryRelatorioExpoNrDue: TStringField;
+    qryRelatorioExpoDataRegistro: TSQLTimeStampField;
+    qryRelatorioExpoDataEmbarque: TSQLTimeStampField;
+    qryRelatorioExpoNrRuc: TStringField;
+    qryRelatorioExpoSituacao: TStringField;
+    qryRelatorioExpoBloqueio: TStringField;
+    qryRelatorioExpoCanal: TStringField;
+    qryRelatorioExpoChaveDeAcesso: TStringField;
+    qryRelatorioExpoDeclaranteNrDocumento: TStringField;
+    qryRelatorioExpoDeclaranteTpDocumento: TStringField;
+    qryRelatorioExpoDeclaranteNome: TStringField;
+    qryRelatorioExpoDeclaranteNacCodigo: TIntegerField;
+    qryRelatorioExpoDeclaranteNacNome: TStringField;
+    qryRelatorioExpoDeclaranteNacNomeResumido: TStringField;
+    qryRelatorioExpoDeclaranteEstrangeiro: TStringField;
+    qryRelatorioExpoItensNumero: TIntegerField;
+    qryRelatorioExpoItensNcmCodigo: TStringField;
+    qryRelatorioExpoItensNcmDescricao: TStringField;
+    qryRelatorioExpoItensItemNFExpoCodProduto: TStringField;
+    qryRelatorioExpoItensDescricaoMercadoria: TMemoField;
+    qryRelatorioExpoItensQtdUnidEstatistica: TFloatField;
+    qryRelatorioExpoItensNcmUnidMedEstatistica: TStringField;
+    qryRelatorioExpoItensQtdUnidComercializada: TFloatField;
+    qryRelatorioExpoItensUnidComercializada: TStringField;
+    qryRelatorioExpoItensPesoLiqTotal: TFloatField;
+    qryRelatorioExpoItensValorMercLocalEmbarque: TFloatField;
+    qryRelatorioExpoItensValorMercCondicaoVenda: TFloatField;
+    qryRelatorioExpoItensValorMercLocalEmbarqueEmReais: TFloatField;
+    qryRelatorioExpoItensitemNFExpoNFChaveAcesso: TStringField;
+    qryRelatorioExpoItensItemNFExpoNFNumero: TIntegerField;
+    qryRelatorioExpoItensItemNFExpoNrItem: TIntegerField;
+    qryRelatorioExpoItensItemNFExpoNFModelo: TStringField;
+    qryRelatorioExpotensItemNFExpoNFSerie: TIntegerField;
+    qryRelatorioExpoItensItemNFExpoNFUfEmissor: TStringField;
+    qryRelatorioExpoItensItemNFExpoNFIdEmitenteNumero: TStringField;
+    qryRelatorioExpoItensItemNFExpoNFIdEmitenteCnpj: TStringField;
+    qryRelatorioExpoItensItemNFExpoNFIdEmitenteCpf: TStringField;
+    qryRelatorioExpoItensItemNFExpoNFFinalidade: TStringField;
+    qryRelatorioExpoItensItemNFExpoNfNfEletronica: TStringField;
+    qryRelatorioExpoItensItemNFExpoCfop: TIntegerField;
+    qryRelatorioExpoMoedaCodigo: TIntegerField;
+    qryRelatorioExpoItensCondVendaCodigo: TStringField;
+    qryRelatorioExpoItensNomeImportador: TStringField;
+    qryRelatorioExpoItensEnderecoImportador: TStringField;
+    qryRelatorioExpoItensPaisDestinoCodigo: TIntegerField;
+    qryRelatorioExpoPaisImportadorCodigo: TIntegerField;
+    qryRelatorioExpoitensEnquadramento01Codigo: TIntegerField;
+    qryRelatorioExpoUnidLocalDespachoCodigo: TStringField;
+    qryRelatorioExpoUnidLocalEmbarqueCodigo: TStringField;
+    qryRelatorioExpoEmbarqueRecintoAlfandegado: TStringField;
+    qryRelatorioExpoDespachoRecintoAlfandegado: TStringField;
+    qryRelatorioExpoImpedidoEmbarque: TStringField;
+    qryRelatorioExpoInformacoesComplementares: TMemoField;
+    qryRelatorioExpoItensDataConversao: TSQLTimeStampField;
+    qryRelatorioExpoRecintoAduaneiroDespachoCodigo: TStringField;
+    qryRelatorioExpoRecintoAduaneiroEmbarqueCodigo: TStringField;
+    qryRelatorioExpoResponsavelPeloACD: TStringField;
+    qryRelatorioExpoDespachoRecintoDomiciliar: TStringField;
+    qryRelatorioExpoDataCCE: TSQLTimeStampField;
+    qryRelatorioExpoDataCriacao: TSQLTimeStampField;
+    qryRelatorioExpodat: TStringField;
+    qryRelatorioExpooea: TStringField;
+    qryRelatorioImponumeroDI: TStringField;
+    qryRelatorioImpodataRegistro: TSQLTimeStampField;
+    qryRelatorioImpodataDiImportada: TSQLTimeStampField;
+    qryRelatorioImpotipoDeclaracaoCodigo: TStringField;
+    qryRelatorioImpotipoDeclaracaoNome: TStringField;
+    qryRelatorioImpomodalidadeDespachoCodigo: TStringField;
+    qryRelatorioImpomodalidadeDespachoNome: TStringField;
+    qryRelatorioImpodataDesembaraco: TSQLTimeStampField;
+    qryRelatorioImpooperacaoFundap: TStringField;
+    qryRelatorioImpourfDespachoCodigo: TStringField;
+    qryRelatorioImpourfDespachoNome: TStringField;
+    qryRelatorioImpolocalDescargaTotalDolares: TFloatField;
+    qryRelatorioImpolocalDescargaTotalReais: TFloatField;
+    qryRelatorioImpolocalEmbarqueTotalDolares: TFloatField;
+    qryRelatorioImpolocalEmbarqueTotalReais: TFloatField;
+    qryRelatorioImpoviaTransporteCodigo: TStringField;
+    qryRelatorioImpoviaTransporteMultimodal: TStringField;
+    qryRelatorioImpoviaTransporteNome: TStringField;
+    qryRelatorioImpoviaTransporteNomeTransportador: TStringField;
+    qryRelatorioImpoviaTransportePaisTransportadorCodigo: TStringField;
+    qryRelatorioImpoviaTransportePaisTransportadorNome: TStringField;
+    qryRelatorioImposequencialRetificacao: TStringField;
+    qryRelatorioImposituacaoEntregaCarga: TStringField;
+    qryRelatorioImpocanalSelecaoParametrizada: TStringField;
+    qryRelatorioImpocaracterizacaoOperacaoCodigoTipo: TStringField;
+    qryRelatorioImpocaracterizacaoOperacaoDescricaoTipo: TStringField;
+    qryRelatorioImpocargaDataChegada: TSQLTimeStampField;
+    qryRelatorioImpocargaNumeroAgente: TStringField;
+    qryRelatorioImpocargaPaisProcedenciaCodigo: TStringField;
+    qryRelatorioImpocargaPaisProcedenciaNome: TStringField;
+    qryRelatorioImpocargaPesoBruto: TFloatField;
+    qryRelatorioImpocargaPesoLiquido: TFloatField;
+    qryRelatorioImpocargaUrfEntradaCodigo: TStringField;
+    qryRelatorioImpocargaUrfEntradaNome: TStringField;
+    qryRelatorioImpoconhecimentoCargaEmbarqueData: TSQLTimeStampField;
+    qryRelatorioImpoconhecimentoCargaEmbarqueLocal: TStringField;
+    qryRelatorioImpoconhecimentoCargaId: TStringField;
+    qryRelatorioImpoconhecimentoCargaIdMaster: TStringField;
+    qryRelatorioImpoconhecimentoCargaTipoCodigo: TStringField;
+    qryRelatorioImpoconhecimentoCargaTipoNome: TStringField;
+    qryRelatorioImpoconhecimentoCargaUtilizacao: TStringField;
+    qryRelatorioImpoconhecimentoCargaUtilizacaoNome: TStringField;
+    qryRelatorioImpovalorTotalMultaARecolherAjustado: TFloatField;
+    qryRelatorioImposeguroMoedaNegociadaCodigo: TStringField;
+    qryRelatorioImposeguroMoedaNegociadaNome: TStringField;
+    qryRelatorioImposeguroTotalDolares: TFloatField;
+    qryRelatorioImposeguroTotalMoedaNegociada: TFloatField;
+    qryRelatorioImposeguroTotalReais: TFloatField;
+    qryRelatorioImpofreteCollect: TStringField;
+    qryRelatorioImpofreteEmTerritorioNacional: TStringField;
+    qryRelatorioImpofreteMoedaNegociadaCodigo: TStringField;
+    qryRelatorioImpofreteMoedaNegociadaNome: TStringField;
+    qryRelatorioImpofretePrepaid: TStringField;
+    qryRelatorioImpofreteTotalDolares: TFloatField;
+    qryRelatorioImpofreteTotalMoeda: TFloatField;
+    qryRelatorioImpofreteTotalReais: TFloatField;
+    qryRelatorioImpoimportadorCodigoTipo: TStringField;
+    qryRelatorioImpoimportadorCpfRepresentanteLegal: TStringField;
+    qryRelatorioImpoimportadorEnderecoBairro: TStringField;
+    qryRelatorioImpoimportadorEnderecoCep: TStringField;
+    qryRelatorioImpoimportadorEnderecoLogradouro: TStringField;
+    qryRelatorioImpoimportadorEnderecoMunicipio: TStringField;
+    qryRelatorioImpoimportadorEnderecoNumero: TStringField;
+    qryRelatorioImpoimportadorEnderecoUf: TStringField;
+    qryRelatorioImpoimportadorNome: TStringField;
+    qryRelatorioImpoimportadorNomeRepresentanteLegal: TStringField;
+    qryRelatorioImpoimportadorNumero: TStringField;
+    qryRelatorioImpoarmazenamentoRecintoAduaneiroCodigo: TStringField;
+    qryRelatorioImpoarmazenamentoRecintoAduaneiroNome: TStringField;
+    qryRelatorioImpoarmazenamentoSetor: TStringField;
+    qryRelatorioImpoinformacaoComplementar: TMemoField;
+    qryRelatorioImpototalAdicoes: TIntegerField;
+    qryRelatorioImponomeArmazem: TStringField;
+    qryRelatorioImpoagenciaIcms: TStringField;
+    qryRelatorioImpobancoIcms: TStringField;
+    qryRelatorioImpocodigoTipoRecolhimentoIcms: TStringField;
+    qryRelatorioImpocpfResponsavelRegistroIcms: TStringField;
+    qryRelatorioImpodataPagamentoIcms: TSQLTimeStampField;
+    qryRelatorioImpodataRegistroIcms: TSQLTimeStampField;
+    qryRelatorioImpohoraRegistroIcms: TStringField;
+    qryRelatorioImponomeTipoRecolhimentoIcms: TStringField;
+    qryRelatorioImponumeroSequencialIcms: TStringField;
+    qryRelatorioImpoufIcms: TStringField;
+    qryRelatorioImpovalorTotalIcms: TFloatField;
+    qryRelatorioImpodocumentoChegadaCargaCodigoTipo: TStringField;
+    qryRelatorioImpodocumentoChegadaCargaNome: TStringField;
+    qryRelatorioImpodocumentoChegadaCargaNumero: TStringField;
+    qryRelatorioImpoa_numeroAdicao: TStringField;
+    qryRelatorioImpoa_numeroLI: TStringField;
+    qryRelatorioImpoa_sequencialRetificacao: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaAplicacao: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaCodigoNaladiNCCA: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaCodigoNaladiSH: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaCodigoNcm: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaCondicao: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaMedidaEstatisticaQuantidade: TFloatField;
+    qryRelatorioImpoa_dadosMercadoriaMedidaEstatisticaUnidade: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaNomeNcm: TStringField;
+    qryRelatorioImpoa_dadosMercadoriaPesoLiquido: TFloatField;
+    qryRelatorioImpoa_paisAquisicaoMercadoriaCodigo: TStringField;
+    qryRelatorioImpoa_paisAquisicaoMercadoriaNome: TStringField;
+    qryRelatorioImpoa_paisOrigemMercadoriaCodigo: TStringField;
+    qryRelatorioImpoa_paisOrigemMercadoriaNome: TStringField;
+    qryRelatorioImpoa_fornecedorCidade: TStringField;
+    qryRelatorioImpoa_fornecedorComplemento: TStringField;
+    qryRelatorioImpoa_fornecedorEstado: TStringField;
+    qryRelatorioImpoa_fornecedorLogradouro: TStringField;
+    qryRelatorioImpoa_fornecedorNome: TStringField;
+    qryRelatorioImpoa_fornecedorNumero: TStringField;
+    qryRelatorioImpoa_codigoRelacaoCompradorVendedor: TStringField;
+    qryRelatorioImpoa_relacaoCompradorVendedor: TStringField;
+    qryRelatorioImpoa_codigoVinculoCompradorVendedor: TStringField;
+    qryRelatorioImpoa_vinculoCompradorVendedor: TStringField;
+    qryRelatorioImpoa_dadosCambiaisCoberturaCambialCodigo: TStringField;
+    qryRelatorioImpoa_dadosCambiaisCoberturaCambialNome: TStringField;
+    qryRelatorioImpoa_dadosCambiaisInstituicaoFinanciadoraCodigo: TStringField;
+    qryRelatorioImpoa_dadosCambiaisInstituicaoFinanciadoraNome: TStringField;
+    qryRelatorioImpoa_dadosCambiaisMotivoSemCoberturaCodigo: TStringField;
+    qryRelatorioImpoa_dadosCambiaisMotivoSemCoberturaNome: TStringField;
+    qryRelatorioImpoa_dadosCambiaisValorRealCambio: TFloatField;
+    qryRelatorioImpoa_dadosCargaPaisProcedenciaCodigo: TStringField;
+    qryRelatorioImpoa_dadosCargaUrfEntradaCodigo: TStringField;
+    qryRelatorioImpoa_dadosCargaViaTransporteCodigo: TStringField;
+    qryRelatorioImpoa_condicaoVendaLocal: TStringField;
+    qryRelatorioImpoa_condicaoVendaMetodoValoracaoCodigo: TStringField;
+    qryRelatorioImpoa_condicaoVendaMetodoValoracaoNome: TStringField;
+    qryRelatorioImpoa_condicaoVendaMoedaCodigo: TStringField;
+    qryRelatorioImpoa_condicaoVendaMoedaNome: TStringField;
+    qryRelatorioImpoa_condicaoVendaValorMoeda: TFloatField;
+    qryRelatorioImpoa_condicaoVendaValorReais: TFloatField;
+    qryRelatorioImpoa_cideValorAliquotaEspecifica: TFloatField;
+    qryRelatorioImpoa_cideValorDevido: TFloatField;
+    qryRelatorioImpoa_cideValorRecolher: TFloatField;
+    qryRelatorioImpoa_dcrCoeficienteReducao: TStringField;
+    qryRelatorioImpoa_dcrIdentificacao: TStringField;
+    qryRelatorioImpoa_dcrValorDevido: TFloatField;
+    qryRelatorioImpoa_dcrValorDolar: TFloatField;
+    qryRelatorioImpoa_dcrValorReal: TFloatField;
+    qryRelatorioImpoa_dcrValorRecolher: TFloatField;
+    qryRelatorioImpoa_valorMultaARecolher: TFloatField;
+    qryRelatorioImpoa_valorMultaARecolherAjustado: TFloatField;
+    qryRelatorioImpoa_valorReaisFreteInternacional: TFloatField;
+    qryRelatorioImpoa_valorReaisSeguroInternacional: TFloatField;
+    qryRelatorioImpoa_valorTotalCondicaoVenda: TFloatField;
+    qryRelatorioImpoa_freteMoedaNegociadaCodigo: TStringField;
+    qryRelatorioImpoa_freteValorMoedaNegociada: TFloatField;
+    qryRelatorioImpoa_freteValorReais: TFloatField;
+    qryRelatorioImpoa_seguroMoedaNegociadaCodigo: TStringField;
+    qryRelatorioImpoa_seguroValorMoedaNegociada: TFloatField;
+    qryRelatorioImpoa_seguroValorReais: TFloatField;
+    qryRelatorioImpoa_iiAcordoTarifarioTipoCodigo: TStringField;
+    qryRelatorioImpoa_iiAliquotaAcordo: TFloatField;
+    qryRelatorioImpoa_iiAliquotaAdValorem: TFloatField;
+    qryRelatorioImpoa_iiAliquotaPercentualReducao: TFloatField;
+    qryRelatorioImpoa_iiAliquotaReduzida: TFloatField;
+    qryRelatorioImpoa_iiAliquotaValorCalculado: TFloatField;
+    qryRelatorioImpoa_iiAliquotaValorDevido: TFloatField;
+    qryRelatorioImpoa_iiAliquotaValorRecolher: TFloatField;
+    qryRelatorioImpoa_iiAliquotaValorReduzido: TFloatField;
+    qryRelatorioImpoa_iiBaseCalculo: TFloatField;
+    qryRelatorioImpoa_iiFundamentoLegalCodigo: TStringField;
+    qryRelatorioImpoa_iiMotivoAdmissaoTemporariaCodigo: TStringField;
+    qryRelatorioImpoa_iiRegimeTributacaoCodigo: TStringField;
+    qryRelatorioImpoa_iiRegimeTributacaoNome: TStringField;
+    qryRelatorioImpoa_ipiAliquotaAdValorem: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaEspecificaCapacidadeRecipciente: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaEspecificaQuantidadeUnidadeMedida: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaEspecificaTipoRecipienteCodigo: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaEspecificaValorUnidadeMedida: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaNotaComplementarTIPI: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaReduzida: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaValorDevido: TFloatField;
+    qryRelatorioImpoa_ipiAliquotaValorRecolher: TFloatField;
+    qryRelatorioImpoa_ipiRegimeTributacaoCodigo: TStringField;
+    qryRelatorioImpoa_ipiRegimeTributacaoNome: TStringField;
+    qryRelatorioImpoa_cofinsAliquotaAdValorem: TFloatField;
+    qryRelatorioImpoa_cofinsAliquotaEspecificaQuantidadeUnidade: TFloatField;
+    qryRelatorioImpoa_cofinsAliquotaEspecificaValor: TFloatField;
+    qryRelatorioImpoa_cofinsAliquotaReduzida: TFloatField;
+    qryRelatorioImpoa_cofinsAliquotaValorDevido: TFloatField;
+    qryRelatorioImpoa_cofinsAliquotaValorRecolher: TFloatField;
+    qryRelatorioImpoa_pisCofinsBaseCalculoAliquotaICMS: TFloatField;
+    qryRelatorioImpoa_pisCofinsBaseCalculoFundamentoLegalCodigo: TFloatField;
+    qryRelatorioImpoa_pisCofinsBaseCalculoPercentualReducao: TFloatField;
+    qryRelatorioImpoa_pisCofinsBaseCalculoValor: TFloatField;
+    qryRelatorioImpoa_pisCofinsFundamentoLegalReducaoCodigo: TStringField;
+    qryRelatorioImpoa_pisCofinsRegimeTributacaoCodigo: TStringField;
+    qryRelatorioImpoa_pisCofinsRegimeTributacaoNome: TStringField;
+    qryRelatorioImpoa_pisPasepAliquotaAdValorem: TFloatField;
+    qryRelatorioImpoa_pisPasepAliquotaEspecificaQuantidadeUnidade: TFloatField;
+    qryRelatorioImpoa_pisPasepAliquotaEspecificaValor: TFloatField;
+    qryRelatorioImpoa_pisPasepAliquotaReduzida: TFloatField;
+    qryRelatorioImpoa_pisPasepAliquotaValorDevido: TFloatField;
+    qryRelatorioImpoa_pisPasepAliquotaValorRecolher: TFloatField;
+    qryRelatorioImpoa_condicaoVendaIncoterm: TStringField;
+    qryRelatorioImpoa_fabricanteNome: TStringField;
+    qryRelatorioImpoa_fabricanteCidade: TStringField;
+    qryRelatorioImpoa_fabricanteComplemento: TStringField;
+    qryRelatorioImpoa_fabricanteEstado: TStringField;
+    qryRelatorioImpoa_fabricanteLogradouro: TStringField;
+    qryRelatorioImpoa_fabricanteNumero: TStringField;
+    qryRelatorioImpoa_numeroDestaque: TStringField;
+    qryRelatorioImpoi_descricaoMercadoria: TMemoField;
+    qryRelatorioImpoi_numeroSequencialItem: TStringField;
+    qryRelatorioImpoi_quantidade: TFloatField;
+    qryRelatorioImpoi_unidadeMedida: TStringField;
+    qryRelatorioImpoi_valorUnitario: TFloatField;
+    qryRelatorioImpoi_vmle: TFloatField;
+    qryRelatorioImpoi_quantidadeEstatistica: TFloatField;
+    qryCadDespachantesCodigo: TFDAutoIncField;
+    qryCadDespachantesNomeDespachante: TStringField;
+    qryCadDespachantesNomeArquivo: TStringField;
+    qryCadDespachantesOrdemConsulta: TIntegerField;
+    qryCadDespachantesVencimento: TSQLTimeStampField;
+    qryInsertDueNrDue: TStringField;
+    qryInsertDueDataRegistro: TSQLTimeStampField;
+    qryInsertDueDataEmbarque: TSQLTimeStampField;
+    qryInsertDueNrRuc: TStringField;
+    qryInsertDueSituacao: TStringField;
+    qryInsertDueBloqueio: TStringField;
+    qryInsertDueCanal: TStringField;
+    qryInsertDueChaveDeAcesso: TStringField;
+    qryInsertDueDeclaranteNrDocumento: TStringField;
+    qryInsertDueDeclaranteTpDocumento: TStringField;
+    qryInsertDueDeclaranteNome: TStringField;
+    qryInsertDueDeclaranteNacCodigo: TIntegerField;
+    qryInsertDueDeclaranteNacNome: TStringField;
+    qryInsertDueDeclaranteNacNomeResumido: TStringField;
+    qryInsertDueDeclaranteEstrangeiro: TStringField;
+    qryInsertDueItensNumero: TIntegerField;
+    qryInsertDueItensNcmCodigo: TStringField;
+    qryInsertDueItensNcmDescricao: TStringField;
+    qryInsertDueItensItemNFExpoCodProduto: TStringField;
+    qryInsertDueItensDescricaoMercadoria: TMemoField;
+    qryInsertDueItensQtdUnidEstatistica: TFloatField;
+    qryInsertDueItensNcmUnidMedEstatistica: TStringField;
+    qryInsertDueItensQtdUnidComercializada: TFloatField;
+    qryInsertDueItensUnidComercializada: TStringField;
+    qryInsertDueItensPesoLiqTotal: TFloatField;
+    qryInsertDueItensValorMercLocalEmbarque: TFloatField;
+    qryInsertDueItensValorMercCondicaoVenda: TFloatField;
+    qryInsertDueItensValorMercLocalEmbarqueEmReais: TFloatField;
+    qryInsertDueItensitemNFExpoNFChaveAcesso: TStringField;
+    qryInsertDueItensItemNFExpoNFNumero: TIntegerField;
+    qryInsertDueItensItemNFExpoNrItem: TIntegerField;
+    qryInsertDueItensItemNFExpoNFModelo: TStringField;
+    qryInsertDuetensItemNFExpoNFSerie: TIntegerField;
+    qryInsertDueItensItemNFExpoNFUfEmissor: TStringField;
+    qryInsertDueItensItemNFExpoNFIdEmitenteNumero: TStringField;
+    qryInsertDueItensItemNFExpoNFIdEmitenteCnpj: TStringField;
+    qryInsertDueItensItemNFExpoNFIdEmitenteCpf: TStringField;
+    qryInsertDueItensItemNFExpoNFFinalidade: TStringField;
+    qryInsertDueItensItemNFExpoNfNfEletronica: TStringField;
+    qryInsertDueItensItemNFExpoCfop: TIntegerField;
+    qryInsertDueMoedaCodigo: TIntegerField;
+    qryInsertDueItensCondVendaCodigo: TStringField;
+    qryInsertDueItensNomeImportador: TStringField;
+    qryInsertDueItensEnderecoImportador: TStringField;
+    qryInsertDueItensPaisDestinoCodigo: TIntegerField;
+    qryInsertDuePaisImportadorCodigo: TIntegerField;
+    qryInsertDueitensEnquadramento01Codigo: TIntegerField;
+    qryInsertDueUnidLocalDespachoCodigo: TStringField;
+    qryInsertDueUnidLocalEmbarqueCodigo: TStringField;
+    qryInsertDueEmbarqueRecintoAlfandegado: TStringField;
+    qryInsertDueDespachoRecintoAlfandegado: TStringField;
+    qryInsertDueImpedidoEmbarque: TStringField;
+    qryInsertDueInformacoesComplementares: TMemoField;
+    qryInsertDueItensDataConversao: TSQLTimeStampField;
+    qryInsertDueRecintoAduaneiroDespachoCodigo: TStringField;
+    qryInsertDueRecintoAduaneiroEmbarqueCodigo: TStringField;
+    qryInsertDueResponsavelPeloACD: TStringField;
+    qryInsertDueDespachoRecintoDomiciliar: TStringField;
+    qryInsertDueDataCCE: TSQLTimeStampField;
+    qryInsertDueDataCriacao: TSQLTimeStampField;
+    qryInsertDuedat: TStringField;
+    qryInsertDueoea: TStringField;
+    qryRelatorioExpoDataDueImportada: TSQLTimeStampField;
+    qryDeleteDueFila: TFDQuery;
+  private
+  public
+    procedure TesteTamanhoCampos(NrDue: String; Due: TDue; aValue: TDisplay);
+    procedure GravaDueCompleta(NrDue: String; Due: TDue);
+    procedure ConfiguraConexao(const Servidor, Banco, Usuario, Senha: string);
+    procedure IncluirDueRecuperar(NrDue: String; CodCertificado: integer);
+    procedure UpdateDueRecuperar(value: String);
+    procedure GeraConsultaRelatorioExpo(DataRegistroInicio, DataRegistroFim: TDateTime; DeclaranteNrDocumento, NrDue: String);
+    procedure UpdateDueRecuperarCertificado(NrDue: String; CodCertificado: integer);
+    procedure MostraFila;
+    procedure DeleteFila;
+    procedure GravaDi(Dis: TObjectList<TDi>);
+    procedure GeraConsultaRelatorioImpo(DataRegistroInicio, DataRegistroFim: TDateTime; NrDocumento, NrDi: String);
+    procedure ValidarTamanhoCamposImpo(Dis: TObjectList<TDi>; aValue: TDisplay);
+  end;
+
+var
+  dmdBroker: TdmdBroker;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses KrUtil, ParametrosDoSistema;
+
+{$R *.dfm}
+
+procedure TdmdBroker.GravaDueCompleta(NrDue: String; Due: TDue);
+var
+  teste: String;
+  i: integer;
+  iEnq: integer;
+  itens: TItens;
+  enquadramentos: TListaDeEnquadramentos;
+  eventos: TEventosDoHistorico;
+  qtdEventos: integer;
+
+  function retValorBoolean(value: boolean): string;
+  begin
+    if value then
+      result := 'S'
+    else
+      result := 'N';
+  end;
+
+  function retEnquadramento(value: integer): Integer;
+  begin
+    try
+      result := itens.ListaDeEnquadramentos[value].Codigo;
+    except
+      result := 0;
+    end;
+
+  end;
+
+begin
+
+  qryInsertDue.Close;
+  qryInsertDue.SQL.Text :=
+    ' INSERT INTO ExpoDueImportada ' +
+
+    ' (NrDue, DataRegistro, DataEmbarque, NrRuc, Situacao, Bloqueio, Canal, ChaveDeAcesso, DeclaranteNrDocumento, ' + #13#10 +
+    ' DeclaranteTpDocumento, DeclaranteNome,DeclaranteNacCodigo, DeclaranteNacNome, DeclaranteNacNomeResumido, ' + #13#10 +
+    ' DeclaranteEstrangeiro, ItensNumero, ItensNcmCodigo, ItensNcmDescricao, ItensItemNFExpoCodProduto, ' + #13#10 +
+    ' ItensDescricaoMercadoria, ItensQtdUnidEstatistica, ItensNcmUnidMedEstatistica, ItensQtdUnidComercializada, ' + #13#10 +
+    ' ItensUnidComercializada, ItensPesoLiqTotal, ItensValorMercLocalEmbarque, ItensValorMercCondicaoVenda, ' + #13#10 +
+    ' ItensValorMercLocalEmbarqueEmReais, ItensitemNFExpoNFChaveAcesso, ItensItemNFExpoNFNumero, ItensItemNFExpoNrItem, ' + #13#10 +
+    ' ItensItemNFExpoNFModelo, tensItemNFExpoNFSerie, ItensItemNFExpoNFUfEmissor, ItensItemNFExpoNFIdEmitenteNumero, ' + #13#10 +
+    ' ItensItemNFExpoNFIdEmitenteCnpj, ItensItemNFExpoNFIdEmitenteCpf, ItensItemNFExpoNFFinalidade, ItensItemNFExpoNfNfEletronica, ' + #13#10 +
+    ' ItensItemNFExpoCfop, MoedaCodigo, ItensCondVendaCodigo, ItensNomeImportador, ItensEnderecoImportador, ' + #13#10 +
+    ' ItensPaisDestinoCodigo, PaisImportadorCodigo, itensEnquadramento01Codigo, UnidLocalDespachoCodigo, UnidLocalEmbarqueCodigo, ' + #13#10 +
+    ' EmbarqueRecintoAlfandegado, DespachoRecintoAlfandegado, ImpedidoEmbarque, InformacoesComplementares, ItensDataConversao, ' + #13#10 +
+    ' RecintoAduaneiroDespachoCodigo, RecintoAduaneiroEmbarqueCodigo, ResponsavelPeloACD, DespachoRecintoDomiciliar, ' + #13#10 +
+    ' DataCCE, DataCriacao, dat, oea, itensEnquadramento02Codigo, itensEnquadramento03Codigo, itensEnquadramento04Codigo) '+
+
+    ' VALUES( ' + #13#10 +
+    ' :NrDue, :DataRegistro, :DataEmbarque, :NrRuc, :Situacao, :Bloqueio, :Canal, :ChaveDeAcesso, :DeclaranteNrDocumento, ' + #13#10 +
+    ' :DeclaranteTpDocumento, :DeclaranteNome,:DeclaranteNacCodigo, :DeclaranteNacNome, :DeclaranteNacNomeResumido, ' + #13#10 +
+    ' :DeclaranteEstrangeiro, :ItensNumero, :ItensNcmCodigo, :ItensNcmDescricao, :ItensItemNFExpoCodProduto, ' + #13#10 +
+    ' :ItensDescricaoMercadoria, :ItensQtdUnidEstatistica, :ItensNcmUnidMedEstatistica, :ItensQtdUnidComercializada, ' + #13#10 +
+    ' :ItensUnidComercializada, :ItensPesoLiqTotal, :ItensValorMercLocalEmbarque, :ItensValorMercCondicaoVenda, ' + #13#10 +
+    ' :ItensValorMercLocalEmbarqueEmReais, :ItensitemNFExpoNFChaveAcesso, :ItensItemNFExpoNFNumero, :ItensItemNFExpoNrItem, ' + #13#10 +
+    ' :ItensItemNFExpoNFModelo, :tensItemNFExpoNFSerie, :ItensItemNFExpoNFUfEmissor, :ItensItemNFExpoNFIdEmitenteNumero, ' + #13#10 +
+    ' :ItensItemNFExpoNFIdEmitenteCnpj, :ItensItemNFExpoNFIdEmitenteCpf, :ItensItemNFExpoNFFinalidade, :ItensItemNFExpoNfNfEletronica, ' + #13#10 +
+    ' :ItensItemNFExpoCfop, :MoedaCodigo, :ItensCondVendaCodigo, :ItensNomeImportador, :ItensEnderecoImportador, ' + #13#10 +
+    ' :ItensPaisDestinoCodigo, :PaisImportadorCodigo, :itensEnquadramento01Codigo, :UnidLocalDespachoCodigo, :UnidLocalEmbarqueCodigo, ' + #13#10 +
+    ' :EmbarqueRecintoAlfandegado, :DespachoRecintoAlfandegado, :ImpedidoEmbarque, :InformacoesComplementares, :ItensDataConversao, ' + #13#10 +
+    ' :RecintoAduaneiroDespachoCodigo, :RecintoAduaneiroEmbarqueCodigo, :ResponsavelPeloACD, :DespachoRecintoDomiciliar, ' + #13#10 +
+    ' :DataCCE, :DataCriacao, :dat, :oea, :itensEnquadramento02Codigo, :itensEnquadramento03Codigo, :itensEnquadramento04Codigo) ';
+
+
+  qryDeleteDue.Close;
+  qryDeleteDue.SQL.Text := 'SELECT * FROM ExpoDueImportada WHERE NrDue = :NrDue';
+  qryDeleteDue.paramByName('NrDue').AsString := NrDue;
+  qryDeleteDue.open;
+
+  if qryDeleteDue.RecordCount > 0 then
+  begin
+    qryDeleteDue.Close;
+    qryDeleteDue.SQL.Text := 'DELETE FROM ExpoDueImportada WHERE NrDue = :NrDue ';
+    qryDeleteDue.paramByName('NrDue').AsString := NrDue;
+    qryDeleteDue.ExecSQL;
+
+    qryHistoricoDue.Close;
+    qryHistoricoDue.SQL.Text := 'INSERT INTO ExpoDueHistorico VALUES(:NrDue, getdate(), ''Exclusão'')';
+    qryHistoricoDue.paramByName('NrDue').AsString := NrDue;
+    qryHistoricoDue.ExecSQL;
+  end;
+
+  qryInsertDue.ParamByName('NrDue').AsString := NrDue;
+  qryInsertDue.ParamByName('DataRegistro').asdatetime := Due.DueCompleta.DataDeRegistro;
+
+  for eventos in due.DueCompleta.EventosDoHistorico do
+  begin
+    if Pos('dados de embarque', eventos.evento) > 0  then
+      qryInsertDue.ParamByName('DataEmbarque').AsDateTime := eventos.DataEHoraDoEvento;
+  end;
+
+  qryInsertDue.ParamByName('NrRuc').AsString := due.DueCompleta.Ruc;
+  qryInsertDue.ParamByName('Situacao').AsString := due.DueCompleta.Situacao;
+  qryInsertDue.ParamByName('Bloqueio').AsString := retValorBoolean(due.DueCompleta.Bloqueio);
+  qryInsertDue.ParamByName('Canal').AsString := due.DueCompleta.Canal;
+  qryInsertDue.ParamByName('DeclaranteNrDocumento').AsString := due.DueCompleta.Declarante.NumeroDoDocumento;
+  qryInsertDue.ParamByName('DeclaranteTpDocumento').AsString := due.DueCompleta.Declarante.TipoDoDocumento;
+  qryInsertDue.ParamByName('DeclaranteNome').AsString := due.DueCompleta.Declarante.Nome;
+  qryInsertDue.ParamByName('DeclaranteNacCodigo').AsInteger := due.DueCompleta.Declarante.Nacionalidade.Codigo;
+  qryInsertDue.ParamByName('DeclaranteNacNome').AsString := due.DueCompleta.Declarante.Nacionalidade.Nome;
+  qryInsertDue.ParamByName('DeclaranteNacNomeResumido').AsString := due.DueCompleta.Declarante.Nacionalidade.NomeResumido;
+  qryInsertDue.ParamByName('DeclaranteEstrangeiro').AsString := retValorBoolean(due.DueCompleta.Declarante.Estrangeiro);
+
+  for itens in due.DueCompleta.Itens do
+  begin
+
+    qryInsertDue.ParamByName('ItensNumero').AsInteger := itens.Numero;
+    qryInsertDue.ParamByName('ItensNcmCodigo').AsString := itens.Ncm.codigo;
+    qryInsertDue.ParamByName('ItensNcmDescricao').AsString := itens.Ncm.Descricao;
+    qryInsertDue.ParamByName('ItensItemNFExpoCodProduto').AsString := itens.ItemDaNotaFiscalDeExportacao.CodigoDoProduto;
+    qryInsertDue.ParamByName('ItensDescricaoMercadoria').AsString := itens.DescricaoDaMercadoria;
+    qryInsertDue.ParamByName('ItensQtdUnidEstatistica').AsFloat := itens.QuantidadeNaUnidadeEstatistica;
+    qryInsertDue.ParamByName('ItensNcmUnidMedEstatistica').AsString := itens.Ncm.UnidadeMedidaEstatistica;
+    qryInsertDue.ParamByName('ItensQtdUnidComercializada').AsFloat := itens.QuantidadeNaUnidadeComercializada;
+    qryInsertDue.ParamByName('ItensUnidComercializada').AsString := itens.UnidadeComercializada;
+    qryInsertDue.ParamByName('ItensPesoLiqTotal').AsFloat := itens.PesoLiquidoTotal;
+    qryInsertDue.ParamByName('ItensValorMercLocalEmbarque').AsFloat := itens.ValorDaMercadoriaNoLocalDeEmbarque;
+    qryInsertDue.ParamByName('ItensValorMercCondicaoVenda').AsFloat := itens.ValorDaMercadoriaNaCondicaoDeVenda;
+    qryInsertDue.ParamByName('ItensValorMercLocalEmbarqueEmReais').AsFloat := itens.ValorDaMercadoriaNoLocalDeEmbarqueEmReais;
+    qryInsertDue.ParamByName('ItensitemNFExpoNFChaveAcesso').AsString := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.ChaveDeAcesso;
+    qryInsertDue.ParamByName('ItensItemNFExpoNFNumero').AsInteger := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.NumeroDoDocumento;
+    qryInsertDue.ParamByName('ItensItemNFExpoNrItem').AsInteger := itens.ItemDaNotaFiscalDeExportacao.NumeroDoItem;
+    qryInsertDue.ParamByName('ItensItemNFExpoNFModelo').AsString := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.Modelo;
+    qryInsertDue.ParamByName('tensItemNFExpoNFSerie').AsInteger := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.Serie;
+    qryInsertDue.ParamByName('ItensItemNFExpoNFUfEmissor').AsString := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.UfDoEmissor;
+    qryInsertDue.ParamByName('ItensItemNFExpoNFIdEmitenteNumero').AsString := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.IdentificacaoDoEmitente.Numero;
+    qryInsertDue.ParamByName('ChaveDeAcesso').AsString := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.ChaveDeAcesso;
+    qryInsertDue.ParamByName('ItensItemNFExpoNFIdEmitenteCnpj').AsString := retValorBoolean(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.IdentificacaoDoEmitente.Cnpj);
+    qryInsertDue.ParamByName('ItensItemNFExpoNFIdEmitenteCpf').AsString := retValorBoolean(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.IdentificacaoDoEmitente.Cpf);
+    qryInsertDue.ParamByName('ItensItemNFExpoNFFinalidade').AsString := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.Finalidade;
+    qryInsertDue.ParamByName('ItensItemNFExpoNfNfEletronica').AsString := retValorBoolean(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.NotaFicalEletronica);
+    qryInsertDue.ParamByName('ItensItemNFExpoCfop').AsInteger := itens.ItemDaNotaFiscalDeExportacao.Cfop;
+    qryInsertDue.ParamByName('MoedaCodigo').AsInteger := due.DueCompleta.Moeda.Codigo;
+    qryInsertDue.ParamByName('ItensCondVendaCodigo').AsString := itens.CodigoCondicaoVenda.Codigo;
+    qryInsertDue.ParamByName('ItensNomeImportador').AsString := itens.NomeImportador;
+    qryInsertDue.ParamByName('ItensEnderecoImportador').AsString := itens.EnderecoImportador;
+    qryInsertDue.ParamByName('ItensPaisDestinoCodigo').AsInteger := itens.ListaPaisDestino[0].Codigo;
+    qryInsertDue.ParamByName('PaisImportadorCodigo').AsInteger := due.DueCompleta.PaisImportador.Codigo;
+    qryInsertDue.ParamByName('itensEnquadramento01Codigo').AsInteger := retEnquadramento(0);
+    qryInsertDue.ParamByName('itensEnquadramento02Codigo').AsInteger := retEnquadramento(1);
+    qryInsertDue.ParamByName('itensEnquadramento03Codigo').AsInteger := retEnquadramento(2);
+    qryInsertDue.ParamByName('itensEnquadramento04Codigo').AsInteger := retEnquadramento(3);
+    qryInsertDue.ParamByName('UnidLocalDespachoCodigo').AsString := due.DueCompleta.UnidadeLocalDeDespacho.Codigo;
+    qryInsertDue.ParamByName('UnidLocalEmbarqueCodigo').AsString := due.DueCompleta.UnidadeLocalDeEmbarque.Codigo;
+    qryInsertDue.ParamByName('EmbarqueRecintoAlfandegado').AsString := retValorBoolean(due.DueCompleta.EmbarqueEmRecintoAlfandegado);
+    qryInsertDue.ParamByName('DespachoRecintoAlfandegado').AsString := retValorBoolean(due.DueCompleta.DespachoEmRecintoAlfandegado);
+    qryInsertDue.ParamByName('ImpedidoEmbarque').AsString := retValorBoolean(due.DueCompleta.ImpedidoDeEmbarque);
+    qryInsertDue.ParamByName('InformacoesComplementares').AsString := due.DueCompleta.InformacoesComplementares;
+    qryInsertDue.ParamByName('ItensDataConversao').AsDate := itens.DataDeConversao;
+    qryInsertDue.ParamByName('RecintoAduaneiroDespachoCodigo').AsString := due.DueCompleta.RecintoAduaneiroDeDespacho.Codigo;
+    qryInsertDue.ParamByName('RecintoAduaneiroEmbarqueCodigo').AsString := due.DueCompleta.RecintoAduaneiroDeEmbarque.Codigo;
+    qryInsertDue.ParamByName('ResponsavelPeloACD').AsString := due.DueCompleta.ResponsavelPeloACD;
+    qryInsertDue.ParamByName('DespachoRecintoDomiciliar').AsString := retValorBoolean(due.DueCompleta.DespachoEmRecintoDomiciliar);
+    qryInsertDue.ParamByName('DataCCE').AsDateTime := due.DueCompleta.DataDoCCE;
+    qryInsertDue.ParamByName('DataCriacao').AsDateTime := due.DueCompleta.DataDeCriacao;
+    qryInsertDue.ParamByName('dat').AsString := retValorBoolean(due.DueCompleta.Dat);
+    qryInsertDue.ParamByName('oea').AsString := retValorBoolean(due.DueCompleta.oea);
+
+    qryInsertDue.ExecSQL;
+  end;
+
+  qryHistoricoDi.Close;
+  qryHistoricoDi.SQL.Text := 'INSERT INTO ExpoDueHistorico VALUES(:NrDue, getdate(), ''Inclusão'')';
+  qryHistoricoDi.paramByName('NrDue').AsString := NrDue;
+  qryHistoricoDi.ExecSQL;
+end;
+
+procedure TdmdBroker.TesteTamanhoCampos(NrDue: String; Due: TDue; aValue: TDisplay);
+var
+  teste: String;
+  i: integer;
+  itens: TItens;
+  eventos: TEventosDoHistorico;
+  qtdEventos: integer;
+
+
+  procedure validar(Campo: String; tam1, tam2: Integer);
+  begin
+    if tam2 > tam1 then
+      aValue('Campo: ' + campo + ' banco: ' + IntToStr(tam1) + ' xml: ' + IntToStr(tam2))
+    //  raise Exception.Create('Campo: ' + campo + ' banco: ' + IntToStr(tam1) + ' xml: ' + IntToStr(tam2));
+  end;
+
+begin
+
+
+
+
+  validar('NrDue', qryInsertDueNrDue.Size, length(NrDue));
+//  qryInsertDue.ParamByName('DataRegistro').asdatetime := Due.DueCompleta.DataDeRegistro;
+
+
+
+
+  validar('NrRuc', qryInsertDueNrRuc.Size, length(due.DueCompleta.Ruc));
+  validar('Situacao', qryInsertDueSituacao.Size, length(due.DueCompleta.Situacao));
+//  validar('Bloqueio', qryInsertDueBloqueio.Size, length(due.DueCompleta.Bloqueio));
+  validar('Canal', qryInsertDueCanal.Size, length(due.DueCompleta.Canal));
+  validar('DeclaranteNrDocumento', qryInsertDueDeclaranteNrDocumento.Size, length(due.DueCompleta.Declarante.NumeroDoDocumento));
+  validar('DeclaranteTpDocumento', qryInsertDueDeclaranteTpDocumento.Size, length(due.DueCompleta.Declarante.TipoDoDocumento));
+  validar('DeclaranteNome', qryInsertDueDeclaranteNome.Size, length(due.DueCompleta.Declarante.Nome));
+//  qryInsertDue.ParamByName('DeclaranteNacCodigo').AsInteger := due.DueCompleta.Declarante.Nacionalidade.Codigo;
+  validar('DeclaranteNacNome', qryInsertDueDeclaranteNacNome.Size, length(due.DueCompleta.Declarante.Nacionalidade.Nome));
+  validar('DeclaranteNacNomeResumido', qryInsertDueDeclaranteNacNomeResumido.Size, length(due.DueCompleta.Declarante.Nacionalidade.NomeResumido));
+//  validar('DeclaranteEstrangeiro', qryInsertDueDeclaranteEstrangeiro.Size, length(due.DueCompleta.Declarante.Estrangeiro));
+  for itens in due.DueCompleta.Itens do
+  begin
+
+//    qryInsertDue.ParamByName('ItensNumero').AsInteger := itens.Numero;
+    validar('ItensNcmCodigo', qryInsertDueItensNcmCodigo.Size, length(itens.Ncm.codigo));
+    validar('ItensNcmDescricao', qryInsertDueItensNcmDescricao.Size, length(itens.Ncm.Descricao));
+    validar('ItensItemNFExpoCodProduto', qryInsertDueItensItemNFExpoCodProduto.Size, length(itens.ItemDaNotaFiscalDeExportacao.CodigoDoProduto));
+    validar('ItensDescricaoMercadoria', qryInsertDueItensDescricaoMercadoria.Size, length(itens.DescricaoDaMercadoria));
+//    qryInsertDue.ParamByName('ItensQtdUnidEstatistica').AsFloat := itens.QuantidadeNaUnidadeEstatistica));
+    validar('ItensNcmUnidMedEstatistica', qryInsertDueItensNcmUnidMedEstatistica.Size, length(itens.Ncm.UnidadeMedidaEstatistica));
+//    qryInsertDue.ParamByName('ItensQtdUnidComercializada').AsFloat := itens.QuantidadeNaUnidadeComercializada;
+    validar('ItensUnidComercializada', qryInsertDueItensUnidComercializada.Size, length(itens.UnidadeComercializada));
+//    qryInsertDue.ParamByName('ItensPesoLiqTotal').AsFloat := itens.PesoLiquidoTotal));
+//    qryInsertDue.ParamByName('ItensValorMercLocalEmbarque').AsFloat := itens.ValorDaMercadoriaNoLocalDeEmbarque;
+//    qryInsertDue.ParamByName('ItensValorMercCondicaoVenda').AsFloat := itens.ValorDaMercadoriaNaCondicaoDeVenda;
+//    qryInsertDue.ParamByName('ItensValorMercLocalEmbarqueEmReais').AsFloat := itens.ValorDaMercadoriaNoLocalDeEmbarqueEmReais;
+    validar('ItensitemNFExpoNFChaveAcesso', qryInsertDueItensitemNFExpoNFChaveAcesso.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.ChaveDeAcesso));
+//    qryInsertDue.ParamByName('ItensItemNFExpoNFNumero').AsInteger := itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.NumeroDoDocumento;
+//    qryInsertDue.ParamByName('ItensItemNFExpoNrItem').AsInteger := itens.ItemDaNotaFiscalDeExportacao.NumeroDoItem;
+    validar('ItensItemNFExpoNFModelo', qryInsertDueItensItemNFExpoNFModelo.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.Modelo));
+//    validar('tensItemNFExpoNFSerie', qryInsertDuetensItemNFExpoNFSerie.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.Serie));
+    validar('ItensItemNFExpoNFUfEmissor', qryInsertDueItensItemNFExpoNFUfEmissor.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.UfDoEmissor));
+    validar('ItensItemNFExpoNFIdEmitenteNumero', qryInsertDueItensItemNFExpoNFIdEmitenteNumero.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.IdentificacaoDoEmitente.Numero));
+    validar('ChaveDeAcesso', qryInsertDueChaveDeAcesso.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.ChaveDeAcesso));
+//    validar('ItensItemNFExpoNFIdEmitenteCnpj', qryInsertDueItensItemNFExpoNFIdEmitenteCnpj.Size, length((itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.IdentificacaoDoEmitente.Cnpj)));
+//    qryInsertDue.ParamByName('ItensItemNFExpoNFIdEmitenteCpf').AsString := retValorBoolean(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.IdentificacaoDoEmitente.Cpf);
+    validar('ItensItemNFExpoNFFinalidade', qryInsertDueItensItemNFExpoNFFinalidade.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.Finalidade));
+//    validar('ItensItemNFExpoNfNfEletronica', qryInsertDueItensItemNFExpoNfNfEletronica.Size, length(itens.ItemDaNotaFiscalDeExportacao.NotaFiscal.NotaFicalEletronica));
+//    qryInsertDue.ParamByName('ItensItemNFExpoCfop').AsInteger := itens.ItemDaNotaFiscalDeExportacao.Cfop;
+//    qryInsertDue.ParamByName('MoedaCodigo').AsInteger := due.DueCompleta.Moeda.Codigo;
+    validar('ItensCondVendaCodigo', qryInsertDueItensCondVendaCodigo.Size, length(itens.CodigoCondicaoVenda.Codigo));
+    validar('ItensNomeImportador', qryInsertDueItensNomeImportador.Size, length(itens.NomeImportador));
+    validar('ItensEnderecoImportador', qryInsertDueItensEnderecoImportador.Size, length(itens.EnderecoImportador));
+//    qryInsertDue.ParamByName('ItensPaisDestinoCodigo').AsInteger := itens.ListaPaisDestino[0].Codigo));
+//    qryInsertDue.ParamByName('PaisImportadorCodigo').AsInteger := due.DueCompleta.PaisImportador.Codigo;
+//    qryInsertDue.ParamByName('itensEnquadramento01Codigo').AsInteger := itens.ListaDeEnquadramentos[0].Codigo;
+    validar('UnidLocalDespachoCodigo', qryInsertDueUnidLocalDespachoCodigo.Size, length(due.DueCompleta.UnidadeLocalDeDespacho.Codigo));
+    validar('UnidLocalEmbarqueCodigo', qryInsertDueUnidLocalEmbarqueCodigo.Size, length(due.DueCompleta.UnidadeLocalDeEmbarque.Codigo));
+//    validar('EmbarqueRecintoAlfandegado', qryInsertDueEmbarqueRecintoAlfandegado.Size, length((due.DueCompleta.EmbarqueEmRecintoAlfandegado)));
+//    validar('DespachoRecintoAlfandegado', qryInsertDueDespachoRecintoAlfandegado.Size, length((due.DueCompleta.DespachoEmRecintoAlfandegado)));
+//    validar('', qryInsertDueImpedidoEmbarque.Size, length(due.DueCompleta.ImpedidoDeEmbarque));
+    validar('qryInsertDueInformacoesComplementar', qryInsertDueInformacoesComplementares.Size, length(due.DueCompleta.InformacoesComplementares));
+//    qryInsertDue.ParamByName('ItensDataConversao').AsDate := itens.DataDeConversao;
+    validar('RecintoAduaneiroDespachoCodigo', qryInsertDueRecintoAduaneiroDespachoCodigo.Size, length(due.DueCompleta.RecintoAduaneiroDeDespacho.Codigo));
+    validar('RecintoAduaneiroEmbarqueCodigo', qryInsertDueRecintoAduaneiroEmbarqueCodigo.Size, length(due.DueCompleta.RecintoAduaneiroDeEmbarque.Codigo));
+    validar('ResponsavelPeloACD', qryInsertDueResponsavelPeloACD.Size, length(due.DueCompleta.ResponsavelPeloACD));
+//    validar('DespachoRecintoDomiciliar', qryInsertDueDespachoRecintoDomiciliar.Size, length((due.DueCompleta.DespachoEmRecintoDomiciliar)));
+//    qryInsertDue.ParamByName('DataCCE').AsDateTime := due.DueCompleta.DataDoCCE;
+//    qryInsertDue.ParamByName('DataCriacao').AsDateTime := due.DueCompleta.DataDeCriacao;
+//    validar('dat', qryInsertDuedat.Size, length((due.DueCompleta.Dat)));
+//    validar('oea', qryInsertDueoea.Size, length((due.DueCompleta.oea)));
+  end;
+
+end;
+
+procedure TdmdBroker.IncluirDueRecuperar(NrDue: String; CodCertificado: integer);
+begin
+    qryInsertDue.Close;
+    qryInsertDue.SQL.Text := 'INSERT INTO ExpoDueImportadaControle (NrDue, DataControle, CodigoCertificadoDespachante) VALUES(:NrDue, GETDATE(), :CodigoCertificadoDespachante)';
+    qryInsertDue.ParamByName('NrDue').AsString := NrDue;
+    qryInsertDue.ParamByName('CodigoCertificadoDespachante').AsInteger := CodCertificado;
+    qryInsertDue.ExecSQL;
+end;
+
+procedure TdmdBroker.UpdateDueRecuperar(value: String);
+begin
+    qryInsertDue.Close;
+    qryInsertDue.SQL.Text := 'UPDATE ExpoDueImportadaControle SET DataDueImportada = GETDATE() WHERE NrDue = :NrDue';
+    qryInsertDue.ParamByName('NrDue').AsString := value;
+    qryInsertDue.ExecSQL;
+end;
+
+procedure TdmdBroker.UpdateDueRecuperarCertificado(NrDue: String; CodCertificado: integer);
+var
+  vCodCert: Integer;
+begin
+
+  qrySelectCertificados.Close;
+  qrySelectCertificados.open;
+
+  qrySelectCertificados.Locate('Codigo', CodCertificado, []);
+
+  if not qrySelectCertificados.Eof then
+  begin
+    qrySelectCertificados.Next;
+    vCodCert := qrySelectCertificadosCodigo.AsInteger;
+  end
+  else
+    vCodCert := 999;
+
+  qryInsertDue.Close;
+  qryInsertDue.SQL.Text := 'UPDATE ExpoDueImportadaControle SET CodigoCertificadoDespachante = :CodigoCertificadoDespachante WHERE NrDue = :NrDue';
+  qryInsertDue.ParamByName('NrDue').AsString := NrDue;
+  qryInsertDue.ParamByName('CodigoCertificadoDespachante').AsInteger := vCodCert;
+  qryInsertDue.ExecSQL;
+end;
+
+procedure TdmdBroker.GeraConsultaRelatorioExpo(DataRegistroInicio, DataRegistroFim: TDateTime; DeclaranteNrDocumento, NrDue: String);
+var
+  vSelect : String;
+begin
+  qryRelatorioExpo.Close;
+  vSelect := 'SELECT A.*, B.DataDueImportada FROM ExpoDueImportada A ' +
+             ' CROSS APPLY (Select max(c.DataDueImportada) as DataDueImportada From ExpoDueImportadaControle c where c.NrDue = A.NrDue) as B ' +
+             ' WHERE ';
+  if NrDue <> '' then
+    vSelect := vSelect + ' A.NrDue = :NrDue'
+  else
+  begin
+    vSelect := vSelect + '(CAST(A.DataRegistro AS DATE) BETWEEN CAST(:DataRegistroInicio AS DATE) AND CAST(:DataRegistroFim AS DATE)) ';
+
+    if DeclaranteNrDocumento <> '' then
+      vSelect := vSelect + 'AND A.DeclaranteNrDocumento = :DeclaranteNrDocumento';
+  end;
+  qryRelatorioExpo.SQL.Text := vSelect;
+
+  if NrDue <> '' then
+    qryRelatorioExpo.ParamByName('NrDue').AsString := Trim(NrDue)
+  else
+  begin
+    qryRelatorioExpo.ParamByName('DataRegistroInicio').AsString := formatDateTime('yyyy-mm-dd', DataRegistroInicio);
+    qryRelatorioExpo.ParamByName('DataRegistroFim').AsString := formatDateTime('yyyy-mm-dd', DataRegistroFim);
+    if DeclaranteNrDocumento <> '' then
+      qryRelatorioExpo.ParamByName('DeclaranteNrDocumento').AsString := Trim(DeclaranteNrDocumento);
+  end;
+  qryRelatorioExpo.Open;
+  qryRelatorioExpo.FetchAll;
+end;
+
+
+procedure TdmdBroker.GravaDi(Dis: TObjectList<TDi>);
+var
+  Di : TDi;
+  adicao : TAdicao;
+  item : TItem;
+begin
+
+
+
+
+  qryInsertDi.Close;
+  qryInsertDi.SQL.Text :=
+    'INSERT INTO ImpoDiImportada ( dataDiImportada, ' + #13#10 +
+    '    tipoDeclaracaoCodigo, tipoDeclaracaoNome, modalidadeDespachoCodigo, modalidadeDespachoNome, numeroDI, ' + #13#10 +
+    '    dataDesembaraco, dataRegistro, operacaoFundap, urfDespachoCodigo, urfDespachoNome, ' + #13#10 +
+    '    localDescargaTotalDolares, localDescargaTotalReais, localEmbarqueTotalDolares, localEmbarqueTotalReais, viaTransporteCodigo, ' + #13#10 +
+    '    viaTransporteMultimodal, viaTransporteNome, viaTransporteNomeTransportador, viaTransportePaisTransportadorCodigo, viaTransportePaisTransportadorNome, ' + #13#10 +
+    '    sequencialRetificacao, situacaoEntregaCarga, canalSelecaoParametrizada, caracterizacaoOperacaoCodigoTipo, caracterizacaoOperacaoDescricaoTipo, ' + #13#10 +
+    '    cargaDataChegada, cargaNumeroAgente, cargaPaisProcedenciaCodigo, cargaPaisProcedenciaNome, cargaPesoBruto, ' + #13#10 +
+    '    cargaPesoLiquido, cargaUrfEntradaCodigo, cargaUrfEntradaNome, conhecimentoCargaEmbarqueData, conhecimentoCargaEmbarqueLocal, ' + #13#10 +
+    '    conhecimentoCargaId, conhecimentoCargaIdMaster, conhecimentoCargaTipoCodigo, conhecimentoCargaTipoNome, conhecimentoCargaUtilizacao, ' + #13#10 +
+    '    conhecimentoCargaUtilizacaoNome, valorTotalMultaARecolherAjustado, seguroMoedaNegociadaCodigo, seguroMoedaNegociadaNome, seguroTotalDolares, ' + #13#10 +
+    '    seguroTotalMoedaNegociada, seguroTotalReais, freteCollect, freteEmTerritorioNacional, freteMoedaNegociadaCodigo, ' + #13#10 +
+    '    freteMoedaNegociadaNome, fretePrepaid, freteTotalDolares, freteTotalMoeda, freteTotalReais, ' + #13#10 +
+    '    importadorCodigoTipo, importadorCpfRepresentanteLegal, importadorEnderecoBairro, importadorEnderecoCep, importadorEnderecoLogradouro, ' + #13#10 +
+    '    importadorEnderecoMunicipio, importadorEnderecoNumero, importadorEnderecoUf, importadorNome, importadorNomeRepresentanteLegal, ' + #13#10 +
+    '    importadorNumero, armazenamentoRecintoAduaneiroCodigo, armazenamentoRecintoAduaneiroNome, armazenamentoSetor, informacaoComplementar, ' + #13#10 +
+    '    totalAdicoes, nomeArmazem, agenciaIcms, bancoIcms, codigoTipoRecolhimentoIcms, ' + #13#10 +
+    '    cpfResponsavelRegistroIcms, dataPagamentoIcms, dataRegistroIcms, horaRegistroIcms, nomeTipoRecolhimentoIcms, ' + #13#10 +
+    '    numeroSequencialIcms, ufIcms, valorTotalIcms, documentoChegadaCargaCodigoTipo, documentoChegadaCargaNome, ' + #13#10 +
+    '    documentoChegadaCargaNumero, a_numeroAdicao, a_numeroLI, a_sequencialRetificacao, a_dadosMercadoriaAplicacao, ' + #13#10 +
+    '    a_dadosMercadoriaCodigoNaladiNCCA, a_dadosMercadoriaCodigoNaladiSH, a_dadosMercadoriaCodigoNcm, a_dadosMercadoriaCondicao, a_dadosMercadoriaMedidaEstatisticaQuantidade, ' + #13#10 +
+    '    a_dadosMercadoriaMedidaEstatisticaUnidade, a_dadosMercadoriaNomeNcm, a_dadosMercadoriaPesoLiquido, a_paisAquisicaoMercadoriaCodigo, a_paisAquisicaoMercadoriaNome, ' + #13#10 +
+    '    a_paisOrigemMercadoriaCodigo, a_paisOrigemMercadoriaNome, a_fornecedorCidade, a_fornecedorComplemento, a_fornecedorEstado, ' + #13#10 +
+    '    a_fornecedorLogradouro, a_fornecedorNome, a_fornecedorNumero, a_codigoRelacaoCompradorVendedor, a_relacaoCompradorVendedor, ' + #13#10 +
+    '    a_codigoVinculoCompradorVendedor, a_vinculoCompradorVendedor, a_dadosCambiaisCoberturaCambialCodigo, a_dadosCambiaisCoberturaCambialNome, a_dadosCambiaisInstituicaoFinanciadoraCodigo, ' + #13#10 +
+    '    a_dadosCambiaisInstituicaoFinanciadoraNome, a_dadosCambiaisMotivoSemCoberturaCodigo, a_dadosCambiaisMotivoSemCoberturaNome, a_dadosCambiaisValorRealCambio, a_dadosCargaPaisProcedenciaCodigo, ' + #13#10 +
+    '    a_dadosCargaUrfEntradaCodigo, a_dadosCargaViaTransporteCodigo, a_condicaoVendaLocal, a_condicaoVendaMetodoValoracaoCodigo, a_condicaoVendaMetodoValoracaoNome, ' + #13#10 +
+    '    a_condicaoVendaMoedaCodigo, a_condicaoVendaMoedaNome, a_condicaoVendaValorMoeda, a_condicaoVendaValorReais, a_cideValorAliquotaEspecifica, ' + #13#10 +
+    '    a_cideValorDevido, a_cideValorRecolher, a_dcrCoeficienteReducao, a_dcrIdentificacao, a_dcrValorDevido, ' + #13#10 +
+    '    a_dcrValorDolar, a_dcrValorReal, a_dcrValorRecolher, a_valorMultaARecolher, a_valorMultaARecolherAjustado, ' + #13#10 +
+    '    a_valorReaisFreteInternacional, a_valorReaisSeguroInternacional, a_valorTotalCondicaoVenda, a_freteMoedaNegociadaCodigo, a_freteValorMoedaNegociada, ' + #13#10 +
+    '    a_freteValorReais, a_seguroMoedaNegociadaCodigo, a_seguroValorMoedaNegociada, a_seguroValorReais, a_iiAcordoTarifarioTipoCodigo, ' + #13#10 +
+    '    a_iiAliquotaAcordo, a_iiAliquotaAdValorem, a_iiAliquotaPercentualReducao, a_iiAliquotaReduzida, a_iiAliquotaValorCalculado, ' + #13#10 +
+    '    a_iiAliquotaValorDevido, a_iiAliquotaValorRecolher, a_iiAliquotaValorReduzido, a_iiBaseCalculo, a_iiFundamentoLegalCodigo, ' + #13#10 +
+    '    a_iiMotivoAdmissaoTemporariaCodigo, a_iiRegimeTributacaoCodigo, a_iiRegimeTributacaoNome, a_ipiAliquotaAdValorem, a_ipiAliquotaEspecificaCapacidadeRecipciente, ' + #13#10 +
+    '    a_ipiAliquotaEspecificaQuantidadeUnidadeMedida, a_ipiAliquotaEspecificaTipoRecipienteCodigo, a_ipiAliquotaEspecificaValorUnidadeMedida, a_ipiAliquotaNotaComplementarTIPI, a_ipiAliquotaReduzida, ' + #13#10 +
+    '    a_ipiAliquotaValorDevido, a_ipiAliquotaValorRecolher, a_ipiRegimeTributacaoCodigo, a_ipiRegimeTributacaoNome, a_cofinsAliquotaAdValorem, ' + #13#10 +
+    '    a_cofinsAliquotaEspecificaQuantidadeUnidade, a_cofinsAliquotaEspecificaValor, a_cofinsAliquotaReduzida, a_cofinsAliquotaValorDevido, a_cofinsAliquotaValorRecolher, ' + #13#10 +
+    '    a_pisCofinsBaseCalculoAliquotaICMS, a_pisCofinsBaseCalculoFundamentoLegalCodigo, a_pisCofinsBaseCalculoPercentualReducao, a_pisCofinsBaseCalculoValor, a_pisCofinsFundamentoLegalReducaoCodigo, ' + #13#10 +
+    '    a_pisCofinsRegimeTributacaoCodigo, a_pisCofinsRegimeTributacaoNome, a_pisPasepAliquotaAdValorem, a_pisPasepAliquotaEspecificaQuantidadeUnidade, a_pisPasepAliquotaEspecificaValor, ' + #13#10 +
+    '    a_pisPasepAliquotaReduzida, a_pisPasepAliquotaValorDevido, a_pisPasepAliquotaValorRecolher, a_condicaoVendaIncoterm, a_fabricanteNome, ' + #13#10 +
+    '    a_fabricanteCidade, a_fabricanteComplemento, a_fabricanteEstado, a_fabricanteLogradouro, a_fabricanteNumero, ' + #13#10 +
+    '    a_numeroDestaque, i_descricaoMercadoria, i_numeroSequencialItem, i_quantidade, i_unidadeMedida, ' + #13#10 +
+    '    i_valorUnitario, i_vmle, i_quantidadeEstatistica ' + #13#10 +
+    ') ' + #13#10 +
+    '    VALUES ' + #13#10 +
+    '(   getDate(), ' + #13#10 +
+    '    :tipoDeclaracaoCodigo, :tipoDeclaracaoNome, :modalidadeDespachoCodigo, :modalidadeDespachoNome, :numeroDI, ' + #13#10 +
+    '    :dataDesembaraco, :dataRegistro, :operacaoFundap, :urfDespachoCodigo, :urfDespachoNome, ' + #13#10 +
+    '    :localDescargaTotalDolares, :localDescargaTotalReais, :localEmbarqueTotalDolares, :localEmbarqueTotalReais, :viaTransporteCodigo, ' + #13#10 +
+    '    :viaTransporteMultimodal, :viaTransporteNome, :viaTransporteNomeTransportador, :viaTransportePaisTransportadorCodigo, :viaTransportePaisTransportadorNome, ' + #13#10 +
+    '    :sequencialRetificacao, :situacaoEntregaCarga, :canalSelecaoParametrizada, :caracterizacaoOperacaoCodigoTipo, :caracterizacaoOperacaoDescricaoTipo, ' + #13#10 +
+    '    :cargaDataChegada, :cargaNumeroAgente, :cargaPaisProcedenciaCodigo, :cargaPaisProcedenciaNome, :cargaPesoBruto, ' + #13#10 +
+    '    :cargaPesoLiquido, :cargaUrfEntradaCodigo, :cargaUrfEntradaNome, :conhecimentoCargaEmbarqueData, :conhecimentoCargaEmbarqueLocal, ' + #13#10 +
+    '    :conhecimentoCargaId, :conhecimentoCargaIdMaster, :conhecimentoCargaTipoCodigo, :conhecimentoCargaTipoNome, :conhecimentoCargaUtilizacao, ' + #13#10 +
+    '    :conhecimentoCargaUtilizacaoNome, :valorTotalMultaARecolherAjustado, :seguroMoedaNegociadaCodigo, :seguroMoedaNegociadaNome, :seguroTotalDolares, ' + #13#10 +
+    '    :seguroTotalMoedaNegociada, :seguroTotalReais, :freteCollect, :freteEmTerritorioNacional, :freteMoedaNegociadaCodigo, ' + #13#10 +
+    '    :freteMoedaNegociadaNome, :fretePrepaid, :freteTotalDolares, :freteTotalMoeda, :freteTotalReais, ' + #13#10 +
+    '    :importadorCodigoTipo, :importadorCpfRepresentanteLegal, :importadorEnderecoBairro, :importadorEnderecoCep, :importadorEnderecoLogradouro, ' + #13#10 +
+    '    :importadorEnderecoMunicipio, :importadorEnderecoNumero, :importadorEnderecoUf, :importadorNome, :importadorNomeRepresentanteLegal, ' + #13#10 +
+    '    :importadorNumero, :armazenamentoRecintoAduaneiroCodigo, :armazenamentoRecintoAduaneiroNome, :armazenamentoSetor, :informacaoComplementar, ' + #13#10 +
+    '    :totalAdicoes, :nomeArmazem, :agenciaIcms, :bancoIcms, :codigoTipoRecolhimentoIcms, ' + #13#10 +
+    '    :cpfResponsavelRegistroIcms, :dataPagamentoIcms, :dataRegistroIcms, :horaRegistroIcms, :nomeTipoRecolhimentoIcms, ' + #13#10 +
+    '    :numeroSequencialIcms, :ufIcms, :valorTotalIcms, :documentoChegadaCargaCodigoTipo, :documentoChegadaCargaNome, ' + #13#10 +
+    '    :documentoChegadaCargaNumero, :a_numeroAdicao, :a_numeroLI, :a_sequencialRetificacao, :a_dadosMercadoriaAplicacao, ' + #13#10 +
+    '    :a_dadosMercadoriaCodigoNaladiNCCA, :a_dadosMercadoriaCodigoNaladiSH, :a_dadosMercadoriaCodigoNcm, :a_dadosMercadoriaCondicao, :a_dadosMercadoriaMedidaEstatisticaQuantidade, ' + #13#10 +
+    '    :a_dadosMercadoriaMedidaEstatisticaUnidade, :a_dadosMercadoriaNomeNcm, :a_dadosMercadoriaPesoLiquido, :a_paisAquisicaoMercadoriaCodigo, :a_paisAquisicaoMercadoriaNome, ' + #13#10 +
+    '    :a_paisOrigemMercadoriaCodigo, :a_paisOrigemMercadoriaNome, :a_fornecedorCidade, :a_fornecedorComplemento, :a_fornecedorEstado, ' + #13#10 +
+    '    :a_fornecedorLogradouro, :a_fornecedorNome, :a_fornecedorNumero, :a_codigoRelacaoCompradorVendedor, :a_relacaoCompradorVendedor, ' + #13#10 +
+    '    :a_codigoVinculoCompradorVendedor, :a_vinculoCompradorVendedor, :a_dadosCambiaisCoberturaCambialCodigo, :a_dadosCambiaisCoberturaCambialNome, :a_dadosCambiaisInstituicaoFinanciadoraCodigo, ' + #13#10 +
+    '    :a_dadosCambiaisInstituicaoFinanciadoraNome, :a_dadosCambiaisMotivoSemCoberturaCodigo, :a_dadosCambiaisMotivoSemCoberturaNome, :a_dadosCambiaisValorRealCambio, :a_dadosCargaPaisProcedenciaCodigo, ' + #13#10 +
+    '    :a_dadosCargaUrfEntradaCodigo, :a_dadosCargaViaTransporteCodigo, :a_condicaoVendaLocal, :a_condicaoVendaMetodoValoracaoCodigo, :a_condicaoVendaMetodoValoracaoNome, ' + #13#10 +
+    '    :a_condicaoVendaMoedaCodigo, :a_condicaoVendaMoedaNome, :a_condicaoVendaValorMoeda, :a_condicaoVendaValorReais, :a_cideValorAliquotaEspecifica, ' + #13#10 +
+    '    :a_cideValorDevido, :a_cideValorRecolher, :a_dcrCoeficienteReducao, :a_dcrIdentificacao, :a_dcrValorDevido, ' + #13#10 +
+    '    :a_dcrValorDolar, :a_dcrValorReal, :a_dcrValorRecolher, :a_valorMultaARecolher, :a_valorMultaARecolherAjustado, ' + #13#10 +
+    '    :a_valorReaisFreteInternacional, :a_valorReaisSeguroInternacional, :a_valorTotalCondicaoVenda, :a_freteMoedaNegociadaCodigo, :a_freteValorMoedaNegociada, ' + #13#10 +
+    '    :a_freteValorReais, :a_seguroMoedaNegociadaCodigo, :a_seguroValorMoedaNegociada, :a_seguroValorReais, :a_iiAcordoTarifarioTipoCodigo, ' + #13#10 +
+    '    :a_iiAliquotaAcordo, :a_iiAliquotaAdValorem, :a_iiAliquotaPercentualReducao, :a_iiAliquotaReduzida, :a_iiAliquotaValorCalculado, ' + #13#10 +
+    '    :a_iiAliquotaValorDevido, :a_iiAliquotaValorRecolher, :a_iiAliquotaValorReduzido, :a_iiBaseCalculo, :a_iiFundamentoLegalCodigo, ' + #13#10 +
+    '    :a_iiMotivoAdmissaoTemporariaCodigo, :a_iiRegimeTributacaoCodigo, :a_iiRegimeTributacaoNome, :a_ipiAliquotaAdValorem, :a_ipiAliquotaEspecificaCapacidadeRecipciente, ' + #13#10 +
+    '    :a_ipiAliquotaEspecificaQuantidadeUnidadeMedida, :a_ipiAliquotaEspecificaTipoRecipienteCodigo, :a_ipiAliquotaEspecificaValorUnidadeMedida, :a_ipiAliquotaNotaComplementarTIPI, :a_ipiAliquotaReduzida, ' + #13#10 +
+    '    :a_ipiAliquotaValorDevido, :a_ipiAliquotaValorRecolher, :a_ipiRegimeTributacaoCodigo, :a_ipiRegimeTributacaoNome, :a_cofinsAliquotaAdValorem, ' + #13#10 +
+    '    :a_cofinsAliquotaEspecificaQuantidadeUnidade, :a_cofinsAliquotaEspecificaValor, :a_cofinsAliquotaReduzida, :a_cofinsAliquotaValorDevido, :a_cofinsAliquotaValorRecolher, ' + #13#10 +
+    '    :a_pisCofinsBaseCalculoAliquotaICMS, :a_pisCofinsBaseCalculoFundamentoLegalCodigo, :a_pisCofinsBaseCalculoPercentualReducao, :a_pisCofinsBaseCalculoValor, :a_pisCofinsFundamentoLegalReducaoCodigo, ' + #13#10 +
+    '    :a_pisCofinsRegimeTributacaoCodigo, :a_pisCofinsRegimeTributacaoNome, :a_pisPasepAliquotaAdValorem, :a_pisPasepAliquotaEspecificaQuantidadeUnidade, :a_pisPasepAliquotaEspecificaValor, ' + #13#10 +
+    '    :a_pisPasepAliquotaReduzida, :a_pisPasepAliquotaValorDevido, :a_pisPasepAliquotaValorRecolher, :a_condicaoVendaIncoterm, :a_fabricanteNome, ' + #13#10 +
+    '    :a_fabricanteCidade, :a_fabricanteComplemento, :a_fabricanteEstado, :a_fabricanteLogradouro, :a_fabricanteNumero, ' + #13#10 +
+    '    :a_numeroDestaque,:i_descricaoMercadoria, :i_numeroSequencialItem, :i_quantidade, :i_unidadeMedida, ' + #13#10 +
+    '    :i_valorUnitario, :i_vmle, :i_quantidadeEstatistica ' + #13#10 +
+    ') ';
+
+
+  for Di in Dis do
+  begin
+
+    qryDeleteDi.Close;
+    qryDeleteDi.SQL.Text := 'SELECT * FROM ImpoDiImportada WHERE numeroDI = :numeroDI';
+    qryDeleteDi.paramByName('numeroDI').AsString := Di.numeroDI;
+    qryDeleteDi.open;
+
+    if qryDeleteDi.RecordCount > 0 then
+    begin
+      qryDeleteDi.Close;
+      qryDeleteDi.SQL.Text := 'DELETE FROM ImpoDiImportada WHERE numeroDI = :numeroDI ';
+      qryDeleteDi.paramByName('numeroDI').AsString := Di.numeroDI;
+      qryDeleteDi.ExecSQL;
+
+      qryHistoricoDi.Close;
+      qryHistoricoDi.SQL.Text := 'INSERT INTO ImpoDiHistorico VALUES(:numeroDI, getdate(), ''Exclusão'')';
+      qryHistoricoDi.paramByName('numeroDI').AsString := Di.numeroDI;
+      qryHistoricoDi.ExecSQL;
+    end;
+
+    qryInsertDi.paramByName('tipoDeclaracaoCodigo').AsString := Di.tipoDeclaracaoCodigo;
+    qryInsertDi.paramByName('tipoDeclaracaoNome').AsString := Di.tipoDeclaracaoNome;
+    qryInsertDi.paramByName('modalidadeDespachoCodigo').AsString := Di.modalidadeDespachoCodigo;
+    qryInsertDi.paramByName('modalidadeDespachoNome').AsString := Di.modalidadeDespachoNome;
+    qryInsertDi.paramByName('numeroDI').AsString := Di.numeroDI;
+    qryInsertDi.paramByName('dataDesembaraco').AsDateTime := Di.dataDesembaraco;
+    qryInsertDi.paramByName('dataRegistro').AsDateTime := Di.dataRegistro;
+    qryInsertDi.paramByName('operacaoFundap').AsString := Di.operacaoFundap;
+    qryInsertDi.paramByName('urfDespachoCodigo').AsString := Di.urfDespachoCodigo;
+    qryInsertDi.paramByName('urfDespachoNome').AsString := Di.urfDespachoNome;
+    qryInsertDi.paramByName('localDescargaTotalDolares').AsFloat := Di.localDescargaTotalDolares;
+    qryInsertDi.paramByName('localDescargaTotalReais').AsFloat := Di.localDescargaTotalReais;
+    qryInsertDi.paramByName('localEmbarqueTotalDolares').AsFloat := Di.localEmbarqueTotalDolares;
+    qryInsertDi.paramByName('localEmbarqueTotalReais').AsFloat := Di.localEmbarqueTotalReais;
+    qryInsertDi.paramByName('viaTransporteCodigo').AsString := Di.viaTransporteCodigo;
+    qryInsertDi.paramByName('viaTransporteMultimodal').AsString := Di.viaTransporteMultimodal;
+    qryInsertDi.paramByName('viaTransporteNome').AsString := Di.viaTransporteNome;
+    qryInsertDi.paramByName('viaTransporteNomeTransportador').AsString := Di.viaTransporteNomeTransportador;
+    qryInsertDi.paramByName('viaTransportePaisTransportadorCodigo').AsString := Di.viaTransportePaisTransportadorCodigo;
+    qryInsertDi.paramByName('viaTransportePaisTransportadorNome').AsString := Di.viaTransportePaisTransportadorNome;
+    qryInsertDi.paramByName('sequencialRetificacao').AsString := Di.sequencialRetificacao;
+    qryInsertDi.paramByName('situacaoEntregaCarga').AsString := Di.situacaoEntregaCarga;
+    qryInsertDi.paramByName('canalSelecaoParametrizada').AsString := Di.canalSelecaoParametrizada;
+    qryInsertDi.paramByName('caracterizacaoOperacaoCodigoTipo').AsString := Di.caracterizacaoOperacaoCodigoTipo;
+    qryInsertDi.paramByName('caracterizacaoOperacaoDescricaoTipo').AsString := Di.caracterizacaoOperacaoDescricaoTipo;
+    qryInsertDi.paramByName('cargaDataChegada').AsDateTime := Di.cargaDataChegada;
+    qryInsertDi.paramByName('cargaNumeroAgente').AsString := Di.cargaNumeroAgente;
+    qryInsertDi.paramByName('cargaPaisProcedenciaCodigo').AsString := Di.cargaPaisProcedenciaCodigo;
+    qryInsertDi.paramByName('cargaPaisProcedenciaNome').AsString := Di.cargaPaisProcedenciaNome;
+    qryInsertDi.paramByName('cargaPesoBruto').AsFloat := Di.cargaPesoBruto;
+    qryInsertDi.paramByName('cargaPesoLiquido').AsFloat := Di.cargaPesoLiquido;
+    qryInsertDi.paramByName('cargaUrfEntradaCodigo').AsString := Di.cargaUrfEntradaCodigo;
+    qryInsertDi.paramByName('cargaUrfEntradaNome').AsString := Di.cargaUrfEntradaNome;
+    qryInsertDi.paramByName('conhecimentoCargaEmbarqueData').AsDateTime := Di.conhecimentoCargaEmbarqueData;
+    qryInsertDi.paramByName('conhecimentoCargaEmbarqueLocal').AsString := Di.conhecimentoCargaEmbarqueLocal;
+    qryInsertDi.paramByName('conhecimentoCargaId').AsString := Di.conhecimentoCargaId;
+    qryInsertDi.paramByName('conhecimentoCargaIdMaster').AsString := Di.conhecimentoCargaIdMaster;
+    qryInsertDi.paramByName('conhecimentoCargaTipoCodigo').AsString := Di.conhecimentoCargaTipoCodigo;
+    qryInsertDi.paramByName('conhecimentoCargaTipoNome').AsString := Di.conhecimentoCargaTipoNome;
+    qryInsertDi.paramByName('conhecimentoCargaUtilizacao').AsString := Di.conhecimentoCargaUtilizacao;
+    qryInsertDi.paramByName('conhecimentoCargaUtilizacaoNome').AsString := Di.conhecimentoCargaUtilizacaoNome;
+    qryInsertDi.paramByName('valorTotalMultaARecolherAjustado').AsFloat := Di.valorTotalMultaARecolherAjustado;
+    qryInsertDi.paramByName('seguroMoedaNegociadaCodigo').AsString := Di.seguroMoedaNegociadaCodigo;
+    qryInsertDi.paramByName('seguroMoedaNegociadaNome').AsString := Di.seguroMoedaNegociadaNome;
+    qryInsertDi.paramByName('seguroTotalDolares').AsFloat := Di.seguroTotalDolares;
+    qryInsertDi.paramByName('seguroTotalMoedaNegociada').AsFloat := Di.seguroTotalMoedaNegociada;
+    qryInsertDi.paramByName('seguroTotalReais').AsFloat := Di.seguroTotalReais;
+    qryInsertDi.paramByName('freteCollect').AsString := Di.freteCollect;
+    qryInsertDi.paramByName('freteEmTerritorioNacional').AsString := Di.freteEmTerritorioNacional;
+    qryInsertDi.paramByName('freteMoedaNegociadaCodigo').AsString := Di.freteMoedaNegociadaCodigo;
+    qryInsertDi.paramByName('freteMoedaNegociadaNome').AsString := Di.freteMoedaNegociadaNome;
+    qryInsertDi.paramByName('fretePrepaid').AsString := Di.fretePrepaid;
+    qryInsertDi.paramByName('freteTotalDolares').AsFloat := Di.freteTotalDolares;
+    qryInsertDi.paramByName('freteTotalMoeda').AsFloat := Di.freteTotalMoeda;
+    qryInsertDi.paramByName('freteTotalReais').AsFloat := Di.freteTotalReais;
+    qryInsertDi.paramByName('importadorCodigoTipo').AsString := Di.importadorCodigoTipo;
+    qryInsertDi.paramByName('importadorCpfRepresentanteLegal').AsString := Di.importadorCpfRepresentanteLegal;
+    qryInsertDi.paramByName('importadorEnderecoBairro').AsString := Di.importadorEnderecoBairro;
+    qryInsertDi.paramByName('importadorEnderecoCep').AsString := Di.importadorEnderecoCep;
+    qryInsertDi.paramByName('importadorEnderecoLogradouro').AsString := Di.importadorEnderecoLogradouro;
+    qryInsertDi.paramByName('importadorEnderecoMunicipio').AsString := Di.importadorEnderecoMunicipio;
+    qryInsertDi.paramByName('importadorEnderecoNumero').AsString := Di.importadorEnderecoNumero;
+    qryInsertDi.paramByName('importadorEnderecoUf').AsString := Di.importadorEnderecoUf;
+    qryInsertDi.paramByName('importadorNome').AsString := Di.importadorNome;
+    qryInsertDi.paramByName('importadorNomeRepresentanteLegal').AsString := Di.importadorNomeRepresentanteLegal;
+    qryInsertDi.paramByName('importadorNumero').AsString := Di.importadorNumero;
+    qryInsertDi.paramByName('armazenamentoRecintoAduaneiroCodigo').AsString := Di.armazenamentoRecintoAduaneiroCodigo;
+    qryInsertDi.paramByName('armazenamentoRecintoAduaneiroNome').AsString := Di.armazenamentoRecintoAduaneiroNome;
+    qryInsertDi.paramByName('armazenamentoSetor').AsString := Di.armazenamentoSetor;
+    qryInsertDi.paramByName('informacaoComplementar').AsString := Di.informacaoComplementar;
+    qryInsertDi.paramByName('totalAdicoes').AsFloat := Di.totalAdicoes;
+    qryInsertDi.paramByName('nomeArmazem').AsString := Di.nomeArmazem;
+    qryInsertDi.paramByName('agenciaIcms').AsString := Di.agenciaIcms;
+    qryInsertDi.paramByName('bancoIcms').AsString := Di.bancoIcms;
+    qryInsertDi.paramByName('codigoTipoRecolhimentoIcms').AsString := Di.codigoTipoRecolhimentoIcms;
+    qryInsertDi.paramByName('cpfResponsavelRegistroIcms').AsString := Di.cpfResponsavelRegistroIcms;
+    qryInsertDi.paramByName('dataPagamentoIcms').AsDateTime := Di.dataPagamentoIcms;
+    qryInsertDi.paramByName('dataRegistroIcms').AsDateTime := Di.dataRegistroIcms;
+    qryInsertDi.paramByName('horaRegistroIcms').AsString := Di.horaRegistroIcms;
+    qryInsertDi.paramByName('nomeTipoRecolhimentoIcms').AsString := Di.nomeTipoRecolhimentoIcms;
+    qryInsertDi.paramByName('numeroSequencialIcms').AsString := Di.numeroSequencialIcms;
+    qryInsertDi.paramByName('ufIcms').AsString := Di.ufIcms;
+    qryInsertDi.paramByName('valorTotalIcms').AsFloat := Di.valorTotalIcms;
+    qryInsertDi.paramByName('documentoChegadaCargaCodigoTipo').AsString := Di.documentoChegadaCargaCodigoTipo;
+    qryInsertDi.paramByName('documentoChegadaCargaNome').AsString := Di.documentoChegadaCargaNome;
+    qryInsertDi.paramByName('documentoChegadaCargaNumero').AsString := Di.documentoChegadaCargaNumero;
+
+    for adicao in Di.adicoes do
+    begin
+      qryInsertDi.paramByName('a_numeroAdicao').AsString := adicao.numeroAdicao;
+      qryInsertDi.paramByName('a_numeroLI').AsString := adicao.numeroLI;
+      qryInsertDi.paramByName('a_sequencialRetificacao').AsString := adicao.sequencialRetificacao;
+      qryInsertDi.paramByName('a_dadosMercadoriaAplicacao').AsString := adicao.dadosMercadoriaAplicacao;
+      qryInsertDi.paramByName('a_dadosMercadoriaCodigoNaladiNCCA').AsString := adicao.dadosMercadoriaCodigoNaladiNCCA;
+      qryInsertDi.paramByName('a_dadosMercadoriaCodigoNaladiSH').AsString := adicao.dadosMercadoriaCodigoNaladiSH;
+      qryInsertDi.paramByName('a_dadosMercadoriaCodigoNcm').AsString := adicao.dadosMercadoriaCodigoNcm;
+      qryInsertDi.paramByName('a_dadosMercadoriaCondicao').AsString := adicao.dadosMercadoriaCondicao;
+      qryInsertDi.paramByName('a_dadosMercadoriaMedidaEstatisticaQuantidade').AsFloat := adicao.dadosMercadoriaMedidaEstatisticaQuantidade;
+      qryInsertDi.paramByName('a_dadosMercadoriaMedidaEstatisticaUnidade').AsString := adicao.dadosMercadoriaMedidaEstatisticaUnidade;
+      qryInsertDi.paramByName('a_dadosMercadoriaNomeNcm').AsString := adicao.dadosMercadoriaNomeNcm;
+      qryInsertDi.paramByName('a_dadosMercadoriaPesoLiquido').AsFloat := adicao.dadosMercadoriaPesoLiquido;
+      qryInsertDi.paramByName('a_paisAquisicaoMercadoriaCodigo').AsString := adicao.paisAquisicaoMercadoriaCodigo;
+      qryInsertDi.paramByName('a_paisAquisicaoMercadoriaNome').AsString := adicao.paisAquisicaoMercadoriaNome;
+      qryInsertDi.paramByName('a_paisOrigemMercadoriaCodigo').AsString := adicao.paisOrigemMercadoriaCodigo;
+      qryInsertDi.paramByName('a_paisOrigemMercadoriaNome').AsString := adicao.paisOrigemMercadoriaNome;
+      qryInsertDi.paramByName('a_fornecedorCidade').AsString := adicao.fornecedorCidade;
+      qryInsertDi.paramByName('a_fornecedorComplemento').AsString := adicao.fornecedorComplemento;
+      qryInsertDi.paramByName('a_fornecedorEstado').AsString := adicao.fornecedorEstado;
+      qryInsertDi.paramByName('a_fornecedorLogradouro').AsString := adicao.fornecedorLogradouro;
+      qryInsertDi.paramByName('a_fornecedorNome').AsString := adicao.fornecedorNome;
+      qryInsertDi.paramByName('a_fornecedorNumero').AsString := adicao.fornecedorNumero;
+      qryInsertDi.paramByName('a_codigoRelacaoCompradorVendedor').AsString := adicao.codigoRelacaoCompradorVendedor;
+      qryInsertDi.paramByName('a_relacaoCompradorVendedor').AsString := adicao.relacaoCompradorVendedor;
+      qryInsertDi.paramByName('a_codigoVinculoCompradorVendedor').AsString := adicao.codigoVinculoCompradorVendedor;
+      qryInsertDi.paramByName('a_vinculoCompradorVendedor').AsString := adicao.vinculoCompradorVendedor;;
+      qryInsertDi.paramByName('a_dadosCambiaisCoberturaCambialCodigo').AsString := adicao.dadosCambiaisCoberturaCambialCodigo;
+      qryInsertDi.paramByName('a_dadosCambiaisCoberturaCambialNome').AsString := adicao.dadosCambiaisCoberturaCambialNome;
+      qryInsertDi.paramByName('a_dadosCambiaisInstituicaoFinanciadoraCodigo').AsString := adicao.dadosCambiaisInstituicaoFinanciadoraCodigo;
+      qryInsertDi.paramByName('a_dadosCambiaisInstituicaoFinanciadoraNome').AsString := adicao.dadosCambiaisInstituicaoFinanciadoraNome;
+      qryInsertDi.paramByName('a_dadosCambiaisMotivoSemCoberturaCodigo').AsString := adicao.dadosCambiaisMotivoSemCoberturaCodigo;
+      qryInsertDi.paramByName('a_dadosCambiaisMotivoSemCoberturaNome').AsString := adicao.dadosCambiaisMotivoSemCoberturaNome;
+      qryInsertDi.paramByName('a_dadosCambiaisValorRealCambio').AsFloat := adicao.dadosCambiaisValorRealCambio;
+      qryInsertDi.paramByName('a_dadosCargaPaisProcedenciaCodigo').AsString := adicao.dadosCargaPaisProcedenciaCodigo;
+      qryInsertDi.paramByName('a_dadosCargaUrfEntradaCodigo').AsString := adicao.dadosCargaUrfEntradaCodigo;
+      qryInsertDi.paramByName('a_dadosCargaViaTransporteCodigo').AsString := adicao.dadosCargaViaTransporteCodigo;
+      qryInsertDi.paramByName('a_condicaoVendaLocal').AsString := adicao.condicaoVendaLocal;
+      qryInsertDi.paramByName('a_condicaoVendaMetodoValoracaoCodigo').AsString := adicao.condicaoVendaMetodoValoracaoCodigo;
+      qryInsertDi.paramByName('a_condicaoVendaMetodoValoracaoNome').AsString := adicao.condicaoVendaMetodoValoracaoNome;
+      qryInsertDi.paramByName('a_condicaoVendaMoedaCodigo').AsString := adicao.condicaoVendaMoedaCodigo;
+      qryInsertDi.paramByName('a_condicaoVendaMoedaNome').AsString := adicao.condicaoVendaMoedaNome;
+      qryInsertDi.paramByName('a_condicaoVendaValorMoeda').AsFloat := adicao.condicaoVendaValorMoeda;
+      qryInsertDi.paramByName('a_condicaoVendaValorReais').AsFloat := adicao.condicaoVendaValorReais;
+      qryInsertDi.paramByName('a_cideValorAliquotaEspecifica').AsFloat := adicao.cideValorAliquotaEspecifica;
+      qryInsertDi.paramByName('a_cideValorDevido').AsFloat := adicao.cideValorDevido;
+      qryInsertDi.paramByName('a_cideValorRecolher').AsFloat := adicao.cideValorRecolher;
+      qryInsertDi.paramByName('a_dcrCoeficienteReducao').AsString := adicao.dcrCoeficienteReducao;
+      qryInsertDi.paramByName('a_dcrIdentificacao').AsString := adicao.dcrIdentificacao;
+      qryInsertDi.paramByName('a_dcrValorDevido').AsFloat := adicao.dcrValorDevido;
+      qryInsertDi.paramByName('a_dcrValorDolar').AsFloat := adicao.dcrValorDolar;
+      qryInsertDi.paramByName('a_dcrValorReal').AsFloat := adicao.dcrValorReal;
+      qryInsertDi.paramByName('a_dcrValorRecolher').AsFloat := adicao.dcrValorRecolher;
+      qryInsertDi.paramByName('a_valorMultaARecolher').AsFloat := adicao.valorMultaARecolher;
+      qryInsertDi.paramByName('a_valorMultaARecolherAjustado').AsFloat := adicao.valorMultaARecolherAjustado;
+      qryInsertDi.paramByName('a_valorReaisFreteInternacional').AsFloat := adicao.valorReaisFreteInternacional;
+      qryInsertDi.paramByName('a_valorReaisSeguroInternacional').AsFloat := adicao.valorReaisSeguroInternacional;
+      qryInsertDi.paramByName('a_valorTotalCondicaoVenda').AsFloat := adicao.valorTotalCondicaoVenda;
+      qryInsertDi.paramByName('a_freteMoedaNegociadaCodigo').AsString := adicao.freteMoedaNegociadaCodigo;
+      qryInsertDi.paramByName('a_freteValorMoedaNegociada').AsFloat := adicao.freteValorMoedaNegociada;
+      qryInsertDi.paramByName('a_freteValorReais').AsFloat := adicao.freteValorReais;
+      qryInsertDi.paramByName('a_seguroMoedaNegociadaCodigo').AsString := adicao.seguroMoedaNegociadaCodigo;
+      qryInsertDi.paramByName('a_seguroValorMoedaNegociada').AsFloat := adicao.seguroValorMoedaNegociada;
+      qryInsertDi.paramByName('a_seguroValorReais').AsFloat := adicao.seguroValorReais;
+      qryInsertDi.paramByName('a_iiAcordoTarifarioTipoCodigo').AsString := adicao.iiAcordoTarifarioTipoCodigo;
+      qryInsertDi.paramByName('a_iiAliquotaAcordo').AsFloat := adicao.iiAliquotaAcordo;
+      qryInsertDi.paramByName('a_iiAliquotaAdValorem').AsFloat := adicao.iiAliquotaAdValorem;
+      qryInsertDi.paramByName('a_iiAliquotaPercentualReducao').AsFloat := adicao.iiAliquotaAdValorem;
+      qryInsertDi.paramByName('a_iiAliquotaReduzida').AsFloat := adicao.iiAliquotaReduzida;
+      qryInsertDi.paramByName('a_iiAliquotaValorCalculado').AsFloat := adicao.iiAliquotaValorCalculado;
+      qryInsertDi.paramByName('a_iiAliquotaValorDevido').AsFloat := adicao.iiAliquotaValorDevido;
+      qryInsertDi.paramByName('a_iiAliquotaValorRecolher').AsFloat := adicao.iiAliquotaValorRecolher;
+      qryInsertDi.paramByName('a_iiAliquotaValorReduzido').AsFloat := adicao.iiAliquotaValorReduzido;
+      qryInsertDi.paramByName('a_iiBaseCalculo').AsFloat := adicao.iiBaseCalculo;
+      qryInsertDi.paramByName('a_iiFundamentoLegalCodigo').AsString := adicao.iiFundamentoLegalCodigo;
+      qryInsertDi.paramByName('a_iiMotivoAdmissaoTemporariaCodigo').AsString := adicao.iiMotivoAdmissaoTemporariaCodigo;
+      qryInsertDi.paramByName('a_iiRegimeTributacaoCodigo').AsString := adicao.iiRegimeTributacaoCodigo;
+      qryInsertDi.paramByName('a_iiRegimeTributacaoNome').AsString := adicao.iiRegimeTributacaoNome;
+      qryInsertDi.paramByName('a_ipiAliquotaAdValorem').AsFloat := adicao.ipiAliquotaAdValorem;
+      qryInsertDi.paramByName('a_ipiAliquotaEspecificaCapacidadeRecipciente').AsFloat := adicao.ipiAliquotaEspecificaCapacidadeRecipciente;
+      qryInsertDi.paramByName('a_ipiAliquotaEspecificaQuantidadeUnidadeMedida').AsFloat := adicao.ipiAliquotaEspecificaQuantidadeUnidadeMedida;
+      qryInsertDi.paramByName('a_ipiAliquotaEspecificaTipoRecipienteCodigo').AsFloat := adicao.ipiAliquotaEspecificaTipoRecipienteCodigo;
+      qryInsertDi.paramByName('a_ipiAliquotaEspecificaValorUnidadeMedida').AsFloat := adicao.ipiAliquotaEspecificaValorUnidadeMedida;
+      qryInsertDi.paramByName('a_ipiAliquotaNotaComplementarTIPI').AsFloat := adicao.ipiAliquotaNotaComplementarTIPI;
+      qryInsertDi.paramByName('a_ipiAliquotaReduzida').AsFloat := adicao.ipiAliquotaReduzida;
+      qryInsertDi.paramByName('a_ipiAliquotaValorDevido').AsFloat := adicao.ipiAliquotaValorDevido;
+      qryInsertDi.paramByName('a_ipiAliquotaValorRecolher').AsFloat := adicao.ipiAliquotaValorRecolher;
+      qryInsertDi.paramByName('a_ipiRegimeTributacaoCodigo').AsString := adicao.ipiRegimeTributacaoCodigo;
+      qryInsertDi.paramByName('a_ipiRegimeTributacaoNome').AsString := adicao.ipiRegimeTributacaoNome;
+      qryInsertDi.paramByName('a_cofinsAliquotaAdValorem').AsFloat := adicao.cofinsAliquotaAdValorem;
+      qryInsertDi.paramByName('a_cofinsAliquotaEspecificaQuantidadeUnidade').AsFloat := adicao.cofinsAliquotaEspecificaQuantidadeUnidade;
+      qryInsertDi.paramByName('a_cofinsAliquotaEspecificaValor').AsFloat := adicao.cofinsAliquotaEspecificaValor;
+      qryInsertDi.paramByName('a_cofinsAliquotaReduzida').AsFloat := adicao.cofinsAliquotaReduzida;
+      qryInsertDi.paramByName('a_cofinsAliquotaValorDevido').AsFloat := adicao.cofinsAliquotaValorDevido;
+      qryInsertDi.paramByName('a_cofinsAliquotaValorRecolher').AsFloat := adicao.cofinsAliquotaValorRecolher;
+      qryInsertDi.paramByName('a_pisCofinsBaseCalculoAliquotaICMS').AsFloat := adicao.pisCofinsBaseCalculoAliquotaICMS;
+      qryInsertDi.paramByName('a_pisCofinsBaseCalculoFundamentoLegalCodigo').AsFloat := adicao.pisCofinsBaseCalculoFundamentoLegalCodigo;
+      qryInsertDi.paramByName('a_pisCofinsBaseCalculoPercentualReducao').AsFloat := adicao.pisCofinsBaseCalculoPercentualReducao;
+      qryInsertDi.paramByName('a_pisCofinsBaseCalculoValor').AsFloat := adicao.pisCofinsBaseCalculoValor;
+      qryInsertDi.paramByName('a_pisCofinsFundamentoLegalReducaoCodigo').AsString := adicao.pisCofinsFundamentoLegalReducaoCodigo;
+      qryInsertDi.paramByName('a_pisCofinsRegimeTributacaoCodigo').AsString := adicao.pisCofinsRegimeTributacaoCodigo;
+      qryInsertDi.paramByName('a_pisCofinsRegimeTributacaoNome').AsString := adicao.pisCofinsRegimeTributacaoNome;
+      qryInsertDi.paramByName('a_pisPasepAliquotaAdValorem').AsFloat := adicao.pisPasepAliquotaAdValorem;
+      qryInsertDi.paramByName('a_pisPasepAliquotaEspecificaQuantidadeUnidade').AsFloat := adicao.pisPasepAliquotaEspecificaQuantidadeUnidade;
+      qryInsertDi.paramByName('a_pisPasepAliquotaEspecificaValor').AsFloat := adicao.pisPasepAliquotaEspecificaValor;
+      qryInsertDi.paramByName('a_pisPasepAliquotaReduzida').AsFloat := adicao.pisPasepAliquotaReduzida;
+      qryInsertDi.paramByName('a_pisPasepAliquotaValorDevido').AsFloat := adicao.pisPasepAliquotaValorDevido;
+      qryInsertDi.paramByName('a_pisPasepAliquotaValorRecolher').AsFloat := adicao.pisPasepAliquotaValorRecolher;
+      qryInsertDi.paramByName('a_condicaoVendaIncoterm').AsString := adicao.condicaoVendaIncoterm;
+      qryInsertDi.paramByName('a_fabricanteNome').AsString := adicao.fabricanteNome;
+      qryInsertDi.paramByName('a_fabricanteCidade').AsString := adicao.fabricanteCidade;
+      qryInsertDi.paramByName('a_fabricanteComplemento').AsString := adicao.fabricanteComplemento;
+      qryInsertDi.paramByName('a_fabricanteEstado').AsString := adicao.fabricanteEstado;
+      qryInsertDi.paramByName('a_fabricanteLogradouro').AsString := adicao.fabricanteLogradouro;
+      qryInsertDi.paramByName('a_fabricanteNumero').AsString := adicao.fabricanteNumero;
+      qryInsertDi.paramByName('a_numeroDestaque').AsString := adicao.numeroDestaque;
+
+      for item in adicao.itens do
+      begin
+        qryInsertDi.paramByName('i_descricaoMercadoria').AsString := item.descricaoMercadoria;
+        qryInsertDi.paramByName('i_numeroSequencialItem').AsString := item.numeroSequencialItem;
+        qryInsertDi.paramByName('i_quantidade').AsFloat := item.quantidade;
+        qryInsertDi.paramByName('i_unidadeMedida').AsString := item.unidadeMedida;
+        qryInsertDi.paramByName('i_valorUnitario').AsFloat := item.valorUnitario;
+        qryInsertDi.paramByName('i_vmle').AsFloat := item.vmle;
+        qryInsertDi.paramByName('i_quantidadeEstatistica').AsFloat := item.quantidadeEstatistica;
+        qryInsertDi.ExecSQL;
+      end;
+    end;
+
+    qryHistoricoDi.Close;
+    qryHistoricoDi.SQL.Text := 'INSERT INTO ImpoDiHistorico VALUES(:numeroDI, getdate(), ''Inclusão'')';
+    qryHistoricoDi.paramByName('numeroDI').AsString := Di.numeroDI;
+    qryHistoricoDi.ExecSQL;
+  end;
+end;
+
+procedure TdmdBroker.GeraConsultaRelatorioImpo(DataRegistroInicio, DataRegistroFim: TDateTime; NrDocumento, NrDi: String);
+var
+  vSelect : String;
+begin
+  qryRelatorioImpo.Close;
+
+  if Parametros.ModoTeste then
+    vSelect := 'SELECT TOP 10 * FROM ImpoDiImportada WHERE '
+  else
+    vSelect := 'SELECT * FROM ImpoDiImportada WHERE ';
+
+  if NrDi <> '' then
+    vSelect := vSelect + ' numeroDi = :NrDi'
+  else
+  begin
+    vSelect := vSelect + '(CAST(DataRegistro AS DATE) BETWEEN CAST(:DataRegistroInicio AS DATE) AND CAST(:DataRegistroFim AS DATE)) ';
+
+    if NrDocumento <> '' then
+    begin
+      if length(NrDocumento) = 8 then
+        vSelect := vSelect + 'AND ImportadorNumero like :ImportadorNumero'
+      else
+        vSelect := vSelect + 'AND ImportadorNumero = :ImportadorNumero';
+    end;
+
+  end;
+
+  vSelect := vSelect + ' ORDER BY numeroDi, a_numeroAdicao, i_numeroSequencialItem';
+  qryRelatorioImpo.SQL.Text := vSelect;
+
+  if NrDi <> '' then
+    qryRelatorioImpo.ParamByName('NrDi').AsString := Trim(NrDi)
+  else
+  begin
+    qryRelatorioImpo.ParamByName('DataRegistroInicio').AsDateTime := DataRegistroInicio;
+    qryRelatorioImpo.ParamByName('DataRegistroFim').AsDateTime := DataRegistroFim;
+    if NrDocumento <> '' then
+      if length(NrDocumento) = 8 then
+        qryRelatorioImpo.ParamByName('ImportadorNumero').AsString := Trim(NrDocumento)+'%'
+      else
+        qryRelatorioImpo.ParamByName('ImportadorNumero').AsString := Trim(NrDocumento);
+  end;
+  qryRelatorioImpo.Open;
+  qryRelatorioImpo.FetchAll;
+end;
+
+
+procedure TdmdBroker.ConfiguraConexao(const Servidor, Banco, Usuario,
+  Senha: string);
+begin
+  dbBroker.Close;
+  dbBroker.Params.Values['Server'] := Servidor;
+  dbBroker.Params.Values['Database'] := Banco;
+  dbBroker.Params.Values['User_Name'] := Usuario;
+  dbBroker.Params.Values['password'] := Senha;
+  dbBroker.Params.Values['DriverID'] := 'MSSQL';
+  dbBroker.Open;
+end;
+
+procedure TdmdBroker.MostraFila;
+begin
+  qryFilaExpo.close;
+  qryFilaExpo.open;
+  qryFilaExpo.FetchAll;
+end;
+
+procedure TdmdBroker.DeleteFila;
+begin
+  qryDeleteDueFila.ExecSQL;
+end;
+
+procedure TdmdBroker.ValidarTamanhoCamposImpo(Dis: TObjectList<TDi>; aValue: TDisplay);
+var
+  Di : TDi;
+  adicao : TAdicao;
+  item : TItem;
+
+  procedure validar(Campo: String; tam1, tam2: Integer);
+  begin
+    if tam2 > tam1 then
+      aValue('Campo: ' + campo + ' banco: ' + IntToStr(tam1) + ' xml: ' + IntToStr(tam2))
+    //  raise Exception.Create('Campo: ' + campo + ' banco: ' + IntToStr(tam1) + ' xml: ' + IntToStr(tam2));
+  end;
+begin
+
+  for Di in Dis do
+  begin
+    validar('tipoDeclaracaoCodigo', qryRelatorioImpotipoDeclaracaoCodigo.Size, length(Di.tipoDeclaracaoCodigo));
+
+    validar('tipoDeclaracaoCodigo', qryRelatorioImpotipoDeclaracaoCodigo.Size, length(Di.tipoDeclaracaoCodigo));
+    validar('tipoDeclaracaoNome', qryRelatorioImpotipoDeclaracaoNome.Size, length(Di.tipoDeclaracaoNome));
+    validar('modalidadeDespachoCodigo', qryRelatorioImpomodalidadeDespachoCodigo.Size, length(Di.modalidadeDespachoCodigo));
+    validar('modalidadeDespachoNome', qryRelatorioImpomodalidadeDespachoNome.Size, length(Di.modalidadeDespachoNome));
+    validar('numeroDI', qryRelatorioImponumeroDI.Size, length(Di.numeroDI));
+//    validar('dataDesembaraco', qryRelatorioImpodataDesembaraco.Size, length(Di.dataDesembaraco));
+//    validar('dataRegistro', qryRelatorioImpodataRegistro.Size, length(Di.dataRegistro));
+    validar('operacaoFundap', qryRelatorioImpooperacaoFundap.Size, length(Di.operacaoFundap));
+    validar('urfDespachoCodigo', qryRelatorioImpourfDespachoCodigo.Size, length(Di.urfDespachoCodigo));
+    validar('urfDespachoNome', qryRelatorioImpourfDespachoNome.Size, length(Di.urfDespachoNome));
+//    validar('localDescargaTotalDolares', qryRelatorioImpolocalDescargaTotalDolares.Size, length(Di.localDescargaTotalDolares));
+//    validar('localDescargaTotalReais', qryRelatorioImpolocalDescargaTotalReais.Size, length(Di.localDescargaTotalReais));
+//    validar('localEmbarqueTotalDolares', qryRelatorioImpolocalEmbarqueTotalDolares.Size, length(Di.localEmbarqueTotalDolares));
+//    validar('localEmbarqueTotalReais', qryRelatorioImpolocalEmbarqueTotalReais.Size, length(Di.localEmbarqueTotalReais;));
+    validar('viaTransporteCodigo', qryRelatorioImpoviaTransporteCodigo.Size, length(Di.viaTransporteCodigo));
+    validar('viaTransporteMultimodal', qryRelatorioImpoviaTransporteMultimodal.Size, length(Di.viaTransporteMultimodal));
+    validar('viaTransporteNome', qryRelatorioImpoviaTransporteNome.Size, length(Di.viaTransporteNome));
+    validar('viaTransporteNomeTransportador', qryRelatorioImpoviaTransporteNomeTransportador.Size, length(Di.viaTransporteNomeTransportador));
+    validar('viaTransportePaisTransportadorCodigo', qryRelatorioImpoviaTransportePaisTransportadorCodigo.Size, length(Di.viaTransportePaisTransportadorCodigo));
+    validar('viaTransportePaisTransportadorNome', qryRelatorioImpoviaTransportePaisTransportadorNome.Size, length(Di.viaTransportePaisTransportadorNome));
+    validar('sequencialRetificacao', qryRelatorioImposequencialRetificacao.Size, length(Di.sequencialRetificacao));
+    validar('situacaoEntregaCarga', qryRelatorioImposituacaoEntregaCarga.Size, length(Di.situacaoEntregaCarga));
+    validar('canalSelecaoParametrizada', qryRelatorioImpocanalSelecaoParametrizada.Size, length(Di.canalSelecaoParametrizada));
+    validar('caracterizacaoOperacaoCodigoTipo', qryRelatorioImpocaracterizacaoOperacaoCodigoTipo.Size, length(Di.caracterizacaoOperacaoCodigoTipo));
+    validar('caracterizacaoOperacaoDescricaoTipo', qryRelatorioImpocaracterizacaoOperacaoDescricaoTipo.Size, length(Di.caracterizacaoOperacaoDescricaoTipo));
+//    validar('cargaDataChegada', qryRelatorioImpocargaDataChegada.Size, length(Di.cargaDataChegada;));
+    validar('cargaNumeroAgente', qryRelatorioImpocargaNumeroAgente.Size, length(Di.cargaNumeroAgente));
+    validar('cargaPaisProcedenciaCodigo', qryRelatorioImpocargaPaisProcedenciaCodigo.Size, length(Di.cargaPaisProcedenciaCodigo));
+    validar('cargaPaisProcedenciaNome', qryRelatorioImpocargaPaisProcedenciaNome.Size, length(Di.cargaPaisProcedenciaNome));
+//    validar('cargaPesoBruto', qryRelatorioImpocargaPesoBruto.Size, length(Di.cargaPesoBruto));
+//    validar('cargaPesoLiquido', qryRelatorioImpocargaPesoLiquido.Size, length(Di.cargaPesoLiquido));
+    validar('cargaUrfEntradaCodigo', qryRelatorioImpocargaUrfEntradaCodigo.Size, length(Di.cargaUrfEntradaCodigo));
+    validar('cargaUrfEntradaNome', qryRelatorioImpocargaUrfEntradaNome.Size, length(Di.cargaUrfEntradaNome));
+//    validar('conhecimentoCargaEmbarqueData', qryRelatorioImpoconhecimentoCargaEmbarqueData.Size, length(Di.conhecimentoCargaEmbarqueData));
+    validar('conhecimentoCargaEmbarqueLocal', qryRelatorioImpoconhecimentoCargaEmbarqueLocal.Size, length(Di.conhecimentoCargaEmbarqueLocal));
+    validar('conhecimentoCargaId', qryRelatorioImpoconhecimentoCargaId.Size, length(Di.conhecimentoCargaId));
+    validar('conhecimentoCargaIdMaster', qryRelatorioImpoconhecimentoCargaIdMaster.Size, length(Di.conhecimentoCargaIdMaster));
+    validar('conhecimentoCargaTipoCodigo', qryRelatorioImpoconhecimentoCargaTipoCodigo.Size, length(Di.conhecimentoCargaTipoCodigo));
+    validar('conhecimentoCargaTipoNome', qryRelatorioImpoconhecimentoCargaTipoNome.Size, length(Di.conhecimentoCargaTipoNome));
+    validar('conhecimentoCargaUtilizacao', qryRelatorioImpoconhecimentoCargaUtilizacao.Size, length(Di.conhecimentoCargaUtilizacao));
+    validar('conhecimentoCargaUtilizacaoNome', qryRelatorioImpoconhecimentoCargaUtilizacaoNome.Size, length(Di.conhecimentoCargaUtilizacaoNome));
+//    validar('valorTotalMultaARecolherAjustado', qryRelatorioImpovalorTotalMultaARecolherAjustado.Size, length(Di.valorTotalMultaARecolherAjustado));
+    validar('seguroMoedaNegociadaCodigo', qryRelatorioImposeguroMoedaNegociadaCodigo.Size, length(Di.seguroMoedaNegociadaCodigo));
+    validar('seguroMoedaNegociadaNome', qryRelatorioImposeguroMoedaNegociadaNome.Size, length(Di.seguroMoedaNegociadaNome));
+//    validar('seguroTotalDolares', qryRelatorioImposeguroTotalDolares.Size, length(Di.seguroTotalDolares));
+//    validar('seguroTotalMoedaNegociada', qryRelatorioImposeguroTotalMoedaNegociada.Size, length(Di.seguroTotalMoedaNegociada));
+//    validar('seguroTotalReais', qryRelatorioImposeguroTotalReais.Size, length(Di.seguroTotalReais));
+    validar('freteCollect', qryRelatorioImpofreteCollect.Size, length(Di.freteCollect));
+    validar('freteEmTerritorioNacional', qryRelatorioImpofreteEmTerritorioNacional.Size, length(Di.freteEmTerritorioNacional));
+    validar('freteMoedaNegociadaCodigo', qryRelatorioImpofreteMoedaNegociadaCodigo.Size, length(Di.freteMoedaNegociadaCodigo));
+    validar('freteMoedaNegociadaNome', qryRelatorioImpofreteMoedaNegociadaNome.Size, length(Di.freteMoedaNegociadaNome));
+    validar('fretePrepaid', qryRelatorioImpofretePrepaid.Size, length(Di.fretePrepaid));
+//    validar('freteTotalDolares', qryRelatorioImpofreteTotalDolares.Size, length(Di.freteTotalDolares));
+//    validar('freteTotalMoeda', qryRelatorioImpofreteTotalMoeda.Size, length(Di.freteTotalMoeda;));
+//    validar('freteTotalReais', qryRelatorioImpofreteTotalReais.Size, length(Di.freteTotalReais));
+    validar('importadorCodigoTipo', qryRelatorioImpoimportadorCodigoTipo.Size, length(Di.importadorCodigoTipo));
+    validar('importadorCpfRepresentanteLegal', qryRelatorioImpoimportadorCpfRepresentanteLegal.Size, length(Di.importadorCpfRepresentanteLegal));
+    validar('importadorEnderecoBairro', qryRelatorioImpoimportadorEnderecoBairro.Size, length(Di.importadorEnderecoBairro));
+    validar('importadorEnderecoCep', qryRelatorioImpoimportadorEnderecoCep.Size, length(Di.importadorEnderecoCep));
+    validar('importadorEnderecoLogradouro', qryRelatorioImpoimportadorEnderecoLogradouro.Size, length(Di.importadorEnderecoLogradouro));
+    validar('importadorEnderecoMunicipio', qryRelatorioImpoimportadorEnderecoMunicipio.Size, length(Di.importadorEnderecoMunicipio));
+    validar('importadorEnderecoNumero', qryRelatorioImpoimportadorEnderecoNumero.Size, length(Di.importadorEnderecoNumero));
+    validar('importadorEnderecoUf', qryRelatorioImpoimportadorEnderecoUf.Size, length(Di.importadorEnderecoUf));
+    validar('importadorNome', qryRelatorioImpoimportadorNome.Size, length(Di.importadorNome));
+    validar('importadorNomeRepresentanteLegal', qryRelatorioImpoimportadorNomeRepresentanteLegal.Size, length(Di.importadorNomeRepresentanteLegal));
+    validar('importadorNumero', qryRelatorioImpoimportadorNumero.Size, length(Di.importadorNumero));
+    validar('armazenamentoRecintoAduaneiroCodigo', qryRelatorioImpoarmazenamentoRecintoAduaneiroCodigo.Size, length(Di.armazenamentoRecintoAduaneiroCodigo));
+    validar('armazenamentoRecintoAduaneiroNome', qryRelatorioImpoarmazenamentoRecintoAduaneiroNome.Size, length(Di.armazenamentoRecintoAduaneiroNome));
+    validar('armazenamentoSetor', qryRelatorioImpoarmazenamentoSetor.Size, length(Di.armazenamentoSetor));
+    validar('informacaoComplementar', qryRelatorioImpoinformacaoComplementar.Size, length(Di.informacaoComplementar));
+//    validar('totalAdicoes', qryRelatorioImpototalAdicoes.Size, length(Di.totalAdicoes));
+    validar('nomeArmazem', qryRelatorioImponomeArmazem.Size, length(Di.nomeArmazem));
+    validar('agenciaIcms', qryRelatorioImpoagenciaIcms.Size, length(Di.agenciaIcms));
+    validar('bancoIcms', qryRelatorioImpobancoIcms.Size, length(Di.bancoIcms));
+    validar('codigoTipoRecolhimentoIcms', qryRelatorioImpocodigoTipoRecolhimentoIcms.Size, length(Di.codigoTipoRecolhimentoIcms));
+    validar('cpfResponsavelRegistroIcms', qryRelatorioImpocpfResponsavelRegistroIcms.Size, length(Di.cpfResponsavelRegistroIcms));
+//    validar('dataPagamentoIcms', qryRelatorioImpodataPagamentoIcms.Size, length(Di.dataPagamentoIcms));
+//    validar('dataRegistroIcms', qryRelatorioImpodataRegistroIcms.Size, length(Di.dataRegistroIcms));
+    validar('horaRegistroIcms', qryRelatorioImpohoraRegistroIcms.Size, length(Di.horaRegistroIcms));
+    validar('nomeTipoRecolhimentoIcms', qryRelatorioImponomeTipoRecolhimentoIcms.Size, length(Di.nomeTipoRecolhimentoIcms));
+    validar('numeroSequencialIcms', qryRelatorioImponumeroSequencialIcms.Size, length(Di.numeroSequencialIcms));
+    validar('ufIcms', qryRelatorioImpoufIcms.Size, length(Di.ufIcms));
+//    validar('valorTotalIcms', qryRelatorioImpovalorTotalIcms.Size, length(Di.valorTotalIcms));
+    validar('documentoChegadaCargaCodigoTipo', qryRelatorioImpodocumentoChegadaCargaCodigoTipo.Size, length(Di.documentoChegadaCargaCodigoTipo));
+    validar('documentoChegadaCargaNome', qryRelatorioImpodocumentoChegadaCargaNome.Size, length(Di.documentoChegadaCargaNome));
+    validar('documentoChegadaCargaNumero', qryRelatorioImpodocumentoChegadaCargaNumero.Size, length(Di.documentoChegadaCargaNumero));
+
+    for adicao in Di.adicoes do
+    begin
+      validar('a_numeroAdicao', qryRelatorioImpoa_numeroAdicao.Size, length(adicao.numeroAdicao));
+      validar('a_numeroLI', qryRelatorioImpoa_numeroLI.Size, length(adicao.numeroLI));
+      validar('a_sequencialRetificacao', qryRelatorioImpoa_sequencialRetificacao.Size, length(adicao.sequencialRetificacao));
+      validar('a_dadosMercadoriaAplicacao', qryRelatorioImpoa_dadosMercadoriaAplicacao.Size, length(adicao.dadosMercadoriaAplicacao));
+      validar('a_dadosMercadoriaCodigoNaladiNCCA', qryRelatorioImpoa_dadosMercadoriaCodigoNaladiNCCA.Size, length(adicao.dadosMercadoriaCodigoNaladiNCCA));
+      validar('a_dadosMercadoriaCodigoNaladiSH', qryRelatorioImpoa_dadosMercadoriaCodigoNaladiSH.Size, length(adicao.dadosMercadoriaCodigoNaladiSH));
+      validar('a_dadosMercadoriaCodigoNcm', qryRelatorioImpoa_dadosMercadoriaCodigoNcm.Size, length(adicao.dadosMercadoriaCodigoNcm));
+      validar('a_dadosMercadoriaCondicao', qryRelatorioImpoa_dadosMercadoriaCondicao.Size, length(adicao.dadosMercadoriaCondicao));
+//      validar('a_dadosMercadoriaMedidaEstatisticaQuantidade', qryRelatorioImpoa_dadosMercadoriaMedidaEstatisticaQuantidade.Size, length(adicao.dadosMercadoriaMedidaEstatisticaQuantidade));
+      validar('a_dadosMercadoriaMedidaEstatisticaUnidade', qryRelatorioImpoa_dadosMercadoriaMedidaEstatisticaUnidade.Size, length(adicao.dadosMercadoriaMedidaEstatisticaUnidade));
+      validar('a_dadosMercadoriaNomeNcm', qryRelatorioImpoa_dadosMercadoriaNomeNcm.Size, length(adicao.dadosMercadoriaNomeNcm));
+//      validar('a_dadosMercadoriaPesoLiquido', qryRelatorioImpoa_dadosMercadoriaPesoLiquido.Size, length(adicao.dadosMercadoriaPesoLiquido));
+      validar('a_paisAquisicaoMercadoriaCodigo', qryRelatorioImpoa_paisAquisicaoMercadoriaCodigo.Size, length(adicao.paisAquisicaoMercadoriaCodigo));
+      validar('a_paisAquisicaoMercadoriaNome', qryRelatorioImpoa_paisAquisicaoMercadoriaNome.Size, length(adicao.paisAquisicaoMercadoriaNome));
+      validar('a_paisOrigemMercadoriaCodigo', qryRelatorioImpoa_paisOrigemMercadoriaCodigo.Size, length(adicao.paisOrigemMercadoriaCodigo));
+      validar('a_paisOrigemMercadoriaNome', qryRelatorioImpoa_paisOrigemMercadoriaNome.Size, length(adicao.paisOrigemMercadoriaNome));
+      validar('a_fornecedorCidade', qryRelatorioImpoa_fornecedorCidade.Size, length(adicao.fornecedorCidade));
+      validar('a_fornecedorComplemento', qryRelatorioImpoa_fornecedorComplemento.Size, length(adicao.fornecedorComplemento));
+      validar('a_fornecedorEstado', qryRelatorioImpoa_fornecedorEstado.Size, length(adicao.fornecedorEstado));
+      validar('a_fornecedorLogradouro', qryRelatorioImpoa_fornecedorLogradouro.Size, length(adicao.fornecedorLogradouro));
+      validar('a_fornecedorNome', qryRelatorioImpoa_fornecedorNome.Size, length(adicao.fornecedorNome));
+      validar('a_fornecedorNumero', qryRelatorioImpoa_fornecedorNumero.Size, length(adicao.fornecedorNumero));
+      validar('a_codigoRelacaoCompradorVendedor', qryRelatorioImpoa_codigoRelacaoCompradorVendedor.Size, length(adicao.codigoRelacaoCompradorVendedor));
+      validar('a_relacaoCompradorVendedor', qryRelatorioImpoa_relacaoCompradorVendedor.Size, length(adicao.relacaoCompradorVendedor));
+      validar('a_codigoVinculoCompradorVendedor', qryRelatorioImpoa_codigoVinculoCompradorVendedor.Size, length(adicao.codigoVinculoCompradorVendedor));
+      validar('a_vinculoCompradorVendedor', qryRelatorioImpoa_vinculoCompradorVendedor.Size, length(adicao.vinculoCompradorVendedor));
+      validar('a_dadosCambiaisCoberturaCambialCodigo', qryRelatorioImpoa_dadosCambiaisCoberturaCambialCodigo.Size, length(adicao.dadosCambiaisCoberturaCambialCodigo));
+      validar('a_dadosCambiaisCoberturaCambialNome', qryRelatorioImpoa_dadosCambiaisCoberturaCambialNome.Size, length(adicao.dadosCambiaisCoberturaCambialNome));
+      validar('a_dadosCambiaisInstituicaoFinanciadoraCodigo', qryRelatorioImpoa_dadosCambiaisInstituicaoFinanciadoraCodigo.Size, length(adicao.dadosCambiaisInstituicaoFinanciadoraCodigo));
+      validar('a_dadosCambiaisInstituicaoFinanciadoraNome', qryRelatorioImpoa_dadosCambiaisInstituicaoFinanciadoraNome.Size, length(adicao.dadosCambiaisInstituicaoFinanciadoraNome));
+      validar('a_dadosCambiaisMotivoSemCoberturaCodigo', qryRelatorioImpoa_dadosCambiaisMotivoSemCoberturaCodigo.Size, length(adicao.dadosCambiaisMotivoSemCoberturaCodigo));
+      validar('a_dadosCambiaisMotivoSemCoberturaNome', qryRelatorioImpoa_dadosCambiaisMotivoSemCoberturaNome.Size, length(adicao.dadosCambiaisMotivoSemCoberturaNome));
+//      validar('a_dadosCambiaisValorRealCambio', qryRelatorioImpoa_dadosCambiaisValorRealCambio.Size, length(adicao.dadosCambiaisValorRealCambio));
+      validar('a_dadosCargaPaisProcedenciaCodigo', qryRelatorioImpoa_dadosCargaPaisProcedenciaCodigo.Size, length(adicao.dadosCargaPaisProcedenciaCodigo));
+      validar('a_dadosCargaUrfEntradaCodigo', qryRelatorioImpoa_dadosCargaUrfEntradaCodigo.Size, length(adicao.dadosCargaUrfEntradaCodigo));
+      validar('a_dadosCargaViaTransporteCodigo', qryRelatorioImpoa_dadosCargaViaTransporteCodigo.Size, length(adicao.dadosCargaViaTransporteCodigo));
+      validar('a_condicaoVendaLocal', qryRelatorioImpoa_condicaoVendaLocal.Size, length(adicao.condicaoVendaLocal));
+      validar('a_condicaoVendaMetodoValoracaoCodigo', qryRelatorioImpoa_condicaoVendaMetodoValoracaoCodigo.Size, length(adicao.condicaoVendaMetodoValoracaoCodigo));
+      validar('a_condicaoVendaMetodoValoracaoNome', qryRelatorioImpoa_condicaoVendaMetodoValoracaoNome.Size, length(adicao.condicaoVendaMetodoValoracaoNome));
+      validar('a_condicaoVendaMoedaCodigo', qryRelatorioImpoa_condicaoVendaMoedaCodigo.Size, length(adicao.condicaoVendaMoedaCodigo));
+      validar('a_condicaoVendaMoedaNome', qryRelatorioImpoa_condicaoVendaMoedaNome.Size, length(adicao.condicaoVendaMoedaNome));
+//      validar('a_condicaoVendaValorMoeda', qryRelatorioImpoa_condicaoVendaValorMoeda.Size, length(adicao.condicaoVendaValorMoeda));
+//      validar('a_condicaoVendaValorReais', qryRelatorioImpoa_condicaoVendaValorReais.Size, length(adicao.condicaoVendaValorReais));
+//      validar('a_cideValorAliquotaEspecifica', qryRelatorioImpoa_cideValorAliquotaEspecifica.Size, length(adicao.cideValorAliquotaEspecifica));
+//      validar('a_cideValorDevido', qryRelatorioImpoa_cideValorDevido.Size, length(adicao.cideValorDevido));
+//      validar('a_cideValorRecolher', qryRelatorioImpoa_cideValorRecolher.Size, length(adicao.cideValorRecolher));
+      validar('a_dcrCoeficienteReducao', qryRelatorioImpoa_dcrCoeficienteReducao.Size, length(adicao.dcrCoeficienteReducao));
+      validar('a_dcrIdentificacao', qryRelatorioImpoa_dcrIdentificacao.Size, length(adicao.dcrIdentificacao));
+//      validar('a_dcrValorDevido', qryRelatorioImpoa_dcrValorDevido.Size, length(adicao.dcrValorDevido));
+//      validar('a_dcrValorDolar', qryRelatorioImpoa_dcrValorDolar.Size, length(adicao.dcrValorDolar));
+//      validar('a_dcrValorReal', qryRelatorioImpoa_dcrValorReal.Size, length(adicao.dcrValorReal));
+//      validar('a_dcrValorRecolher', qryRelatorioImpoa_dcrValorRecolher.Size, length(adicao.dcrValorRecolher));
+//      validar('a_valorMultaARecolher', qryRelatorioImpoa_valorMultaARecolher.Size, length(adicao.valorMultaARecolher));
+//      validar('a_valorMultaARecolherAjustado', qryRelatorioImpoa_valorMultaARecolherAjustado.Size, length(adicao.valorMultaARecolherAjustado));
+//      validar('a_valorReaisFreteInternacional', qryRelatorioImpoa_valorReaisFreteInternacional.Size, length(adicao.valorReaisFreteInternacional));
+//      validar('a_valorReaisSeguroInternacional', qryRelatorioImpoa_valorReaisSeguroInternacional.Size, length(adicao.valorReaisSeguroInternacional));
+//      validar('a_valorTotalCondicaoVenda', qryRelatorioImpoa_valorTotalCondicaoVenda.Size, length(adicao.valorTotalCondicaoVenda));
+      validar('a_freteMoedaNegociadaCodigo', qryRelatorioImpoa_freteMoedaNegociadaCodigo.Size, length(adicao.freteMoedaNegociadaCodigo));
+//      validar('a_freteValorMoedaNegociada', qryRelatorioImpoa_freteValorMoedaNegociada.Size, length(adicao.freteValorMoedaNegociada));
+//      validar('a_freteValorReais', qryRelatorioImpoa_freteValorReais.Size, length(adicao.freteValorReais));
+      validar('a_seguroMoedaNegociadaCodigo', qryRelatorioImpoa_seguroMoedaNegociadaCodigo.Size, length(adicao.seguroMoedaNegociadaCodigo));
+//      validar('a_seguroValorMoedaNegociada', qryRelatorioImpoa_seguroValorMoedaNegociada.Size, length(adicao.seguroValorMoedaNegociada));
+//      validar('a_seguroValorReais', qryRelatorioImpoa_seguroValorReais.Size, length(adicao.seguroValorReais));
+      validar('a_iiAcordoTarifarioTipoCodigo', qryRelatorioImpoa_iiAcordoTarifarioTipoCodigo.Size, length(adicao.iiAcordoTarifarioTipoCodigo));
+//      validar('a_iiAliquotaAcordo', qryRelatorioImpoa_iiAliquotaAcordo.Size, length(adicao.iiAliquotaAcordo));
+//      validar('a_iiAliquotaAdValorem', qryRelatorioImpoa_iiAliquotaAdValorem.Size, length(adicao.iiAliquotaAdValorem));
+//      validar('a_iiAliquotaPercentualReducao', qryRelatorioImpoa_iiAliquotaPercentualReducao.Size, length(adicao.iiAliquotaAdValorem));
+//      validar('a_iiAliquotaReduzida', qryRelatorioImpoa_iiAliquotaReduzida.Size, length(adicao.iiAliquotaReduzida));
+//      validar('a_iiAliquotaValorCalculado', qryRelatorioImpoa_iiAliquotaValorCalculado.Size, length(adicao.iiAliquotaValorCalculado));
+//      validar('a_iiAliquotaValorDevido', qryRelatorioImpoa_iiAliquotaValorDevido.Size, length(adicao.iiAliquotaValorDevido));
+//      validar('a_iiAliquotaValorRecolher', qryRelatorioImpoa_iiAliquotaValorRecolher.Size, length(adicao.iiAliquotaValorRecolher));
+//      validar('a_iiAliquotaValorReduzido', qryRelatorioImpoa_iiAliquotaValorReduzido.Size, length(adicao.iiAliquotaValorReduzido));
+//      validar('a_iiBaseCalculo', qryRelatorioImpoa_iiBaseCalculo.Size, length(adicao.iiBaseCalculo));
+      validar('a_iiFundamentoLegalCodigo', qryRelatorioImpoa_iiFundamentoLegalCodigo.Size, length(adicao.iiFundamentoLegalCodigo));
+      validar('a_iiMotivoAdmissaoTemporariaCodigo', qryRelatorioImpoa_iiMotivoAdmissaoTemporariaCodigo.Size, length(adicao.iiMotivoAdmissaoTemporariaCodigo));
+      validar('a_iiRegimeTributacaoCodigo', qryRelatorioImpoa_iiRegimeTributacaoCodigo.Size, length(adicao.iiRegimeTributacaoCodigo));
+      validar('a_iiRegimeTributacaoNome', qryRelatorioImpoa_iiRegimeTributacaoNome.Size, length(adicao.iiRegimeTributacaoNome));
+//      validar('a_ipiAliquotaAdValorem', qryRelatorioImpoa_ipiAliquotaAdValorem.Size, length(adicao.ipiAliquotaAdValorem));
+//      validar('a_ipiAliquotaEspecificaCapacidadeRecipciente', qryRelatorioImpoa_ipiAliquotaEspecificaCapacidadeRecipciente.Size, length(adicao.ipiAliquotaEspecificaCapacidadeRecipciente));
+//      validar('a_ipiAliquotaEspecificaQuantidadeUnidadeMedida', qryRelatorioImpoa_ipiAliquotaEspecificaQuantidadeUnidadeMedida.Size, length(adicao.ipiAliquotaEspecificaQuantidadeUnidadeMedida));
+//      validar('a_ipiAliquotaEspecificaTipoRecipienteCodigo', qryRelatorioImpoa_ipiAliquotaEspecificaTipoRecipienteCodigo.Size, length(adicao.ipiAliquotaEspecificaTipoRecipienteCodigo));
+//      validar('a_ipiAliquotaEspecificaValorUnidadeMedida', qryRelatorioImpoa_ipiAliquotaEspecificaValorUnidadeMedida.Size, length(adicao.ipiAliquotaEspecificaValorUnidadeMedida));
+//      validar('a_ipiAliquotaNotaComplementarTIPI', qryRelatorioImpoa_ipiAliquotaNotaComplementarTIPI.Size, length(adicao.ipiAliquotaNotaComplementarTIPI));
+//      validar('a_ipiAliquotaReduzida', qryRelatorioImpoa_ipiAliquotaReduzida.Size, length(adicao.ipiAliquotaReduzida));
+//      validar('a_ipiAliquotaValorDevido', qryRelatorioImpoa_ipiAliquotaValorDevido.Size, length(adicao.ipiAliquotaValorDevido));
+//      validar('a_ipiAliquotaValorRecolher', qryRelatorioImpoa_ipiAliquotaValorRecolher.Size, length(adicao.ipiAliquotaValorRecolher));
+      validar('a_ipiRegimeTributacaoCodigo', qryRelatorioImpoa_ipiRegimeTributacaoCodigo.Size, length(adicao.ipiRegimeTributacaoCodigo));
+      validar('a_ipiRegimeTributacaoNome', qryRelatorioImpoa_ipiRegimeTributacaoNome.Size, length(adicao.ipiRegimeTributacaoNome));
+//      validar('a_cofinsAliquotaAdValorem', qryRelatorioImpoa_cofinsAliquotaAdValorem.Size, length(adicao.cofinsAliquotaAdValorem));
+//      validar('a_cofinsAliquotaEspecificaQuantidadeUnidade', qryRelatorioImpoa_cofinsAliquotaEspecificaQuantidadeUnidade.Size, length(adicao.cofinsAliquotaEspecificaQuantidadeUnidade));
+//      validar('a_cofinsAliquotaEspecificaValor', qryRelatorioImpoa_cofinsAliquotaEspecificaValor.Size, length(adicao.cofinsAliquotaEspecificaValor));
+//      validar('a_cofinsAliquotaReduzida', qryRelatorioImpoa_cofinsAliquotaReduzida.Size, length(adicao.cofinsAliquotaReduzida));
+//      validar('a_cofinsAliquotaValorDevido', qryRelatorioImpoa_cofinsAliquotaValorDevido.Size, length(adicao.cofinsAliquotaValorDevido));
+//      validar('a_cofinsAliquotaValorRecolher', qryRelatorioImpoa_cofinsAliquotaValorRecolher.Size, length(adicao.cofinsAliquotaValorRecolher));
+//      validar('a_pisCofinsBaseCalculoAliquotaICMS', qryRelatorioImpoa_pisCofinsBaseCalculoAliquotaICMS.Size, length(adicao.pisCofinsBaseCalculoAliquotaICMS));
+//      validar('a_pisCofinsBaseCalculoFundamentoLegalCodigo', qryRelatorioImpoa_pisCofinsBaseCalculoFundamentoLegalCodigo.Size, length(adicao.pisCofinsBaseCalculoFundamentoLegalCodigo));
+//      validar('a_pisCofinsBaseCalculoPercentualReducao', qryRelatorioImpoa_pisCofinsBaseCalculoPercentualReducao.Size, length(adicao.pisCofinsBaseCalculoPercentualReducao));
+//      validar('a_pisCofinsBaseCalculoValor', qryRelatorioImpoa_pisCofinsBaseCalculoValor.Size, length(adicao.pisCofinsBaseCalculoValor));
+      validar('a_pisCofinsFundamentoLegalReducaoCodigo', qryRelatorioImpoa_pisCofinsFundamentoLegalReducaoCodigo.Size, length(adicao.pisCofinsFundamentoLegalReducaoCodigo));
+      validar('a_pisCofinsRegimeTributacaoCodigo', qryRelatorioImpoa_pisCofinsRegimeTributacaoCodigo.Size, length(adicao.pisCofinsRegimeTributacaoCodigo));
+      validar('a_pisCofinsRegimeTributacaoNome', qryRelatorioImpoa_pisCofinsRegimeTributacaoNome.Size, length(adicao.pisCofinsRegimeTributacaoNome));
+//      validar('a_pisPasepAliquotaAdValorem', qryRelatorioImpoa_pisPasepAliquotaAdValorem.Size, length(adicao.pisPasepAliquotaAdValorem));
+//      validar('a_pisPasepAliquotaEspecificaQuantidadeUnidade', qryRelatorioImpoa_pisPasepAliquotaEspecificaQuantidadeUnidade.Size, length(adicao.pisPasepAliquotaEspecificaQuantidadeUnidade));
+//      validar('a_pisPasepAliquotaEspecificaValor', qryRelatorioImpoa_pisPasepAliquotaEspecificaValor.Size, length(adicao.pisPasepAliquotaEspecificaValor));
+//      validar('a_pisPasepAliquotaReduzida', qryRelatorioImpoa_pisPasepAliquotaReduzida.Size, length(adicao.pisPasepAliquotaReduzida));
+//      validar('a_pisPasepAliquotaValorDevido', qryRelatorioImpoa_pisPasepAliquotaValorDevido.Size, length(adicao.pisPasepAliquotaValorDevido));
+//      validar('a_pisPasepAliquotaValorRecolher', qryRelatorioImpoa_pisPasepAliquotaValorRecolher.Size, length(adicao.pisPasepAliquotaValorRecolher));
+      validar('a_condicaoVendaIncoterm', qryRelatorioImpoa_condicaoVendaIncoterm.Size, length(adicao.condicaoVendaIncoterm));
+      validar('a_fabricanteNome', qryRelatorioImpoa_fabricanteNome.Size, length(adicao.fabricanteNome));
+      validar('a_fabricanteCidade', qryRelatorioImpoa_fabricanteCidade.Size, length(adicao.fabricanteCidade));
+      validar('a_fabricanteComplemento', qryRelatorioImpoa_fabricanteComplemento.Size, length(adicao.fabricanteComplemento));
+      validar('a_fabricanteEstado', qryRelatorioImpoa_fabricanteEstado.Size, length(adicao.fabricanteEstado));
+      validar('a_fabricanteLogradouro', qryRelatorioImpoa_fabricanteLogradouro.Size, length(adicao.fabricanteLogradouro));
+      validar('a_fabricanteNumero', qryRelatorioImpoa_fabricanteNumero.Size, length(adicao.fabricanteNumero));
+      validar('a_numeroDestaque', qryRelatorioImpoa_numeroDestaque.Size, length(adicao.numeroDestaque));
+
+      for item in adicao.itens do
+      begin
+        validar('i_descricaoMercadoria', qryRelatorioImpoi_descricaoMercadoria.Size, length(item.descricaoMercadoria));
+        validar('i_numeroSequencialItem', qryRelatorioImpoi_numeroSequencialItem.Size, length(item.numeroSequencialItem));
+//        validar('i_quantidade', qryRelatorioImpoi_quantidade.Size, length(item.quantidade));
+        validar('i_unidadeMedida', qryRelatorioImpoi_unidadeMedida.Size, length(item.unidadeMedida));
+//        validar('i_valorUnitario', qryRelatorioImpoi_valorUnitario.Size, length(item.valorUnitario));
+
+      end;
+    end;
+
+
+  end;
+end;
+
+end.

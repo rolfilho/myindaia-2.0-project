@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{027BED52-855F-4307-BC6E-F226CC94724D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Demo\PatternsDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Demo\PatternsDemoEntity.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PatternsDemo">
+        <MSBuild Projects="Demo\PatternsDemo.dproj"/>
+    </Target>
+    <Target Name="PatternsDemo:Clean">
+        <MSBuild Projects="Demo\PatternsDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PatternsDemo:Make">
+        <MSBuild Projects="Demo\PatternsDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PatternsDemoEntity">
+        <MSBuild Projects="Demo\PatternsDemoEntity.dproj"/>
+    </Target>
+    <Target Name="PatternsDemoEntity:Clean">
+        <MSBuild Projects="Demo\PatternsDemoEntity.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PatternsDemoEntity:Make">
+        <MSBuild Projects="Demo\PatternsDemoEntity.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PatternsDemo;PatternsDemoEntity"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PatternsDemo:Clean;PatternsDemoEntity:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PatternsDemo:Make;PatternsDemoEntity:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

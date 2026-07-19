@@ -1,0 +1,14 @@
+
+<option value=00018>ALAN L GRANT RUBBER DIVISION</option>
+<option value=00883>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=01509>CAPPELLE PIGMENTS N.V.</option>
+<option value=01599>ETN GEBROEDERS CAPPELLE NV</option>
+<option value=00673>EUROPEAN COLOUR (PIGMENTS) LTD.</option>
+<option value=00017>MERICHEM COMPANY INTERNATIONAL</option>
+<option value=01499>SUN CHEMICAL EXPORT CORPORATION</option>
+<option value=00528>SUN CHEMICAL EXPORT CORPORATION</option>
+<option value=01658>SUN CHEMICAL LATIN AMERICA</option>
+<option value=01342>SUN CHEMICAL PIGMENTS DIVISION</option>
+<option value=01333>SUN CHEMICAL S.A PIGMENTOS DIVISION</option>
+<option value=01498>SUNCHEMICAL EXPORT CORPORATION</option>

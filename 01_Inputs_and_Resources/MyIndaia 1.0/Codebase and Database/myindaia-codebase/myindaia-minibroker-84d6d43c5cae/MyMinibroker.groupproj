@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{D2B11B52-B9CD-458D-96A4-7169BC433D11}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MiniBroker.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MyBrokerEntities.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MyIndaiaService\MyIndaiaService.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MiniBroker">
+        <MSBuild Projects="MiniBroker.dproj"/>
+    </Target>
+    <Target Name="MiniBroker:Clean">
+        <MSBuild Projects="MiniBroker.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MiniBroker:Make">
+        <MSBuild Projects="MiniBroker.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyBrokerEntities">
+        <MSBuild Projects="MyBrokerEntities.dproj"/>
+    </Target>
+    <Target Name="MyBrokerEntities:Clean">
+        <MSBuild Projects="MyBrokerEntities.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyBrokerEntities:Make">
+        <MSBuild Projects="MyBrokerEntities.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MyIndaiaService">
+        <MSBuild Projects="MyIndaiaService\MyIndaiaService.dproj"/>
+    </Target>
+    <Target Name="MyIndaiaService:Clean">
+        <MSBuild Projects="MyIndaiaService\MyIndaiaService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MyIndaiaService:Make">
+        <MSBuild Projects="MyIndaiaService\MyIndaiaService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MiniBroker;MyBrokerEntities;MyIndaiaService"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MiniBroker:Clean;MyBrokerEntities:Clean;MyIndaiaService:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MiniBroker:Make;MyBrokerEntities:Make;MyIndaiaService:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

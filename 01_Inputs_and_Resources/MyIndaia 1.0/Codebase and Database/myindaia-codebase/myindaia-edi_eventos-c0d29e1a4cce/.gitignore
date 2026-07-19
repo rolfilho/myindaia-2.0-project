@@ -1,0 +1,8 @@
+*.~*
+*.dll
+*.cfg
+*.dof
+*.exe
+*.skincfg
+/Main.dcu
+/Main.ddp

@@ -1,0 +1,331 @@
+#accordion{
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#accordion h2{
+    font-size: 12pt;
+    margin: 0px;
+    padding: 10px;
+    background: #ccc;
+    border-bottom: 1px solid #fff;
+}
+#accordion li div.content{
+    display: none;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+#accordion li:hover div.content{
+    display: inherit;
+}
+
+
+// variables
+$multilevel-accordion-bg: #4d5158;
+$multilevel-accordion-sub-bg: #35383d;
+$multilevel-accordion-separator: #41444a;
+
+.multilevel-accordion-menu {
+  // background for main accordion items
+  .is-accordion-submenu-parent a {
+    background: $multilevel-accordion-bg;
+  }
+
+  // background for sub accordion items
+  .is-accordion-submenu a {
+    background: $multilevel-accordion-sub-bg;
+  }
+
+  // creates classes for nested elements, sub-item-*
+  @for $i from 1 through 6 {
+    .sublevel-#{$i} {
+      text-indent: 0rem + $i;
+    }
+  }
+
+  a {
+    color: $white;
+    // sets accodion item separator color
+    box-shadow: inset 0 -1px $multilevel-accordion-separator;
+
+    &::after {
+      // sets accodion arrow color and direction
+      border-color: $white transparent transparent;
+    }
+  }
+
+  // padding for each list item
+  .menu > li:not(.menu-text) > a {
+    padding: 1.2rem 1rem;
+  }
+}
+
+// style for folder icon on subitem anchors without a submenu
+.multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="true"] a.subitem::before {
+  content: "\f016";
+  font-family: FontAwesome;
+  margin-right: 1rem;
+}
+
+// changes folder icon to open then accordion is open
+.multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="true"] a {
+  &::before {
+    content: "\f07c";
+    font-family: FontAwesome;
+    margin-right: 1rem;
+  }
+}
+
+// changes folder icon to closed then accordion is closed
+.multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="false"] a {
+  &::before {
+    content: "\f07b";
+    font-family: FontAwesome;
+    margin-right: 1rem;
+  }
+}
+
+.multilevel-accordion-menu .is-accordion-submenu-parent a {
+  background: #4d5158;
+}
+
+.multilevel-accordion-menu .is-accordion-submenu a {
+  background: #35383d;
+}
+
+.multilevel-accordion-menu .sublevel-1 {
+  text-indent: 1rem;
+}
+
+.multilevel-accordion-menu .sublevel-2 {
+  text-indent: 2rem;
+}
+
+.multilevel-accordion-menu .sublevel-3 {
+  text-indent: 3rem;
+}
+
+.multilevel-accordion-menu .sublevel-4 {
+  text-indent: 4rem;
+}
+
+.multilevel-accordion-menu .sublevel-5 {
+  text-indent: 5rem;
+}
+
+.multilevel-accordion-menu .sublevel-6 {
+  text-indent: 6rem;
+}
+
+.multilevel-accordion-menu a {
+  color: #fefefe;
+  box-shadow: inset 0 -1px #41444a;
+}
+
+.multilevel-accordion-menu a::after {
+  border-color: #fefefe transparent transparent;
+}
+
+.multilevel-accordion-menu .menu > li:not(.menu-text) > a {
+  padding: 1.2rem 1rem;
+}
+
+.multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="true"] a.subitem::before {
+  content: "\f016";
+  font-family: FontAwesome;
+  margin-right: 1rem;
+}
+
+.multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="true"] a::before {
+  content: "\f07c";
+  font-family: FontAwesome;
+  margin-right: 1rem;
+}
+
+.multilevel-accordion-menu .is-accordion-submenu-parent[aria-expanded="false"] a::before {
+  content: "\f07b";
+  font-family: FontAwesome;
+  margin-right: 1rem;
+}
+
+/*body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+*/
+
+h1 {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+h3 {
+  margin-top: 0;
+  font-weight: 300;
+}
+
+.ac-label {
+  font-weight: 700;
+  position: relative;
+  padding: .5em 1em;
+  margin-bottom: .5em;
+  display: block;
+  cursor: pointer;
+  background-color: rgba(30, 136, 229, 0.05);
+  transition: background-color .15s ease-in-out;
+}
+
+.ac-input:checked + label, .ac-label:hover {
+  background-color: rgba(30, 136, 229, 0.3);
+}
+
+.ac-label:after, .ac-input:checked + .ac-label:after {
+  content: "+";
+  position: absolute;
+  display: block;
+  right: 0;
+  top: 0;
+  width: 2em;
+  height: 100%;
+  line-height: 2.25em;
+  text-align: center;
+  background-color: rgba(30, 136, 229, 0.05);
+  transition: background-color .15s ease-in-out;
+}
+
+.ac-label:hover:after, .ac-input:checked + .ac-label:after {
+  background-color: rgba(30, 136, 229, 0.3);
+}
+
+.ac-input:checked + .ac-label:after {
+  content: "-";
+}
+
+.ac-input {
+  display: none;
+}
+
+.ac-text, .ac-sub-text {
+  opacity: 0;
+  height: 0;
+  margin-bottom: .5em;
+  transition: opacity .5s ease-in-out;
+  overflow: hidden;
+}
+
+.ac-input:checked ~ .ac-text, .ac-sub .ac-input:checked ~ .ac-sub-text {
+  opacity: 1;
+  height: auto;
+}
+
+.ac-sub .ac-label {
+  background: none;
+  font-weight: 600;
+  padding: .5em 2em;
+  margin-bottom: 0;
+}
+
+.ac-sub .ac-label:checked {
+  background: none;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.ac-sub .ac-label:after, .ac-sub .ac-input:checked + .ac-label:after {
+  left: 0;
+  background: none;
+}
+
+.ac-sub .ac-input:checked + label, .ac-sub .ac-label:hover {
+  background: none;
+}
+
+tbody{
+  font-size: 12px;
+}
+
+.evento{
+  font-size: 12px;
+}
+
+.documento{
+  font-size: 12px;
+}
+
+.dadosBasicos{
+  font-size: 12px;
+}
+
+.eventos {
+    text-align: left;
+}
+
+.documentos{
+    text-align: left;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.titulo-result-pesquisa {
+    color: rgba(30, 136, 229, 1);
+    font-size: 25px;
+    font-weight: 350;  
+    border-bottom-style: solid;
+    border-bottom-width: 1px; 
+    border-bottom-color: rgba(130, 130, 130, 1);
+    margin-bottom: 25px;
+}
+
+.result-pesquisa {
+    background-color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border-right: 30px;
+    width: 95%;
+    max-width: 1800px;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 10px;
+}
+
+.sec-container {
+  width: 100%;
+  max-width: 1800px;
+  padding: 0px;
+}
+
+@media (min-width: 768px){
+    .result-pesquisa {
+      padding: 20px;    
+    }
+}
+
+.pagination {
+    margin: 15px;
+}
+
+.page-link {
+  position: inherit;
+}
+
+.qtd-processos {
+  padding-left: 0px;
+}
+
+.td-desc-doc {
+    width: 70%;
+}

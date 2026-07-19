@@ -1,0 +1,6 @@
+<option value="1">AMARELO</option>      
+<option value="3">CINZA</option>        
+<option value="6">TODOS</option>        
+<option value="2">VERDE</option>        
+<option value="5">VERDE BLOQ</option>   
+<option value="0">VERMELHO</option>     

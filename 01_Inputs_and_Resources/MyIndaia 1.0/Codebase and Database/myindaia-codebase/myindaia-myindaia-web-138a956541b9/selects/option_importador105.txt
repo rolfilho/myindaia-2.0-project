@@ -1,0 +1,22 @@
+
+<option value=00568>BASF COATING S/A</option>
+<option value=08539>DERI DESEN ETIKET ITH.IHR.SAN.VE TIC. LTD. STI.</option>
+<option value=05653>H&M HENNES & MAURITZ AB</option>
+<option value=08719>H&M HENNES & MAURITZ GBC AB</option>
+<option value=08717>H&M HENNES & MAURITZ GBC AB</option>
+<option value=08718>H&M HENNES & MAURITZ GBC AB, S-STOCKHOLM</option>
+<option value=08716>H&M HENNES & MAURITZ NETHERLANDS B.V.</option>
+<option value=05335>HARMANCI ETIKET FABRIKALARI A. S.</option>
+<option value=08720>HENNES MAURITZ (SHANGHAI) COMMERCIAL LTD. CO.</option>
+<option value=05379>INCI DUGME TEKSTIL SAN. TIC.A.S.</option>
+<option value=08665>MORROWS GMBH</option>
+<option value=05759>PAXAR - TESLO TEKSTIL URUNLERI SAN. VE TIC. A.S.</option>
+<option value=05849>PRYM FASHION ASIA PACIFIC & CO.</option>
+<option value=06639>RABAB TRADING INTERNATIONAL</option>
+<option value=08037>SANTISTA TEXTIL ARGENTINA S.A.</option>
+<option value=08904>SANTISTA TÊXTIL CHILE S.A.</option>
+<option value=09217>SANTISTA TEXTIL CHILE SOCIEDAD ANONIMA</option>
+<option value=08545>TEMPO METAL AKSESUAR SANAYI TICARET ANONIM SIRKETI</option>
+<option value=08548>TIMA ÇIT ÇIT RIVET VE PERÇIN SANAYI VE TICARET A.S.</option>
+<option value=08027>TURTEKS TEKSTIL ETIKET SANAYI TICARET A.S.</option>
+<option value=05167>WEARPLAY CONFECÇÕES, LDA.</option>

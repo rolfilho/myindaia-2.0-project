@@ -1,0 +1,4 @@
+*.stat
+*.identcache
+*.res
+*.dproj.local

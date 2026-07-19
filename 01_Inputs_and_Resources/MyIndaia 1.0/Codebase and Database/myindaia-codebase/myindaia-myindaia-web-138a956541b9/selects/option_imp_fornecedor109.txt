@@ -1,0 +1,23 @@
+
+<option value=04611>ALMATIS INC.</option>
+<option value=05792>C-E MINERALS</option>
+<option value=06189>CLEVER & CO ELEKTRO-UND MASCHINENFABRIK GMBH</option>
+<option value=05749>HELMUT RUBSAMEN GMBH & CO KG</option>
+<option value=05619>HEXION SPECIALTY CHEMICALS GMBH</option>
+<option value=05601>HEXION SPECIALTY CHEMICALS UK LTDA</option>
+<option value=05753>INDUSTRIAL GASKET & SHIM CO</option>
+<option value=00001>PHILLIPS CHE. COMP.</option>
+<option value=05690>POSSEHL INC</option>
+<option value=06129>PROFORA C.C.</option>
+<option value=05800>R H I REFRACTORIES</option>
+<option value=06093>VESUVIUS BECKER + PISCADOR</option>
+<option value=05742>VESÚVIUS BECKER + PISCANTOR GMBH</option>
+<option value=05813>VESUVIUS BELGIUM N.V</option>
+<option value=05763>VESUVIUS HI-TECH CERAMICS</option>
+<option value=05886>VESUVIUS ITALIA S.P.A</option>
+<option value=05949>VESUVIUS UK LTD</option>
+<option value=05751>VESUVIUS UK LTD</option>
+<option value=05501>VESUVIUS USA</option>
+<option value=06158>VESUVIUS USA</option>
+<option value=05752>VESUVIUS USA CORPORATION</option>
+<option value=05946>ZSCHIMMER & SCHWARZ GMBH & CO. KG</option>

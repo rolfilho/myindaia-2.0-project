@@ -1,0 +1,19 @@
+
+<option value=12274>ALUMÍNIOS DEL URUGUAY S.A. (12274)</option>
+<option value=16523>ARTES GRAFICAS ZAMPHIROPOLOS S.A. (16523)</option>
+<option value=13014>BOLSIPLAST S.A. (13014)</option>
+<option value=11129>CONAPAC SOCIEDAD ANONIMA (11129)</option>
+<option value=11429>FILTER PRINT LTDA (11429)</option>
+<option value=18012>ILIANA ASTRID FERREYRA (18012)</option>
+<option value=11975>INCOPLAST EMBALAGENS S.A (11975)</option>
+<option value=12457>INDUSTRIAS REUNIDAS NEMBY S/A (12457)</option>
+<option value=13868>KALLE CHILE S/A (13868)</option>
+<option value=11761>OSCAR EDUARDO GRAU TITO (11761)</option>
+<option value=12638>PLASTICOS PARAGUAYOS S A  (PLASPASA) (12638)</option>
+<option value=13601>PLASTIFOAM S/A. (13601)</option>
+<option value=18327>PRIMERA PRODUCTORA DE PLÁSTICOS S/A (18327)</option>
+<option value=03460>PROQUITEC S.A. (03460)</option>
+<option value=12745>SIGMAPLAST URUGUAY S/A. (12745)</option>
+<option value=11273>TECHFOODS INVERSIONES LTDA. (11273)</option>
+<option value=13357>TRUPAL S.A. (13357)</option>
+<option value=14478>TRUPAL S.A. (14478)</option>

@@ -1,0 +1,23 @@
+object formMyForm: TformMyForm
+  Left = 0
+  Top = 0
+  Caption = 'MyForm'
+  ClientHeight = 540
+  ClientWidth = 786
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clBlack
+  Font.Height = -13
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  WindowState = wsMaximized
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnKeyPress = FormKeyPress
+  PixelsPerInch = 96
+  TextHeight = 16
+end

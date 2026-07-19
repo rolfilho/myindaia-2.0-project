@@ -1,0 +1,283 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<title>GSI - Exportação</title>
+<!--[if !mso]>
+<style>
+x\:* {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<style>
+<!--
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+}
+table {
+	mso-displayed-decimal-separator:"\,";
+	mso-displayed-thousand-separator:"\.";
+}
+tr {
+}
+td {
+	font-size: 10px;
+}
+br {
+	mso-data-placement:same-cell;
+}
+.basico	{
+	text-align:general;
+	vertical-align:general;
+	white-space:nowrap;
+	mso-generic-font-family:auto;
+	mso-font-charset:0;
+	mso-number-format:General;
+	mso-background-source:auto;
+	mso-pattern:auto;
+}
+.titulo {
+	mso-style-parent:basico;
+	vertical-align:top;
+	font-size: 14px;
+	font-weight: bold;
+}
+.gridtop {
+	mso-style-parent:basico;
+	color: #FFFFFF;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 13px;
+	background: #003366;
+	vertical-align: middle;
+}
+.gridtit {
+	mso-style-parent:basico;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	background: #003366;
+	vertical-align: middle;
+}
+.gridtit2 {
+	mso-style-parent:basico;
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: left;
+	background: #003366;
+	vertical-align: middle;
+}
+.gridsub {
+	mso-style-parent:basico;
+	color: #FFFFFF;
+	background: #003366;
+}
+.tb1 {
+	mso-style-parent:basico;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: #000000;
+}
+.tb2 {
+	mso-style-parent:basico;
+  border-style: dotted;
+  border-width: 0px 0px 1px 0px;
+  border-color: #333333;
+  padding: 2px;
+}
+.data {
+	mso-style-parent:basico;
+	mso-number-format:"Short Date";
+}
+.time {
+	mso-style-parent:basico;
+	mso-number-format:"Short Time";
+}
+.inteiro {
+	mso-style-parent:basico;
+	mso-number-format:"\#\,\#\#0";
+}
+.decimal {
+	mso-style-parent:basico;
+	mso-number-format:"\#\,\#\#0\.0";
+}
+.decimal2 {
+	mso-style-parent:basico;
+	mso-number-format:"\#\,\#\#0\.00";
+}
+.decimal4 {
+	mso-style-parent:basico;
+	mso-number-format:"\#\,\#\#0\.0000";
+}
+.moeda {
+	mso-style-parent:basico;
+	mso-number-format:"\0022R$ \0022\#\,\#\#0\.00_\)\;\[Red\]\\\(\0022R$ \0022\#\,\#\#0\.00\\\)";
+}
+.texto {
+	mso-style-parent:basico;
+	mso-ignore:padding;
+}
+-->
+</style></head><body>
+<table x:str border=1 cellpadding=0 cellspacing=0 bordercolor='#FFFFFF' style='padding: 0px 1px 0px 1px;'>
+  <tr height='25'>
+    <td width='100' valign='top'><img src='http://www.myindaia.com.br/img/logo_indaia.gif' width='190' height='85'></td>
+    <td width='100'>&nbsp;</td>
+	  <td colspan='2' class='titulo'>GSI - Exportação</td>
+  </tr>
+  <tr height='16'>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    <td width='90' style='text-align:right;'>Cliente:</td>
+    <td width='400' style='text-align:left;'><b>
+Todos
+    </b></td>
+  </tr>
+  <tr height='16'>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    <td style='text-align:right;'>Unidade:</td>
+    <td style='text-align:left;'><b>
+Indaiá Logística Internacional Ltda.
+    </b></td>
+  </tr>
+  <tr height='16'>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    <td style='text-align:right;'>Produto:</td>
+    <td style='text-align:left;'><b>
+Exportação
+    </b></td>
+  </tr>
+  <tr height='16'>
+	  <td>&nbsp;</td>
+	  <td>&nbsp;</td>
+    <td colspan='2' style='text-align:left;'>Emitido quinta-feira, 4 de maio de 2023 às 09:48 por Bruna São José Rodrigues Mandira</td>
+  </tr>
+  <tr height='20'>
+    <td colspan='6' class='gridtop'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EQUADOR                                                                                                                 </td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' class='gridtit2'>&nbsp;Cliente</td>
+    <td colspan='2' class='gridtit2'>&nbsp;Importador</td>
+    <td colspan='2' class='gridtit2'>&nbsp;Mercadoria</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>BASF S.A ( São Bernado do Campo )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>ACSUIN S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>AREA - ECD</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>BASF S.A ( São Bernado do Campo )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>RESIQUIM S.A</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>AREA - ECR</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>BASF S.A ( São Bernado do Campo )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>ACSUIN S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>AREA - ECR</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>BASF S.A ( São Bernado do Campo )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>BLANCA TENESACA ROJAS Y/O PINFRE</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>AREA - ECR</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>BASF S.A ( São Bernado do Campo )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>BASF ECUATORIANA SA</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>AREA - ECR</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>BASF S.A ( Guaratinguetá )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>FARMAGRO S.A</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>ÁREA AP</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>CHOCOLATES GAROTO LTDA  (CACAPAVA)</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE ECUADOR S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>GAROTO - CHOCOLATE</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>CHOCOLATES GAROTO LTDA ( Vila Velha III)</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>CORPORACION FAVORITA C.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>GAROTO - VILA VELHA - CHOCOLATE</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( Matriz )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>ACHOCOLATADO</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESTLE BRASIL LTDA ( São José do Rio Pardo )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>BABY FOOD</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( Araras -  CD )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>CAFÉ</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESTLE BRASIL LTDA ( São José do Rio Pardo )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>CEREAL</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( São José do Rio Pardo )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Ecuajugos S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>CEREAL</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>CPW BRASIL LTDA ( Cacapava )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>CPW - CEREAL</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( Matriz )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>DOLCE GUSTO</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESTLE BRASIL LTDA ( Matriz )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Terrafertil S.A</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>DOLCE GUSTO</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( Aracatuba )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>FORMULAS INFANTIS</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESTLE BRASIL LTDA ( Araraquara )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>LEITE CONDENSADO</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( Araras -  CD )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>MANJAR</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESTLE BRASIL LTDA ( Aracatuba )</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESCAFE BEBIDA SMOOVLATTE</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE BRASIL LTDA ( Araras )</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#dbe5f1'>NESTLE- MOUSSE CHOCOLATE E WHITE CHOCOLATE</td>
+  </tr>
+  <tr height='16'>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>NESTLE NORDESTE ALIM E BEB LTDA (RIBEIRÃO PRETO 2)</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>Nestle Ecuador S.A.</td>
+    <td colspan='2' valign='top' bgcolor='#FFFFFF'>PURINA - ALL PRODUCTS</td>
+  </tr>
+  <tr>
+    <td class='gridsub' style='width:200px;'>22 registros encontrados</td>
+  </tr>
+</table></body></html>

@@ -1,0 +1,21 @@
+
+<option value=00416>ACABADOS DEL CUERO</option>
+<option value=00421>ALCAN TOYO EUROPE</option>
+<option value=04526>ARKEMA</option>
+<option value=00883>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=01069>BASF CORPORATION</option>
+<option value=00013>BASF CORPORATION</option>
+<option value=04370>BASF CORPORATION</option>
+<option value=06321>BIESTERFELD INTERNATIONAL GMBH</option>
+<option value=03974>BIESTERFELD SIEMSGLUSS INTERNATIONAL GMBH</option>
+<option value=05072>CHEMINDUSTRY (QINGDAO) INTERNATIONAL TRADE CO., LTD.</option>
+<option value=09290>CHEMLNSTRUMENTS INC.</option>
+<option value=09224>COTION LTD</option>
+<option value=04222>ECEM  B.V</option>
+<option value=03992>HANSA CHEMIE AG</option>
+<option value=05562>K & H CHEMICALS</option>
+<option value=02951>LG CHEM AMERICA INC</option>
+<option value=03518>LG CHEM LTD.</option>
+<option value=04217>PUYANG KAIYU CHEMICAL CO.,LTD.</option>
+<option value=02434>THE DOW CHEMICAL COMPANY</option>

@@ -1,0 +1,245 @@
+object frmIntegracaoDueNovo: TfrmIntegracaoDueNovo
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'Relat'#243'rio Importa'#231#227'o'
+  ClientHeight = 635
+  ClientWidth = 571
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 25
+    Width = 571
+    Height = 152
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 10841637
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clHighlightText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    ExplicitWidth = 897
+    object lblStatus: TLabel
+      Left = 9
+      Top = 115
+      Width = 57
+      Height = 16
+      Caption = 'lblStatus'
+      Color = clHighlightText
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Visible = False
+    end
+    object Label7: TLabel
+      Left = 27
+      Top = 23
+      Width = 366
+      Height = 17
+      Caption = 'Mostrar na fila apenas as DUEs que falta importar (Pendentes)'
+    end
+    object ProgressBar1: TProgressBar
+      Left = 9
+      Top = 137
+      Width = 528
+      Height = 15
+      TabOrder = 0
+      Visible = False
+    end
+    object Panel4: TPanel
+      Left = 9
+      Top = 64
+      Width = 184
+      Height = 34
+      Cursor = crHandPoint
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Importar fila do Excel'
+      Color = 7237230
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      OnClick = Panel4Click
+    end
+    object Panel5: TPanel
+      Left = 209
+      Top = 64
+      Width = 210
+      Height = 34
+      Cursor = crHandPoint
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Importar dados Siscomex'
+      Color = 7237230
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 2
+      OnClick = Panel5Click
+    end
+    object chkResumido: TCheckBox
+      Left = 11
+      Top = 24
+      Width = 17
+      Height = 17
+      Checked = True
+      Color = clWhite
+      Ctl3D = True
+      DoubleBuffered = False
+      ParentColor = False
+      ParentCtl3D = False
+      ParentDoubleBuffered = False
+      State = cbChecked
+      TabOrder = 3
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 177
+    Width = 571
+    Height = 318
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 10841637
+    Padding.Left = 20
+    Padding.Top = 20
+    Padding.Right = 20
+    Padding.Bottom = 20
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitHeight = 200
+    object DBGrid1: TDBGrid
+      Left = 20
+      Top = 20
+      Width = 531
+      Height = 278
+      Align = alClient
+      BorderStyle = bsNone
+      Color = clInfoBk
+      Ctl3D = False
+      DataSource = dmdBroker.dtsFilaExpo
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowFrame
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentCtl3D = False
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowFrame
+      TitleFont.Height = -13
+      TitleFont.Name = 'Segoe UI Semibold'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'NR_DUE'
+          Title.Caption = 'Nr Due'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DATA_RECUPERACAO'
+          Title.Caption = 'Data entrada na fila'
+          Width = 150
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME_DESPACHANTE'
+          Title.Caption = 'Nome Despachante'
+          Width = 250
+          Visible = True
+        end>
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 0
+    Width = 571
+    Height = 25
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 7162137
+    ParentBackground = False
+    TabOrder = 2
+    ExplicitWidth = 897
+    object Label5: TLabel
+      Left = 17
+      Top = 3
+      Width = 95
+      Height = 21
+      Caption = 'Exporta'#231#227'o > '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 117
+      Top = 3
+      Width = 79
+      Height = 21
+      Caption = 'Integra'#231#227'o'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object Panel6: TPanel
+    Left = 0
+    Top = 495
+    Width = 571
+    Height = 140
+    Align = alBottom
+    TabOrder = 3
+    Visible = False
+    ExplicitTop = 377
+    ExplicitHeight = 326
+    object txtLog: TMemo
+      Left = 1
+      Top = 1
+      Width = 569
+      Height = 138
+      Align = alClient
+      TabOrder = 0
+      Visible = False
+      ExplicitHeight = 160
+    end
+  end
+end

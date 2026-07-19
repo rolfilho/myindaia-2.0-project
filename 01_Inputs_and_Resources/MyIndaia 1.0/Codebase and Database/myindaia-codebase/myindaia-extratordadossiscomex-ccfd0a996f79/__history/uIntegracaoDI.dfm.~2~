@@ -1,0 +1,154 @@
+object frmIntegracaoDI: TfrmIntegracaoDI
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'Integra'#231#227'o DI'
+  ClientHeight = 571
+  ClientWidth = 824
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnActivate = FormActivate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 25
+    Width = 824
+    Height = 546
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 10841637
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clHighlightText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    object lblStatus: TLabel
+      Left = 46
+      Top = 115
+      Width = 57
+      Height = 16
+      Caption = 'lblStatus'
+      Color = clHighlightText
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Visible = False
+    end
+    object ProgressBar1: TProgressBar
+      Left = 46
+      Top = 135
+      Width = 592
+      Height = 15
+      TabOrder = 0
+      Visible = False
+    end
+    object Panel4: TPanel
+      Left = 46
+      Top = 53
+      Width = 114
+      Height = 34
+      Cursor = crHandPoint
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      BiDiMode = bdLeftToRight
+      Caption = 'Integrar DIs'
+      Color = 7237230
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 1
+      OnClick = Panel4Click
+    end
+    object Panel5: TPanel
+      Left = 182
+      Top = 53
+      Width = 156
+      Height = 34
+      Cursor = crHandPoint
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Validar Campos'
+      Color = 7237230
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 2
+      Visible = False
+      OnClick = Panel5Click
+    end
+    object Memo1: TMemo
+      Left = 49
+      Top = 168
+      Width = 320
+      Height = 121
+      ScrollBars = ssBoth
+      TabOrder = 3
+      Visible = False
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 0
+    Width = 824
+    Height = 25
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 7162137
+    ParentBackground = False
+    TabOrder = 1
+    object Label5: TLabel
+      Left = 17
+      Top = 1
+      Width = 98
+      Height = 21
+      Caption = 'Importa'#231#227'o > '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 117
+      Top = 1
+      Width = 79
+      Height = 21
+      Caption = 'Integra'#231#227'o'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Options = [ofHideReadOnly, ofAllowMultiSelect, ofEnableSizing]
+    Left = 40
+    Top = 16
+  end
+end

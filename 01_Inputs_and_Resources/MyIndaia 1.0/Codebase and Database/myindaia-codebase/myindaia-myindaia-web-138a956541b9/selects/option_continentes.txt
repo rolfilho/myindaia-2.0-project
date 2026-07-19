@@ -1,0 +1,9 @@
+
+<option value='ÁFRICA'>ÁFRICA</option>
+<option value='AMÉRICA CENTRAL'>AMÉRICA CENTRAL</option>
+<option value='AMÉRICA DO NORTE'>AMÉRICA DO NORTE</option>
+<option value='AMÉRICA DO SUL'>AMÉRICA DO SUL</option>
+<option value='ANTÁRTIDA'>ANTÁRTIDA</option>
+<option value='ÁSIA'>ÁSIA</option>
+<option value='EUROPA'>EUROPA</option>
+<option value='OCEANIA'>OCEANIA</option>

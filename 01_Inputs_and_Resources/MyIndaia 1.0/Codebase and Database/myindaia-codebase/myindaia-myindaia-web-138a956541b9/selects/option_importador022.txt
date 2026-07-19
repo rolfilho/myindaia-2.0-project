@@ -1,0 +1,20 @@
+
+<option value=00883>BASF AG</option>
+<option value=01183>BASF AG</option>
+<option value=01362>BASF AG</option>
+<option value=01591>BASF AG</option>
+<option value=04778>BASF AKTIENGESELLCHAFT</option>
+<option value=02256>BASF AKTIENGESELLSCHAFT</option>
+<option value=03252>BASF MEXICANA S A  DE C V</option>
+<option value=00203>BASF MEXICANA S.A. DE C.V.</option>
+<option value=01142>BASF MEXICANA SA DE CV</option>
+<option value=00066>BYK CHEMIE GMBH</option>
+<option value=03222>E.G. PLASTICS S.A</option>
+<option value=04659>GE PLASTICS ARGENTINA S.R.L</option>
+<option value=04992>LG CHEM</option>
+<option value=02951>LG CHEM AMERICA INC</option>
+<option value=03518>LG CHEM LTD.</option>
+<option value=01440>MITSUI & CO LTD</option>
+<option value=04365>MITSUI & CO LTD.</option>
+<option value=00967>MITSUI & CO. LTD</option>
+<option value=03566>RETANA TRANSAMERICA S.A.</option>

@@ -1,0 +1,371 @@
+unit uConserta;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, ExtCtrls, DBCtrls, StdCtrls, DBTables, Mask, Grids, DBGrids,
+  RxQuery;
+
+type
+  TFrmConserta = class(TForm)
+    SqlProcessos: TQuery;
+    Label1: TLabel;
+    DBNavigator1: TDBNavigator;
+    DtsProcessos: TDataSource;
+    DBEdit1: TDBEdit;
+    Button1: TButton;
+    DBGrid1: TDBGrid;
+    Label2: TLabel;
+    SqlPOItem: TQuery;
+    dtsPoItem: TDataSource;
+    SqlRefCliente: TQuery;
+    dtsRefCliente: TDataSource;
+    SqlEstagioProcesso: TQuery;
+    dtsEstagioProcesso: TDataSource;
+    DBGrid2: TDBGrid;
+    Label3: TLabel;
+    DBGrid3: TDBGrid;
+    Label4: TLabel;
+    DBGrid4: TDBGrid;
+    Label5: TLabel;
+    DBGrid5: TDBGrid;
+    Label6: TLabel;
+    SqlTFLP_PO_ITEM: TQuery;
+    dtsTFLP_PO_ITEM: TDataSource;
+    SqlDetalheMerc: TQuery;
+    dtsDetalheMerc: TDataSource;
+    updTPO_ITENS: TUpdateSQL;
+    UpdateSQL1: TUpdateSQL;
+    UpdateSQL2: TUpdateSQL;
+    UpdateSQL3: TUpdateSQL;
+    updDetalheMerc: TUpdateSQL;
+    SqlPOItemNR_PROCESSO: TStringField;
+    SqlPOItemID_CODIGO_INSTR_DESEMB: TStringField;
+    SqlPOItemNR_PARCIAL: TIntegerField;
+    SqlPOItemNR_ITEM_CLIENTE: TStringField;
+    SqlTFLP_PO_ITEMNR_PROCESSO: TStringField;
+    SqlTFLP_PO_ITEMNR_ITEM_CLIENTE: TStringField;
+    SqlTFLP_PO_ITEMNR_PARCIAL: TIntegerField;
+    SqlRefClienteNR_PROCESSO: TStringField;
+    SqlRefClienteCD_REFERENCIA: TStringField;
+    SqlRefClienteNR_ITEM_PO: TStringField;
+    SqlRefClienteNR_PARCIAL: TIntegerField;
+    Label7: TLabel;
+    LblQtdTotal: TLabel;
+    SqlDetalheMercNR_PROCESSO: TStringField;
+    SqlDetalheMercNR_ITEM_PO: TStringField;
+    SqlDetalheMercNR_PROC_PO: TStringField;
+    SqlDetalheMercNR_PARCIAL: TIntegerField;
+    SqlEstagioProcessoNR_REFERENCIA: TStringField;
+    SqlEstagioProcessoNR_ITEM_CLIENTE: TStringField;
+    SqlEstagioProcessoDT_ULT_ALTERACAO: TDateTimeField;
+    SqlEstagioProcessoNR_PARCIAL: TIntegerField;
+    SqlEstagioProcessoNR_PROCESSO_ADM: TStringField;
+    SqlEstagioProcessoNR_PROCESSO_DES: TStringField;
+    SqlPOItemNR_ITEM: TStringField;
+    SqlPOItemCD_EXPORTADOR: TStringField;
+    SqlPOItemCD_NALADI_SH: TStringField;
+    SqlPOItemCD_PAIS_AQUISICAO: TStringField;
+    SqlPOItemCD_MERCADORIA: TStringField;
+    SqlPOItemCD_FABRICANTE: TStringField;
+    SqlPOItemCD_PAIS_ORIGEM: TStringField;
+    SqlPOItemCD_NCM_SH: TStringField;
+    SqlPOItemCD_NALADI_NCCA: TStringField;
+    SqlPOItemCD_MET_VALOR_ADUANEIRA: TStringField;
+    SqlPOItemCD_DISP_LEGAL_EXONERA: TStringField;
+    SqlPOItemCD_MOEDA_NEGOCIADA: TStringField;
+    SqlPOItemCD_INCOTERM: TStringField;
+    SqlPOItemCD_ACORDO_ALADI: TStringField;
+    SqlPOItemCD_REG_TRIB_II: TStringField;
+    SqlPOItemCD_FUND_LEGAL_II: TStringField;
+    SqlPOItemCD_UNID_MEDIDA: TStringField;
+    SqlPOItemCD_UNID_MED_II: TStringField;
+    SqlPOItemCD_UNID_MED_IPI: TStringField;
+    SqlPOItemCD_UNID_MED_AD: TStringField;
+    SqlPOItemCD_AGENTE_CAMBIO: TStringField;
+    SqlPOItemCD_MOD_PAGTO: TStringField;
+    SqlPOItemCD_TX_JUROS: TStringField;
+    SqlPOItemCD_INSTITUICAO_FINANC: TStringField;
+    SqlPOItemCD_MOT_SEM_COBERT_CAMBIAL: TStringField;
+    SqlPOItemCD_EX_II: TStringField;
+    SqlPOItemCD_EX_IPI: TStringField;
+    SqlPOItemCD_VIA_TRANSP: TStringField;
+    SqlPOItemCD_PAIS_PROCEDENCIA: TStringField;
+    SqlPOItemCD_URF_ENTRADA: TStringField;
+    SqlPOItemIN_NECESSITA_LI: TBooleanField;
+    SqlPOItemIN_INDICADOR_COND_MERC: TBooleanField;
+    SqlPOItemIN_COND_MERC: TStringField;
+    SqlPOItemIN_APLIC_MERC: TStringField;
+    SqlPOItemNM_ORGAO_EMISSOR_AL_EX_NALADI: TStringField;
+    SqlPOItemNM_AL_EX_NALADI: TStringField;
+    SqlPOItemNM_ORGAO_EMISSOR_AL_NCM: TStringField;
+    SqlPOItemNM_AL_EX_NALADI_NCCA: TStringField;
+    SqlPOItemNM_ORG_EMISSOR_EX_NALADI_NCCA: TStringField;
+    SqlPOItemNM_AL_II: TStringField;
+    SqlPOItemNM_ORGAO_EMISSOR_II: TStringField;
+    SqlPOItemNM_ORGAO_EMISSOR_IPI: TStringField;
+    SqlPOItemNM_AL_IPI: TStringField;
+    SqlPOItemNM_AL_AD: TStringField;
+    SqlPOItemNM_ORGAO_EMISSOR_AD: TStringField;
+    SqlPOItemNM_IDENTIFICACAO: TStringField;
+    SqlPOItemNR_ANO_EMISSAO_AL_EX_NALADI: TStringField;
+    SqlPOItemNR_AL_EX_NALADI: TStringField;
+    SqlPOItemNR_EX_NCM: TStringField;
+    SqlPOItemNR_AL_EX_NCM: TStringField;
+    SqlPOItemNR_ANO_EMISSAO_AL: TStringField;
+    SqlPOItemNR_ATO_LEGAL: TStringField;
+    SqlPOItemNR_EX_NALADI: TStringField;
+    SqlPOItemNR_EX_NALADI_NCCA: TStringField;
+    SqlPOItemNR_ANO_EMISSAO_EX_NALADI_NCCA: TStringField;
+    SqlPOItemNR_AL_EX_NALADI_NCCA: TStringField;
+    SqlPOItemNR_ANO_II: TStringField;
+    SqlPOItemNR_AL_II: TStringField;
+    SqlPOItemNR_ALIQ_NORMAL_II: TStringField;
+    SqlPOItemNR_ALIQ_ACORDO_II: TStringField;
+    SqlPOItemNR_ALIQ_REDUZIDA_II: TStringField;
+    SqlPOItemNR_ALIQ_PERC_RED_II: TStringField;
+    SqlPOItemNR_ANO_IPI: TStringField;
+    SqlPOItemNR_AL_IPI: TStringField;
+    SqlPOItemNR_NOTA_COMPL_IPI: TStringField;
+    SqlPOItemNR_ALIQ_NORMAL_IPI: TStringField;
+    SqlPOItemNR_ALIQ_REDUZIDA_IPI: TStringField;
+    SqlPOItemNR_ALIQ_PERC_RED_IPI: TStringField;
+    SqlPOItemNR_PROC_LI: TStringField;
+    SqlPOItemNR_EX_AD: TStringField;
+    SqlPOItemNR_ANO_AD: TStringField;
+    SqlPOItemNR_AL_AD: TStringField;
+    SqlPOItemNR_ALIQ_AD: TStringField;
+    SqlPOItemNR_BASE_CALC_AD: TFloatField;
+    SqlPOItemNR_PARCELAS: TStringField;
+    SqlPOItemNR_PERIODICIDADE: TStringField;
+    SqlPOItemNR_ROF_BACEN: TStringField;
+    SqlPOItemNR_FATURA: TStringField;
+    SqlPOItemPC_DESCONTO: TFloatField;
+    SqlPOItemPC_ICMS: TFloatField;
+    SqlPOItemPC_ICMS_REDUCAO: TFloatField;
+    SqlPOItemPC_COMISSAO: TFloatField;
+    SqlPOItemPL_ITEM: TFloatField;
+    SqlPOItemQT_INICIAL: TFloatField;
+    SqlPOItemQT_BAIXADA_DI: TFloatField;
+    SqlPOItemQT_BAIXADA_LI: TFloatField;
+    SqlPOItemQT_ESPEC_II: TFloatField;
+    SqlPOItemQT_ESPEC_IPI: TFloatField;
+    SqlPOItemQT_AD: TFloatField;
+    SqlPOItemQT_MED_ESTATISTICA: TFloatField;
+    SqlPOItemTP_CALCULO: TStringField;
+    SqlPOItemTP_COMISSAO: TStringField;
+    SqlPOItemTP_ACORDO_TARIFARIO: TStringField;
+    SqlPOItemTP_TRIBUTACAO_IPI: TStringField;
+    SqlPOItemTP_CAMBIO: TStringField;
+    SqlPOItemTP_IND_TX_JUROS: TBooleanField;
+    SqlPOItemTP_IND_PERIODICIDADE: TStringField;
+    SqlPOItemTP_RECIPIENTE: TStringField;
+    SqlPOItemTP_IND_MULTIMODAL: TStringField;
+    SqlPOItemTX_MERCADORIA: TMemoField;
+    SqlPOItemTX_JUROS_CAMBIO: TFloatField;
+    SqlPOItemVL_DESPESA_MOEDA: TFloatField;
+    SqlPOItemVL_DESCONTO_MOEDA: TFloatField;
+    SqlPOItemVL_UNITARIO: TFloatField;
+    SqlPOItemVL_TOTAL: TFloatField;
+    SqlPOItemVL_DESCONTO: TFloatField;
+    SqlPOItemVL_COMISSAO: TFloatField;
+    SqlPOItemVL_ESPEC_II: TFloatField;
+    SqlPOItemVL_ESPEC_IPI: TFloatField;
+    SqlPOItemVL_ESPEC_AD: TFloatField;
+    SqlPOItemVL_TOTAL_PARCELAS: TFloatField;
+    SqlPOItemVL_COBERT_ACIMA_360: TFloatField;
+    SqlPOItemVL_PAGTO_ANTECIPADO: TFloatField;
+    SqlPOItemVL_PAGTO_AVISTA: TFloatField;
+    SqlPOItemVL_FRETE_NAC_MOEDA: TFloatField;
+    SqlPOItemVL_SEGURO_MOEDA: TFloatField;
+    SqlPOItemVL_ACRESC_MOEDA: TFloatField;
+    SqlPOItemVL_DEDUC_MOEDA: TFloatField;
+    SqlPOItemVL_FRETE_PREPAID_MOEDA: TFloatField;
+    SqlPOItemVL_FRETE_COLLECT: TFloatField;
+    SqlPOItemIN_SELECIONADO: TStringField;
+    SqlPOItemQT_BAIXAR: TFloatField;
+    SqlPOItemQT_DISPONIVEL: TFloatField;
+    SqlPOItemIN_MONTADO: TStringField;
+    SqlPOItemIN_FABR_EXP_PROD: TStringField;
+    SqlPOItemNR_ANO_EX_NCM: TStringField;
+    SqlPOItemNR_NUM_EX_NCM: TStringField;
+    SqlPOItemIN_IND_COND_MERC: TBooleanField;
+    SqlPOItemNM_LOCAL_INCOTERM: TStringField;
+    SqlPOItemNM_TIPO_AL_AD: TStringField;
+    SqlPOItemIN_IND_PERIODICIDADE: TStringField;
+    SqlPOItemIN_REG_TRIB_IPI: TStringField;
+    SqlPOItemQT_INICIAL_EST: TFloatField;
+    SqlPOItemCD_USUARIO_MONTA: TStringField;
+    SqlPOItemCD_MODALIDADE: TStringField;
+    SqlPOItemNR_ATO_DRAWBACK: TStringField;
+    SqlPOItemIN_AVISO_DB: TStringField;
+    SqlPOItemTX_OBSERVACAO: TMemoField;
+    SqlPOItemIN_REEIMPORTACAO: TStringField;
+    SqlPOItemCD_AREA: TStringField;
+    SqlPOItemCD_LOCAL_DESEMBARQUE: TStringField;
+    SqlPOItemCD_EMBARCACAO: TStringField;
+    SqlPOItemCD_AGENTE: TStringField;
+    SqlPOItemNR_VIAGEM: TStringField;
+    SqlPOItemNR_VOO: TStringField;
+    SqlPOItemNR_CONHECIMENTO: TStringField;
+    SqlPOItemNR_COURRIER: TStringField;
+    SqlPOItemIN_CONSOLIDADO: TStringField;
+    SqlPOItemIN_URGENTE: TStringField;
+    SqlPOItemIN_SEGURO: TStringField;
+    SqlPOItemCD_MERC_FORNEC: TStringField;
+    SqlPOItemTP_DRAWBACK: TStringField;
+    SqlPOItemIN_UTILIZADO_INSTR_DESEMB: TStringField;
+    SqlPOItemDT_FATURA: TDateTimeField;
+    SqlPOItemDT_ABERTURA_ITEM: TDateTimeField;
+    SqlPOItemIN_CORRECAO: TStringField;
+    SqlTFLP_PO_ITEMNR_ITEM: TStringField;
+    SqlTFLP_PO_ITEMCD_EVENTO: TStringField;
+    SqlTFLP_PO_ITEMIN_APLICAVEL: TStringField;
+    SqlTFLP_PO_ITEMCD_RESP_REALIZACAO: TStringField;
+    SqlTFLP_PO_ITEMDT_REALIZACAO: TDateTimeField;
+    SqlTFLP_PO_ITEMDT_PREVISTA: TDateTimeField;
+    SqlTFLP_PO_ITEMDT_LIMITE: TDateTimeField;
+    SqlTFLP_PO_ITEMNR_ORDEM: TSmallintField;
+    SqlTFLP_PO_ITEMTX_OBS: TMemoField;
+    SqlTFLP_PO_ITEMCD_STATUS: TStringField;
+    SqlTFLP_PO_ITEMCD_UNID_NEG: TStringField;
+    SqlTFLP_PO_ITEMCD_PRODUTO: TStringField;
+    SqlTFLP_PO_ITEMNR_PROCESSO_INDAIA: TStringField;
+    SqlRefClienteNR_SEQUENCIA: TStringField;
+    SqlRefClienteCD_REF_EXP: TStringField;
+    SqlRefClienteDT_REFERENCIA: TDateTimeField;
+    SqlRefClienteTP_REFERENCIA: TStringField;
+    SqlRefClienteCD_AREA: TStringField;
+    SqlRefClienteIN_FLAG_LI: TStringField;
+    SqlDetalheMercNR_ADICAO: TStringField;
+    SqlDetalheMercNR_ITEM: TStringField;
+    SqlDetalheMercCD_EXPORTADOR: TStringField;
+    SqlDetalheMercCD_FABR_EXPO: TStringField;
+    SqlDetalheMercCD_FABRICANTE: TStringField;
+    SqlDetalheMercCD_MERCADORIA: TStringField;
+    SqlDetalheMercCD_NALADI_NCCA: TStringField;
+    SqlDetalheMercCD_NALADI_SH: TStringField;
+    SqlDetalheMercCD_NCM_SH: TStringField;
+    SqlDetalheMercCD_PAIS_AQUISICAO: TStringField;
+    SqlDetalheMercCD_PAIS_ORIGEM: TStringField;
+    SqlDetalheMercCD_TIPO_CALCULO_ITEM: TStringField;
+    SqlDetalheMercCD_UN_MED_COMERC: TStringField;
+    SqlDetalheMercNR_FATURA: TStringField;
+    SqlDetalheMercPC_DESCONTO_MERC: TFloatField;
+    SqlDetalheMercPL_MERCADORIA: TFloatField;
+    SqlDetalheMercQT_MERC_UN_COMERC: TFloatField;
+    SqlDetalheMercQT_MERC_UN_ESTAT: TFloatField;
+    SqlDetalheMercTX_DESC_DET_MERC: TMemoField;
+    SqlDetalheMercVL_DESCONTO_MERC: TFloatField;
+    SqlDetalheMercVL_FRETE_ITEM: TFloatField;
+    SqlDetalheMercVL_MCV_ITEM: TFloatField;
+    SqlDetalheMercVL_MLE_ITEM: TFloatField;
+    SqlDetalheMercVL_SEGURO_ITEM: TFloatField;
+    SqlDetalheMercVL_UNID_COND_VENDA: TFloatField;
+    SqlDetalheMercVL_UNITARIO: TFloatField;
+    SqlDetalheMercNR_OPER_TRAT_PREV: TStringField;
+    SqlDetalheMercNR_PEDIDO: TStringField;
+    SqlDetalheMercVL_II_ITEM: TFloatField;
+    SqlDetalheMercVL_IPI_ITEM: TFloatField;
+    SqlDetalheMercVL_AD_ITEM: TFloatField;
+    SqlDetalheMercVL_ICMS_ITEM: TFloatField;
+    SqlDetalheMercVL_MLE_ITEM_MN: TFloatField;
+    SqlDetalheMercVL_FRETE_ITEM_MN: TFloatField;
+    SqlDetalheMercVL_SEGURO_ITEM_MN: TFloatField;
+    SqlDetalheMercVL_MCV_ITEM_MN: TFloatField;
+    SqlDetalheMercVL_UNID_COND_VENDA_MN: TFloatField;
+    SqlDetalheMercVL_ACRESCIMO_ITEM: TFloatField;
+    SqlDetalheMercVL_DEDUCAO_ITEM: TFloatField;
+    SqlDetalheMercVL_ACRESCIMO_ITEM_MN: TFloatField;
+    SqlDetalheMercVL_DEDUCAO_ITEM_MN: TFloatField;
+    SqlDetalheMercVL_DESPESA_ITEM: TFloatField;
+    SqlDetalheMercVL_DESPESA_ITEM_MN: TFloatField;
+    SqlDetalheMercNR_ORDEM: TSmallintField;
+    SqlDetalheMercVL_DESPESAS_ITEM: TFloatField;
+    SqlDetalheMercVL_DED_CPT_MNEG: TFloatField;
+    SqlDetalheMercNR_DESTAQUE_NCM: TStringField;
+    SqlDetalheMercIN_PROVEM_PO: TBooleanField;
+    SqlDetalheMercVL_TX_SCX_ITEM: TFloatField;
+    SqlDetalheMercVL_PIS_ITEM: TFloatField;
+    SqlDetalheMercVL_COFINS_ITEM: TFloatField;
+    SqlDetalheMercVL_BASE_CALC_II: TFloatField;
+    SqlDetalheMercFRETE_COLLECT_ITEM: TFloatField;
+    SqlDetalheMercFRETE_PREPAID_ITEM: TFloatField;
+    SqlDetalheMercFRETE_TNAC_ITEM: TFloatField;
+    SqlDetalheMercFRETE_COLLECT_ITEM_REAL: TFloatField;
+    SqlDetalheMercFRETE_PREPAID_ITEM_REAL: TFloatField;
+    SqlDetalheMercFRETE_TNAC_ITEM_REAL: TFloatField;
+    SqlDetalheMercFRETE_COLLECT_ITEM_DOLAR: TFloatField;
+    SqlDetalheMercFRETE_PREPAID_ITEM_DOLAR: TFloatField;
+    SqlDetalheMercFRETE_TNAC_ITEM_DOLAR: TFloatField;
+    SqlDetalheMercPB_MERCADORIA: TFloatField;
+    SqlDetalheMercVL_BASE_ICMS_ITEM: TFloatField;
+    SqlEstagioProcessoNR_PROCESSO_FI: TStringField;
+    SqlEstagioProcessoIN_SUBSTITUIDO: TStringField;
+    DBText1: TDBText;
+    procedure Button1Click(Sender: TObject);
+    procedure SqlPOItemAfterPost(DataSet: TDataSet);
+    procedure SqlTFLP_PO_ITEMAfterPost(DataSet: TDataSet);
+    procedure SqlRefClienteAfterPost(DataSet: TDataSet);
+    procedure SqlDetalheMercAfterPost(DataSet: TDataSet);
+    procedure SqlEstagioProcessoAfterPost(DataSet: TDataSet);
+    procedure SqlProcessosAfterScroll(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmConserta: TFrmConserta;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmConserta.Button1Click(Sender: TObject);
+begin
+  SqlProcessos.Open;
+  SqlProcessos.Last;
+  LblQtdTotal.Caption := IntToStr(SqlProcessos.RecordCount);
+  SqlProcessos.First;
+
+  SqlPOItem.Open;
+  SqlRefCliente.Open;
+  SqlEstagioProcesso.Open;
+  SqlTFLP_PO_ITEM.Open;
+  SqlDetalheMerc.Open;
+end;
+                                           
+procedure TFrmConserta.SqlPOItemAfterPost(DataSet: TDataSet);
+begin
+  SqlPOItem.ApplyUpdates;
+end;
+
+procedure TFrmConserta.SqlTFLP_PO_ITEMAfterPost(DataSet: TDataSet);
+begin
+  SqlTFLP_PO_ITEM.ApplyUpdates;
+end;
+
+procedure TFrmConserta.SqlRefClienteAfterPost(DataSet: TDataSet);
+begin
+  SqlRefCliente.ApplyUpdates;
+end;
+
+procedure TFrmConserta.SqlDetalheMercAfterPost(DataSet: TDataSet);
+begin
+  SqlDetalheMerc.ApplyUpdates;
+end;
+
+procedure TFrmConserta.SqlEstagioProcessoAfterPost(DataSet: TDataSet);
+begin
+  SqlEstagioProcesso.ApplyUpdates;
+end;
+
+procedure TFrmConserta.SqlProcessosAfterScroll(DataSet: TDataSet);
+begin
+//  LblQtd.Caption := IntToStr(SqlProcessos.RecordCount);
+end;
+
+end.

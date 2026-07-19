@@ -1,0 +1,226 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<ProjectGuid>{64BE6FD2-1169-45DB-9673-8BB279386C4C}</ProjectGuid>
+		<MainSource>aurelius.dpk</MainSource>
+		<ProjectVersion>12.0</ProjectVersion>
+		<Config Condition="'$(Config)'==''">Debug</Config>
+		<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+		<Base>true</Base>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
+		<Cfg_1>true</Cfg_1>
+		<CfgParent>Base</CfgParent>
+		<Base>true</Base>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_2)'!=''">
+		<Cfg_2>true</Cfg_2>
+		<CfgParent>Base</CfgParent>
+		<Base>true</Base>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Base)'!=''">
+		<DCC_ImageBase>00400000</DCC_ImageBase>
+		<GenPackage>true</GenPackage>
+		<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
+		<DCC_Platform>x86</DCC_Platform>
+		<DCC_E>false</DCC_E>
+		<DCC_S>false</DCC_S>
+		<GenDll>true</GenDll>
+		<DCC_N>false</DCC_N>
+		<DCC_F>false</DCC_F>
+		<DCC_K>false</DCC_K>
+		<DCC_Description>TMS Aurelius - Core Package</DCC_Description>
+		<DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
+		<RuntimeOnlyPackage>true</RuntimeOnlyPackage>
+		<DllSuffix>140</DllSuffix>
+		<DCC_DcuOutput>.\Win32\$(Config)</DCC_DcuOutput>
+		<DCC_BplOutput>..\bpl\Win32</DCC_BplOutput>
+		<DCC_BpiOutput>.\$(Platform)\$(Config)</DCC_BpiOutput>
+		<DCC_DcpOutput>.\Win32\$(Config)</DCC_DcpOutput>
+		<DCC_HppOutput>.\$(Platform)\$(Config)</DCC_HppOutput>
+		<DCC_ObjOutput>.\$(Platform)\$(Config)</DCC_ObjOutput>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Cfg_1)'!=''">
+		<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+		<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+		<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+		<DCC_DebugInformation>false</DCC_DebugInformation>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Cfg_2)'!=''">
+		<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+	</PropertyGroup>
+	<ItemGroup>
+		<DelphiCompile Include="aurelius.dpk">
+			<MainSource>MainSource</MainSource>
+		</DelphiCompile>
+		<DCCReference Include="rtl.dcp"/>
+		<DCCReference Include="dbrtl.dcp"/>
+		<DCCReference Include="tmsbcl.dcp"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Bind.Dataset.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Bind.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.AbstractCommandPerformer.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.CommandPerformerFactory.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.DBIndexCreator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Deleter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.ForeignKeyCreator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Inserter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Listeners.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Loader.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Selecter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.SequenceCreator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.TableCreator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Commands.Updater.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Criteria.Base.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Criteria.Dictionary.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Criteria.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Criteria.Expression.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Criteria.Linq.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Criteria.Projections.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Drivers.Base.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Drivers.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Drivers.Interfaces.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Drivers.SQLite.Classes.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Drivers.SQLite.Import.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Drivers.SQLite.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.AbstractManager.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.BlobController.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.DatabaseManager.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.ObjectManager.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.ObjectMap.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Engine.ProxyController.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Events.Manager.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Global.Config.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Global.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Global.Utils.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Id.AbstractGenerator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Id.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Id.Guid.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Id.IdentifierGenerator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Id.IdentityOrSequence.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Id.Uuid.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.BlobConverter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.Converter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.Deserializer.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.Interfaces.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.NullableConverter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.Serializer.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Json.Settings.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Attributes.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.AttributeStrategy.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.AutoMapping.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.ClassHierarchyExplorer.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Explorer.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.MappedClasses.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Metadata.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Optimization.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.RttiUtils.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Setup.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Mapping.Strategy.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.AbstractImporter.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Commands.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.DB2.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.ElevateDB.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Firebird.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Firebird3.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Interbase.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Interfaces.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Messages.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.MSSQL.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.MySQL.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.NexusDB.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Oracle.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.PostgreSQL.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Register.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.SQLite.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Schema.Utils.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.AbsoluteDB.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.AbstractSqlGenerator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.AnsiSqlGenerator.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.BaseTypes.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Commands.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.DB2.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.ElevateDB.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Firebird.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Firebird3.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Functions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Interbase.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Interfaces.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Metadata.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.MSSQL.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.MySQL.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.NexusDB.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Oracle.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.PostgreSQL.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.Register.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Sql.SQLite.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Types.Blob.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Types.DynamicProperties.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Types.Exceptions.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Types.MasterObjectValue.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Types.Nullable.pas"/>
+		<DCCReference Include="..\..\source\core\Aurelius.Types.Proxy.pas"/>
+		<BuildConfiguration Include="Base">
+			<Key>Base</Key>
+		</BuildConfiguration>
+		<BuildConfiguration Include="Debug">
+			<Key>Cfg_2</Key>
+			<CfgParent>Base</CfgParent>
+		</BuildConfiguration>
+		<BuildConfiguration Include="Release">
+			<Key>Cfg_1</Key>
+			<CfgParent>Base</CfgParent>
+		</BuildConfiguration>
+	</ItemGroup>
+	<Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
+	<ProjectExtensions>
+		<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+		<Borland.ProjectType>Package</Borland.ProjectType>
+		<BorlandProject>
+			<Delphi.Personality>
+				<Source>
+					<Source Name="MainSource">aurelius.dpk</Source>
+				</Source>
+				<Parameters>
+					<Parameters Name="UseLauncher">False</Parameters>
+					<Parameters Name="LoadAllSymbols">True</Parameters>
+					<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
+				</Parameters>
+				<VersionInfo>
+					<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+					<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+					<VersionInfo Name="MajorVer">1</VersionInfo>
+					<VersionInfo Name="MinorVer">0</VersionInfo>
+					<VersionInfo Name="Release">0</VersionInfo>
+					<VersionInfo Name="Build">0</VersionInfo>
+					<VersionInfo Name="Debug">False</VersionInfo>
+					<VersionInfo Name="PreRelease">False</VersionInfo>
+					<VersionInfo Name="Special">False</VersionInfo>
+					<VersionInfo Name="Private">False</VersionInfo>
+					<VersionInfo Name="DLL">False</VersionInfo>
+					<VersionInfo Name="Locale">1033</VersionInfo>
+					<VersionInfo Name="CodePage">1252</VersionInfo>
+				</VersionInfo>
+				<VersionInfoKeys>
+					<VersionInfoKeys Name="CompanyName"/>
+					<VersionInfoKeys Name="FileDescription"/>
+					<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+					<VersionInfoKeys Name="InternalName"/>
+					<VersionInfoKeys Name="LegalCopyright"/>
+					<VersionInfoKeys Name="LegalTrademarks"/>
+					<VersionInfoKeys Name="OriginalFilename"/>
+					<VersionInfoKeys Name="ProductName"/>
+					<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+					<VersionInfoKeys Name="Comments"/>
+				</VersionInfoKeys>
+			</Delphi.Personality>
+		</BorlandProject>
+		<ProjectFileVersion>12</ProjectFileVersion>
+	</ProjectExtensions>
+</Project>

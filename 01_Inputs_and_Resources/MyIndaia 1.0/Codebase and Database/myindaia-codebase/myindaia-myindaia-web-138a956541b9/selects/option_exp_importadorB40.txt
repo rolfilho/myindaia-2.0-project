@@ -1,0 +1,5 @@
+
+<option value=17568>SAMSUNG ELECTRONICS CO		 (17568)</option>
+<option value=17964>SAMSUNG ELECTRONICS CO., LTD	 (17964)</option>
+<option value=18707>SAMSUNG ELECTRONICS PERU SAC (18707)</option>
+<option value=17637>SAMSUNG ELETRONICS CHILE (17637)</option>

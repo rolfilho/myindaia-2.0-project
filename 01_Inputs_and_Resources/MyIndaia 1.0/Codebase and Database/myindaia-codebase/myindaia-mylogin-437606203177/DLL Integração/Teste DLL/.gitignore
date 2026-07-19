@@ -1,0 +1,5 @@
+*.dcu
+*.exe
+*.dproj.local
+*.stat
+/Project1.identcache

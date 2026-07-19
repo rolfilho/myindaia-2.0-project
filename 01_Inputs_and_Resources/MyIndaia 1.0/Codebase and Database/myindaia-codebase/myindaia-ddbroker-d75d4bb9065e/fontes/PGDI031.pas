@@ -1,0 +1,461 @@
+unit PGDI031;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  DBTables, Db, ADODB, Registry;
+
+type
+  Tdatm_integracao_li = class(TDataModule)
+    ConAccessLI: TADOConnection;
+    ConBroker: TADOConnection;
+    sp_unid_medida: TADOStoredProc;
+    qry_existe_item_li_: TADOQuery;
+    tbl_li_o_: TADOTable;
+    qry_det_merc_o_: TADOQuery;
+    qry_dest_ncm_o_: TADOQuery;
+    qry_li_d_: TADOQuery;
+    qry_det_merc_d_: TADOQuery;
+    tbl_dest_ncm_d_: TADOTable;
+    qry_existe_li_: TADOQuery;
+    qry_itens_li_: TADOQuery;
+    tbl_li_d_: TADOTable;
+    tbl_det_merc_d_: TADOTable;
+    tbl_li_o_NR_TRAT_IMP_MICRO: TWideStringField;
+    tbl_li_o_NR_IDENT_USUARIO: TWideStringField;
+    tbl_li_o_NR_OPER_TRAT_PROT: TWideStringField;
+    tbl_li_o_CD_AUTORIZ_TRANSM: TWideStringField;
+    tbl_li_o_NR_OPER_TRAT_PREV: TWideStringField;
+    tbl_li_o_NR_LI_SUBSTITUIDO: TWideStringField;
+    tbl_li_o_CD_ORIGEM_LI: TWideStringField;
+    tbl_li_o_NR_DECL_IMP_VINC: TWideStringField;
+    tbl_li_o_NR_ADI_IMP_VINC: TWideStringField;
+    tbl_li_o_NR_SEQ_RETI_VINC: TWideStringField;
+    tbl_li_o_CD_TIPO_IMPORTADOR: TWideStringField;
+    tbl_li_o_NR_IMPORTADOR: TWideStringField;
+    tbl_li_o_CD_PAIS_IMPORTADOR: TWideStringField;
+    tbl_li_o_NM_IMPORTADOR: TWideStringField;
+    tbl_li_o_NR_TEL_IMPORTADOR: TWideStringField;
+    tbl_li_o_ED_LOGR_IMPORTADOR: TWideStringField;
+    tbl_li_o_ED_NR_IMPORTADOR: TWideStringField;
+    tbl_li_o_ED_COMPL_IMPO: TWideStringField;
+    tbl_li_o_ED_BA_IMPORTADOR: TWideStringField;
+    tbl_li_o_ED_MUN_IMPORTADOR: TWideStringField;
+    tbl_li_o_ED_UF_IMPORTADOR: TWideStringField;
+    tbl_li_o_ED_CEP_IMPORTADOR: TWideStringField;
+    tbl_li_o_CD_ATIV_ECON_IMPO: TWideStringField;
+    tbl_li_o_NR_CPF_REPR_LEGAL: TWideStringField;
+    tbl_li_o_CD_URF_ENTR_MERC: TWideStringField;
+    tbl_li_o_NM_FORN_ESTR: TWideStringField;
+    tbl_li_o_ED_LOGR_FORN_ESTR: TWideStringField;
+    tbl_li_o_ED_NR_FORN_ESTR: TWideStringField;
+    tbl_li_o_ED_COMPL_FORN_ESTR: TWideStringField;
+    tbl_li_o_ED_CIDAD_FORN_ESTR: TWideStringField;
+    tbl_li_o_ED_ESTAD_FORN_ESTR: TWideStringField;
+    tbl_li_o_CD_PAIS_AQUIS_MERC: TWideStringField;
+    tbl_li_o_CD_MERCADORIA_NCM: TWideStringField;
+    tbl_li_o_CD_PAIS_PROC_MERC: TWideStringField;
+    tbl_li_o_CD_AUSENCIA_FABRIC: TWideStringField;
+    tbl_li_o_NM_FABRICANTE_MERC: TWideStringField;
+    tbl_li_o_ED_LOGR_FABRIC: TWideStringField;
+    tbl_li_o_ED_NR_FABRIC: TWideStringField;
+    tbl_li_o_ED_COMPL_FABRIC: TWideStringField;
+    tbl_li_o_ED_CIDAD_FABRIC: TWideStringField;
+    tbl_li_o_ED_ESTADO_FABRIC: TWideStringField;
+    tbl_li_o_CD_PAIS_ORIG_MERC: TWideStringField;
+    tbl_li_o_CD_MERC_NALADI_NCC: TWideStringField;
+    tbl_li_o_CD_MERC_NALADI_SH: TWideStringField;
+    tbl_li_o_PL_MERCADORIA: TWideStringField;
+    tbl_li_o_QT_UN_ESTATISTICA: TWideStringField;
+    tbl_li_o_CD_MOEDA_NEGOCIADA: TWideStringField;
+    tbl_li_o_QT_DIA_LIMITE_PGTO: TWideStringField;
+    tbl_li_o_CD_INCOTERMS_VENDA: TWideStringField;
+    tbl_li_o_VL_MERC_MNEG_EMB: TWideStringField;
+    tbl_li_o_VL_TOT_DOLAR_EMB: TWideStringField;
+    tbl_li_o_CD_TIPO_ACORDO_TAR: TWideStringField;
+    tbl_li_o_CD_ACORDO_ALADI: TWideStringField;
+    tbl_li_o_CD_REGIME_TRIBUTAR: TWideStringField;
+    tbl_li_o_CD_FUND_LEG_REGIME: TWideStringField;
+    tbl_li_o_CD_COBERT_CAMBIAL: TWideStringField;
+    tbl_li_o_CD_MODALIDADE_PGTO: TWideStringField;
+    tbl_li_o_CD_ORGAO_FIN_INTER: TWideStringField;
+    tbl_li_o_CD_MOTIVO_SEM_COB: TWideStringField;
+    tbl_li_o_CD_AGENCIA_SECEX: TWideStringField;
+    tbl_li_o_CD_URF_DESPACHO: TWideStringField;
+    tbl_li_o_IN_REST_DATA_EMB_LI: TWideStringField;
+    tbl_li_o_IN_MATERIAL_USADO: TBooleanField;
+    tbl_li_o_IN_BEM_ENCOMENDA: TBooleanField;
+    tbl_li_o_NR_ATO_DRAWBACK: TWideStringField;
+    tbl_li_o_NR_COMUNIC_COMPRA: TWideStringField;
+    tbl_li_o_DT_REG_OPER_TRAT: TWideStringField;
+    tbl_li_o_DT_ATU_OPER_MICRO: TWideStringField;
+    tbl_li_o_IN_SALVO_DIAG: TBooleanField;
+    tbl_li_o_IN_SELECAO_DIAG: TBooleanField;
+    tbl_li_o_TX_INFO_COMPL: TMemoField;
+    tbl_li_o_CD_SITUAC_OP_TRAT: TWideStringField;
+    tbl_li_o_DT_SITUAC_OP_TRAT: TWideStringField;
+    tbl_li_o_DT_VALID_OP_TRAT: TWideStringField;
+    tbl_li_o_CD_CANCEL_OP_TRAT: TWideStringField;
+    tbl_li_o_DT_CANCEL_OP_TRAT: TWideStringField;
+    tbl_li_o_NR_CPF_CANC_ANUENC: TWideStringField;
+    tbl_li_o_NR_LI_SUBSTITUTIVO: TWideStringField;
+    tbl_li_o_DT_REST_EMB: TWideStringField;
+    tbl_li_o_IN_REG_DRAWBACK: TWideStringField;
+    tbl_li_o_NR_REG_DRAWBACK: TWideStringField;
+    qry_det_merc_o_NR_TRAT_IMP_MICRO: TWideStringField;
+    qry_det_merc_o_NR_SEQ_PRODUTO: TWideStringField;
+    qry_det_merc_o_QT_MERC_UN_COMERC: TWideStringField;
+    qry_det_merc_o_NM_UN_MEDID_COMER: TWideStringField;
+    qry_det_merc_o_VL_UNID_COND_VENDA: TWideStringField;
+    qry_det_merc_o_TX_DESC_DET_MERC: TMemoField;
+    qry_det_merc_o_CD_PRODUTO: TWideStringField;
+    qry_det_merc_o_NR_ITEM_DRAWBACK: TWideStringField;
+    qry_det_merc_o_QT_PROD_DRAWBACK: TWideStringField;
+    qry_det_merc_o_VL_PROD_DRAWBACK: TWideStringField;
+    qry_dest_ncm_o_NR_TRAT_IMP_MICRO: TWideStringField;
+    qry_dest_ncm_o_NR_DESTAQUE_NCM: TWideStringField;
+    qry_det_merc_d_NR_PROCESSO: TStringField;
+    qry_det_merc_d_VL_UNIT_MCV: TFloatField;
+    qry_det_merc_d_TX_DESC_DET_MERC: TMemoField;
+    qry_det_merc_d_CD_MERCADORIA: TStringField;
+    qry_det_merc_d_CD_NCM_SH: TStringField;
+    qry_det_merc_d_CD_NALADI_NCCA: TStringField;
+    qry_det_merc_d_CD_NALADI_SH: TStringField;
+    qry_det_merc_d_CD_PAIS_ORIGEM: TStringField;
+    qry_det_merc_d_CD_PAIS_AQUISICAO: TStringField;
+    qry_det_merc_d_CD_FABR_EXPO: TStringField;
+    qry_det_merc_d_QT_MERC_UN_COMERC: TFloatField;
+    qry_det_merc_d_CD_UN_MED_COMERC: TStringField;
+    qry_det_merc_d_IN_REG_DRAWBACK: TStringField;
+    qry_det_merc_d_NR_ITEM_DRAWBACK: TStringField;
+    qry_det_merc_d_NR_REG_DRAWBACK: TStringField;
+    qry_det_merc_d_QT_MERC_UN_ESTAT: TFloatField;
+    qry_det_merc_d_VL_TOTAL_MLE: TFloatField;
+    tbl_dest_ncm_d_NR_OPER_TRAT_PREV: TStringField;
+    tbl_dest_ncm_d_NR_DESTAQUE_NCM: TStringField;
+    qry_existe_item_li_TOT: TIntegerField;
+    qry_existe_li_TOT_LI: TIntegerField;
+    tbl_li_d_NR_OPER_TRAT_PREV: TStringField;
+    tbl_li_d_NR_IDENT_USUARIO: TStringField;
+    tbl_li_d_NR_OPER_TRAT_PROT: TStringField;
+    tbl_li_d_CD_AUTORIZ_TRANSM: TStringField;
+    tbl_li_d_NR_TRAT_IMP_MICRO: TStringField;
+    tbl_li_d_NR_LI_SUBSTITUIDO: TStringField;
+    tbl_li_d_CD_ORIGEM_LI: TStringField;
+    tbl_li_d_NR_DECL_IMP_VINC: TStringField;
+    tbl_li_d_NR_ADI_IMP_VINC: TStringField;
+    tbl_li_d_NR_SEQ_RETI_VINC: TStringField;
+    tbl_li_d_CD_TIPO_IMPORTADOR: TStringField;
+    tbl_li_d_NR_IMPORTADOR: TStringField;
+    tbl_li_d_CD_PAIS_IMPORTADOR: TStringField;
+    tbl_li_d_NM_IMPORTADOR: TStringField;
+    tbl_li_d_NR_TEL_IMPORTADOR: TStringField;
+    tbl_li_d_ED_LOGR_IMPORTADOR: TStringField;
+    tbl_li_d_ED_NR_IMPORTADOR: TStringField;
+    tbl_li_d_ED_COMPL_IMPO: TStringField;
+    tbl_li_d_ED_BA_IMPORTADOR: TStringField;
+    tbl_li_d_ED_MUN_IMPORTADOR: TStringField;
+    tbl_li_d_ED_UF_IMPORTADOR: TStringField;
+    tbl_li_d_ED_CEP_IMPORTADOR: TStringField;
+    tbl_li_d_CD_ATIV_ECON_IMPO: TStringField;
+    tbl_li_d_NR_CPF_REPR_LEGAL: TStringField;
+    tbl_li_d_CD_URF_ENTR_MERC: TStringField;
+    tbl_li_d_NM_FORN_ESTR: TStringField;
+    tbl_li_d_ED_LOGR_FORN_ESTR: TStringField;
+    tbl_li_d_ED_NR_FORN_ESTR: TStringField;
+    tbl_li_d_ED_COMPL_FORN_ESTR: TStringField;
+    tbl_li_d_ED_CIDAD_FORN_ESTR: TStringField;
+    tbl_li_d_ED_ESTAD_FORN_ESTR: TStringField;
+    tbl_li_d_CD_PAIS_AQUIS_MERC: TStringField;
+    tbl_li_d_CD_MERCADORIA_NCM: TStringField;
+    tbl_li_d_CD_PAIS_PROC_MERC: TStringField;
+    tbl_li_d_CD_AUSENCIA_FABRIC: TStringField;
+    tbl_li_d_NM_FABRICANTE_MERC: TStringField;
+    tbl_li_d_ED_LOGR_FABRIC: TStringField;
+    tbl_li_d_ED_NR_FABRIC: TStringField;
+    tbl_li_d_ED_COMPL_FABRIC: TStringField;
+    tbl_li_d_ED_CIDAD_FABRIC: TStringField;
+    tbl_li_d_ED_ESTADO_FABRIC: TStringField;
+    tbl_li_d_CD_PAIS_ORIG_MERC: TStringField;
+    tbl_li_d_CD_MERC_NALADI_NCC: TStringField;
+    tbl_li_d_CD_MERC_NALADI_SH: TStringField;
+    tbl_li_d_PL_MERCADORIA: TStringField;
+    tbl_li_d_QT_UN_ESTATISTICA: TStringField;
+    tbl_li_d_CD_MOEDA_NEGOCIADA: TStringField;
+    tbl_li_d_QT_DIA_LIMITE_PGTO: TStringField;
+    tbl_li_d_CD_INCOTERMS_VENDA: TStringField;
+    tbl_li_d_VL_MERC_MNEG_EMB: TStringField;
+    tbl_li_d_VL_TOT_DOLAR_EMB: TStringField;
+    tbl_li_d_CD_TIPO_ACORDO_TAR: TStringField;
+    tbl_li_d_CD_ACORDO_ALADI: TStringField;
+    tbl_li_d_CD_REGIME_TRIBUTAR: TStringField;
+    tbl_li_d_CD_FUND_LEG_REGIME: TStringField;
+    tbl_li_d_CD_COBERT_CAMBIAL: TStringField;
+    tbl_li_d_CD_MODALIDADE_PGTO: TStringField;
+    tbl_li_d_CD_ORGAO_FIN_INTER: TStringField;
+    tbl_li_d_CD_MOTIVO_SEM_COB: TStringField;
+    tbl_li_d_CD_AGENCIA_SECEX: TStringField;
+    tbl_li_d_CD_URF_DESPACHO: TStringField;
+    tbl_li_d_IN_REST_DATA_EMB_LI: TStringField;
+    tbl_li_d_IN_MATERIAL_USADO: TBooleanField;
+    tbl_li_d_IN_BEM_ENCOMENDA: TBooleanField;
+    tbl_li_d_NR_ATO_DRAWBACK: TStringField;
+    tbl_li_d_NR_COMUNIC_COMPRA: TStringField;
+    tbl_li_d_DT_REG_OPER_TRAT: TStringField;
+    tbl_li_d_DT_ATU_OPER_MICRO: TStringField;
+    tbl_li_d_IN_SALVO_DIAG: TBooleanField;
+    tbl_li_d_IN_SELECAO_DIAG: TBooleanField;
+    tbl_li_d_TX_INFO_COMPL: TMemoField;
+    tbl_li_d_CD_SITUAC_OP_TRAT: TStringField;
+    tbl_li_d_DT_SITUAC_OP_TRAT: TStringField;
+    tbl_li_d_DT_VALID_OP_TRAT: TStringField;
+    tbl_li_d_CD_CANCEL_OP_TRAT: TStringField;
+    tbl_li_d_DT_CANCEL_OP_TRAT: TStringField;
+    tbl_li_d_NR_CPF_CANC_ANUENC: TStringField;
+    tbl_li_d_NR_LI_SUBSTITUTIVO: TStringField;
+    tbl_li_d_IN_REG_DRAWBACK: TStringField;
+    tbl_li_d_NR_REG_DRAWBACK: TStringField;
+    tbl_li_d_IN_LI_INCLUIDA: TStringField;
+    tbl_det_merc_d_NR_OPER_TRAT_PREV: TStringField;
+    tbl_det_merc_d_NR_SEQ_PRODUTO: TStringField;
+    tbl_det_merc_d_QT_MERC_UN_COMERC: TStringField;
+    tbl_det_merc_d_NM_UN_MEDID_COMER: TStringField;
+    tbl_det_merc_d_VL_UNID_COND_VENDA: TStringField;
+    tbl_det_merc_d_TX_DESC_DET_MERC: TMemoField;
+    tbl_det_merc_d_CD_PRODUTO: TStringField;
+    tbl_det_merc_d_NR_ITEM_DRAWBACK: TStringField;
+    tbl_det_merc_d_QT_PROD_DRAWBACK: TStringField;
+    tbl_det_merc_d_VL_PROD_DRAWBACK: TStringField;
+    qry_itens_li_NR_PROCESSO: TStringField;
+    qry_itens_li_NR_ITEM: TStringField;
+    qry_itens_li_NR_DESTAQUE_NCM: TStringField;
+    qry_itens_li_CD_IMPORTADOR: TStringField;
+    qry_itens_li_CD_EXPORTADOR: TStringField;
+    qry_itens_li_CD_FABR_EXPO: TStringField;
+    qry_itens_li_CD_FABRICANTE: TStringField;
+    qry_itens_li_CD_MERCADORIA: TStringField;
+    qry_itens_li_CD_NALADI_NCCA: TStringField;
+    qry_itens_li_CD_NALADI_SH: TStringField;
+    qry_itens_li_CD_NCM_SH: TStringField;
+    qry_itens_li_CD_PAIS_AQUISICAO: TStringField;
+    qry_itens_li_CD_PAIS_ORIGEM: TStringField;
+    qry_itens_li_CD_UN_MED_COMERC: TStringField;
+    qry_itens_li_CD_UN_MED_ESTAT: TStringField;
+    qry_itens_li_PL_MERCADORIA: TFloatField;
+    qry_itens_li_QT_MERC_UN_COMERC: TFloatField;
+    qry_itens_li_QT_MERC_UN_ESTAT: TFloatField;
+    qry_itens_li_TX_DESC_DET_MERC: TMemoField;
+    qry_itens_li_VL_UNIT_MLE: TFloatField;
+    qry_itens_li_VL_TOTAL_MLE: TFloatField;
+    qry_itens_li_VL_UNIT_MCV: TFloatField;
+    qry_itens_li_CD_PAIS_PROCEDENCIA: TStringField;
+    qry_itens_li_VL_RAT_FRETE: TFloatField;
+    qry_itens_li_VL_RAT_SEGURO: TFloatField;
+    qry_itens_li_VL_RAT_DESPESA: TFloatField;
+    qry_itens_li_VL_RAT_DESCONTO: TFloatField;
+    qry_itens_li_NR_ITEM_PO: TStringField;
+    qry_itens_li_NR_PROC_PO: TStringField;
+    qry_itens_li_NR_ATO_DRAWBACK: TStringField;
+    qry_itens_li_CD_REGIME_TRIBUTACAO: TStringField;
+    qry_itens_li_CD_FUND_LEGAL: TStringField;
+    qry_itens_li_NR_ITEM_DRAWBACK: TStringField;
+    qry_itens_li_NR_REG_DRAWBACK: TStringField;
+    qry_itens_li_IN_REG_DRAWBACK: TStringField;
+    qry_itens_li_NR_LI_SUBSTITUIDO: TStringField;
+    qry_itens_li_IN_DRAWBACK_AUTOMATICO: TStringField;
+    qry_itens_li_QT_PRODUTO_DRAWBACK: TFloatField;
+    qry_itens_li_VL_PRODUTO_DRAWBACK: TFloatField;
+    qry_tbl_dest_ncm_d_: TADOQuery;
+    qry_tbl_li_d_: TADOQuery;
+    qry_tbl_det_merc_d_: TADOQuery;
+    qry_tbl_dest_ncm_d_NR_OPER_TRAT_PREV: TStringField;
+    qry_tbl_dest_ncm_d_NR_DESTAQUE_NCM: TStringField;
+    qry_tbl_li_d_NR_OPER_TRAT_PREV: TStringField;
+    qry_tbl_li_d_NR_IDENT_USUARIO: TStringField;
+    qry_tbl_li_d_NR_OPER_TRAT_PROT: TStringField;
+    qry_tbl_li_d_CD_AUTORIZ_TRANSM: TStringField;
+    qry_tbl_li_d_NR_TRAT_IMP_MICRO: TStringField;
+    qry_tbl_li_d_NR_LI_SUBSTITUIDO: TStringField;
+    qry_tbl_li_d_CD_ORIGEM_LI: TStringField;
+    qry_tbl_li_d_NR_DECL_IMP_VINC: TStringField;
+    qry_tbl_li_d_NR_ADI_IMP_VINC: TStringField;
+    qry_tbl_li_d_NR_SEQ_RETI_VINC: TStringField;
+    qry_tbl_li_d_CD_TIPO_IMPORTADOR: TStringField;
+    qry_tbl_li_d_NR_IMPORTADOR: TStringField;
+    qry_tbl_li_d_CD_PAIS_IMPORTADOR: TStringField;
+    qry_tbl_li_d_NM_IMPORTADOR: TStringField;
+    qry_tbl_li_d_NR_TEL_IMPORTADOR: TStringField;
+    qry_tbl_li_d_ED_LOGR_IMPORTADOR: TStringField;
+    qry_tbl_li_d_ED_NR_IMPORTADOR: TStringField;
+    qry_tbl_li_d_ED_COMPL_IMPO: TStringField;
+    qry_tbl_li_d_ED_BA_IMPORTADOR: TStringField;
+    qry_tbl_li_d_ED_MUN_IMPORTADOR: TStringField;
+    qry_tbl_li_d_ED_UF_IMPORTADOR: TStringField;
+    qry_tbl_li_d_ED_CEP_IMPORTADOR: TStringField;
+    qry_tbl_li_d_CD_ATIV_ECON_IMPO: TStringField;
+    qry_tbl_li_d_NR_CPF_REPR_LEGAL: TStringField;
+    qry_tbl_li_d_CD_URF_ENTR_MERC: TStringField;
+    qry_tbl_li_d_NM_FORN_ESTR: TStringField;
+    qry_tbl_li_d_ED_LOGR_FORN_ESTR: TStringField;
+    qry_tbl_li_d_ED_NR_FORN_ESTR: TStringField;
+    qry_tbl_li_d_ED_COMPL_FORN_ESTR: TStringField;
+    qry_tbl_li_d_ED_CIDAD_FORN_ESTR: TStringField;
+    qry_tbl_li_d_ED_ESTAD_FORN_ESTR: TStringField;
+    qry_tbl_li_d_CD_PAIS_AQUIS_MERC: TStringField;
+    qry_tbl_li_d_CD_MERCADORIA_NCM: TStringField;
+    qry_tbl_li_d_CD_PAIS_PROC_MERC: TStringField;
+    qry_tbl_li_d_CD_AUSENCIA_FABRIC: TStringField;
+    qry_tbl_li_d_NM_FABRICANTE_MERC: TStringField;
+    qry_tbl_li_d_ED_LOGR_FABRIC: TStringField;
+    qry_tbl_li_d_ED_NR_FABRIC: TStringField;
+    qry_tbl_li_d_ED_COMPL_FABRIC: TStringField;
+    qry_tbl_li_d_ED_CIDAD_FABRIC: TStringField;
+    qry_tbl_li_d_ED_ESTADO_FABRIC: TStringField;
+    qry_tbl_li_d_CD_PAIS_ORIG_MERC: TStringField;
+    qry_tbl_li_d_CD_MERC_NALADI_NCC: TStringField;
+    qry_tbl_li_d_CD_MERC_NALADI_SH: TStringField;
+    qry_tbl_li_d_PL_MERCADORIA: TStringField;
+    qry_tbl_li_d_QT_UN_ESTATISTICA: TStringField;
+    qry_tbl_li_d_CD_MOEDA_NEGOCIADA: TStringField;
+    qry_tbl_li_d_QT_DIA_LIMITE_PGTO: TStringField;
+    qry_tbl_li_d_CD_INCOTERMS_VENDA: TStringField;
+    qry_tbl_li_d_VL_MERC_MNEG_EMB: TStringField;
+    qry_tbl_li_d_VL_TOT_DOLAR_EMB: TStringField;
+    qry_tbl_li_d_CD_TIPO_ACORDO_TAR: TStringField;
+    qry_tbl_li_d_CD_ACORDO_ALADI: TStringField;
+    qry_tbl_li_d_CD_REGIME_TRIBUTAR: TStringField;
+    qry_tbl_li_d_CD_FUND_LEG_REGIME: TStringField;
+    qry_tbl_li_d_CD_COBERT_CAMBIAL: TStringField;
+    qry_tbl_li_d_CD_MODALIDADE_PGTO: TStringField;
+    qry_tbl_li_d_CD_ORGAO_FIN_INTER: TStringField;
+    qry_tbl_li_d_CD_MOTIVO_SEM_COB: TStringField;
+    qry_tbl_li_d_CD_AGENCIA_SECEX: TStringField;
+    qry_tbl_li_d_CD_URF_DESPACHO: TStringField;
+    qry_tbl_li_d_IN_REST_DATA_EMB_LI: TStringField;
+    qry_tbl_li_d_IN_MATERIAL_USADO: TBooleanField;
+    qry_tbl_li_d_IN_BEM_ENCOMENDA: TBooleanField;
+    qry_tbl_li_d_NR_ATO_DRAWBACK: TStringField;
+    qry_tbl_li_d_NR_COMUNIC_COMPRA: TStringField;
+    qry_tbl_li_d_DT_REG_OPER_TRAT: TStringField;
+    qry_tbl_li_d_DT_ATU_OPER_MICRO: TStringField;
+    qry_tbl_li_d_IN_SALVO_DIAG: TBooleanField;
+    qry_tbl_li_d_IN_SELECAO_DIAG: TBooleanField;
+    qry_tbl_li_d_TX_INFO_COMPL: TMemoField;
+    qry_tbl_li_d_CD_SITUAC_OP_TRAT: TStringField;
+    qry_tbl_li_d_DT_SITUAC_OP_TRAT: TStringField;
+    qry_tbl_li_d_DT_VALID_OP_TRAT: TStringField;
+    qry_tbl_li_d_CD_CANCEL_OP_TRAT: TStringField;
+    qry_tbl_li_d_DT_CANCEL_OP_TRAT: TStringField;
+    qry_tbl_li_d_NR_CPF_CANC_ANUENC: TStringField;
+    qry_tbl_li_d_NR_LI_SUBSTITUTIVO: TStringField;
+    qry_tbl_li_d_IN_REG_DRAWBACK: TStringField;
+    qry_tbl_li_d_NR_REG_DRAWBACK: TStringField;
+    qry_tbl_li_d_IN_LI_INCLUIDA: TStringField;
+    qry_tbl_det_merc_d_NR_OPER_TRAT_PREV: TStringField;
+    qry_tbl_det_merc_d_NR_SEQ_PRODUTO: TStringField;
+    qry_tbl_det_merc_d_QT_MERC_UN_COMERC: TStringField;
+    qry_tbl_det_merc_d_NM_UN_MEDID_COMER: TStringField;
+    qry_tbl_det_merc_d_VL_UNID_COND_VENDA: TStringField;
+    qry_tbl_det_merc_d_TX_DESC_DET_MERC: TMemoField;
+    qry_tbl_det_merc_d_CD_PRODUTO: TStringField;
+    qry_tbl_det_merc_d_NR_ITEM_DRAWBACK: TStringField;
+    qry_tbl_det_merc_d_QT_PROD_DRAWBACK: TStringField;
+    qry_tbl_det_merc_d_VL_PROD_DRAWBACK: TStringField;
+    qry_det_merc_d_NR_ITEM: TStringField;
+    qry_det_merc_d_NR_ATO_DRAWBACK: TStringField;
+    qry_li_d_NR_PROCESSO: TStringField;
+    qry_li_d_NR_PROCESSO_SISCOMEX: TStringField;
+    qry_li_d_CD_URF_ENTRADA: TStringField;
+    qry_li_d_CD_PAIS_PROCEDENCIA: TStringField;
+    qry_li_d_QT_TOTAL_PES_LIQ: TFloatField;
+    qry_li_d_QT_MED_ESTATISTICA: TFloatField;
+    qry_li_d_CD_MOEDA_MLE: TStringField;
+    qry_li_d_QT_DIAS_COBERTURA: TIntegerField;
+    qry_li_d_CD_INCOTERM: TStringField;
+    qry_li_d_VL_TOTAL_MOEDA: TFloatField;
+    qry_li_d_TP_ACORDO_ALADI: TStringField;
+    qry_li_d_CD_ACORDO_ALADI: TStringField;
+    qry_li_d_CD_REGIME_TRIBUTACAO: TStringField;
+    qry_li_d_CD_FUND_LEGAL: TStringField;
+    qry_li_d_TP_CAMBIO: TStringField;
+    qry_li_d_CD_MOD_PAGAMENTO: TStringField;
+    qry_li_d_CD_INSTITUICAO_FINANC: TStringField;
+    qry_li_d_CD_MOT_SEM_COBERTURA: TStringField;
+    qry_li_d_CD_AGENCIA_SECEX: TStringField;
+    qry_li_d_CD_URF_DESPACHO: TStringField;
+    qry_li_d_CD_CONDICAO_MERC: TStringField;
+    qry_li_d_NR_ATO_DRAWBACK: TStringField;
+    qry_li_d_NR_COMUNICADO_COMPRA: TStringField;
+    qry_li_d_DT_REGISTRO_LI: TDateTimeField;
+    qry_li_d_TX_INFO_COMPLEMENTAR: TMemoField;
+    qry_li_d_NR_REGISTRO_LI: TStringField;
+    qry_li_d_DT_PROCESSO_LI: TDateTimeField;
+    qry_li_d_NR_LI_SUBSTITUIDO: TStringField;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  datm_integracao_li: Tdatm_integracao_li;
+
+implementation
+
+{$R *.DFM}
+
+procedure Tdatm_integracao_li.DataModuleCreate(Sender: TObject);
+var
+  SL: TStringList;
+  P: Integer;
+  S: String;
+  Regimp: String;
+begin
+  // Configurar o caminho do REGIMP
+  with TRegistry.Create do
+    try
+      RootKey := HKEY_LOCAL_MACHINE;
+      if OpenKey('SOFTWARE\ODBC\ODBC.INI\REGIMP', False) then
+        Regimp := Trim(ReadString('DBQ'))
+      else
+        Regimp := '';
+    finally
+      Free;
+    end;
+  if Regimp = '' then
+    MessageDlg('Não foi possível recuperar informações do driver ODBC para Regimp.', mtError, [mbOk], 0)
+  else
+  begin
+    SL := TStringList.Create;
+    with SL do
+      try
+        S := ConAccessLI.ConnectionString;
+        while (S <> '') and (S[1] = ';') do
+          System.Delete(S, 1, 1);
+        while S <> '' do
+        begin
+          P := Pos(';', S);
+          if P = 0 then
+            P := Length(S) +1;
+          SL.Add(Trim(Copy(S, 1, P -1)));
+          System.Delete(S, 1, P);
+          while (S <> '') and (S[1] = ';') do
+            System.Delete(S, 1, 1);
+        end;
+        if not SameText(Trim(SL.Values['Data Source']), Regimp) then
+        begin
+          SL.Values['Data Source'] := Regimp;
+          for P := 0 to SL.Count -1 do
+            S := S + ';' + SL[P];
+          System.Delete(S, 1, 1);
+          ConAccessLI.ConnectionString := S;
+        end;
+      finally
+        Free;
+      end;
+  end;
+end;
+
+end.

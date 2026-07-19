@@ -1,0 +1,8 @@
+
+<option value=05481>ACP (PACKAGING) LTD (05481)</option>
+<option value=06971>ANSELL EDMONT INDUSTRIAL (06971)</option>
+<option value=04965>CORPORACION PIPASA (04965)</option>
+<option value=05332>GREAT GLOVE (THAILAND) CO., LTD. (05332)</option>
+<option value=06689>OWENS CORNING MEXICO (06689)</option>
+<option value=08234>PLUMROSE LATINOAMERICA, C.A. (08234)</option>
+<option value=05076>RUBBEREX (M) SND, BERHAD (05076)</option>

@@ -1,0 +1,6 @@
+
+<option value=02399>B.BLEND MAQUINAS E BEBIDAS S.A.</option>
+<option value=01915>WHIRLPOOL S.A ( Joinville )</option>
+<option value=01913>WHIRLPOOL S.A ( Matriz )</option>
+<option value=01924>WHIRLPOOL S.A ( Rio Claro )</option>
+<option value=01914>WHIRLPOOL S.A ( São Paulo - Olympia )</option>

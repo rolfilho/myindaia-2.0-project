@@ -1,0 +1,11 @@
+
+<option value=01743>ACRINOR ACRILONITRILA DO NORDESTE S.A ( Matriz )</option>
+<option value=00248>COMPANHIA BRASILEIRA DE ESTIRENO ( Cubatão )</option>
+<option value=01941>COMPANHIA BRASILEIRA DE ESTIRENO ( Guarujá )</option>
+<option value=01746>PROQUIGEL QUIMICA S.A ( Camaçari )</option>
+<option value=01730>PROQUIGEL QUIMICA S.A ( Candeias )</option>
+<option value=01767>PROQUIGEL QUIMICA S.A ( Matriz )</option>
+<option value=02312>PROQUIGEL QUIMICA S.A ( Vargininha )</option>
+<option value=02168>UNIGEL COMERCIAL S.A.</option>
+<option value=01236>UNIGEL PLASTICOS S.A ( Camaçari )</option>
+<option value=01068>UNIGEL PLASTICOS S.A ( Matriz )</option>

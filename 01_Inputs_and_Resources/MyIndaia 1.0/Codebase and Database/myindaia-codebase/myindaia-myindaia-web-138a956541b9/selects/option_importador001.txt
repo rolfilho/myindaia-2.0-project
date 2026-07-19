@@ -1,0 +1,9 @@
+
+<option value=00004>ANACOMP MAGNETICS WAREHOUSE</option>
+<option value=01543>BATTENFELD GLOUCESTER ENGINEERING CO., INC</option>
+<option value=01627>BATTENFELD GLOUCESTER ENGINEERING CO., INC</option>
+<option value=02512>COMMODORE MACHINE CO</option>
+<option value=05131>OFFICINA MACCHINE PER STAMPA SU OGGETTI</option>
+<option value=02011>OHKA EUROPE LTD.</option>
+<option value=03183>THERMOFORMING SYSTEMS , INC.</option>
+<option value=00003>VIANOVA RESINS GMBH & CO. KG.</option>

@@ -1,0 +1,9 @@
+
+<option value=00042>AKZO NOBEL RESINS BV</option>
+<option value=00883>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=00012>BASF CORPORATION, IMPORT DEPT 2-020</option>
+<option value=01550>ELASTOGRAN GMBH</option>
+<option value=00295>HENKEL KGAA</option>
+<option value=00039>IB MEI S.A.</option>
+<option value=00781>PERSTORP POLYOLS INC</option>

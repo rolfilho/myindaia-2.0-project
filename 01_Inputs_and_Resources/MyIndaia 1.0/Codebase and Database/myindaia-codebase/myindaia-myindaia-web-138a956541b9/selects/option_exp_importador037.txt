@@ -1,0 +1,15 @@
+
+<option value=01183>BASF AG (01183)</option>
+<option value=00883>BASF AG (00883)</option>
+<option value=03076>BASF AKTIENGESELLSCHAFT (03076)</option>
+<option value=05324>BASF AKTIENGESELLSCHAFT (05324)</option>
+<option value=03720>BASF ARGENTINA S.A (03720)</option>
+<option value=04370>BASF CORPORATION (04370)</option>
+<option value=01069>BASF CORPORATION (01069)</option>
+<option value=04920>CIA. ARGENTINA DE LEVADURAS SAIC (04920)</option>
+<option value=05789>COMPANIA BRAMA VENEZUELA S/A (05789)</option>
+<option value=04584>DISTRIBUIDORA PORTLAND S.A. (04584)</option>
+<option value=03279>NABER & WISSMANN GMBH (03279)</option>
+<option value=02213>POLIOLES S.A. DE C.V. (02213)</option>
+<option value=02215>POLIOLES S.A. DE CV (CÓD 3960) (02215)</option>
+<option value=02528>Super Sytenko Com Ind Cia. Ltd (02528)</option>

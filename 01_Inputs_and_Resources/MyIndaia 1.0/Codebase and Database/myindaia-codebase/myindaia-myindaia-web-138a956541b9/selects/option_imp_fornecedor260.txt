@@ -1,0 +1,8 @@
+
+<option value=09495>ICAM SRL</option>
+<option value=10398>INDUSTRIAL DANEC S.A.</option>
+<option value=10455>INDUSTRIAL DANEC S.A.</option>
+<option value=09686>KEMPAS EDIBLE OIL SENDIRIAN BERHAD</option>
+<option value=09704>KITRA INDUSTRIES (M) SDN BHD</option>
+<option value=09703>KOWLOON BAY LTD</option>
+<option value=10002>ORIENTAL UNION CHEMICAL CORPORATION KAOHSIUNG</option>

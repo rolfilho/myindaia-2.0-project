@@ -1,0 +1,810 @@
+<%
+'------------------------------------------------------------------
+'Sistema MyIndaia - Idioma
+'Arquivo de Script e HTML: Arquivo de Configuração de Idioma
+'
+'Autor: Alexandre Gonçalves Neto
+'Criado: 13/06/2005
+'
+'Manutenção: 22/06/2006
+'------------------------------------------------------------------
+
+'Geral Sistema - arquivos de inclusão, outros.(000)
+Dim tx_lang_A00001, tx_lang_A00002, tx_lang_A00003, tx_lang_A00004, tx_lang_A00005, tx_lang_A00006
+Dim tx_lang_A00007, tx_lang_A00008, tx_lang_A00009, tx_lang_A00010, tx_lang_A00011, tx_lang_A00012
+Dim tx_lang_A00013, tx_lang_A00014, tx_lang_A00015, tx_lang_A00016, tx_lang_A00017, tx_lang_A00018
+Dim tx_lang_A00019, tx_lang_A00020, tx_lang_A00021, tx_lang_A00022, tx_lang_A00023, tx_lang_A00024
+Dim tx_lang_A00025, tx_lang_A00026, tx_lang_A00027, tx_lang_A00028, tx_lang_A00029, tx_lang_A00030
+Dim tx_lang_A00031, tx_lang_A00032, tx_lang_A00033, tx_lang_A00034, tx_lang_A00035, tx_lang_A00036
+Dim tx_lang_A00037, tx_lang_A00038, tx_lang_A00039, tx_lang_A00040, tx_lang_A00041, tx_lang_A00042
+Dim tx_lang_A00043, tx_lang_A00044, tx_lang_A00045, tx_lang_A00046, tx_lang_A00047, tx_lang_A00048
+Dim tx_lang_A00049, tx_lang_A00050, tx_lang_A00051, tx_lang_A00052, tx_lang_A00053, tx_lang_A00054
+Dim tx_lang_A00055, tx_lang_A00056, tx_lang_A00057, tx_lang_A00058, tx_lang_A00059, tx_lang_A00060
+Dim tx_lang_A00061, tx_lang_A00062, tx_lang_A00063, tx_lang_A00064, tx_lang_A00065, tx_lang_A00066 
+Dim tx_lang_A00067, tx_lang_A00068, tx_lang_A00069, tx_lang_A00070, tx_lang_A00071, tx_lang_A00072
+Dim tx_lang_A00073, tx_lang_A00074, tx_lang_A00075, tx_lang_A00076, tx_lang_A00077, tx_lang_A00078
+Dim tx_lang_A00079, tx_lang_A00080, tx_lang_A00081, tx_lang_A00082, tx_lang_A00083, tx_lang_A00084
+Dim tx_lang_A00085, tx_lang_A00086, tx_lang_A00087, tx_lang_A00088, tx_lang_A00089, tx_lang_A00090
+Dim tx_lang_A00091, tx_lang_A00092, tx_lang_A00093, tx_lang_A00094, tx_lang_A00095, tx_lang_A00096
+Dim tx_lang_A00097, tx_lang_A00098, tx_lang_A00099, tx_lang_A00100, tx_lang_A00101, tx_lang_A00102
+Dim tx_lang_B00001, tx_lang_B00002, tx_lang_B00003, tx_lang_B00004, tx_lang_B00005, tx_lang_B00006
+Dim tx_lang_C00001, tx_lang_C00002, tx_lang_C00003, tx_lang_C00004, tx_lang_C00005, tx_lang_C00006
+Dim tx_lang_C00007, tx_lang_C00008, tx_lang_C00009
+Dim tx_lang_D00001, tx_lang_D00002, tx_lang_D00003, tx_lang_D00004, tx_lang_D00005, tx_lang_D00006
+Dim tx_lang_D00007, tx_lang_D00008, tx_lang_D00009, tx_lang_D00010, tx_lang_D00011
+Dim tx_lang_E00001, tx_lang_E00002, tx_lang_E00003, tx_lang_E00004, tx_lang_E00005, tx_lang_E00006
+Dim tx_lang_E00007, tx_lang_E00008, tx_lang_E00009
+Dim tx_lang_F00001
+
+tx_lang_A00001 = Array("Sistema MyIndaiá Web","MyIndaiá Web System","Sistema MyIndaiá Web")
+tx_lang_A00002 = Array("ATENÇÃO","ATTENTION","ATENCIÓN")
+tx_lang_A00003 = Array("Verifique o(s) erro(s) abaixo","It verifies the error below","Verifique el (los) error (es) abajo")
+tx_lang_A00004 = Array("It contacts the support if the error to persist","It contacts the support if the error to persist","It contacts the support if the error to persist")
+tx_lang_A00005 = Array("clique aqui","click here","Haga clic aquí")
+tx_lang_A00006 = Array("Cliente","Customer","Cliente")
+tx_lang_A00007 = Array("Unidade","BU","Unidad")
+tx_lang_A00008 = Array("Produto","Product","Producto")
+tx_lang_A00009 = Array("Administração de Pedido","Administration of Order","Administración del pedido")
+tx_lang_A00010 = Array("Importação","Importation","Importación")
+tx_lang_A00011 = Array("Exportação","Exportation","Exportación")
+tx_lang_A00012 = Array("Emitido","Emitted","Emitido")
+tx_lang_A00013 = Array("às","to","a las")
+tx_lang_A00014 = Array("por","for","por")
+tx_lang_A00015 = Array("filtros","filters","Filtros")
+tx_lang_A00016 = Array("campos","fields","Campos")
+tx_lang_A00017 = Array("Cadastrar","Register","Registrar")
+tx_lang_A00018 = Array("Cancelar","Cancel","Cancelar")
+tx_lang_A00019 = Array("Excluir","Delete","Suprimir")
+tx_lang_A00020 = Array("Filtros para Pesquisa","Filters for Research","Filtros para pesquisa")
+tx_lang_A00021 = Array("para editar os filtros e campos do relatório","to edit the filters and fields of the report","Para editar los filtros y campos del informe")
+tx_lang_A00022 = Array("todos(as)","all","Todos (as)")
+tx_lang_A00023 = Array("Ambos","Both","Ambos")
+tx_lang_A00024 = Array("Sim","Yes","Sí")
+tx_lang_A00025 = Array("Não","No","No")
+tx_lang_A00026 = Array("todas as datas devem ser preenchidas utilizando o formato","all the dates must be filled using the format","Deben llenarse las fechas usando el formato")
+tx_lang_A00027 = Array("Pesquisar","Research","Encuestar")
+tx_lang_A00028 = Array("os seguintes filtros foram selecionados e deixados em branco","the following filters had been selected and left blank","Los siguientes filtros fueron seleccionados y dejados en blanco")
+tx_lang_A00029 = Array("Não foram encontrados registros com os seguintes filtros","Filters Not found:","No fueron encontrados registros con los seguientes filtros")
+tx_lang_A00030 = Array("Foram encontrados","They had been found","Fueron encontrados")
+tx_lang_A00031 = Array("registros","records","Registros")
+tx_lang_A00032 = Array("clique com o mouse na linha para marcar/desmarcar","click with mouse in the line to mark/to take away mark","Clic con el ratón en la línea para marcar/desmarcar")
+tx_lang_A00033 = Array("Prevista","Foreseen","Prevista")
+tx_lang_A00034 = Array("KPI","KPI","KPI")
+tx_lang_A00035 = Array("Realizada","Real","Realizada")
+tx_lang_A00036 = Array("processos atrasados","behind processes","Procesos atrasados")
+tx_lang_A00037 = Array("processos a serem realizados hoje","processes to be carried through today ","Procesos a ser realizados hoy")
+tx_lang_A00038 = Array("processos realizados com atraso","processes carried through with delay","Procesos realizados con retraso")
+tx_lang_A00039 = Array("processos realizados no prazo","processes carried through in the stated period","Procesos realizados en el plazo")
+tx_lang_A00040 = Array("Contâiners","Containers","Contenedores")
+tx_lang_A00041 = Array("Sem contâiners","Without Containers","Sin contenedores")
+tx_lang_A00042 = Array("Para visualizar os resultados","To visualize the results","Para mirar los resultados")
+tx_lang_A00043 = Array("Ver Carga Solta","See Untied Load","Mirar Carga Suelta")
+tx_lang_A00044 = Array("Sem Carga Solta","Without Untied Load","Sin Carga Suelta")
+tx_lang_A00045 = Array("Resultados da Busca","Results of the Research","Resultado de la busca")
+tx_lang_A00046 = Array("Exibindo do","Showing of","Exhibe del")
+tx_lang_A00047 = Array("ao","to","al")
+tx_lang_A00048 = Array("de","of","de")
+tx_lang_A00049 = Array("registros","records","registros")
+tx_lang_A00050 = Array("Identificação Geral","General Identification","Indentificación General")
+tx_lang_A00051 = Array("Dados Básicos","Basic Data","Datos Básicos")
+tx_lang_A00052 = Array("Valores Totais","Total Values","Valores Totales")
+tx_lang_A00053 = Array("Histórico","Follow-Up","Histórico")
+tx_lang_A00054 = Array("Observações","Comments","Observaciones")
+tx_lang_A00055 = Array("Ir para Histórico","To go for Follow-up","Ir para el Histórico")
+tx_lang_A00056 = Array("Ir para Observações","To go for Comments","Ir para las Observaciones")
+tx_lang_A00057 = Array("ver detalhes","to see details","Mirar Detalles")
+tx_lang_A00058 = Array("Documentos <br>Digitalizados","Scanned <br>Documents","Documentos <br>escaneados")
+tx_lang_A00059 = Array("Sem arquivos","No files","Sin archivos")
+tx_lang_A00060 = Array("Bom Dia","Good Morning","Buenos días")
+tx_lang_A00061 = Array("Boa Tarde","Good Afternoon","Buenas tardes")
+tx_lang_A00062 = Array("Boa Noite","Good Night","Buenas noches")
+tx_lang_A00063 = Array("Licença Importação","Import License","Licencia de Importación")
+tx_lang_A00064 = Array("Fatura Comercial","Commercial Invoice","Factura Comercial")
+tx_lang_A00065 = Array("Nota Fiscal","Fiscal Note","Factura")
+tx_lang_A00066 = Array("Faturamento","Invoicing","Facturación")
+tx_lang_A00067 = Array("Registro de <br>Exportação","Export <br>Register","Registro de <br>Exportación")
+tx_lang_A00068 = Array("Não especificado","Not specified","No especificado")
+tx_lang_A00069 = Array("Primeira Página","First Page","Primera página")
+tx_lang_A00070 = Array("Página Anterior","Previous Page","Página anterior")
+tx_lang_A00071 = Array("Próxima Página","Next Page","Próxima Página")
+tx_lang_A00072 = Array("Última Página","Last Page","Última Página")
+tx_lang_A00073 = Array("Adiantamentos","Advancings","Adelantamientos")
+tx_lang_A00074 = Array("Despesas","Expenditures","Gastos")
+tx_lang_A00075 = Array("Saldo Final","Final balance","Saldo Final")
+tx_lang_A00076 = Array("Totais","Totals","Totales")
+tx_lang_A00077 = Array("Data","Date","Fecha")
+tx_lang_A00078 = Array("Valor","Value","Valor")
+tx_lang_A00079 = Array("Processo","Process","Proceso")
+tx_lang_A00080 = Array("Situação","Status","Situación")
+tx_lang_A00081 = Array("Não foram encontradas informações para o processo","Information for the process had not been found ","No fueron encontradas informaciones para el proceso")
+tx_lang_A00082 = Array("Arquivos","Files","Archivos")
+tx_lang_A00083 = Array("Tamanho","Size","Tamaño")
+tx_lang_A00084 = Array("Criado","Create","Creado")
+tx_lang_A00085 = Array("Selecione uma das opções abaixo","It selects one of the options below","Seleccione una de las opciones abajo")
+tx_lang_A00086 = Array("Ajuda","Help","Ayuda")
+tx_lang_A00087 = Array("Financeiro","Financier","Financiero")
+tx_lang_A00088 = Array("Pago","Pay","Pago")
+tx_lang_A00089 = Array("Não foi encontrada Personalização para esta tela","Personalization for this screen was not found","No fueron encontradas personalización para esta pantalla")
+tx_lang_A00090 = Array("Indaiá Logística Internacional LTDA","Indaiá Logística Internacional LTDA","Indaiá Logística Internacional LTDA")
+tx_lang_A00091 = Array("Ver histórico do Status","To see status follow-up","Mirar historico del status")
+tx_lang_A00092 = Array("Código","Code","Código")
+tx_lang_A00093 = Array("Não foi encontrado o histórico de status do Processo.","The follow-up status of the Process was not found.","No fue encontrado el histórico de status del proceso")
+tx_lang_A00094 = Array("Custo Final","Final Cost","Costo final")
+tx_lang_A00095 = Array("Número","Number","Número")
+tx_lang_A00096 = Array("Dt. Emissão","Issued Date","Fecha de emisión")
+tx_lang_A00097 = Array("Valor (R$)","Value in BRL","Valor (R$)")
+'logon.asp
+tx_lang_B00001 = Array("Usuário em branco. Por favor informe seu nome de usuário","Blank user. Please he informs its name of user","Usuario en blanco. Por favor informe su nombre de usuario")
+tx_lang_B00002 = Array("Senha em branco. Por favor informe sua senha","Blank password. Please it informs its password","Clave en Blanco. Por favor informe su clave")
+tx_lang_B00003 = Array("Invalid user and/or password","Invalid user and/or password","Invalid user and/or password")
+tx_lang_B00004 = Array("Sua senha não foi alterada nos últimos ","Your password has not been changed in the last ","Su clave no fue modificada en los ultimos días")
+tx_lang_B00005 = Array(" dias. Para prosseguir favor alterá-la imediatamente."," days. To continue for change immediately.","Para seguir, por favor, cámbiela inmediatamente")
+tx_lang_B00006 = Array("Sua senha para o sistema local também será alterada!","Your password to the local system will also be changed!", "Su clave para el sistema local también será cambiada")
+
+'inc_utils.asp
+tx_lang_C00001 = Array("Aconteceram erros na criação da página e","Errors in the creation of page e had happened","Figuran errores en la creación de la página y")
+tx_lang_C00002 = Array("foram notificados ao suporte para devida manutenção","they had been notified to the support for which had maintenance","Fueron notificados al soporte para la debida manutención")
+tx_lang_C00003 = Array("não foi possível notificar o suporte através do e-mail","it was not possible to notify the support through the email ","No fue posible notificar el soporte a través del correo electrónico")
+tx_lang_C00004 = Array("Por favor informe o e-mail do REMETENTE","Please it informs the email of the FROM","Por favor informe el correo electrónico del REMITENTE")
+tx_lang_C00005 = Array("Por favor informe o e-mail do DESTINATÁRIO","Please it informs the email of the TO","Por favor informe el correo electrónico del DESTINATARIO")
+tx_lang_C00006 = Array("Por favor informe o ASSUNTO do e-mail","Please it informs the SUBJECT of the email","Por favor informe el asunto del correo electrónico")
+tx_lang_C00007 = Array("Por favor preencha a MENSAGEM do e-mail","Please it fills the BODY of the email","Por favor llene el mensaje del correo electrónico")
+tx_lang_C00008 = Array("Não foi possível enviar seu e-mail","It was not possible to send its email","No fue posible enviar su correo electrónico")
+tx_lang_C00009 = Array("Visitante","Visitor","Visitante")
+'lay_header.asp
+tx_lang_D00001 = Array("Retornar para página principal","To return for main page","Volver a la página principal")
+tx_lang_D00002 = Array("Download em excel","Download in excel","Descargar en Excel ")
+tx_lang_D00003 = Array("download","download","Descargar")
+tx_lang_D00004 = Array("Preparar e-mail de dúvidas/ajuda","Prepare doubt/help e-mail","Preparar correo electrónico de dudas/ayuda")
+tx_lang_D00005 = Array("email","email","correo electrónico")
+tx_lang_D00006 = Array("Preparar esta página para impressão","Prepare this page for impression","Preparar esta pagina para impresión")
+tx_lang_D00007 = Array("imprimir","print","imprimir")
+tx_lang_D00008 = Array("Administração do Sistema","System Administration","Administración del sistema")
+tx_lang_D00009 = Array("admin","admin","admin")
+tx_lang_D00010 = Array("Clique para encerrar o sistema","Click to lock up the system","Clique aquí para encerrar el sistema")
+tx_lang_D00011 = Array("Fechar","Close","Cerrar")
+'lay_menu.asp
+tx_lang_E00001 = Array("Selecione o relatório","Selects the report","Selecione el informe")
+tx_lang_E00002 = Array("para editar esta personalização de relatório","to edit this personalization of report","para editar esta personalización del informe")
+tx_lang_E00003 = Array("Novo","New","Nuevo")
+tx_lang_E00004 = Array("Ajuda","Help","Ayuda")
+tx_lang_E00005 = Array("Contato","Contact","Contacto")
+tx_lang_E00006 = Array("para abrir/fechar o menu","to open/to close the menu","Para abrir/cerrar el menú")
+tx_lang_E00007 = Array("Referência Indaiá","Indaia#","Referencia Indaiá")
+tx_lang_E00008 = Array("Pedido","Order#","Pedido")
+tx_lang_E00009 = Array("Item","Item#","Ítem")
+
+'lay_title.asp
+tx_lang_F00001 = Array("Versão","Version","Versión")
+'contato.asp
+Dim tx_lang_C001, tx_lang_C002, tx_lang_C003, tx_lang_C004, tx_lang_C005, tx_lang_C006, tx_lang_C007, tx_lang_C008, tx_lang_C009, tx_lang_C010, tx_lang_C011, tx_lang_C012
+
+tx_lang_C001 = Array("Nome","Name","Nombre")
+tx_lang_C002 = Array("Empresa","Company","Empresa")
+tx_lang_C003 = Array("Endereço","Address","Dirección")
+tx_lang_C004 = Array("Cidade","City","Ciudad")
+tx_lang_C005 = Array("Estato","State","Provincia")
+tx_lang_C006 = Array("Contatar Escritório","Contact Office","Comuníquese con la Oficina")
+tx_lang_C007 = Array("Mensagem","Message","Mensaje")
+tx_lang_C008 = Array("Telefone","Phone","Teléfono")
+tx_lang_C009 = Array("Assunto","Subject","Asunto")
+tx_lang_C010 = Array("CEP","Zip Code","Código Postal")
+tx_lang_C011 = Array("Enviar Dados","Send Data","Enviar datos")
+tx_lang_C012 = Array("Voltar","Back","Volver")
+
+'cad_view.asp e track_filtros.asp
+Dim tx_lang_CV001, tx_lang_CV002, tx_lang_CV003, tx_lang_CV004, tx_lang_CV005, tx_lang_CV006, tx_lang_CV007, tx_lang_CV008, tx_lang_CV009, tx_lang_CV010, tx_lang_CV011,tx_lang_CV012, tx_lang_CV013, tx_lang_CV014, tx_lang_CV015, tx_lang_CV016, tx_lang_CV017, tx_lang_CV018, tx_lang_CV019 
+Dim tx_lang_TF001, tx_lang_TF002, tx_lang_TF003, tx_lang_TF004, tx_lang_TF005, tx_lang_TF006, tx_lang_TF007, tx_lang_TF008 , tx_lang_TF009, tx_lang_TF010, tx_lang_TF011, tx_lang_TF012, tx_lang_TF013, tx_lang_TF014
+Dim tx_lang_TF015, tx_lang_TF016, tx_lang_TF017, tx_lang_TF018, tx_lang_TF019, tx_lang_TF020, tx_lang_TF021, tx_lang_TF022, tx_lang_TF023, tx_lang_TF024, tx_lang_TF025, tx_lang_TF026, tx_lang_TF027, tx_lang_TF028
+Dim tx_lang_TF029, tx_lang_TF030, tx_lang_TF031, tx_lang_TF032, tx_lang_TF033, tx_lang_TF034, tx_lang_TF035, tx_lang_TF036, tx_lang_TF037, tx_lang_TF038, tx_lang_TF039, tx_lang_TF040, tx_lang_TF041, tx_lang_TF042 
+Dim tx_lang_TF043, tx_lang_TF044, tx_lang_TF045, tx_lang_TF046
+
+tx_lang_CV001 = Array("Não realizado","Not done","No realizado") 
+tx_lang_CV002 = Array("Último(s)","Last","Últimos ")
+tx_lang_CV003 = Array("dia(s)","day(s)","días") 
+tx_lang_CV004 = Array("e","and","y") 
+tx_lang_CV005 = Array("ou","or","o") 
+tx_lang_CV006 = Array("Configurações de KPI","KPI Settings","Configuración de KPI") 
+tx_lang_CV007 = Array("Opções (Lead-Time)","Options (Lead-Time)","Opciones para el tiempo de entrega") 
+tx_lang_CV008 = Array("Dias úteis","Weekdays","Días de la semana") 
+tx_lang_CV009 = Array("Eventos Disponíveis","Events Available","Eventos disponibles") 
+tx_lang_CV010 = Array("Pelo menos 2 eventos devem estar selecionados.","At least 2 events should be selected.","Por lo menos 2 eventos deben estar seleccionados") 
+tx_lang_CV011 = Array("KPIs Selecionados","Selected KPIs","KPIs Seleccionados") 
+tx_lang_CV012 = Array("Nenhum KPI foi selecionado.","No KPI was selected.","Ningún KPI fue seleccionado") 
+tx_lang_CV013 = Array("Confirmar KPIs","Confirm KPIs","Confirmar KPIs") 
+tx_lang_CV014 = Array("Dias Corridos","Calendar Days","Días Naturales") 
+tx_lang_CV015 = Array("Mês Corrente","Current Month","Mes en Curso") 
+tx_lang_CV016 = Array("Mês Anterior","Last Month","Mes Pasado") 
+tx_lang_CV017 = Array("Úteis","Week","Semana") 
+tx_lang_CV018 = Array("Corridos","Calendar","Naturales") 
+tx_lang_CV019 = Array("Qualquer Período","Any Period","Cualquier Período") 
+
+
+tx_lang_TF001 = Array("Ver resumo","Summary","Mirar resumen") 
+tx_lang_TF002 = Array("Igual a","Equals to","Igual a")
+tx_lang_TF003 = Array("Contém","Contains","Contiene")
+tx_lang_TF004 = Array("Diferente de","Different of","Diferente de")
+tx_lang_TF005 = Array("Maior que","Greater than","Mayor que")
+tx_lang_TF006 = Array("Menor que","Less than","Menor que")
+tx_lang_TF007 = Array("Resumo do relatório","Report's Summary","Resumen del informe")
+tx_lang_TF008 = Array("Confirmar busca","Confirm search","Confirmar busca")
+tx_lang_TF009 = Array("SEM PREENCHIMENTO","EMPTY","SIN RELLENAMIENTO")
+tx_lang_TF010 = Array("Tipo do Relatório","Report's Type","Tipo de informe")
+tx_lang_TF011 = Array("Limitador","Limiter","Limitador")
+tx_lang_TF012 = Array("Agrupamento por","Group by","Agrupamiento por")
+tx_lang_TF013 = Array("Campos selecionados","Selected fields","Campos seleccionados")
+tx_lang_TF014 = Array("Filtros utilizados","Used filters","Filtros utilizados")
+tx_lang_TF015 = Array("Outras opções","Other options","Otras Opciones")
+tx_lang_TF016 = Array("Vazios","Empty","Vacíos")
+tx_lang_TF017 = Array("Insere campo (shift +)","Insert field (shift +)","Inserta campo (shift +)")
+tx_lang_TF018 = Array("Retira campo (shift -)","Remove field (shift -)","Remover campo (shift -)")
+
+tx_lang_TF019 = Array("Incluir todos os filtros","Include all filters","Incluir todos los filtros")
+tx_lang_TF020 = Array("Retirar todos os filtros selecionados","Remove all  selected filters","Remover todos los filtros seleccionados")
+tx_lang_TF021 = Array("Incluir todos os campos","Include all fields","Incluir todos los campos")
+tx_lang_TF022 = Array("Não podem ser selecionados mais do que 75 campos","Can't be selected more than 75 fields","No pueden ser seleccionados mas que 75 campos")
+tx_lang_TF023 = Array("Retirar todos os campos selecionados","Remove all selected fields","Retirar todos los campos seleccionados")
+tx_lang_TF024 = Array("Mover campo para cima","Move field up","Mover campo para arriba")
+tx_lang_TF025 = Array("Mover campo para baixo","Move field down","Mover campo para abajo")
+tx_lang_TF026 = Array("Seu relatório será limitado pelo evento","Your report will be limited by the event","Su informe sera limitado por el evento")
+tx_lang_TF027 = Array("processos com esse evento realizado entre","processes with this event accomplished between","Proceso con este evento realizado entre")
+tx_lang_TF028 = Array("processos com esse evento realizado em","processes with this event accomplished on","Proceso con este evento realizado en")
+tx_lang_TF029 = Array("processos com esse evento não realizado","processes with this event not done","Procesos con este evento no relizado")
+
+
+tx_lang_TF030 = Array("Seu relatório não apresenta agrupamento","Your report doesn't grouping","Su informe no presenta agrupamiento")	
+tx_lang_TF031 = Array("Seu relatório não apresenta limitador","Your report doesn't limiter","Su informe no apresenta limitador")
+
+tx_lang_TF032 = Array("Seu relatório não irá exibir o KPI e as datas previstas","Your report won't display the KPI and the expected dates","Su informe no mostrará el KPI y las fechas previstas")
+tx_lang_TF033 = Array("Seu relatório irá exibir o KPI e as datas previstas","Your report will display the KPI and the expected dates","Su informe mostrará el KPI y las fechas previstas")
+tx_lang_TF034 = Array("Seu relatório não permite o download em Excel","Your report doesn't allow download to Excel","Su informe no permite descargar en Excel")
+tx_lang_TF035 = Array("Seu relatório permite o download em Excel","Your report allow download to Excel","Su informe permite descargar en Excel")
+tx_lang_TF036 = Array("Seu relatório não permite a impressão","Your report doesn't allow print","Su informe no permite la impresión")
+tx_lang_TF037 = Array("Seu relatório permite a impressão","Your report allow print","Su informe permite la impresión")
+tx_lang_TF038 = Array("Seu relatório não permite a visualização dos documentos digitalizados","Your report doesn't allow viewing of scanned documents","Su informe no permite la visualización de los documentos escaneados")
+tx_lang_TF039 = Array("Seu relatório permite a visualização dos documentos digitalizados","Your report allow viewing of scanned documents","Su informe permite la visualización de los documentos escaneados")
+tx_lang_TF040 = Array("Desejo ver sempre o resumo da pesquisa","Always want to see the summary of the research","Deseo mirar siempre el resumen de la pesquisa")
+tx_lang_TF041 = Array("Ordenação","Order by","Organización")
+tx_lang_TF042 = Array("Seu relatório não apresenta ordenação","Your report doesn't sort","Su informe no apresenta organización")
+tx_lang_TF043 = Array("Última pesquisa","Last search","Última pesquisa")
+tx_lang_TF044 = Array("Compartilhar","Share","Parte")
+tx_lang_TF045 = Array("O usuário escolhido terá em sua conta um relatório configurado exatamente como este.","The user has chosen in his report an account set up exactly like this.","El beneficiario elegido tendrá en su seña un informe conformado exactamente como este.")
+tx_lang_TF046 = Array("Não podem ser selecionados mais do que ","Cant be selected more than ","No pueden ser seleccionados mas que ")
+
+
+'DESPACHO
+Dim tx_lang_TDE001, tx_lang_TDE002, tx_lang_TDE003, tx_lang_TDE004, tx_lang_TDE005, tx_lang_TDE006, tx_lang_TDE007, tx_lang_TDE008, tx_lang_TDE009, tx_lang_TDE010, tx_lang_TDE011, tx_lang_TDE012, tx_lang_TDE013, tx_lang_TDE014, tx_lang_TDE015, tx_lang_TDE016, tx_lang_TDE017, tx_lang_TDE018, tx_lang_TDE019, tx_lang_TDE020, tx_lang_TDE021, tx_lang_TDE022, tx_lang_TDE023, tx_lang_TDE024, tx_lang_TDE025, tx_lang_TDE026, tx_lang_TDE027,tx_lang_TDE028, tx_lang_TDE029
+Dim tx_lang_TDE030, tx_lang_TDE031, tx_lang_TDE032, tx_lang_TDE033, tx_lang_TDE034, tx_lang_TDE035, tx_lang_TDE036, tx_lang_TDE037, tx_lang_TDE038, tx_lang_TDE039
+Dim tx_lang_TDE040, tx_lang_TDE041, tx_lang_TDE042, tx_lang_TDE043, tx_lang_TDE044, tx_lang_TDE045, tx_lang_TDE046, tx_lang_TDE047, tx_lang_TDE048, tx_lang_TDE049 
+Dim tx_lang_TDE050, tx_lang_TDE051, tx_lang_TDE052, tx_lang_TDE053, tx_lang_TDE054, tx_lang_TDE055, tx_lang_TDE056, tx_lang_TDE057, tx_lang_TDE058, tx_lang_TDE059 
+Dim tx_lang_TDE060, tx_lang_TDE061, tx_lang_TDE062, tx_lang_TDE063, tx_lang_TDE064, tx_lang_TDE065, tx_lang_TDE066, tx_lang_TDE067, tx_lang_TDE068, tx_lang_TDE069
+Dim tx_lang_TDE070, tx_lang_TDE071, tx_lang_TDE072, tx_lang_TDE073, tx_lang_TDE074, tx_lang_TDE075, tx_lang_TDE076, tx_lang_TDE077, tx_lang_TDE078, tx_lang_TDE079
+Dim tx_lang_TDE080, tx_lang_TDE081, tx_lang_TDE082, tx_lang_TDE083, tx_lang_TDE084, tx_lang_TDE085, tx_lang_TDE086, tx_lang_TDE087, tx_lang_TDE088, tx_lang_TDE089
+Dim tx_lang_TDE090, tx_lang_TDE091, tx_lang_TDE092, tx_lang_TDE093, tx_lang_TDE094, tx_lang_TDE095, tx_lang_TDE096, tx_lang_TDE097, tx_lang_TDE098, tx_lang_TDE099
+Dim tx_lang_TDE100, tx_lang_TDE101, tx_lang_TDE102, tx_lang_TDE103, tx_lang_TDE104, tx_lang_TDE105, tx_lang_TDE106, tx_lang_TDE107, tx_lang_TDE108, tx_lang_TDE109 
+Dim tx_lang_TDE110, tx_lang_TDE111, tx_lang_TDE112, tx_lang_TDE113, tx_lang_TDE114
+
+tx_lang_TDE001 = Array("Valor Recuperado","Recovered Value","Valor recuperado")
+tx_lang_TDE002 = Array("Multa proporcional","Proportional fine","Multa proporcional")
+tx_lang_TDE003 = Array("Valores recuperados","Recovered values","Valores recuperados")
+tx_lang_TDE004 = Array("Valores não recuperados","Not recovered values","Valores no recuperados")
+tx_lang_TDE005 = Array("Informações Complementares","Additional information","Informaciones adicionales")
+tx_lang_TDE006 = Array("Recuperado","Recovered","Recuperado")
+tx_lang_TDE007 = Array("Adição","Addition","Adición")
+tx_lang_TDE008 = Array("Tipo do pedido","Order's type","Tipo del pedido")
+tx_lang_TDE009 = Array("Condições","Conditions","Condiciones")
+tx_lang_TDE010 = Array("dias do","days of","Días del")
+tx_lang_TDE011 = Array("Data de envio do Documentos","Date of dispach os documents","Fecha de envío de los documentos")
+tx_lang_TDE012 = Array("(formato: DD/MM/AAAA)","(format: DD/MM/YYYY)","(formato: DD/MM/AAAA)")
+tx_lang_TDE013 = Array("Valor","Value","Valor")
+tx_lang_TDE014 = Array("Mercadorias","Goods","Mercaderías")
+tx_lang_TDE015 = Array("Mercadoria","Good","Mercadería")
+tx_lang_TDE016 = Array("Unidade Atual","Current Unit","Unidad actual")
+tx_lang_TDE017 = Array("Unidade Externa SGA (Excel)","SGA External Unit (Excel)","Unidad Externa SGA (Excel)")
+tx_lang_TDE018 = Array("Nova Unidade","New Unit","Nueva Unidad")
+tx_lang_TDE019 = Array("Ítem","Item","Ítem")
+tx_lang_TDE020 = Array("Data","Date","Fecha")
+tx_lang_TDE021 = Array("Inseridos na web","Embedded in the web","Insertado en la Web")
+tx_lang_TDE022 = Array("Embalagem","Package","Embalaje")
+tx_lang_TDE023 = Array("Limpar","Clear","Limpiar")
+tx_lang_TDE024 = Array("Exibir Instrução","View Instruction","Mostrar Instrucción")
+tx_lang_TDE025 = Array("Antecipado","Advance","Adelantado")
+tx_lang_TDE026 = Array("Sem cobertura cambial","Not insurance exchange","Sin cobertura cambial")
+tx_lang_TDE027 = Array("PAGAMENTO ANTECIPADO","Advance Pain","PAGO ADELANTADO")
+
+
+tx_lang_TDE028 = Array("REFERÊNCIA","REFERENCE","REFERENCIA")
+tx_lang_TDE029 = Array("DATA","DATE","FECHA")
+tx_lang_TDE030 = Array("FORNECEDOR","SUPPLIER","PROVEEDOR")
+tx_lang_TDE031 = Array("Documentos","Documents","Documentos")
+tx_lang_TDE032 = Array("Original","Original","Original")
+tx_lang_TDE033 = Array("Cópia","Copy","Copia")
+tx_lang_TDE034 = Array("INFO GERAL PARA DI","GENERAL INFO FOR ID","INFORMACIÓN GENERAL PARA DI")	
+tx_lang_TDE035 = Array("NOTAS","NOTES","NOTAS")
+tx_lang_TDE036 = Array("TRANSPORTE","TRANSPORTATION","TRANSPORTE")
+tx_lang_TDE037 = Array("B/L ou AWB","B/L or AWB","B/L o AWB")
+tx_lang_TDE038 = Array("CÂMBIO","EXCHANGE","CAMBIO")
+tx_lang_TDE039 = Array("CONDIÇÕES","CONDITIONS","CONDICIONES")
+tx_lang_TDE040 = Array("VENCTO","MATURITY DATE","VENCIMIENTO")
+tx_lang_TDE041 = Array("DIAS(corridos)","DAYS (calendar)","Días")
+tx_lang_TDE042 = Array("PORTO DE SAÍDA","EXIT PORT","PUERTO DE SALIDA")
+tx_lang_TDE043 = Array("TOTAL DA FATURA (sem desconto)","INVOICE TOTAL (no discount)","TOTAL DE LA FACTURA (SIN DESCUENTO)")
+tx_lang_TDE044 = Array("VALOR TOTAL DA FATURA","INVOICE TOTAL","VALOR TOTAL DE LA FACTURA")
+tx_lang_TDE045 = Array("CÁLCULO CUSTO","CALCULATION COST","CÁLCULO COSTO")
+tx_lang_TDE046 = Array("DATA SAÍDA","EXIT DATE","FECHA DE SALIDA")
+tx_lang_TDE047 = Array("PORTO CHEGADA","ARRIVAL PORT","PUERTO LLEGADA")
+tx_lang_TDE048 = Array("VALOR DA INVOICE EM R$","INVOICE VALUE (R$)","VALOR DE LA FACTURA EN (R$)")
+tx_lang_TDE049 = Array("CONTABILIZAÇÃO","ACCOUNTING","CONTABILIZACIÓN")
+tx_lang_TDE050 = Array("DESPESAS","EXPENSES","GASTOS")
+tx_lang_TDE051 = Array("FABRICANTE","MANUFACTURER","FABRICANTE")
+tx_lang_TDE052 = Array("EXPORTADOR","EXPORTER","EXPORTADOR")
+tx_lang_TDE053 = Array("IPI SOBRE IMPORTAÇÃO","IPI ON IMPORT","IPI SOBRE LA IMPORTACIÓN")
+tx_lang_TDE054 = Array("I.C.M.S., COFINS E I.P.I.","I.C.M.S., COFINS AND I.P.I.","I.C.M.S., COFINS E I.P.I.")
+tx_lang_TDE055 = Array("RECUPERADO","RECOVERED","RECUPERADO")
+tx_lang_TDE056 = Array("SEGURO","INSURANCE","SEGURO")
+tx_lang_TDE057 = Array("TIPO IMPORTAÇÃO","IMPORT TYPE","TIPO IMPORTACIÓN")
+tx_lang_TDE058 = Array("Transporte Nacional","National Transportation","Transporte Nacional")
+tx_lang_TDE059 = Array("Tranporte Internacional","International Transportation","Tranporte Internacional")
+tx_lang_TDE060 = Array("MATERIAL","MATERIAL","MATERIAL")
+tx_lang_TDE061 = Array("CUSTO TOTAL DA IMPORTAÇÃO","IMPORT TOTAL COST","COSTO TOTAL DE LA IMPORTACIÓN")
+tx_lang_TDE062 = Array("INFO GERAL CUSTO","GENERAL COST INFO","INFORMACIÓN GENERAL DEL COSTO")
+tx_lang_TDE063 = Array("NOTA(S) FISCAL NR.","FISCAL NOTE #","FACTURA (S) NR.")
+tx_lang_TDE064 = Array("VALOR DA N.FISCAL","FISCAL NOTE VALUE","VALOR DE LA FACTURA")
+tx_lang_TDE065 = Array("DATA CUSTO","COST DATE","FECHA COSTO")
+tx_lang_TDE066 = Array("NF COMPLEMENTAR","FN COMPLEMENTARY","FACTURA COMPLEMENTARIO")
+tx_lang_TDE067 = Array("Imposto Importação","Import Tribute","IMPUESTO IMPORTACIÓN")
+tx_lang_TDE068 = Array("TOTAL DA MERCADORIA","GOOD'S TOTAL","TOTAL DE LA MERCADERÍA")
+tx_lang_TDE069 = Array("D.I.","I.D.","D.I.")
+tx_lang_TDE070 = Array("TOTAL DO IPI","IPI TOTAL","VALOR TOTAL DEL IPI") 	
+tx_lang_TDE071 = Array("TAXA US$","RATE US$","TASA US$")
+tx_lang_TDE072 = Array("IPI RECUPERÁVEL? (S/N)","IPI RECOVERED? (Y/N)","IPI RECUPERABLE? (S/N)")
+tx_lang_TDE073 = Array("PLANTA","PLAN","PLANTA")
+tx_lang_TDE074 = Array("TOTAL DA NOTA FISCAL","FISCAL NOTE TOTAL","TOTAL DE LA FACTURA")
+tx_lang_TDE075 = Array("TOTAL DA FATURA","INVOICE TOTAL","TOTAL DE LA FACTURA")
+tx_lang_TDE076 = Array("DATA CHEGADA","ARRIVAL DATE","FECHA DE LLEGADA")
+tx_lang_TDE077 = Array("Armazenagem","Storage","Almacenaje")
+tx_lang_TDE078 = Array("Exibição da Prova Real","View Real Test","Exibición de la Prueba Real")
+tx_lang_TDE079 = Array("Download de Planilhas por fornecedores","Download worksheet by suppliers","Bajar las planillas por proveedor")
+tx_lang_TDE080 = Array("Impressão da tela abaixo","Print the screen below","Impresión de la pantalla abajo")
+tx_lang_TDE081 = Array("Download da planilha para integração de custos da importação","Download the worksheet for integration import costs","Bajar la planilla de los costos de importación")
+tx_lang_TDE082 = Array("Faturamento","Billing","Facturación")
+tx_lang_TDE083 = Array("Nr. Invoice","Invoice #","Número de Factura")
+tx_lang_TDE084 = Array("Data da DI","DI Date","Fecha de la D.I.")
+tx_lang_TDE085 = Array("Taxa Câmbio da DI","DI Tax of Exchange","Tasa de cambio de la DI")
+tx_lang_TDE086 = Array("Despesas/Impostos","Expenditures/Tributes","Gastos/Impuestos")
+tx_lang_TDE087 = Array("VALOR DA MERCADORIA (R$)","GOOD VALUE (R$)","VALOR DE LA MERCADERÍA (R$)")
+tx_lang_TDE088 = Array("FRETE INTERNACIONAL (R$)","INTERNATIONAL FREIGHT (R$)","FLETE INTERNACIONAL (R$)")
+tx_lang_TDE089 = Array("ACRoCIMOS (R$)","ADDITIONS (R$)","EXTRAS (R$)")
+tx_lang_TDE090 = Array("CIF","CIF","CIF")
+tx_lang_TDE091 = Array("VALOR DOS PRODUTOS","PRODUCTS VALUES","VALOR DE LOS PRODUCTOS")
+tx_lang_TDE092 = Array("VALOR DA NOTA FISCAL ENTRADA","ENTRANCE FISCAL NOTE VALUE","VALOR DE LA FACTURA DE ENTRADA")
+tx_lang_TDE093 = Array("TOTAL COM TODOS OS IMPOSTOS","TOTAL WITH ALL TRIBUTES","TOTAL CON TODOS LOS IMPUESTOS")
+tx_lang_TDE094 = Array("TOTAL","TOTAL","TOTAL")
+tx_lang_TDE095 = Array("COM TODOS OS IMPOSTOS","WITH ALL TRIBUTES","CON TODOS LOS IMPUESTOS")
+tx_lang_TDE096 = Array("SEM TODOS OS IMPOSTOS","WITHOUT ALL TRIBUTES","SIN TODOS LOS IMPUESTOS")
+tx_lang_TDE097 = Array("Não há rateio para este processo.","There isn't apportionment for this reference.","No existe prorrateo para este proceso")
+tx_lang_TDE098 = Array("Não há mercadorias para este processo.","There isn't goods for this reference.","No existe mercaderías para este proceso")
+tx_lang_TDE099 = Array("Rateio","Apportionment","Prorrateo")
+tx_lang_TDE100 = Array("Gerar planilha em Excel","Generate Excel spreadsheet","Generar una planilla em Excel")
+tx_lang_TDE101 = Array("Solicitação","Request","Solicitación")
+tx_lang_TDE102 = Array("Solicitante","Solicitant","Solicitante")
+tx_lang_TDE103 = Array("Data","Date","Fecha")
+tx_lang_TDE104 = Array("Sua solicitação será resolvida em até","Your request will be resolved in up to","Su solicitud será atendida en hasta")
+tx_lang_TDE105 = Array("horas","hours","horas")
+tx_lang_TDE106 = Array("Confirmar Solicitação","Confirm Request","Confirmar Solicitación")
+tx_lang_TDE107 = Array("Solicitar algo diferente","Request something different","Solicitar algo diferente")
+tx_lang_TDE108 = Array("Áreas","Areas","Áreas")
+tx_lang_TDE109 = Array("Importação","Import","Importación")
+tx_lang_TDE110 = Array("Exportação","Export","Exportación")
+tx_lang_TDE111 = Array("Financeiro","Financier","Financiero")
+tx_lang_TDE112 = Array("Solicitar novo usuário","Request new user","Solicitar nuevo usuário")
+tx_lang_TDE113 = Array("Solicitar nova área","Request new area","Solicitar nueva área")
+tx_lang_TDE114 = Array("Solicitar novo menu","Request new menu","Solicitar nuevo menú")
+
+
+'Página inicial - default.asp(001)
+Dim tx_lang_001001, tx_lang_001002, tx_lang_001003, tx_lang_001004, tx_lang_001005, tx_lang_001006 
+Dim tx_lang_001007, tx_lang_001008, tx_lang_001009, tx_lang_001010, tx_lang_001011, tx_lang_001012
+Dim tx_lang_001013, tx_lang_001014, tx_lang_001015, tx_lang_001016, tx_lang_001017, tx_lang_001018
+Dim tx_lang_001019, tx_lang_001020, tx_lang_001021, tx_lang_001022, tx_lang_001023, tx_lang_001024
+Dim tx_lang_001025, tx_lang_001026, tx_lang_001027, tx_lang_001028, tx_lang_001029, tx_lang_001030
+Dim tx_lang_001031, tx_lang_001032, tx_lang_001033, tx_lang_001034, tx_lang_001035, tx_lang_001036
+Dim tx_lang_001037, tx_lang_001038, tx_lang_001039, tx_lang_001040, tx_lang_001041, tx_lang_001042
+Dim tx_lang_001043, tx_lang_001044, tx_lang_001045, tx_lang_001046, tx_lang_001047, tx_lang_001048
+Dim tx_lang_001049, tx_lang_001050, tx_lang_001051, tx_lang_001052, tx_lang_001053, tx_lang_001054
+Dim tx_lang_001055, tx_lang_001056, tx_lang_001057, tx_lang_001058, tx_lang_001059, tx_lang_001060
+
+tx_lang_001001 = Array("Principal","Main","Principal")
+tx_lang_001002 = Array("Sair","Logout","Desconectarse")
+tx_lang_001003 = Array("bem vindo(a) ao MyIndaiáWeb","welcome to the MyIndaiá Web","bienvenido(a) a el MyIndaiá Web")
+tx_lang_001004 = Array("Você e mais ","You and ","Usted y ")
+tx_lang_001005 = Array(" pessoa(s) da sua empresa estão utilizando o sistema nesse momento."," person(people) of your company are using the system at this time."," persona(s) de su empresa están utilizando el sistema en este momento.")
+
+'info
+tx_lang_001006 = Array("Meus Favoritos", "My Favorites", "Mis Favoritos")
+tx_lang_001007 = Array("Acesse seus relatórios mais utilizados","Access your most used reports","Acceda a sus informes más utilizados")
+tx_lang_001008 = Array("com um único clique, diretamente da","with a single click, directly from","con un solo clic, directamente desde la")
+tx_lang_001009 = Array("página principal do nosso sistema.","the main page of our system.","página principal de nuestro sistema.")
+tx_lang_001010 = Array("ATENÇÃO: Você ainda não possui <br />relatórios marcados como <b>padrão</b>.","ATTENTION: You do not have <br />reports marked <b>standard</b>.","ADVERTENCIA: Usted no tiene <br />informes marcados <b>estándar</b>.")
+tx_lang_001011 = Array("Meu Último Acesso","My Last Access","Mi Última Entrada")
+tx_lang_001012 = Array("Seu último acesso foi feito no dia ","His last login was made on ","Su última entrada se realizó el ")
+tx_lang_001013 = Array(" as "," at "," a las ")
+tx_lang_001014 = Array(" horas. "," hours. "," horas. ")
+tx_lang_001015 = Array("Minhas Previsões de Chegada","My Estimated Arrival","Mi Estimada de Llegada")
+tx_lang_001016 = Array("Minhas Previsões de Embarque","My Estimated Boarding","Mi Estimado de Embarques")
+tx_lang_001017 = Array("Minha Empresa em ","My Company in ","Mi Empresa en ")
+tx_lang_001018 = Array("Minha Equipe em ","My Team in ","Mi Equipo en ")
+tx_lang_001019 = Array("Altere a resolução do seu computador para no mínimo <b>1024x768</b> e visualize nosso <b>Painel de Controle</b>.","Change the resolution of your computer to at least <b>1024x768</b> and view our <b>Dashboard</ b>.","Cambiar la resolución de su computadora a por lo menos <b>1024x768</b> y ver nuestro <b>Panel de Control</ b>.")
+tx_lang_001020 = Array("Mostre para todos na sua empresa os benefícios de se utilizar o myIndaiáWeb.","Show it to everyone in your company the benefits of using myIndaiáWeb.","Mostrar a todo el mundo en su empresa los beneficios de usar myIndaiáWeb.")
+tx_lang_001021 = Array("Faça dele sua página inicial e nos traga sugestões de novas ferramentas e melhorias para o sistema.","Make it your home page and bring us new tools and suggestions for improvements to the system.","Haz que tu página de inicio y nos lleve a nuevas herramientas y sugerencias para mejoras en el sistema.")
+tx_lang_001022 = Array("Com o myIndaiáWeb você tem todas as informações disponibilizadas em tempo real, trazendo segurança, transparência e comodidade na hora de gerar os dados que você mais precisa, no formato que você deseja, com apenas alguns cliques.","With myIndaiáWeb you have all the information available in real time, bringing security, transparency and convenience at the time of generating the data you need most, in the format you want with just a few clicks.","Con myIndaiáWeb usted tiene toda la información disponible en tiempo real, con lo que la seguridad, la transparencia y la comodidad a la hora de generar los datos que necesita la mayoría, en el formato que quieras con sólo unos clics.")
+tx_lang_001023 = Array("Você já tem um relatório que poderia ser muito útil para todos da sua equipe? Copie para eles e seja o responsável por melhorar o processo e o rendimento de todos.","You already have a report that could be very useful for all of your team? Copy for them and be responsible for improving the process and yield of all.","Usted ya tiene un informe que podría ser muy útil para todos los de tu equipo? Copia para ellos y será responsable de mejorar el proceso y el rendimiento de todos.")
+tx_lang_001024 = Array("Seus ", "Its ", "Sus ")
+tx_lang_001025 = Array("últimos relatórios gerados foram os sequintes:","last reports were generated:","últimos informes se generaron:")
+tx_lang_001026 = Array("Seu último relatório gerado foi o sequinte:","His last report was generated:","Su último informe se ha generado:")
+tx_lang_001027 = Array("Existem ","There are ","Hay ")
+tx_lang_001028 = Array(" processos em navios."," processes in ships"," procesos en los buques.")
+tx_lang_001029 = Array("Último embarque","Last Boarding","Último Embarque")
+tx_lang_001030 = Array("Próximo embarque","Next Boarding","Próximo Embarque")
+tx_lang_001031 = Array("Última atracação","Last Berthing","Última Atraque")
+tx_lang_001032 = Array("Próxima esperada","Next Expected","Siguiente espera")
+tx_lang_001033 = Array("Nenhum Navio encontrado","No vessel found","Ningún buque encontró")
+tx_lang_001034 = Array("Mais de um Navio","Over a vessel","Más de un buque")
+tx_lang_001035 = Array("Importações","Imports","Importaciones")
+tx_lang_001036 = Array("Exportações","Exports","Exportaciones")
+tx_lang_001037 = Array("Quantidade Movimentada","Quantity Shipped","Cantidad de Envío")
+tx_lang_001038 = Array("Toneladas","Tons","Toneladas")
+tx_lang_001039 = Array("Por Fábrica","For Factory","Por la Fábrica")
+tx_lang_001040 = Array("Utilizado","Used","Utilizado")
+tx_lang_001041 = Array("Solicitar","Request","Solicitar")
+tx_lang_001042 = Array("Controle de Acesso","Access Control","Control de Acceso")
+
+'Alerta
+tx_lang_001043 = Array("Filtrar por","Filter by","Filtrar por")
+tx_lang_001044 = Array("*   duplo-clique para incluir o campo","*   Double-click to include the field","*   Haga doble clic en el campo para incluir")
+tx_lang_001045 = Array("*   duplo-clique para retirar o campo","*   Double-click to remove the field","*   Haga doble clic para eliminar el campo")
+tx_lang_001046 = Array("Programação","Schedule","Programación")
+
+tx_lang_001047 = Array("Diariamente","Daily","Diario")
+tx_lang_001048 = Array("Segunda","Monday","Lunes")
+tx_lang_001049 = Array("Terça","Tuesday","Martes")
+tx_lang_001050 = Array("Quarta","Wednesday","Miércoles")
+tx_lang_001051 = Array("Quinta","Thurday","Jueves")
+tx_lang_001052 = Array("Sexta","Friday","Viernes")
+tx_lang_001053 = Array("Sábado","Saturday","Sábado")
+tx_lang_001054 = Array("Domingo","Sunday","Domingo")
+
+tx_lang_001055 = Array("Horário(s) para envio","Time(s) to send","Tiempo(s) para enviar")
+tx_lang_001056 = Array("Ocorrer","Occurs","Ocurrir")
+tx_lang_001057 = Array("Dia(s) Específico(s)","Specific Day(s)","Día(s) Específico(s)")
+tx_lang_001058 = Array("ATENÇÃO: Limite máximo de 3 KPIs!","ATTENTION: Maximum of 3 KPIs!","ATENCIÓN: ¡Máximo de 3 KPIs!")
+tx_lang_001059 = Array("Sem informações","No Information","No Hay Información")
+tx_lang_001060 = Array("Central de Avisos","Notices Central","Central de Avisos")
+
+'Autenticação de usuário - autentica.asp(002)
+Dim tx_lang_002001, tx_lang_002002, tx_lang_002003, tx_lang_002004, tx_lang_002005, tx_lang_002006
+Dim tx_lang_002007, tx_lang_002008, tx_lang_002009, tx_lang_002010, tx_lang_002011, tx_lang_002012
+Dim tx_lang_002013, tx_lang_002014, tx_lang_002015, tx_lang_002016, tx_lang_002017, tx_lang_002018, tx_lang_002019, tx_lang_002020, tx_lang_002021, tx_lang_002022, tx_lang_002023, tx_lang_002024  
+
+tx_lang_002001 = Array("Bem-Vindo(a) ao MyIndaia Web","Welcome to the MyIndaiá Web","Bienvenido(a) a el MyIndaiá Web")
+tx_lang_002002 = Array("Você ainda não está logado no","You are not signed yet to","Usted aún no está conectado en")
+tx_lang_002003 = Array("Digite seu usuário de identificação e senha","Please type user and password","Escriba su usuario de indentificación y clave")
+tx_lang_002004 = Array("Controle de Acesso","Access Control","Control de Acceso")
+tx_lang_002005 = Array("Usuário","User","Usuario")
+tx_lang_002006 = Array("Senha","Password","Clave")
+tx_lang_002007 = Array("Nova Senha","New Password","Nueva Clave")
+tx_lang_002008 = Array("Confirmação","Confirmation","Confirmación")
+tx_lang_002009 = Array("Entrar","Sign In","Iniciar Sesión")
+tx_lang_002018 = Array("Alterar","Change","Cambiar")
+tx_lang_002019 = Array("O tamanho máximo permitido para a senha é de 15 caracteres","The maximum size allowed for the password is 15 characters","El tamaño maximo permitido para la clave es de 15 caracteres")
+tx_lang_002020 = Array("Escolha a consulta desejada >>","Choose the desired consultation >>","Elegir la consulta deseada >>")
+tx_lang_002024 = Array("Para alterar sua senha, clique", "To change your password, click", "Para cambiar su clave, haga clic aquí")
+tx_lang_002021 = Array("aqui", "here", "aquí")
+tx_lang_002022 = Array("Digite sua nova senha e confirme abaixo", "Enter your new password and confirm", "Escriba su nueva clave y confirme")
+tx_lang_002023 = Array("Primeiramente, preencha os campos obrigatórios", "First, fill in the required fields", "Primero, llenar los campos obligatorios")
+
+tx_lang_002010 = Array("Para acessar o","To have access the","Para acceder al")
+tx_lang_002011 = Array("Digite seu nome de usuário","It type name of user","Escriba su nombre de usuario")
+tx_lang_002012 = Array("Digite sua senha atual","It type current password","Escriba su clave actual")
+tx_lang_002013 = Array("Digite a nova senha","It types the new password","Escriba la nueva clave")
+tx_lang_002014 = Array("Digite a confirmação da nova senha","It types the confirmation of the new password","Escriba la confirmación de la nueva clave")
+tx_lang_002015 = Array("Confirmação da senha é diferente da nova senha digitada","Confirmation of the password is different of the new typed password","Confirmación de clave es diferente de la nueva clave digitada")
+tx_lang_002016 = Array("Autenticação de usuário","Authentication of user","Autenticación de usuario")
+tx_lang_002017 = Array("Nova senha é igual a senha atual","New password is equal to the actual password","Nueva clave es igual a la clave actual")
+'Servidor em manutenção - manutencao.asp(003)
+Dim tx_lang_003001, tx_lang_003002, tx_lang_003003
+
+tx_lang_003001 = Array("Servidor de Dados em Manutenção","Data Server in Maintenance","Servidor de Datos en Mantenimiento")
+tx_lang_003002 = Array("Desculpem-nos, nossos servidores encontram-se em manutenção","Forgive-in, our servers meet in maintenance","Discúlpenos, nuestros servidores están en Mantenimiento")
+tx_lang_003003 = Array("Estamos trabalhando para reestabelecer o serviço","We are working to establish the service","Estamos trabajando para restablecer el servicio")
+
+'***** PERSONALIZAÇÂO *****
+Dim tx_lang_004001, tx_lang_004002, tx_lang_004003, tx_lang_004004, tx_lang_004005, tx_lang_004006
+Dim tx_lang_004007, tx_lang_004008, tx_lang_004009, tx_lang_004010, tx_lang_004011, tx_lang_004012
+Dim tx_lang_004013, tx_lang_004014, tx_lang_004015, tx_lang_004016, tx_lang_004017, tx_lang_004018
+Dim tx_lang_004019, tx_lang_004020, tx_lang_004021, tx_lang_004022, tx_lang_004023, tx_lang_004024
+Dim tx_lang_004025, tx_lang_004026, tx_lang_004027, tx_lang_004028, tx_lang_004029, tx_lang_004030
+Dim tx_lang_004031, tx_lang_004032, tx_lang_004033, tx_lang_004034, tx_lang_004035, tx_lang_004036
+Dim tx_lang_004037, tx_lang_004038, tx_lang_004039, tx_lang_004040, tx_lang_004041, tx_lang_004042
+Dim tx_lang_004043, tx_lang_004044, tx_lang_004045, tx_lang_004046, tx_lang_004047, tx_lang_004048
+Dim tx_lang_004049, tx_lang_004050, tx_lang_004051, tx_lang_004052, tx_lang_004053, tx_lang_004054
+Dim tx_lang_004055, tx_lang_004056, tx_lang_004057, tx_lang_004058, tx_lang_004059, tx_lang_004060
+Dim tx_lang_004061, tx_lang_004062, tx_lang_004063, tx_lang_004064, tx_lang_004065, tx_lang_004066
+Dim tx_lang_005001, tx_lang_005002, tx_lang_005003, tx_lang_005004, tx_lang_005005, tx_lang_005006
+Dim tx_lang_005007, tx_lang_004074, tx_lang_004075, tx_lang_004076, tx_lang_004077, tx_lang_004078, tx_lang_004079
+'Flavio Sistema de Exportação
+Dim tx_lang_004067, tx_lang_004068, tx_lang_004069, tx_lang_004070, tx_lang_004071, tx_lang_004072, tx_lang_004073, tx_lang_004080, tx_lang_004081
+Dim tx_lang_004082, tx_lang_004083, tx_lang_004084, tx_lang_004085, tx_lang_004086, tx_lang_004087, tx_lang_004088, tx_lang_004089, tx_lang_004090
+Dim tx_lang_004091, tx_lang_004092, tx_lang_004093, tx_lang_004094, tx_lang_004095, tx_lang_004096
+
+'Cadastro de personalização - cad_view.asp(004)
+tx_lang_004001 = Array("Personalização","Personalization","Personalización")
+tx_lang_004002 = Array("Nova","New","Nueva")
+tx_lang_004003 = Array("Incluir","Include","Incluir")
+tx_lang_004004 = Array("Editar","Edit","Editar")
+tx_lang_004005 = Array("Excluir","Delete","Eliminar")
+tx_lang_004006 = Array("Não foi informado o MENU","The MENU was not informed ","No fue informado el MENÚ")
+tx_lang_004007 = Array("Não foi informado o SUB-MENU","The SUB-MENU was not informed","No fue informado el SUB MENÚ")
+tx_lang_004008 = Array("Não foi informado o USUÁRIO","The USER was not informed","No fue informado el USUARIO")
+tx_lang_004009 = Array("O CÓDIGO da personalização de relatório não foi criado","The CODE of the report personalization was not created","No se creó NINGÚN CÓDIGO de personalización del informe")
+tx_lang_004010 = Array("Não foi informado o DESCRIÇÃO do relatório personalizado","The DESCRIPTION of the personalized report was not informed","No fue informada la descripción del informe personalizado")
+tx_lang_004011 = Array("Não foi selecionado nenhum FILTRO","No FILTER was not selected","No fue seleccionado ningún FILTRO")
+tx_lang_004012 = Array("Não foi selecionado nenhum CAMPO","No FIELD was not selected","No fue seleccionado ningún CAMPO")
+tx_lang_004013 = Array("Dados informados incorretamente","Informed data incorrectly ","Datos informados incorrectamente")
+tx_lang_004014 = Array("Personalização de relatório incluída com sucesso","Enclosed personalization of report successfully","Personalización de informe incluida con suceso")
+tx_lang_004015 = Array("Não foi possível incluir a personalização","It was not possible to include the personalization","No fue posible incluir la personalización")
+tx_lang_004016 = Array("Registro não encontrado, por favor verifique os dados informados","Register not found, please verifies the informed data","Registro no encontrado, por favor verifique los datos informados")
+tx_lang_004017 = Array("Personalização de relatório alterada com sucesso","Successfully modified personalization of report","Personalización de informe cambiada con suceso")
+tx_lang_004018 = Array("Não foi possível alterar a personalização","It was not possible to modify the personalization ","No fue posible cambiar la personalización")
+tx_lang_004019 = Array("Exclusão não pode ser realizada, dados insuficientes","Exclusion cannot be carried through, given insufficient","Exclusión no puede ser realizada, datos insuficientes")
+tx_lang_004020 = Array("Personalização excluída com sucesso","Successfully excluded personalization","Personalización cambiada con suceso")
+tx_lang_004021 = Array("A personalização padrão não pode ser excluída","The personalization standard cannot be excluded","La personalización estándar no puede ser eliminada")
+tx_lang_004022 = Array("O campo DESCRIÇÃO da Personalização é obrigatório","The field DESCRIPTION of the Personalization is obligator","El campo DESCRIPCIÓN de la Personalización es obligatorio")
+tx_lang_004023 = Array("Por favor selecione um EVENTO limitador para o alerta","Please it selects a limiter EVENT for the alert one","Por favor, elija un EVENTO limitador para el alerta")
+tx_lang_004024 = Array("Não podem ser selecionados mais do que","They cannot be selected more than what","No pueden ser seleccionados más que")
+tx_lang_004025 = Array("Por favor remova alguns filtros","Please it removes some filters","Por favor eliminar algunos filtros")
+tx_lang_004026 = Array("Por favor remova alguns campos","Please it removes some fields","Por favor eliminar algunos campos")
+tx_lang_004027 = Array("Descrição","Description","Descripción")
+tx_lang_004028 = Array("Limitar por","Limit for","Limitar por")
+tx_lang_004029 = Array("Selecione o Evento","Selects the Event","Seleccione el evento")
+tx_lang_004030 = Array("Dias","Days","Días")
+tx_lang_004031 = Array("Exibir","Show","Exibir")
+tx_lang_004032 = Array("Ambos","Both","Ambos")
+tx_lang_004033 = Array("Adm. de Pedido","Adm. of Order","Administración de Pedido")
+tx_lang_004034 = Array("Desembaraço","Clearance","Desembarazo")
+tx_lang_004035 = Array("Ordenar por","Order by","Ordenar por")
+tx_lang_004036 = Array("Selecione o 1º campo a ordenar(opcional)","First field to order(optional)","Seleccione el 1º campo a ordener (opacional)")
+tx_lang_004037 = Array("Selecione o 2º campo a ordenar(opcional)","Second field to order(optional)","Seleccione el 1º campo a ordener (opacional)")
+tx_lang_004038 = Array("Quebrar por","Break for","Descomponer por")
+tx_lang_004039 = Array("Selecione um tipo de quebra de registros","It selects a type of register in addition","Elija un tipo de quiebra de registros")
+tx_lang_004040 = Array("Agrupar Embarque","Group for ","Agrupar embarques")
+tx_lang_004041 = Array("Marque para visualizar o resultado por embarque","It marks to visualize the result for","Marque para mirar el resultado por embarque")
+tx_lang_004042 = Array("Agrupar Referência","To group Reference","Agrupar referencias")
+tx_lang_004043 = Array("Selecione um tipo de referência","Selects a type of reference","Seleccione un tipo de referencia")
+tx_lang_004044 = Array("Previstas","Foreseen","Previstas")
+tx_lang_004045 = Array("Habilita a visualização de datas previstas e KPI","It qualifies the visualization of foreseen dates and KPI","Habilitar la visualización de fechas previstas y KPI")
+tx_lang_004046 = Array("Padrão","Standard","Estándar")
+tx_lang_004047 = Array("Marque para este relatório se tornar <b>Favorito</b>","It marks to use as <b>Favorite</b>","Elija esta opción como la estándar")
+tx_lang_004048 = Array("Excel","Excel","Excel")
+tx_lang_004049 = Array("Habilita o download em Excel dos resultados","It qualifies download in Excel of the results","Habilitar la descarga de los resultados en Excel")
+tx_lang_004050 = Array("Email","Email","Correo Electrónico")
+tx_lang_004051 = Array("Habilita o envio por e-mail dos resultados","It qualifies the sending for email of the results","Habilitar el envío por correo electrónico de los resultados")
+tx_lang_004052 = Array("Impressão","Print","Impresión")
+tx_lang_004053 = Array("Habilita a impressão do resultado","It qualifies the impression of the results","Habilitar la impresión del resultado")
+tx_lang_004054 = Array("selec. todos","select all","selec. todos")
+tx_lang_004055 = Array("qtd. de","amount of","cantidad de ")
+tx_lang_004056 = Array("filtros selec.","filters select","filtros seleccionados")
+tx_lang_004057 = Array("campos selec.","fields select","campos seleccionados")
+tx_lang_004058 = Array("Filtros Disponíveis","Available Filters","Filtros disponibles")
+tx_lang_004059 = Array("Filtros Selecionados","Selected Filters","Filtros Seleccionados")
+tx_lang_004060 = Array("Campos Disponíveis","Available Fields","Campos disponibles")
+tx_lang_004061 = Array("Campos Selecionados","Selected Fields","Campos seleccionados")
+tx_lang_004062 = Array("Documentos","Documents","Documentos")
+tx_lang_004063 = Array("Exibe atalho para os documentos digitalizados no relatório","It shows shortcut for scan documents in the report","Exhibe atajos para los documentos constantes en el informe")
+tx_lang_004064 = Array("Voltar para a tela de filtro da pesquisa","Back research filter screen","Volver a la pantalla de filtro de pesquisa")
+tx_lang_004065 = Array("Limite máximo de personalizações alcançado!\nPor favor, exclua ou edite outras personalizações deste menu/sub-menu.","Maximum limit of personalizations reached!\nPlease, excludes or edits other personalizations of this menu/sub-menu.","¡Límite máximo de personalizaciones alcanzado!\nPor favor, elimine o edite otras personalizaciones de este menú/sub menú ")
+'12/05/2008 - Flávio Sistema de Exportação.
+tx_lang_004066 = Array("Por embarque ","Boarding","Por embarque")
+tx_lang_004067 = Array("Por pedido ","Order","Por pedido")
+tx_lang_004068 = Array("Opções de Ordenação","Sorting Options","Opciones de Orden")
+tx_lang_004069 = Array("Crescente","Crescent","Creciente")
+tx_lang_004070 = Array("Decrescente","Decrescent","Decreciente")
+tx_lang_004071 = Array("e depois por","and after by","y después por")
+tx_lang_004072 = Array("Visualizar no modo simples","Switch to simple view","Mirar en modo simple")
+tx_lang_004073 = Array("Visualizar no modo detalhado","Switch to complete view","Mirar en modo detallado")
+tx_lang_004074 = Array("Contêm arquivos","Contain files","Contiene archivos")
+tx_lang_004075 = Array("Por pedido/item/parcial","Order/item/partial ","Por pedido/ítem/parcial")
+tx_lang_004076 = Array("Despesas (+ Despachante)","Receipts and Expenditures","Ingresos y Gastos")
+tx_lang_004077 = Array("Despesas (- Despachante)","Expenditures","Gastos")
+tx_lang_004078 = Array("Despachante (- SDA)","Receipts","Ingresos")
+tx_lang_004079 = Array("Despachante (+ SDA)","Receipts + SDA","Ingresos + SDA")
+tx_lang_004080 = Array("Agrupado por País","Group by Country","Agrupado por País")
+tx_lang_004081 = Array("Agrupado por Família de Produto","Group by Product Family","Agrupado por Familia de Producto")
+tx_lang_004082 = Array("Por Fatura ","Invoice","Por factura")
+tx_lang_004083 = Array("ATENÇÃO: Máximo de 60 dias!","ATTENTION: Maximum of 60 days!","ATENCIÓN: Un máximo de 60 días!")
+tx_lang_004084 = Array("ATENÇÃO: Máximo de ", "ATTENTION: Maximum ", "ATENCIÓN: Un máximo de ")
+tx_lang_004085 = Array("Todos os Grupos", "All Groups", "Todos los Grupos")
+tx_lang_004086 = Array("Todos os Clientes", "All Customers", "Todos los Clientes")
+tx_lang_004087 = Array("Todas as Modalidades", "All Modalities", "Todas las Modalidades")
+tx_lang_004088 = Array("Todas as Unidades", "All Units", "Todas las Unidades")
+tx_lang_004089 = Array("Ordenar por", "Order by", "Ordenar por")
+tx_lang_004090 = Array("Todas as Áreas", "All Areas", "Todas las Áreas")
+tx_lang_004091 = Array("Todas as Células", "All Cells", "Todas las Células")
+tx_lang_004092 = Array("Todas os Destinos", "All Destinies", "Todas los Destinos")
+tx_lang_004093 = Array("Todas as Transportadoras", "All Carriers", "Todas los Transportistas")
+tx_lang_004094 = Array("Todos os Status", "All Status", "Todos los Estados")
+tx_lang_004095 = Array("Todos os Armadores", "All Carriers", "Todos los Navieros")
+tx_lang_004096 = Array("Todos os Importadores", "All Importers", "Todos los Importadores")
+
+'Cadastro de personalização - cad_lista.asp(005)
+tx_lang_005001 = Array("Listagem","Listing","Lista(s)")
+tx_lang_005002 = Array("Lista de Personalizações","List of Personalizations","Lista de Personalizaciones")
+tx_lang_005003 = Array("Comandos","Commands","Comandos")
+tx_lang_005004 = Array("Selecione o Menu","It selects the Menu","Seleccione el Menú")
+'Exibir da Personalização de Saldo de Cliente
+tx_lang_005005 = Array("por Grupo de Cliente","Client Group","Por Grupo de cliente")
+tx_lang_005006 = Array("por Cliente","Group","Por cliente")
+tx_lang_005007 = Array("Por processo","Reference","Por proceso")
+
+'***** IMPORTAÇÃO *****
+
+'***** EXPORTAÇÃO *****
+Dim tx_lang_EXP001, tx_lang_EXP002, tx_lang_EXP003, tx_lang_EXP004, tx_lang_EXP005
+
+tx_lang_EXP001 = Array("À Enviar","To Send","Para enviar")
+tx_lang_EXP002 = Array("Enviado","Send","Enviado")
+tx_lang_EXP003 = Array("À Imprimir","To Print","Para imprimir")
+tx_lang_EXP004 = Array("Impressos","Printed","Impresos")
+tx_lang_EXP005 = Array("Revisados","Revised","Revisados")
+
+'***** POPUPS *****
+Dim tx_lang_POP001, tx_lang_POP002, tx_lang_POP003, tx_lang_POP004, tx_lang_POP005, tx_lang_POP006
+Dim tx_lang_POP007, tx_lang_POP008, tx_lang_POP009, tx_lang_POP010, tx_lang_POP011, tx_lang_POP012
+Dim tx_lang_POP013, tx_lang_POP014, tx_lang_POP015, tx_lang_POP016, tx_lang_POP017, tx_lang_POP018
+Dim tx_lang_POP019, tx_lang_POP020, tx_lang_POP021, tx_lang_POP022, tx_lang_POP023, tx_lang_POP024
+Dim tx_lang_POP025, tx_lang_POP026, tx_lang_POP027, tx_lang_POP028, tx_lang_POP029, tx_lang_POP030
+Dim tx_lang_POP031, tx_lang_POP032, tx_lang_POP033, tx_lang_POP034, tx_lang_POP035, tx_lang_POP036
+Dim tx_lang_POP037, tx_lang_POP038, tx_lang_POP039, tx_lang_POP040, tx_lang_POP041, tx_lang_POP042
+Dim tx_lang_POP043, tx_lang_POP044, tx_lang_POP045, tx_lang_POP046, tx_lang_POP047, tx_lang_POP048
+Dim tx_lang_POP049, tx_lang_POP050, tx_lang_POP051, tx_lang_POP052, tx_lang_POP053, tx_lang_POP054
+Dim tx_lang_POP055, tx_lang_POP056, tx_lang_POP057, tx_lang_POP058, tx_lang_POP059, tx_lang_POP060
+Dim tx_lang_POP061, tx_lang_POP062, tx_lang_POP063, tx_lang_POP064, tx_lang_POP065, tx_lang_POP066
+Dim tx_lang_POP067, tx_lang_POP068, tx_lang_POP069, tx_lang_POP070, tx_lang_POP071, tx_lang_POP072
+Dim tx_lang_POP073, tx_lang_POP074, tx_lang_POP075, tx_lang_POP076, tx_lang_POP077, tx_lang_POP078
+Dim tx_lang_POP079, tx_lang_POP080, tx_lang_POP081, tx_lang_POP082, tx_lang_POP083, tx_lang_POP084 
+Dim tx_lang_POP085, tx_lang_POP086, tx_lang_POP087, tx_lang_POP088, tx_lang_POP089, tx_lang_POP090
+Dim tx_lang_POP091, tx_lang_POP092, tx_lang_POP093, tx_lang_POP094, tx_lang_POP095, tx_lang_POP096
+Dim tx_lang_POP097, tx_lang_POP098, tx_lang_POP099, tx_lang_POP100, tx_lang_POP101, tx_lang_POP102
+Dim tx_lang_POP103, tx_lang_POP104, tx_lang_POP105, tx_lang_POP106, tx_lang_POP107, tx_lang_POP108
+Dim tx_lang_POP109, tx_lang_POP110, tx_lang_POP111, tx_lang_POP112
+Dim tx_lang_POP113, tx_lang_POP114, tx_lang_POP115, tx_lang_POP116, tx_lang_POP117, tx_lang_POP118
+Dim tx_lang_POP119, tx_lang_POP120, tx_lang_POP121, tx_lang_POP122, tx_lang_POP123, tx_lang_POP124
+
+tx_lang_POP001 = Array("Licença de Importação","Import License","Licencia de Importación")
+tx_lang_POP002 = Array("Registro de Exportação","Export Register","Registro de Exportación")
+tx_lang_POP003 = Array("Carga Solta","Untied Load","Carga Suelta")
+tx_lang_POP004 = Array("Contâiner/Navio/Viagem","Container/Vessel/Voyage","Contenedor/Buque/Viaje")
+tx_lang_POP005 = Array("Navio/Viagem","Vessel/Voyage","Buque/Viaje")
+tx_lang_POP006 = Array("Nota Fiscal","Fiscal Note","Factura")
+tx_lang_POP007 = Array("Numerário","Funds Advanced","Numerario")
+tx_lang_POP008 = Array("Saldo Fatura","Invoice Balance","Saldo")
+tx_lang_POP009 = Array("Faturamento","Invoicing","Facturación")
+tx_lang_POP010 = Array("Qtde","Qty","Cantidad")
+tx_lang_POP011 = Array("Espécie","Species","Especie")
+tx_lang_POP012 = Array("Navio","Vessel","Buque")
+tx_lang_POP013 = Array("Viagem","Voyage","Viaje")
+tx_lang_POP014 = Array("Chegada Navio","Vessel Arrival","Llegada del Buque")
+tx_lang_POP015 = Array("Conhec. Master","BL Master","Conocimiento Master")
+tx_lang_POP016 = Array("Conhecimento","BL House","Conocimiento")
+tx_lang_POP017 = Array("Fatura Comercial","Commercial Invoice","Factura Comercial")
+tx_lang_POP018 = Array("Nr. Seqüência","Sequence #","Nº secuencia")
+tx_lang_POP019 = Array("Nr. Doc. Instrução","Docs. Instruction #","Nr. Doc. Instrucción")
+tx_lang_POP020 = Array("Dt. Fatura","Invoice Date","Fecha Factura")
+tx_lang_POP021 = Array("Dt. Vencimento","Expiration Date","Fecha de vencimiento")
+tx_lang_POP022 = Array("Valor Recebido","Value Received","Valor Recibido")
+tx_lang_POP023 = Array("Valor Despesas","Value Expenditures","Valor Despesas")
+tx_lang_POP024 = Array("Saldo","Balance","Saldo")
+tx_lang_POP025 = Array("Indaiá","Indaia","Indaiá")
+tx_lang_POP026 = Array("Cliente","Customer","Cliente")
+tx_lang_POP027 = Array("Item","Iten","Item")
+tx_lang_POP028 = Array("Crédito","Credit","Crédito")
+tx_lang_POP029 = Array("Débito","Debit ","Débito")
+tx_lang_POP030 = Array("Despesas pagas pela Indaiá","Paid expenditures for the Indaia","Dispendios pagados por Indaía")
+tx_lang_POP031 = Array("Despesas pagas pelo Cliente","Paid expenditures for the Customer","Dispendios pagados por el cliente")
+tx_lang_POP032 = Array("Dias","Days","Días")
+tx_lang_POP033 = Array("País","Country","País")
+tx_lang_POP034 = Array("Atualizado","Updated","Actualizado")
+tx_lang_POP035 = Array("Mercadoria","Good","Mercadería")
+tx_lang_POP036 = Array("Usuário","User","Usuario")
+tx_lang_POP037 = Array("ETD","ETD","ETD")
+tx_lang_POP038 = Array("Embarque","Shipment","Embarque")
+tx_lang_POP039 = Array("Pedido","Order","Pedido")
+tx_lang_POP040 = Array("Sem","Without","Sin")
+tx_lang_POP041 = Array("ETA","ETA","ETA")
+tx_lang_POP042 = Array("Nr. Inicial da Nota","Initial Note #","Nr. Inicial de la Nota")
+tx_lang_POP043 = Array("Nr. Final da Nota","End Note #","Nr. Final de la Nota")
+tx_lang_POP044 = Array("Série da Nota","Note Series","Serie da la Nota")
+tx_lang_POP045 = Array("Nr. da Nota","Note #","Nr. De la Nota")
+tx_lang_POP046 = Array("Dt. de Emissão","Date of Emission","Fecha de Emisión")
+tx_lang_POP047 = Array("Entrega na Fábrica","Delivery in the Plant","Entrega en la Fábrica")
+tx_lang_POP048 = Array("Dt. de Registro","Date of Register","fecha de registro")
+tx_lang_POP049 = Array("Nr. L.I.","I.L. #","Número L.I.")
+tx_lang_POP050 = Array("Dt. Deferimento","Date of Granting","Fecha de Aprobación")
+tx_lang_POP051 = Array("Dt. Vencimento","Date of Expiration","Fecha de vencimiento")
+tx_lang_POP052 = Array("Nr. RE.","E.R. #","Nr. RE")
+tx_lang_POP053 = Array("Nr. Anexo Inicial","Initial Annex #","Nº anexo inicial")
+tx_lang_POP054 = Array("Nr. Anexo Final","End Annex #","Nº anexo final")
+tx_lang_POP055 = Array("Contâineres","Containers","Contenedores")
+tx_lang_POP056 = Array("Parametrização","Parameters","Parametrización")
+tx_lang_POP057 = Array("Enviar E-mail","Send E-mail","Enviar correo electrónico")
+tx_lang_POP058 = Array("Visualizar","Visualize","Mirar")
+tx_lang_POP059 = Array("Enviar","Send","Enviar correo electrónico")
+tx_lang_POP060 = Array("Fechar","Close","Cerrar")
+tx_lang_POP061 = Array("Obrigado por utilizar o MyIndaiá Web","Thanks for using the MyIndaiá Web","Gracias por utilizar el MyIndaiá Web")
+tx_lang_POP062 = Array("Seu e-mail foi enviado com sucesso","E-mail was sent successfully","Su correo electrónico fue enviado con suceso")
+tx_lang_POP063 = Array("Falha ao enviar o e-mail","The e-mail fails when sending","Error al enviar el correo electrónico")
+tx_lang_POP064 = Array("Desculpem-nos o transtorno, estamos enfrentando dificuldades técnicas","Forgive-in the o upheaval, we are facing difficulties techniques","Discúlpenos, nuestros servidores están en mantenimiento")
+tx_lang_POP065 = Array("Seu Nome","Its Name","Su nombre")
+tx_lang_POP066 = Array("Seu e-mail","Its e-mail","Su correo electrónico")
+tx_lang_POP067 = Array("Remetente","From","Remitente")
+tx_lang_POP068 = Array("Para","To","Para")
+tx_lang_POP069 = Array("Em Cópia","Cc","En copia")
+tx_lang_POP070 = Array("Enviar Cópia oculta para o seu e-mail","Send Bcc for its e-mail","Enviar copia oculta para su correo electrónico")
+tx_lang_POP071 = Array("Assunto","Subject","Asunto")
+tx_lang_POP072 = Array("Mensagem","Body","Mensaje")
+tx_lang_POP073 = Array("Anexos","Attachments","Adjuntos")
+tx_lang_POP074 = Array("Será enviado uma cópia oculta para","An occult copy will be sent","Se le(s) enviará una copia oculta a")
+tx_lang_POP075 = Array("deste e-mail","of this e-mail","De este correo electrónico")
+tx_lang_POP076 = Array("Cancelar","Cancel","Cancelar")
+tx_lang_POP077 = Array("Voltar","Go Back","Volver")
+tx_lang_POP078 = Array("Histórico de Status","Status Follow-up","Historico del status")
+tx_lang_POP079 = Array("Registro LI SISCOMEX vs. Deferimento de L.I.","IL registration date vs. Date of Import License Granted","Registro LI SISCOMEX vs. Aprobación de L.I.")
+tx_lang_POP080 = Array("LI Substituída","IL substitute","LI Substituida")
+tx_lang_POP081 = Array("Nr. Ref. Indaiá","Indaia #","Nr. Ref. Indaiá")
+tx_lang_POP082 = Array("Nome do Orgão Anuente","","Nombre del órgano anuente")
+tx_lang_POP083 = Array("Dt. Entr. Processo","Process Entrance Date","Fecha de entrada del proceso")
+tx_lang_POP084 = Array("Dt. Entr. Proc. vs. Deferimento de LI","Process Entrance Date vs. Date of Import License Granted","Fecha de entrada del proceso x Aprobación de LI")
+tx_lang_POP085 = Array("Valor FOB","FOB Value","Valor FOB")
+tx_lang_POP086 = Array("Peso Líquido","Net Weight","Peso Neto")
+tx_lang_POP087 = Array("Dt. Nota Fiscal","Fiscal Note Date","Fecha de la Factura")
+tx_lang_POP088 = Array("Valor Nota Fiscal","Fiscal Note Value","Valor de la Factura")
+tx_lang_POP089 = Array("Detalhe da Mercadoria","Goods Details","Detalle de la Mercancía")
+tx_lang_POP090 = Array("Valores Totais","Total Values","Datos básicos")
+tx_lang_POP091 = Array("Dados Básicos","Basic Data","Datos básicos")
+tx_lang_POP092 = Array("Informações","Informations","Informaciones")
+tx_lang_POP093 = Array("Envio de Arquivos","Sending Files","Envío de archivos")
+tx_lang_POP094 = Array("Enviar","Send","Enviar")
+tx_lang_POP095 = Array("Para","To","Para")
+tx_lang_POP096 = Array("Assunto","Subject","Asunto")
+tx_lang_POP097 = Array("Enviar por e-mail","Send by mail","Enviar por correo electrónico")
+tx_lang_POP098 = Array("Fechar Histórico","Close History","Cerrar histórico")
+tx_lang_POP099 = Array("Pendências","Pendencies","Pendencias")
+tx_lang_POP100 = Array("ATENÇÃO: Pendência alterada!","WARNING: Pendency amended!","ATENCIÓN: ¡Pendencia cambiada!")
+
+tx_lang_POP101 = Array("Última alteração","Last Modified","Última alteración")
+tx_lang_POP102 = Array("Pendência","Pendency","Pendencia")
+tx_lang_POP103 = Array("Solicitante","Applicant","Demandante")
+tx_lang_POP104 = Array("Repassar Pendência","Pass Pendency","Pendencia")
+tx_lang_POP105 = Array("Há ","","Hay ")
+tx_lang_POP106 = Array(" pendência(s) para responder"," pendency(ies) to reply"," pendencia(s) para respuesta")
+tx_lang_POP107 = Array("Analista Cliente","Customer Employee","Analista cliente")
+tx_lang_POP108 = Array("Analista Indaiá","Indaia Employee","Analista Indaiá")
+tx_lang_POP109 = Array("Escolha o usuário","Choose user","Elegir el usuario")
+tx_lang_POP110 = Array("Deseja realmente excluir o relatório selecionado?","Really delete the selected report?","¿Desea efectivamente descartar el informe elegido?")
+tx_lang_POP111 = Array("E-mail Enviado com Sucesso!","Email Sent Successfully!","Correo electrónico enviado con éxito!")
+tx_lang_POP112 = Array("Este é um email gerado automaticamente pelo MyIndaiáWeb.<br>Dúvidas: myindaia@myindaia.com.br","This is an email automatically generated by MyIndaiáWeb.<br>Questions: myindaia@myindaia.com.br","This is an email automatically generated by MyIndaiáWeb.<br>Questions: myindaia@myindaia.com.br")
+
+tx_lang_POP113 = Array("Container","Container","Container")
+tx_lang_POP114 = Array("DI","ID","DI")
+tx_lang_POP115 = Array("Conhecimento","House BL","Conocimiento")
+tx_lang_POP116 = Array("Booking","Booking","Reserva")
+tx_lang_POP117 = Array("Buscar/Visualizar","Search/View","Buscar/Mirar")
+tx_lang_POP118 = Array("","","")
+tx_lang_POP119 = Array("","","")
+tx_lang_POP120 = Array("","","")
+tx_lang_POP121 = Array("","","")
+tx_lang_POP122 = Array("","","")
+tx_lang_POP123 = Array("","","")
+tx_lang_POP124 = Array("","","")
+
+%>

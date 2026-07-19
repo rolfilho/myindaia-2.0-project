@@ -1,0 +1,10 @@
+
+<option value=05653>H&M HENNES & MAURITZ AB (05653)</option>
+<option value=08717>H&M HENNES & MAURITZ GBC AB (08717)</option>
+<option value=08719>H&M HENNES & MAURITZ GBC AB (08719)</option>
+<option value=08718>H&M HENNES & MAURITZ GBC AB, S-STOCKHOLM (08718)</option>
+<option value=08716>H&M HENNES & MAURITZ NETHERLANDS B.V. (08716)</option>
+<option value=08720>HENNES MAURITZ (SHANGHAI) COMMERCIAL LTD. CO. (08720)</option>
+<option value=08665>MORROWS GMBH (08665)</option>
+<option value=09217>SANTISTA TEXTIL CHILE SOCIEDAD ANONIMA (09217)</option>
+<option value=05167>WEARPLAY CONFECÇÕES, LDA. (05167)</option>

@@ -1,0 +1,54 @@
+{
+  "name": "MyIndaiá",
+  "short_name": "MyIndaiá",
+  "description": "Sistema de Consulta de Processos",
+  "start_url": "./",
+  "orientation": "portrait",
+  "display": "standalone",
+  "background_color": "#4c4849",
+  "theme_color": "#4c4849",
+  "icons": [
+    {
+      "src": "./images/192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./images/168x168.png",
+      "type": "image/png",
+      "sizes": "168x168"
+    },
+    {
+      "src": "./images/144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "./images/96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "./images/72x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "./images/60x60.png",
+      "type": "image/png",
+      "sizes": "60x60"
+    },    
+    {
+      "src": "./images/48x48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    }
+  ],
+  "author": {
+    "name": "MyIndaia Logistica Internacional",
+    "website": "https://www.myindaia.com.br",
+    "github": "https://github.com/myindaia",
+    "source-repo": ""
+  },
+  "gcm_sender_id": "571712848651"
+}

@@ -1,0 +1,12 @@
+
+<option value=14568>ACHLOR LIAOCHENG LTD</option>
+<option value=15016>C.B. PHARQUIMI, S.L</option>
+<option value=15916>CHANGZHOU KAIDE IMP. & EXP. CO., LTD.</option>
+<option value=14669>KIRNS CHEMICAL LTD</option>
+<option value=14410>LAMOTTE COMPANY</option>
+<option value=15915>LEIGHTON TRADING</option>
+<option value=14466>NANNING CHEMICAL INDUSTRY (HONG KONG) CO., LTD.</option>
+<option value=14445>NANNING CHEMICAL INDUSTRY CO., LTD.</option>
+<option value=14601>SHANGHAI OPENCHEM CO., LIMITED.</option>
+<option value=16716>SYNER LTD</option>
+<option value=14332>TAIAN HUATIAN CHEMICAL CO. LTD</option>

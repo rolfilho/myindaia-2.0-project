@@ -1,0 +1,37 @@
+<SCRIPT LANGUAGE="VBSCRIPT" RUNAT="SERVER">
+dim gNrVisitas
+
+Sub Application_OnStart
+	Application("cd_versao")   = "3.00.00"
+	Application("nm_versao")   = "MyIndaiá WEB"
+	Application("dt_versao")   = "04/06/2012"
+	Application("cd_sys_user") = "0627"
+	Application("cd_users_on") = Null
+	Application("vl_logados")  = 0
+	Application("vl_visitas")  = 0
+	
+	Application("vl_width_header") = 80
+	Application("vl_qtde_filtros") = 15
+End Sub
+
+Sub Application_OnEnd
+End Sub
+
+Sub Session_OnStart
+	Application.Lock
+	gNrVisitas = Application("vl_visitas") + 1
+	Application("vl_visitas") = gNrVisitas
+	Application.Unlock
+	
+	Session("cd_idioma")  = 0
+	Session("dt_min_flp") = DateSerial(2004, 01, 01)
+	Session("dt_max_flp") = DateAdd("m", 6, Date)
+End Sub
+
+Sub Session_OnEnd
+	Application.Lock
+	gNrVisitas = Application("vl_visitas") - 1
+	Application("vl_visitas") = gNrVisitas
+	Application.Unlock
+End Sub
+</SCRIPT>

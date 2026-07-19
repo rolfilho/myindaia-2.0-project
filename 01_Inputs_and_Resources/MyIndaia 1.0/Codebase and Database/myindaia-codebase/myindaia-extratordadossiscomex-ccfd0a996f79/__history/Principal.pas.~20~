@@ -1,0 +1,154 @@
+unit Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.ImageList, Vcl.ImgList,
+  Vcl.CategoryButtons, System.Actions, Vcl.ActnList, Vcl.WinXCtrls, Vcl.ExtCtrls,
+  dxGDIPlusClasses, Vcl.StdCtrls;
+
+type
+
+  TModulo = (mdImportacao, mdExportacao);
+
+  TForm1 = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    SplitView1: TSplitView;
+    ActionList1: TActionList;
+    Importacao: TAction;
+    Exportacao: TAction;
+    Despachante: TAction;
+    ImageList1: TImageList;
+    Label1: TLabel;
+    Image1: TImage;
+    CategoryButtons1: TCategoryButtons;
+    Integracao: TAction;
+    Relatorio: TAction;
+    Panel3: TPanel;
+    SplitView2: TSplitView;
+    CategoryButtons2: TCategoryButtons;
+    Panel4: TPanel;
+    Image2: TImage;
+    procedure FormActivate(Sender: TObject);
+    procedure ImportacaoExecute(Sender: TObject);
+    procedure RelatorioExecute(Sender: TObject);
+    procedure ExportacaoExecute(Sender: TObject);
+    procedure DespachanteExecute(Sender: TObject);
+    procedure IntegracaoExecute(Sender: TObject);
+  private
+    procedure WMNCHitTest(var Msg: TMessage);
+    message WM_NCHitTest;
+    { Private declarations }
+  public
+    form : Tform;
+    modulo : TModulo;
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  uIntegracaoDI, uRelatorioImpo, uIntegracaoDue, uRelatorioExpo, uCadastroDespachantes, DmBroker;
+
+procedure TForm1.WMNCHitTest(var Msg: TMessage);
+begin
+  if GetAsyncKeyState(VK_LBUTTON) < 0 then
+    Msg.Result := HTCAPTION
+  else
+    Msg.Result := HTCLIENT;
+end;
+
+
+procedure TForm1.DespachanteExecute(Sender: TObject);
+begin
+
+  if SplitView2.opened then
+    SplitView2.Close;
+
+  if assigned(form) then
+    form.Close;
+
+  CategoryButtons1.SelectedItem := nil;
+
+  Application.CreateForm(TfrmCadastroDespachante, form);
+  form.Parent := panel4;
+  form.Show;
+
+end;
+
+procedure TForm1.ExportacaoExecute(Sender: TObject);
+begin
+  SplitView2.Open;
+  modulo := mdExportacao;
+end;
+
+procedure TForm1.FormActivate(Sender: TObject);
+begin
+  SplitView2.Close;
+  try
+    dmdBroker.dbBroker.Open;
+  except
+      showMessage('Não foi possível conectar ao servidor de banco de dados. Verifique.');
+  end;
+end;
+
+
+procedure TForm1.ImportacaoExecute(Sender: TObject);
+begin
+  SplitView2.Open;
+  modulo := mdImportacao;
+end;
+
+procedure TForm1.IntegracaoExecute(Sender: TObject);
+begin
+  SplitView2.Close;
+  if assigned(form) then
+    form.Close;
+
+  CategoryButtons1.SelectedItem := nil;
+
+  if modulo = mdImportacao then
+  begin
+    Application.CreateForm(TfrmIntegracaoDI, form);
+    form.Parent := panel4;
+    form.Show;
+  end
+  else if modulo = mdExportacao then
+  begin
+    Application.CreateForm(TfrmIntegracaoDueNovo, form);
+    form.Parent := panel4;
+    form.Show;
+  end;
+end;
+
+procedure TForm1.RelatorioExecute(Sender: TObject);
+begin
+  SplitView2.Close;
+  if assigned(form) then
+    form.Close;
+
+  CategoryButtons1.SelectedItem := nil;
+
+  if modulo = mdImportacao then
+  begin
+    Application.CreateForm(TfrmRelatorioImpo, form);
+    form.Parent := panel4;
+    form.Show;
+  end
+  else if modulo = mdExportacao then
+  begin
+    Application.CreateForm(TfrmRelatorioExpo, form);
+    form.Parent := panel4;
+    form.Show;
+  end;
+
+end;
+
+end.

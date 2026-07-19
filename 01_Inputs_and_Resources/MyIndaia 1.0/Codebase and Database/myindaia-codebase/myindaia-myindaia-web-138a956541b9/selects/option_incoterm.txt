@@ -1,0 +1,16 @@
+<option value="CIP">CIP</option>                                                
+<option value="CPT">CPT</option>                                                
+<option value="CFR">CFR</option>                                                
+<option value="C+I">C+I</option>                                                
+<option value="CIF">CIF</option>                                                
+<option value="DAF">DAF</option>     
+<option value="DAP">DAP</option>                                            
+<option value="DDP">DDP</option>                                                
+<option value="DDU">DDU</option>                                                
+<option value="DEQ">DEQ</option>                                                
+<option value="DES">DES</option>                                                
+<option value="EXW">EXW</option>                                                
+<option value="FAS">FAS</option>                                                
+<option value="FCA">FCA</option>                                                
+<option value="FOB">FOB</option>                                                
+<option value="INI">INI</option>                                                

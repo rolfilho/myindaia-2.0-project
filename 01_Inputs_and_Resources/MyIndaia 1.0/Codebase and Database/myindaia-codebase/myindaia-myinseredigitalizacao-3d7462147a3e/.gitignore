@@ -1,0 +1,8 @@
+*.identcache
+*.stat
+*.res
+*.dproj.local
+*.cfg
+*.exe
+*.dcu
+*.skincfg

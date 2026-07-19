@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="consulta.asp" server="S:/myindaia/" local="128624124460000000" remote="128624124460000000" />
+<file name="detalhe_carga_solta.asp" server="S:/myindaia/" local="127994510580000000" remote="127994510580000000" />
+<file name="detalhe_cntr_navio.asp" server="S:/myindaia/" local="127994517580000000" remote="127994517580000000" />
+<file name="detalhe_cntr_print.asp" server="S:/myindaia/" local="127900412220000000" remote="127900412220000000" />
+<file name="detalhe_cntr_proc.asp" server="S:/myindaia/" local="128033233100000000" remote="128033233100000000" />
+<file name="detalhe_fat_comercial.asp" server="S:/myindaia/" local="127994527860000000" remote="127994527860000000" />
+<file name="detalhe_fatura.asp" server="S:/myindaia/" local="128733899430000000" remote="128733899430000000" />
+<file name="detalhe_faturamento.asp" server="S:/myindaia/" local="128037773180000000" remote="128037773180000000" />
+<file name="detalhe_gsi.asp" server="S:/myindaia/" local="127994549640000000" remote="127994549640000000" />
+<file name="detalhe_gsi_print.asp" server="S:/myindaia/" local="127994549540000000" remote="127994549540000000" />
+<file name="detalhe_navio_exp.asp" server="S:/myindaia/" local="127994557820000000" remote="127994557820000000" />
+<file name="detalhe_navio_imp.asp" server="S:/myindaia/" local="128026484360000000" remote="128026484360000000" />
+<file name="detalhe_nota_fiscal_exp.asp" server="S:/myindaia/" local="128296918020000000" remote="128296918020000000" />
+<file name="detalhe_nota_fiscal_imp.asp" server="S:/myindaia/" local="127994566200000000" remote="127994566200000000" />
+<file name="detalhe_registro_li.asp" server="S:/myindaia/" local="128142028600000000" remote="128142028600000000" />
+<file name="detalhe_registro_re.asp" server="S:/myindaia/" local="128817932710061943" remote="128817932710000000" />
+<file name="detalhe_registro_re_old.asp" server="S:/myindaia/" local="128296939480000000" remote="128296939480000000" />
+<file name="detalhe_solic_num.asp" server="S:/myindaia/" local="128001251240000000" remote="128001251240000000" />
+<file name="email_contato.asp" server="S:/myindaia/" local="128061026300000000" remote="128061026300000000" />
+<file name="email_lista.asp" server="S:/myindaia/" local="128058277480000000" remote="128058277480000000" />
+<file name="fast_lookup.asp" server="S:/myindaia/" local="129012944903076013" remote="129012944900000000" />
+<file name="fast_lookup.asp" server="S:/myteste/" local="129060477440928101" remote="129060477440000000" />
+<file name="detalhe_registro_re.asp" server="S:/myteste/" local="128817932710061943" remote="128817932710000000" />
+<file name="altera_campos.asp" server="S:/myteste/" local="129019146648042300" remote="129019146640000000" />
+<file name="altera_qtdcampos.asp" server="S:/myteste/" local="129019142887573550" remote="129019142880000000" />
+<file name="altera_campos.asp" server="S:/myindaia/" local="129019146648042300" remote="129019146640000000" />
+<file name="altera_qtdcampos.asp" server="S:/myindaia/" local="129019142887573550" remote="129019142880000000" />
+<file name="muda_idioma.asp" server="S:/myteste/" local="128920628834474480" remote="128920628830000000" />
+<file name="muda_status_exibe.asp" server="S:/myteste/" local="128920658086349480" remote="128920658080000000" />
+<file name="muda_idioma.asp" server="S:/myindaia/" local="128920628834474480" remote="128920628830000000" />
+<file name="muda_status_exibe.asp" server="S:/myindaia/" local="128920658086349480" remote="128920658080000000" />
+<file name="muda_exibe_detalhe.asp" server="S:/myteste/" local="128939652792445600" remote="128939652790000000" />
+<file name="muda_exibe_detalhe.asp" server="S:/myindaia/" local="128939652792445600" remote="128939652790000000" />
+<file name="cria_solicitacao.asp" server="S:/myteste/" local="129006259693835350" remote="129006259690000000" />
+<file name="cria_solicitacao.asp" server="S:/myindaia/" local="129006259693835350" remote="129006259690000000" />
+<file name="detalhe_faturamento.asp" server="S:/myteste/" local="129036398538772788" remote="129036398530000000" />
+<file name="atz_rap_modelo.asp" server="S:/myteste/" local="129061280664620271" remote="129061280660000000" />
+<file name="cria_modelo_rap.asp" server="S:/myteste/" local="129060674769859860" remote="129060674760000000" />
+<file name="exclui_rap_modelo.asp" server="S:/myteste/" local="129061283246355544" remote="129061283240000000" />
+<file name="muda_grupo_rap.asp" server="S:/myteste/" local="129058752317647114" remote="129058752310000000" />
+</dwsync>

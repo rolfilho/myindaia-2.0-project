@@ -1,0 +1,515 @@
+unit uRelatorioImpo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  Excel2000, OleServer, ComObj, DateTimePicker.Interposer,
+  DmBroker;
+
+type
+
+  TTipoRelatorioImpo = (riApenasCompleto, riApenasResumido, riAmbos);
+
+  TfrmRelatorioImpo = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    lblResultado: TLabel;
+    ProgressBar1: TProgressBar;
+    chkResumido: TCheckBox;
+    Label4: TLabel;
+    edtNrDi: TEdit;
+    edtCNPJ: TEdit;
+    Label1: TLabel;
+    edtDataFinal: TDateTimePicker;
+    Label3: TLabel;
+    Label2: TLabel;
+    edtDataInicial: TDateTimePicker;
+    Panel3: TPanel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    procedure FormActivate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Panel4Click(Sender: TObject);
+    procedure Panel5Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    function ValidarPreenchimento: boolean;
+    procedure RelDrawbackDi(aTipoRelatorio: TTipoRelatorioImpo);
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorioImpo: TfrmRelatorioImpo;
+
+implementation
+
+{$R *.dfm}
+
+uses FireDAC.Comp.Client, ParametrosDoSistema;
+
+function MyInc(var value: integer; valueInc: integer = 1): integer;
+begin
+  value := value + 1;
+  result := value;
+end;
+
+procedure TfrmRelatorioImpo.Button1Click(Sender: TObject);
+var
+  i: integer;
+  vFieldName: String;
+  vFieldType: String;
+  vFieldSize: String;
+begin
+  dmdBroker.GeraConsultaRelatorioImpo(edtDataInicial.Date, edtDataFinal.Date, edtCNPJ.text, edtNrDi.text);
+  for i:=0 to dmdBroker.qryRelatorioImpo.Fields.Count -1 do
+  begin
+    vFieldName := '';
+    vFieldType := '';
+    vFieldSize := '';
+
+    vFieldName := dmdBroker.qryRelatorioImpo.Fields.Fields[i].FieldName;
+
+    if pos('VALOR', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'FLOAT'
+    else if pos('TOTAL', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'FLOAT'
+    else if pos('ALIQUOTA', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'FLOAT'
+    else if pos('BASECALCULO', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'FLOAT'
+    else if pos('PESO', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'FLOAT'
+    else if pos('QUANTIDADE', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'FLOAT'
+    else if pos('DATA', UPPERCASE(vFieldName)) > 0 then
+      vFieldType := 'DATETIME'
+    else
+    begin
+      if length(TRIM(dmdBroker.qryRelatorioImpo.Fields.Fields[i].Value)) = 0 then
+        vFieldSize := '2'
+      else
+        vFieldSize := IntToStr(length(TRIM(dmdBroker.qryRelatorioImpo.Fields.Fields[i].Value)));
+
+      vFieldType := 'VARCHAR('+ vFieldSize +')';
+    end;
+
+
+//    memo1.lines.add(dmdBroker.qryRelatorioImpo.Fields.Fields[i].FieldName + ' ' + vFieldType + ',');
+  end;
+
+end;
+
+procedure TfrmRelatorioImpo.FormActivate(Sender: TObject);
+begin
+  edtDataInicial.Date := now - 30;
+  edtDataFinal.Date := now;
+
+  if Parametros.ModoTeste then
+    edtDataInicial.Date := now -  1095;
+end;
+
+procedure TfrmRelatorioImpo.FormShow(Sender: TObject);
+begin
+  edtDataInicial.Date := now - 30;
+  edtDataFinal.Date := now;
+
+  if Parametros.ModoTeste then
+    edtDataInicial.Date := now -  1095;
+end;
+
+procedure TfrmRelatorioImpo.Panel4Click(Sender: TObject);
+begin
+  if not ValidarPreenchimento then
+    exit;
+
+  dmdBroker.GeraConsultaRelatorioImpo(edtDataInicial.Date, edtDataFinal.Date, edtCNPJ.text, edtNrDi.text);
+  lblResultado.Visible := true;
+  lblResultado.Caption := 'Resultado da pesquisa: ' + IntToStr(dmdBroker.qryRelatorioImpo.RecordCount);
+end;
+
+procedure TfrmRelatorioImpo.Panel5Click(Sender: TObject);
+begin
+  if dmdBroker.qryRelatorioImpo.RecordCount > 1 then
+  begin
+    if chkResumido.Checked then
+      RelDrawbackDi(riAmbos)
+    else
+      RelDrawbackDi(riApenasCompleto)
+  end
+  else
+    showmessage('Não foi encontrado resultado de pesquisa para Importação.');
+end;
+
+procedure TfrmRelatorioImpo.RelDrawbackDi(aTipoRelatorio: TTipoRelatorioImpo);
+var
+  Excel, xlWorkB, oSheet                                 : Variant;
+  nLinha, Coluna, ctLinha, nColuna, vLinha, vColuna,
+  nLinhaTitulo: Integer;
+  vPrimeiraLinha, vCont,i,x,vTotalEventos                : Integer;
+  vTimeStamp                                             : string;
+  tem_dados                                              : boolean;
+  mDados : TFDMemTable;
+  titulo: String;
+
+  function TituloOuTipoErrado(Titulo: String; Linha, Coluna: Integer; aTipoRelatorioCampo: TTipoRelatorioImpo): Boolean;
+  begin
+    result := False;
+    result := (aTipoRelatorio <> aTipoRelatorioCampo) and (aTipoRelatorioCampo <> riAmbos);
+
+    if (not result) and (vLinha = nLinhaTitulo) then
+    begin
+      Excel.Cells[ vLinha, MyInc(vColuna) ].value := Titulo;
+      Excel.Cells[ vLinha, vColuna ].Font.Bold := True;
+      Excel.Cells[ vLinha, vColuna ].WrapText  := True;
+      Excel.Cells[ vLinha, vColuna ].HorizontalAlignment  := 3;
+      Excel.Cells[ vLinha, vColuna ].VerticalAlignment  := 2;
+      Excel.Cells[ vLinha, vColuna ].RowHeight  := 30;
+
+
+      //      Excel.WorkBooks[1].worksheets[1].rows[nLinhaTitulo].HorizontalAlignment  := xlHAlignCenter;
+//      Excel.WorkBooks[1].worksheets[1].rows(nLinhaTitulo).VerticalAlignment  := xlVAlignCenter;
+//      Excel.WorkBooks[1].worksheets[1].rows(nLinhaTitulo).RowHeight := 30;
+
+      Result := True;
+    end
+  end;
+
+  function TrataValor(value: String): String;
+  var
+    txtInicio: String;
+  begin
+    result := Copy(value, 0, 100);
+    txtInicio := copy(result, 0, 1);
+    if txtInicio = '=' then
+      result := 'a' + result;
+//      result := StringReplace(result, '=', '*', [rfReplaceAll]);
+  end;
+
+  procedure PreencheCelula(Titulo: String; aValue: String; aTipoRelatorioCampo: TTipoRelatorioImpo = riApenasCompleto; TipoNumero: Boolean = false); overload;
+  begin
+    if TituloOuTipoErrado(Titulo, vLinha, vColuna, aTipoRelatorioCampo) then
+      exit;
+
+    Excel.Cells[ vLinha, MyInc(vColuna) ].value := aValue;
+
+    if not TipoNumero then
+      Excel.Cells[ vLinha, vColuna ].WrapText  := false
+    else
+      Excel.Cells[ vLinha, vColuna ].NumberFormat  := '##0';
+
+  end;
+
+  procedure PreencheCelula(Titulo: String; aValue: Double; aTipoRelatorioCampo: TTipoRelatorioImpo = riApenasCompleto; NrFormatacao: String = '#.##0,00'); overload;
+  begin
+    if TituloOuTipoErrado(Titulo, vLinha, vColuna, aTipoRelatorioCampo) then
+      exit;
+
+    Excel.Cells[ vLinha, MyInc(vColuna) ].value := aValue;
+    Excel.Cells[ vLinha, vColuna ].NumberFormat := NrFormatacao;
+  end;
+
+  procedure PreencheCelula(Titulo: String; aValue: TDateTime; aTipoRelatorioCampo: TTipoRelatorioImpo = riApenasCompleto); overload;
+  begin
+    if TituloOuTipoErrado(Titulo, vLinha, vColuna, aTipoRelatorioCampo) then
+      exit;
+
+    if aValue = 0 then
+      Excel.Cells[ vLinha, MyInc(vColuna) ].value := ''
+    else
+      Excel.Cells[ vLinha, MyInc(vColuna) ].value := aValue;
+  end;
+
+begin
+  Excel   := CreateOLEObject('Excel.Application');
+  try
+
+//    xlWorkB       := Excel.Workbooks.Open(GetPath+'DUEsAverbadas.xlsx');
+    vTimeStamp    := FormatDateTime('ddmmyyyyhhnnsszz', Now);
+
+    Excel.WorkBooks.add(1);
+    titulo := 'Relatório Importação';
+    Excel.caption := titulo;
+    Excel.WorkBooks[1].worksheets[1].name := titulo;
+//    Excel.WorkBooks[1].worksheets[1].range['a1','z1'{+inttostr(qryentsai.RecordCount+3)}].font.name := 'Arial';
+//    Excel.WorkBooks[1].worksheets[1].range['a1','z1'{+inttostr(qryentsai.RecordCount+3)}].font.size := 11;
+
+    mdados := TFDMemTable.Create(nil);
+    mdados.Data := dmdBroker.qryRelatorioImpo.Data;
+
+    ProgressBar1.Visible := true;
+    ProgressBar1.Min := 0;
+    ProgressBar1.Max := mdados.RecordCount;
+
+    try
+      tem_dados := False;
+      vLinha := 0;
+      nLinhaTitulo := 1;
+      mdados.First;
+
+      while not mdados.Eof do
+      begin
+        nLinha := 0;
+        Coluna := 0;
+        tem_dados := True;
+        vLinha    := vLinha +1;
+        vColuna := 0;
+        ProgressBar1.Position := mdados.RecNo;
+
+//        for i:=0 to dmdBroker.qryRelatorioImpo.Fields.Count -1 do
+//          PreencheCelula(dmdBroker.qryRelatorioImpo.Fields.Fields[i].DisplayName, nLinha, Coluna, dmdBroker.qryRelatorioImpo.Fields.Fields[i].String);
+
+        PreencheCelula('Importador Nome', mdados.FieldByName('importadorNome').AsString, riAmbos);
+        PreencheCelula('Importador Número', mdados.FieldByName('importadorNumero').AsString, riAmbos, true);
+        PreencheCelula('Número DI', mdados.FieldByName('numeroDI').AsString, riAmbos);
+        PreencheCelula('Total Adições', mdados.FieldByName('totalAdicoes').AsString, riAmbos, true);
+        PreencheCelula('Numero Adição', mdados.FieldByName('a_numeroAdicao').AsString, riAmbos);
+        PreencheCelula('Numero Sequencial Item', mdados.FieldByName('i_numeroSequencialItem').AsString, riAmbos);
+        PreencheCelula('Data Registro', mdados.FieldByName('dataRegistro').AsDateTime, riAmbos);
+        PreencheCelula('Dados Mercadoria Código Ncm', mdados.FieldByName('a_dadosMercadoriaCodigoNcm').AsString, riAmbos);
+        PreencheCelula('Descricao Mercadoria', mdados.FieldByName('i_descricaoMercadoria').AsString, riAmbos);
+        PreencheCelula('Quantidade Comercializada - Item', mdados.FieldByName('i_quantidade').AsFloat, riAmbos, '#.##0,00000');
+        PreencheCelula('Unidade Medida', mdados.FieldByName('i_unidadeMedida').AsString, riAmbos);
+        PreencheCelula('Condição Venda Moeda Código', mdados.FieldByName('a_condicaoVendaMoedaCodigo').AsString, riAmbos);
+        PreencheCelula('Condição Venda Moeda Nome', mdados.FieldByName('a_condicaoVendaMoedaNome').AsString, riAmbos);
+        PreencheCelula('Valor Unitario', mdados.FieldByName('i_valorUnitario').AsFloat, riAmbos);
+        PreencheCelula('VMLE - Item (condição negociada)', mdados.FieldByName('i_vmle').AsFloat, riAmbos);
+        PreencheCelula('Qtde Estatística Item - Rateado', mdados.FieldByName('i_quantidadeEstatistica').AsFloat, riAmbos);
+        PreencheCelula('Qtde Estatística Total - Adição', mdados.FieldByName('a_dadosMercadoriaMedidaEstatisticaQuantidade').AsFloat, riAmbos);
+        PreencheCelula('Dados Mercadoria Medida Estatística Unidade', mdados.FieldByName('a_dadosMercadoriaMedidaEstatisticaUnidade').AsString, riAmbos);
+        PreencheCelula('Urf Despacho Código', mdados.FieldByName('urfDespachoCodigo').AsString, riAmbos);
+        PreencheCelula('Urf Despacho Nome', mdados.FieldByName('urfDespachoNome').AsString, riAmbos);
+        PreencheCelula('VMCV USD (total DI)', mdados.FieldByName('localDescargaTotalDolares').AsFloat, riAmbos);
+        PreencheCelula('VMLE USD (total DI)', mdados.FieldByName('localEmbarqueTotalDolares').AsFloat, riAmbos);
+        PreencheCelula('Via Transporte Nome', mdados.FieldByName('viaTransporteNome').AsString, riAmbos);
+        PreencheCelula('Carga País Procedência Código', mdados.FieldByName('cargaPaisProcedenciaCodigo').AsString, riAmbos);
+        PreencheCelula('Carga País de Procedência', mdados.FieldByName('cargaPaisProcedenciaNome').AsString, riAmbos);
+        PreencheCelula('Carga Peso Líquido', mdados.FieldByName('cargaPesoLiquido').AsFloat, riAmbos);
+        PreencheCelula('Seguro Moeda Negociada Código', mdados.FieldByName('seguroMoedaNegociadaCodigo').AsString, riAmbos);
+        PreencheCelula('Seguro Moeda Negociada Nome', mdados.FieldByName('seguroMoedaNegociadaNome').AsString, riAmbos);
+        PreencheCelula('Seguro Total Dólares', mdados.FieldByName('seguroTotalDolares').AsFloat, riAmbos);
+        PreencheCelula('Seguro Total Moeda Negociada', mdados.FieldByName('seguroTotalMoedaNegociada').AsFloat, riAmbos);
+        PreencheCelula('Frete Moeda Negociada Código', mdados.FieldByName('freteMoedaNegociadaCodigo').AsString, riAmbos);
+        PreencheCelula('Frete Moeda Negociada Nome', mdados.FieldByName('freteMoedaNegociadaNome').AsString, riAmbos);
+        PreencheCelula('Frete Total Dólares', mdados.FieldByName('freteTotalDolares').AsFloat, riAmbos);
+        PreencheCelula('Frete Total Moeda', mdados.FieldByName('freteTotalMoeda').AsFloat, riAmbos);
+        PreencheCelula('Informação Complementar', mdados.FieldByName('informacaoComplementar').AsString, riAmbos);
+        PreencheCelula('Número LI', mdados.FieldByName('a_numeroLI').AsString, riAmbos);
+        PreencheCelula('Dados Mercadoria Nome Ncm', mdados.FieldByName('a_dadosMercadoriaNomeNcm').AsString, riAmbos);
+        PreencheCelula('Peso Líquido Adição', mdados.FieldByName('a_dadosMercadoriaPesoLiquido').AsFloat, riAmbos);
+        PreencheCelula('País Aquisição Mercadoria Código', mdados.FieldByName('a_paisAquisicaoMercadoriaCodigo').AsString, riAmbos);
+        PreencheCelula('País Aquisição Mercadoria Nome', mdados.FieldByName('a_paisAquisicaoMercadoriaNome').AsString, riAmbos);
+        PreencheCelula('Condição Venda Valor Moeda', mdados.FieldByName('a_condicaoVendaValorMoeda').AsFloat, riAmbos);
+        PreencheCelula('Valor Total Condição Venda', mdados.FieldByName('a_valorTotalCondicaoVenda').AsFloat, riAmbos);
+        PreencheCelula('Frete Valor Moeda Negociada', mdados.FieldByName('a_freteValorMoedaNegociada').AsFloat, riAmbos);
+        PreencheCelula('Seguro Valor Moeda Negociada', mdados.FieldByName('a_seguroValorMoedaNegociada').AsFloat, riAmbos);
+        PreencheCelula('II Alíquota Valor Calculado', mdados.FieldByName('a_iiAliquotaValorCalculado').AsFloat, riAmbos);
+        PreencheCelula('II Alíquota Valor Recolher', mdados.FieldByName('a_iiAliquotaValorRecolher').AsFloat, riAmbos);
+        PreencheCelula('II Base Cálculo', mdados.FieldByName('a_iiBaseCalculo').AsFloat, riAmbos);
+        PreencheCelula('II Regime Tributação Nome', mdados.FieldByName('a_iiRegimeTributacaoNome').AsString, riAmbos);
+        PreencheCelula('IPI Alíquota Valor Devido', mdados.FieldByName('a_ipiAliquotaValorDevido').AsFloat, riAmbos);
+        PreencheCelula('IPI Alíquota Valor Recolher', mdados.FieldByName('a_ipiAliquotaValorRecolher').AsFloat, riAmbos);
+        PreencheCelula('Cofins Alíquota Valor Devido', mdados.FieldByName('a_cofinsAliquotaValorDevido').AsFloat, riAmbos);
+        PreencheCelula('Cofins Alíquota Valor Recolher', mdados.FieldByName('a_cofinsAliquotaValorRecolher').AsFloat, riAmbos);
+        PreencheCelula('Condição Venda Incoterm', mdados.FieldByName('a_condicaoVendaIncoterm').AsString, riAmbos);
+
+        PreencheCelula('tipoDeclaracaoCodigo', mdados.FieldByName('tipoDeclaracaoCodigo').AsString);
+        PreencheCelula('tipoDeclaracaoNome', mdados.FieldByName('tipoDeclaracaoNome').AsString);
+        PreencheCelula('modalidadeDespachoCodigo', mdados.FieldByName('modalidadeDespachoCodigo').AsString);
+        PreencheCelula('modalidadeDespachoNome', mdados.FieldByName('modalidadeDespachoNome').AsString);
+        PreencheCelula('dataDesembaraco', mdados.FieldByName('dataDesembaraco').AsDateTime);
+        PreencheCelula('operacaoFundap', mdados.FieldByName('operacaoFundap').AsString);
+        PreencheCelula('localDescargaTotalReais', mdados.FieldByName('localDescargaTotalReais').AsFloat);
+        PreencheCelula('localEmbarqueTotalReais', mdados.FieldByName('localEmbarqueTotalReais').AsFloat);
+        PreencheCelula('viaTransporteCodigo', mdados.FieldByName('viaTransporteCodigo').AsString);
+        PreencheCelula('viaTransporteMultimodal', mdados.FieldByName('viaTransporteMultimodal').AsString);
+        PreencheCelula('viaTransporteNomeTransportador', mdados.FieldByName('viaTransporteNomeTransportador').AsString);
+        PreencheCelula('viaTransportePaisTransportadorCodigo', mdados.FieldByName('viaTransportePaisTransportadorCodigo').AsString);
+        PreencheCelula('viaTransportePaisTransportadorNome', mdados.FieldByName('viaTransportePaisTransportadorNome').AsString);
+        PreencheCelula('sequencialRetificacao', mdados.FieldByName('sequencialRetificacao').AsString);
+        PreencheCelula('situacaoEntregaCarga', mdados.FieldByName('situacaoEntregaCarga').AsString);
+        PreencheCelula('canalSelecaoParametrizada', mdados.FieldByName('canalSelecaoParametrizada').AsString);
+        PreencheCelula('caracterizacaoOperacaoCodigoTipo', mdados.FieldByName('caracterizacaoOperacaoCodigoTipo').AsString);
+        PreencheCelula('caracterizacaoOperacaoDescricaoTipo', mdados.FieldByName('caracterizacaoOperacaoDescricaoTipo').AsString);
+        PreencheCelula('cargaDataChegada', mdados.FieldByName('cargaDataChegada').AsDateTime);
+        PreencheCelula('cargaNumeroAgente', mdados.FieldByName('cargaNumeroAgente').AsString);
+        PreencheCelula('cargaPesoBruto', mdados.FieldByName('cargaPesoBruto').AsFloat);
+        PreencheCelula('cargaUrfEntradaCodigo', mdados.FieldByName('cargaUrfEntradaCodigo').AsString);
+        PreencheCelula('cargaUrfEntradaNome', mdados.FieldByName('cargaUrfEntradaNome').AsString);
+        PreencheCelula('conhecimentoCargaEmbarqueData', mdados.FieldByName('conhecimentoCargaEmbarqueData').AsDateTime);
+        PreencheCelula('conhecimentoCargaEmbarqueLocal', mdados.FieldByName('conhecimentoCargaEmbarqueLocal').AsString);
+        PreencheCelula('conhecimentoCargaId', mdados.FieldByName('conhecimentoCargaId').AsString);
+        PreencheCelula('conhecimentoCargaIdMaster', mdados.FieldByName('conhecimentoCargaIdMaster').AsString);
+        PreencheCelula('conhecimentoCargaTipoCodigo', mdados.FieldByName('conhecimentoCargaTipoCodigo').AsString);
+        PreencheCelula('conhecimentoCargaTipoNome', mdados.FieldByName('conhecimentoCargaTipoNome').AsString);
+        PreencheCelula('conhecimentoCargaUtilizacao', mdados.FieldByName('conhecimentoCargaUtilizacao').AsString);
+        PreencheCelula('conhecimentoCargaUtilizacaoNome', mdados.FieldByName('conhecimentoCargaUtilizacaoNome').AsString);
+        PreencheCelula('valorTotalMultaARecolherAjustado', mdados.FieldByName('valorTotalMultaARecolherAjustado').AsFloat);
+        PreencheCelula('seguroTotalReais', mdados.FieldByName('seguroTotalReais').AsFloat);
+        PreencheCelula('freteCollect', mdados.FieldByName('freteCollect').AsString);
+        PreencheCelula('freteEmTerritorioNacional', mdados.FieldByName('freteEmTerritorioNacional').AsString);
+        PreencheCelula('fretePrepaid', mdados.FieldByName('fretePrepaid').AsString);
+        PreencheCelula('freteTotalReais', mdados.FieldByName('freteTotalReais').AsFloat);
+        PreencheCelula('importadorCodigoTipo', mdados.FieldByName('importadorCodigoTipo').AsString);
+        PreencheCelula('importadorCpfRepresentanteLegal', mdados.FieldByName('importadorCpfRepresentanteLegal').AsString);
+        PreencheCelula('importadorEnderecoBairro', mdados.FieldByName('importadorEnderecoBairro').AsString);
+        PreencheCelula('importadorEnderecoCep', mdados.FieldByName('importadorEnderecoCep').AsString);
+        PreencheCelula('importadorEnderecoLogradouro', mdados.FieldByName('importadorEnderecoLogradouro').AsString);
+        PreencheCelula('importadorEnderecoMunicipio', mdados.FieldByName('importadorEnderecoMunicipio').AsString);
+        PreencheCelula('importadorEnderecoNumero', mdados.FieldByName('importadorEnderecoNumero').AsString);
+        PreencheCelula('importadorEnderecoUf', mdados.FieldByName('importadorEnderecoUf').AsString);
+        PreencheCelula('importadorNomeRepresentanteLegal', mdados.FieldByName('importadorNomeRepresentanteLegal').AsString);
+        PreencheCelula('armazenamentoRecintoAduaneiroCodigo', mdados.FieldByName('armazenamentoRecintoAduaneiroCodigo').AsString);
+        PreencheCelula('armazenamentoRecintoAduaneiroNome', mdados.FieldByName('armazenamentoRecintoAduaneiroNome').AsString);
+        PreencheCelula('armazenamentoSetor', mdados.FieldByName('armazenamentoSetor').AsString);
+        PreencheCelula('nomeArmazem', mdados.FieldByName('nomeArmazem').AsString);
+        PreencheCelula('agenciaIcms', mdados.FieldByName('agenciaIcms').AsString);
+        PreencheCelula('bancoIcms', mdados.FieldByName('bancoIcms').AsString);
+        PreencheCelula('codigoTipoRecolhimentoIcms', mdados.FieldByName('codigoTipoRecolhimentoIcms').AsString);
+        PreencheCelula('cpfResponsavelRegistroIcms', mdados.FieldByName('cpfResponsavelRegistroIcms').AsString);
+        PreencheCelula('dataPagamentoIcms', mdados.FieldByName('dataPagamentoIcms').AsDateTime);
+        PreencheCelula('dataRegistroIcms', mdados.FieldByName('dataRegistroIcms').AsDateTime);
+        PreencheCelula('horaRegistroIcms', mdados.FieldByName('horaRegistroIcms').AsString);
+        PreencheCelula('nomeTipoRecolhimentoIcms', mdados.FieldByName('nomeTipoRecolhimentoIcms').AsString);
+        PreencheCelula('numeroSequencialIcms', mdados.FieldByName('numeroSequencialIcms').AsString);
+        PreencheCelula('ufIcms', mdados.FieldByName('ufIcms').AsString);
+        PreencheCelula('valorTotalIcms', mdados.FieldByName('valorTotalIcms').AsFloat);
+        PreencheCelula('documentoChegadaCargaCodigoTipo', mdados.FieldByName('documentoChegadaCargaCodigoTipo').AsString);
+        PreencheCelula('documentoChegadaCargaNome', mdados.FieldByName('documentoChegadaCargaNome').AsString);
+        PreencheCelula('documentoChegadaCargaNumero', mdados.FieldByName('documentoChegadaCargaNumero').AsString);
+        PreencheCelula('a_sequencialRetificacao', mdados.FieldByName('a_sequencialRetificacao').AsString);
+        PreencheCelula('a_dadosMercadoriaAplicacao', mdados.FieldByName('a_dadosMercadoriaAplicacao').AsString);
+        PreencheCelula('a_dadosMercadoriaCodigoNaladiNCCA', mdados.FieldByName('a_dadosMercadoriaCodigoNaladiNCCA').AsString);
+        PreencheCelula('a_dadosMercadoriaCodigoNaladiSH', mdados.FieldByName('a_dadosMercadoriaCodigoNaladiSH').AsString);
+        PreencheCelula('a_dadosMercadoriaCondicao', mdados.FieldByName('a_dadosMercadoriaCondicao').AsString);
+        PreencheCelula('a_paisOrigemMercadoriaCodigo', mdados.FieldByName('a_paisOrigemMercadoriaCodigo').AsString);
+        PreencheCelula('a_paisOrigemMercadoriaNome', mdados.FieldByName('a_paisOrigemMercadoriaNome').AsString);
+        PreencheCelula('a_fornecedorCidade', mdados.FieldByName('a_fornecedorCidade').AsString);
+        PreencheCelula('a_fornecedorComplemento', mdados.FieldByName('a_fornecedorComplemento').AsString);
+        PreencheCelula('a_fornecedorEstado', mdados.FieldByName('a_fornecedorEstado').AsString);
+        PreencheCelula('a_fornecedorLogradouro', mdados.FieldByName('a_fornecedorLogradouro').AsString);
+        PreencheCelula('a_fornecedorNome', mdados.FieldByName('a_fornecedorNome').AsString);
+        PreencheCelula('a_fornecedorNumero', mdados.FieldByName('a_fornecedorNumero').AsString);
+        PreencheCelula('a_codigoRelacaoCompradorVendedor', mdados.FieldByName('a_codigoRelacaoCompradorVendedor').AsString);
+        PreencheCelula('a_relacaoCompradorVendedor', mdados.FieldByName('a_relacaoCompradorVendedor').AsString);
+        PreencheCelula('a_codigoVinculoCompradorVendedor', mdados.FieldByName('a_codigoVinculoCompradorVendedor').AsString);
+        PreencheCelula('a_vinculoCompradorVendedor', mdados.FieldByName('a_vinculoCompradorVendedor').AsString);
+        PreencheCelula('a_dadosCambiaisCoberturaCambialCodigo', mdados.FieldByName('a_dadosCambiaisCoberturaCambialCodigo').AsString);
+        PreencheCelula('a_dadosCambiaisCoberturaCambialNome', mdados.FieldByName('a_dadosCambiaisCoberturaCambialNome').AsString);
+        PreencheCelula('a_dadosCambiaisInstituicaoFinanciadoraCodigo', mdados.FieldByName('a_dadosCambiaisInstituicaoFinanciadoraCodigo').AsString);
+        PreencheCelula('a_dadosCambiaisInstituicaoFinanciadoraNome', mdados.FieldByName('a_dadosCambiaisInstituicaoFinanciadoraNome').AsString);
+        PreencheCelula('a_dadosCambiaisMotivoSemCoberturaCodigo', mdados.FieldByName('a_dadosCambiaisMotivoSemCoberturaCodigo').AsString);
+        PreencheCelula('a_dadosCambiaisMotivoSemCoberturaNome', mdados.FieldByName('a_dadosCambiaisMotivoSemCoberturaNome').AsString);
+        PreencheCelula('a_dadosCambiaisValorRealCambio', mdados.FieldByName('a_dadosCambiaisValorRealCambio').AsFloat);
+        PreencheCelula('a_dadosCargaPaisProcedenciaCodigo', mdados.FieldByName('a_dadosCargaPaisProcedenciaCodigo').AsString);
+        PreencheCelula('a_dadosCargaUrfEntradaCodigo', mdados.FieldByName('a_dadosCargaUrfEntradaCodigo').AsString);
+        PreencheCelula('a_dadosCargaViaTransporteCodigo', mdados.FieldByName('a_dadosCargaViaTransporteCodigo').AsString);
+        PreencheCelula('a_condicaoVendaLocal', mdados.FieldByName('a_condicaoVendaLocal').AsString);
+        PreencheCelula('a_condicaoVendaMetodoValoracaoCodigo', mdados.FieldByName('a_condicaoVendaMetodoValoracaoCodigo').AsString);
+        PreencheCelula('a_condicaoVendaMetodoValoracaoNome', mdados.FieldByName('a_condicaoVendaMetodoValoracaoNome').AsString);
+        PreencheCelula('a_condicaoVendaValorReais', mdados.FieldByName('a_condicaoVendaValorReais').AsFloat);
+        PreencheCelula('a_cideValorAliquotaEspecifica', mdados.FieldByName('a_cideValorAliquotaEspecifica').AsFloat);
+        PreencheCelula('a_cideValorDevido', mdados.FieldByName('a_cideValorDevido').AsFloat);
+        PreencheCelula('a_cideValorRecolher', mdados.FieldByName('a_cideValorRecolher').AsFloat);
+        PreencheCelula('a_dcrCoeficienteReducao', mdados.FieldByName('a_dcrCoeficienteReducao').AsString);
+        PreencheCelula('a_dcrIdentificacao', mdados.FieldByName('a_dcrIdentificacao').AsString);
+        PreencheCelula('a_dcrValorDevido', mdados.FieldByName('a_dcrValorDevido').AsFloat);
+        PreencheCelula('a_dcrValorDolar', mdados.FieldByName('a_dcrValorDolar').AsFloat);
+        PreencheCelula('a_dcrValorReal', mdados.FieldByName('a_dcrValorReal').AsFloat);
+        PreencheCelula('a_dcrValorRecolher', mdados.FieldByName('a_dcrValorRecolher').AsFloat);
+        PreencheCelula('a_valorMultaARecolher', mdados.FieldByName('a_valorMultaARecolher').AsFloat);
+        PreencheCelula('a_valorMultaARecolherAjustado', mdados.FieldByName('a_valorMultaARecolherAjustado').AsFloat);
+        PreencheCelula('a_valorReaisFreteInternacional', mdados.FieldByName('a_valorReaisFreteInternacional').AsFloat);
+        PreencheCelula('a_valorReaisSeguroInternacional', mdados.FieldByName('a_valorReaisSeguroInternacional').AsFloat);
+        PreencheCelula('a_freteMoedaNegociadaCodigo', mdados.FieldByName('a_freteMoedaNegociadaCodigo').AsString);
+        PreencheCelula('a_freteValorReais', mdados.FieldByName('a_freteValorReais').AsFloat);
+        PreencheCelula('a_seguroMoedaNegociadaCodigo', mdados.FieldByName('a_seguroMoedaNegociadaCodigo').AsString);
+        PreencheCelula('a_seguroValorReais', mdados.FieldByName('a_seguroValorReais').AsFloat);
+        PreencheCelula('a_iiAcordoTarifarioTipoCodigo', mdados.FieldByName('a_iiAcordoTarifarioTipoCodigo').AsString);
+        PreencheCelula('a_iiAliquotaAcordo', mdados.FieldByName('a_iiAliquotaAcordo').AsFloat);
+        PreencheCelula('a_iiAliquotaAdValorem', mdados.FieldByName('a_iiAliquotaAdValorem').AsFloat);
+        PreencheCelula('a_iiAliquotaPercentualReducao', mdados.FieldByName('a_iiAliquotaPercentualReducao').AsFloat);
+        PreencheCelula('a_iiAliquotaReduzida', mdados.FieldByName('a_iiAliquotaReduzida').AsFloat);
+        PreencheCelula('a_iiAliquotaValorDevido', mdados.FieldByName('a_iiAliquotaValorDevido').AsFloat);
+        PreencheCelula('a_iiAliquotaValorReduzido', mdados.FieldByName('a_iiAliquotaValorReduzido').AsFloat);
+        PreencheCelula('a_iiFundamentoLegalCodigo', mdados.FieldByName('a_iiFundamentoLegalCodigo').AsString);
+        PreencheCelula('a_iiMotivoAdmissaoTemporariaCodigo', mdados.FieldByName('a_iiMotivoAdmissaoTemporariaCodigo').AsString);
+        PreencheCelula('a_iiRegimeTributacaoCodigo', mdados.FieldByName('a_iiRegimeTributacaoCodigo').AsString);
+        PreencheCelula('a_ipiAliquotaAdValorem', mdados.FieldByName('a_ipiAliquotaAdValorem').AsFloat);
+        PreencheCelula('a_ipiAliquotaEspecificaCapacidadeRecipciente', mdados.FieldByName('a_ipiAliquotaEspecificaCapacidadeRecipciente').AsFloat);
+        PreencheCelula('a_ipiAliquotaEspecificaQuantidadeUnidadeMedida', mdados.FieldByName('a_ipiAliquotaEspecificaQuantidadeUnidadeMedida').AsFloat);
+        PreencheCelula('a_ipiAliquotaEspecificaTipoRecipienteCodigo', mdados.FieldByName('a_ipiAliquotaEspecificaTipoRecipienteCodigo').AsFloat);
+        PreencheCelula('a_ipiAliquotaEspecificaValorUnidadeMedida', mdados.FieldByName('a_ipiAliquotaEspecificaValorUnidadeMedida').AsFloat);
+        PreencheCelula('a_ipiAliquotaNotaComplementarTIPI', mdados.FieldByName('a_ipiAliquotaNotaComplementarTIPI').AsFloat);
+        PreencheCelula('a_ipiAliquotaReduzida', mdados.FieldByName('a_ipiAliquotaReduzida').AsFloat);
+        PreencheCelula('a_ipiRegimeTributacaoCodigo', mdados.FieldByName('a_ipiRegimeTributacaoCodigo').AsString);
+        PreencheCelula('a_ipiRegimeTributacaoNome', mdados.FieldByName('a_ipiRegimeTributacaoNome').AsString);
+        PreencheCelula('a_cofinsAliquotaAdValorem', mdados.FieldByName('a_cofinsAliquotaAdValorem').AsFloat);
+        PreencheCelula('a_cofinsAliquotaEspecificaQuantidadeUnidade', mdados.FieldByName('a_cofinsAliquotaEspecificaQuantidadeUnidade').AsFloat);
+        PreencheCelula('a_cofinsAliquotaEspecificaValor', mdados.FieldByName('a_cofinsAliquotaEspecificaValor').AsFloat);
+        PreencheCelula('a_cofinsAliquotaReduzida', mdados.FieldByName('a_cofinsAliquotaReduzida').AsFloat);
+        PreencheCelula('a_pisCofinsBaseCalculoAliquotaICMS', mdados.FieldByName('a_pisCofinsBaseCalculoAliquotaICMS').AsFloat);
+        PreencheCelula('a_pisCofinsBaseCalculoFundamentoLegalCodigo', mdados.FieldByName('a_pisCofinsBaseCalculoFundamentoLegalCodigo').AsFloat);
+        PreencheCelula('a_pisCofinsBaseCalculoPercentualReducao', mdados.FieldByName('a_pisCofinsBaseCalculoPercentualReducao').AsFloat);
+        PreencheCelula('a_pisCofinsBaseCalculoValor', mdados.FieldByName('a_pisCofinsBaseCalculoValor').AsFloat);
+        PreencheCelula('a_pisCofinsFundamentoLegalReducaoCodigo', mdados.FieldByName('a_pisCofinsFundamentoLegalReducaoCodigo').AsString);
+        PreencheCelula('a_pisCofinsRegimeTributacaoCodigo', mdados.FieldByName('a_pisCofinsRegimeTributacaoCodigo').AsString);
+        PreencheCelula('a_pisCofinsRegimeTributacaoNome', mdados.FieldByName('a_pisCofinsRegimeTributacaoNome').AsString);
+        PreencheCelula('a_pisPasepAliquotaAdValorem', mdados.FieldByName('a_pisPasepAliquotaAdValorem').AsFloat);
+        PreencheCelula('a_pisPasepAliquotaEspecificaQuantidadeUnidade', mdados.FieldByName('a_pisPasepAliquotaEspecificaQuantidadeUnidade').AsFloat);
+        PreencheCelula('a_pisPasepAliquotaEspecificaValor', mdados.FieldByName('a_pisPasepAliquotaEspecificaValor').AsFloat);
+        PreencheCelula('a_pisPasepAliquotaReduzida', mdados.FieldByName('a_pisPasepAliquotaReduzida').AsFloat);
+        PreencheCelula('a_pisPasepAliquotaValorDevido', mdados.FieldByName('a_pisPasepAliquotaValorDevido').AsFloat);
+        PreencheCelula('a_pisPasepAliquotaValorRecolher', mdados.FieldByName('a_pisPasepAliquotaValorRecolher').AsFloat);
+        PreencheCelula('a_fabricanteNome', mdados.FieldByName('a_fabricanteNome').AsString);
+        PreencheCelula('a_fabricanteCidade', mdados.FieldByName('a_fabricanteCidade').AsString);
+        PreencheCelula('a_fabricanteComplemento', mdados.FieldByName('a_fabricanteComplemento').AsString);
+        PreencheCelula('a_fabricanteEstado', mdados.FieldByName('a_fabricanteEstado').AsString);
+        PreencheCelula('a_fabricanteLogradouro', mdados.FieldByName('a_fabricanteLogradouro').AsString);
+        PreencheCelula('a_fabricanteNumero', mdados.FieldByName('a_fabricanteNumero').AsString);
+        PreencheCelula('a_numeroDestaque', mdados.FieldByName('a_numeroDestaque').AsString);
+
+        if vLinha > nLinhaTitulo then
+          mdados.Next;
+      end;
+
+      Excel.WorkBooks[1].worksheets[1].Columns.ColumnWidth := 15;
+      Excel.WorkBooks[1].worksheets[1].Columns.AutoFilter;
+
+    except
+      on e:Exception do
+      begin
+        showmessage('Erro - Relatório IMPO: ' + e.Message);
+      end
+    end;
+  finally
+    mdados.Free;
+    Excel.Visible := true;
+    ProgressBar1.Visible := false;
+  end;
+end;
+
+function TfrmRelatorioImpo.ValidarPreenchimento: boolean;
+begin
+  result:= true;
+  if Trim(edtNrDi.Text) <> '' then
+    exit;
+
+  if (edtDataInicial.Date > edtDataFinal.Date) then
+  begin
+    ShowMessage('A data inicial deve ser menor ou igual a data final.');
+    edtDataInicial.SetFocus;
+    result:= False;
+  end;
+
+end;
+
+end.

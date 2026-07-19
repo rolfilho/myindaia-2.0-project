@@ -1,0 +1,13 @@
+
+<option value=07353>ALUBAT - ALFLON CA (07353)</option>
+<option value=06177>CALORIE S.A.S (06177)</option>
+<option value=07139>Changshu 3F Zhonghao New Chemical  Materials Co.,LTD (07139)</option>
+<option value=06217>DU PONT ARGENTINA S/A (06217)</option>
+<option value=06574>DU PONT DE COLOMBIA (06574)</option>
+<option value=06573>DU PONT DE NEMOURS (FRANCE) SAS (06573)</option>
+<option value=06172>DU PONT DE NEMOURS NETHERLAND BV (06172)</option>
+<option value=06677>DUQUÍMICA AS (06677)</option>
+<option value=06948>E.I DUPONT DE NEMOURS & CO (06948)</option>
+<option value=06175>E.I. DU PONT DE NEMOURS & CO.INC (06175)</option>
+<option value=00001>PHILLIPS CHE. COMP. (00001)</option>
+<option value=06737>WILLIAMSON INDUSTRIAL S A (06737)</option>

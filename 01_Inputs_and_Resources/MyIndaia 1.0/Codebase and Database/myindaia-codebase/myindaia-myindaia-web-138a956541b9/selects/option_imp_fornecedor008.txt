@@ -1,0 +1,12 @@
+
+<option value=00041>AKZO NOBEL SURFACE CHEMISTRY AB</option>
+<option value=00883>BASF AG</option>
+<option value=01183>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=01148>BAYER AG</option>
+<option value=00505>E.I. DU PONT DE NEMOURS AND COMPANY</option>
+<option value=00526>EMS DOTTIKON AG</option>
+<option value=07543>FINE BORON COMPOUNDS CORP.</option>
+<option value=00030>LONZA LTD</option>
+<option value=00001>PHILLIPS CHE. COMP.</option>
+<option value=00029>SAJJAN INDIA LIMITED</option>

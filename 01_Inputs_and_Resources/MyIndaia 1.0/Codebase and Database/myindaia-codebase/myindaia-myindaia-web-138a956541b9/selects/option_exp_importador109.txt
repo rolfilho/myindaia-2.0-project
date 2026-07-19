@@ -1,0 +1,4 @@
+
+<option value=00001>PHILLIPS CHE. COMP. (00001)</option>
+<option value=05690>POSSEHL INC (05690)</option>
+<option value=05886>VESUVIUS ITALIA S.P.A (05886)</option>

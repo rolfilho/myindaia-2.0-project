@@ -1,0 +1,16 @@
+
+<option value=07011>ALLTRANS SRL WORLDWIDE LOGISTICS, (07011)</option>
+<option value=08164>ENGCHEM USA INC. (08164)</option>
+<option value=07721>GUAJARAT FLUOROCHEMICALS LIMITED (07721)</option>
+<option value=04312>LEXZAU, SCHARBAU & CO (04312)</option>
+<option value=08709>REICHEM INTERNATIONAL (HK) LTD (08709)</option>
+<option value=08656>SHANGHAI SIRIUS INTERNATIONAL LOGISTICS CO., LTD. (08656)</option>
+<option value=06208>SOLPAC CHEMICALS LTD (06208)</option>
+<option value=06209>SOLVAY FLUOR GMBH (06209)</option>
+<option value=06336>SOLVAY FLUOR GMBH (06336)</option>
+<option value=05797>SOLVAY INDUPA S.A .I.C. (05797)</option>
+<option value=06143>SOLVIN FRANCE (06143)</option>
+<option value=08905>VACCARINO PLASTICI SPA (08905)</option>
+<option value=08674>YINGPENG CHEMICAL CO., LTD (08674)</option>
+<option value=08892>ZHEJIANG JUHUA GROUP I/E CO., LTD (08892)</option>
+<option value=06542>ZHEJIANG XINGTENG CHEMICAL CO LTD (06542)</option>

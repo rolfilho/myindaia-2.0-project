@@ -1,0 +1,26 @@
+
+<option value=04778>BASF AKTIENGESELLCHAFT</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=08647>BASF COMPANY LTD.</option>
+<option value=00013>BASF CORPORATION</option>
+<option value=04370>BASF CORPORATION</option>
+<option value=08941>CNCCC FINE CHEMICAL CO., LTD</option>
+<option value=06018>EXOTHERMICS INC</option>
+<option value=06736>HERCULES INCORPORATED</option>
+<option value=05371>JLM MARKETING, INC</option>
+<option value=05117>JOHNSON MATTHEY CATALYSTS</option>
+<option value=07978>JOHNSON MATTHEY CATALYSTS</option>
+<option value=07977>JOHNSON MATTHEY CHEMICALS INDIA PRIVATE LIMITED</option>
+<option value=05828>KANZELER VERFAHRENSTECHNIK GESELLSCHAFT M.B.H</option>
+<option value=08842>LEE CHANG YUNG CHEMICAL INDUSTRY CORP.</option>
+<option value=08095>METHANEX CHILE LIMITED</option>
+<option value=00495>ORGANICS CHEMICALS S.R.L.</option>
+<option value=08478>OXEA CORPORATION</option>
+<option value=07603>OXEA DEUTSCHLAND GMBH</option>
+<option value=02052>OXIQUIM S.A.</option>
+<option value=07582>PALISADE CORPORATION</option>
+<option value=07086>PERSTORP SA</option>
+<option value=07828>PERSTORP SPECIALTY CHEMICALS AB</option>
+<option value=02452>PERSTORP SPECIALTY CHEMICALS AB</option>
+<option value=08423>TIANJIN CHENGYI INTERNATIONAL TRADING CO., LTD</option>
+<option value=00497>UCB S.A.</option>

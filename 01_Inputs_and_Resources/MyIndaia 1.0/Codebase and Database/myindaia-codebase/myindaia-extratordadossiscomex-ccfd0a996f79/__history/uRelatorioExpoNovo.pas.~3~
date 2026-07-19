@@ -1,0 +1,353 @@
+unit uRelatorioExpoNovo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  Excel2000, OleServer, ComObj,
+  DmBroker;
+
+type
+
+  TTipoRelatorioImpo = (riApenasCompleto, riApenasResumido, riAmbos);
+
+  TfrmRelatorioExpoNovo = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    lblResultado: TLabel;
+    ProgressBar1: TProgressBar;
+    Label4: TLabel;
+    edtNrDi: TEdit;
+    edtCNPJ: TEdit;
+    Label1: TLabel;
+    edtDataFinal: TDateTimePicker;
+    Label3: TLabel;
+    Label2: TLabel;
+    edtDataInicial: TDateTimePicker;
+    Panel3: TPanel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    procedure Panel4Click(Sender: TObject);
+    procedure Panel5Click(Sender: TObject);
+  private
+    function ValidarPreenchimento: boolean;
+    procedure RelDrawbackDUE;
+
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorioExpoNovo: TfrmRelatorioExpoNovo;
+
+implementation
+
+{$R *.dfm}
+
+uses FireDAC.Comp.Client, ParametrosDoSistema;
+
+
+
+function MyInc(var value: integer; valueInc: integer = 1): integer;
+begin
+  value := value + 1;
+  result := value;
+end;
+
+procedure TfrmRelatoriorExpo.SpeedButton1Click(Sender: TObject);
+begin
+
+end;
+
+procedure TfrmRelatoriorExpo.SpeedButton2Click(Sender: TObject);
+begin
+end;
+
+
+procedure TfrmRelatoriorExpo.RelDrawbackDUE;
+var
+  Excel, xlWorkB, oSheet                                 : Variant;
+  nLinha, Coluna, ctLinha, nColuna,
+  vPrimeiraLinha, vCont,i,x,vTotalEventos                : Integer;
+  vTimeStamp                                             : string;
+  tem_dados                                              : boolean;
+  mDados : TFDMemTable;
+  titulo: String;
+
+//  procedure PreencheData(ALinha, AColuna: Integer; Data: string);
+//  begin
+//    oSheet.Cells[ ALinha, AColuna ].NumberFormat        := 'dd/mm/aaaa';
+//    oSheet.Cells[ ALinha, AColuna ].HorizontalAlignment := 3;
+//
+//    if (Data <> 'N/A') and (trim(Data) <> '') then
+//    begin
+//      oSheet.Cells[ ALinha, AColuna ].Value := StrToDate(Data)//FormatDateTime('dd/mm/yyyy', Data)
+//    end
+//    else
+//      oSheet.Cells[ ALinha, AColuna ].Value := Data;
+//  end;
+
+  function TrataValor(value: String): String;
+  var
+    txtInicio: String;
+  begin
+    result := Copy(value, 0, 100);
+    txtInicio := copy(result, 0, 1);
+    if txtInicio = '=' then
+      result := StringReplace(result, '=', '*', [rfReplaceAll]);
+  end;
+
+begin
+  Excel   := CreateOLEObject('Excel.Application');
+  try
+
+//    xlWorkB       := Excel.Workbooks.Open(GetPath+'DUEsAverbadas.xlsx');
+    vTimeStamp    := FormatDateTime('ddmmyyyyhhnnsszz', Now);
+
+    Excel.WorkBooks.add(1);
+    titulo := 'Modelo RED';
+    Excel.caption := titulo;
+    Excel.WorkBooks[1].worksheets[1].name := titulo;
+    Excel.WorkBooks[1].worksheets[1].range['a1','z1'{+inttostr(qryentsai.RecordCount+3)}].font.name := 'Arial';
+    Excel.WorkBooks[1].worksheets[1].range['a1','z1'{+inttostr(qryentsai.RecordCount+3)}].font.size := 11;
+
+    mdados := TFDMemTable.Create(nil);
+    mdados.Data := dmdBroker.qryRelatorioRED.Data;
+
+    ProgressBar1.Visible := true;
+    ProgressBar1.Min := 0;
+    ProgressBar1.Max := mdados.RecordCount;
+
+    try
+      tem_dados := False;
+      nLinha := 1;
+      mdados.First;
+
+      Excel.Cells[ nLinha, MyInc(Coluna)].value := 'Nº Registro';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Data Registro';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Data Embarque';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Nº RUC';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Situação';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Bloqueio';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Canal';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Chave de Acesso';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'CNPJ';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Declarante';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'CNPJ';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Tipo Documento';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Exportador';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Código Pais Exportador';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Nome País Exportador';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Sigla País Exportador';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Estrangeiro';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'NºItem';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Código NCM';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Descrição NCM';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Código Produto';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Descrição Item';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Quantidade Estatística';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Unidade Estatística';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Quantidade Comercializada';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Unidade Comercializada';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Peso Líquido Total Item';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Total MLE';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Total MCV';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Total MLE R$';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Nr.Ato Concessório';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Item Ato Concessório';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Qtde.Item Ato Concessório';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Vlr.com Cobertura Item Ato Concessório';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Vlr.sem Cobertura Item Ato Concessório';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Chave Acesso Nota Fiscal';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Número Nota Fiscal';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Item';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Modelo';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Série';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'UF Emissor';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Emitente';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'CNPJ';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'CPF';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Finalidade';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Nota Fiscal Eletronica';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'CFOP';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Moeda';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Incoterm';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Importador';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Endereço';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'País Destino';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'País Importador';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Enq. 1';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Enq. 2';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Enq. 3';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Enq. 4';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'URF Despacho';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'URF Embarque';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Embarque Recinto Alfandegado';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Despacho Recinto Alfandegado';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Impedido Embarque';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Informações Complementares';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Data Conversão';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Tratamento Prioritário Item';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Comissão';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Recinto Aduaneiro Despacho';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Recinto Aduaneiro Embarque';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Responsável pelo ACD';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Despacho Recinto Domiciliar';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Data do CCE';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Data de Criação';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'DAT';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'OEA';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Recuperado Em';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Vinculada';
+      Excel.Cells[ nLinha, MyInc(Coluna)].Value := 'Origem';
+
+      while not mdados.Eof do
+      begin
+        tem_dados := True;
+        nLinha    := nLinha +1;
+        Coluna := 0;
+        ProgressBar1.Position := mdados.RecNo;
+
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('NrDue').AsString; //Nº Registro
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DataRegistro').AsString; //Data Registro
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DataEmbarque').AsString; //Data Embarque
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('NrRuc').AsString; //Nº RUC
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('Situacao').AsString; //Situação
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('Bloqueio').AsString; //Bloqueio
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('Canal').AsString; //Canal
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ChaveDeAcesso').AsString; //Chave de Acesso
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //CNPJ
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Declarante
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteNrDocumento').AsString; //CNPJ
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteTpDocumento'	).AsString; //Tipo Documento
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteNome').AsString; //Exportador
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteNacCodigo').AsString; //Código Pais Exportador
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteNacNome').AsString; //Nome País Exportador
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteNacNomeResumido').AsString; //Sigla País Exportador
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DeclaranteEstrangeiro').AsString; //Estrangeiro
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensNumero').AsString; //NºItem
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensNcmCodigo').AsString; //Código NCM
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensNcmDescricao').AsString; //Descrição NCM
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoCodProduto').AsString; //Código Produto
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensDescricaoMercadoria').AsString; //Descrição Item
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensQtdUnidEstatistica').AsString; //Quantidade Estatística
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensNcmUnidMedEstatistica').AsString; //Unidade Estatística
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensQtdUnidComercializada').AsString; //Quantidade Comercializada
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensUnidComercializada').AsString; //Unidade Comercializada
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensPesoLiqTotal').AsString; //Peso Líquido Total Item
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensValorMercLocalEmbarque').AsString; //Total MLE
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensValorMercCondicaoVenda').AsString; //Total MCV
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensValorMercLocalEmbarqueEmReais').AsString; //Total MLE R$
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Nr.Ato Concessório
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Item Ato Concessório
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Qtde.Item Ato Concessório
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Vlr.com Cobertura Item Ato Concessório
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Vlr.sem Cobertura Item Ato Concessório
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensitemNFExpoNFChaveAcesso').AsString; //Chave Acesso Nota Fiscal
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFNumero').AsString; //Número Nota Fiscal
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNrItem').AsString; //Item
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFModelo').AsString; //Modelo
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('tensItemNFExpoNFSerie').AsString; //Série
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFUfEmissor').AsString; //UF Emissor
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFIdEmitenteNumero').AsString; //Emitente
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFIdEmitenteCnpj').AsString; //CNPJ
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFIdEmitenteCpf').AsString; //CPF
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNFFinalidade').AsString; //Finalidade
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoNfNfEletronica').AsString; //Nota Fiscal Eletronica
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensItemNFExpoCfop').AsString; //CFOP
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('MoedaCodigo').AsString; //Moeda
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensCondVendaCodigo').AsString; //Incoterm
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensNomeImportador').AsString; //Importador
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensEnderecoImportador').AsString; //Endereço
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensPaisDestinoCodigo').AsString; //País Destino
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('PaisImportadorCodigo').AsString; //País Importador
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('itensEnquadramento01Codigo').AsString; //Enq. 1
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Enq. 2
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Enq. 3
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Enq. 4
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('UnidLocalDespachoCodigo').AsString; //URF Despacho
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('UnidLocalEmbarqueCodigo').AsString; //URF Embarque
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('EmbarqueRecintoAlfandegado').AsString; //Embarque Recinto Alfandegado
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DespachoRecintoAlfandegado').AsString; //Despacho Recinto Alfandegado
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ImpedidoEmbarque').AsString; //Impedido Embarque
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := TrataValor(mdados.FieldByName('InformacoesComplementares').AsString); //Informações Complementares
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ItensDataConversao').AsString; //Data Conversão
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Tratamento Prioritário Item
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //% Comissão
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('RecintoAduaneiroDespachoCodigo').AsString; //Recinto Aduaneiro Despacho
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('RecintoAduaneiroEmbarqueCodigo').AsString; //Recinto Aduaneiro Embarque
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('ResponsavelPeloACD').AsString; //Responsável pelo ACD
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DespachoRecintoDomiciliar').AsString; //Despacho Recinto Domiciliar
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DataCCE').AsString; //Data do CCE
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DataCriacao').AsString; //Data de Criação
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('dat').AsString; //DAT
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('oea').AsString; //OEA
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := mdados.FieldByName('DATA_RECUPERACAO').AsString;//mdados.FieldByName('		').AsString; //Recuperado Em
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Vinculada
+        Excel.Cells[ nLinha, MyInc(Coluna)].Value := '';//mdados.FieldByName('		').AsString; //Origem
+
+        mdados.Next;
+      end;
+
+    except
+      on e:Exception do
+      begin
+        showmessage('Erro - Relatório RED: ' + e.Message);
+      end
+    end;
+  finally
+    mdados.Free;
+    Excel.Visible := true;
+    ProgressBar1.Visible := false;
+  end;
+end;
+
+function TfrmRelatoriorExpo.ValidarPreenchimento: boolean;
+begin
+  result:= true;
+  if Trim(edtNrDue.Text) <> '' then
+    exit;
+
+//  if (Trim(edtCNPJ.Text) = '')  then
+//  begin
+//    ShowMessage('Obrigatório o preenchimento do CNPJ ou Nr Due.');
+//    edtCNPJ.SetFocus;
+//    result:= False;
+//  end;
+
+  if (edtDataInicial.Date > edtDataFinal.Date) then
+  begin
+    ShowMessage('A data inicial deve ser menor ou igual a data final.');
+    edtDataInicial.SetFocus;
+    result:= False;
+  end;
+
+end;
+
+procedure TfrmRelatorioExpoNovo.Panel4Click(Sender: TObject);
+begin
+
+  if not ValidarPreenchimento then
+    exit;
+  dmdBroker.GeraConsultaRelatorioRED(edtDataInicial.Date, edtDataFinal.Date, edtCNPJ.text, edtNrDue.text);
+  lblResultado.Visible := true;
+  lblResultado.Caption := 'Resultado da pesquisa: ' + IntToStr(dmdBroker.qryRelatorioRED.RecordCount);
+
+end;
+
+procedure TfrmRelatorioExpoNovo.Panel5Click(Sender: TObject);
+begin
+  if dmdBroker.qryRelatorioRED.RecordCount > 0 then
+    RelDrawbackDUE
+  else
+    showmessage('Não foi encontrado resultado de pesquisa para exportação.');
+
+end;
+
+end.

@@ -1,0 +1,20 @@
+
+<option value=03880>"TO THE ORDER OF BUMIPUTRA-COMMERCE BANK BERHAD"</option>
+<option value=00883>BASF AG</option>
+<option value=01051>BASF ARGENTINA S.A.</option>
+<option value=03221>BASF COATINGS AG</option>
+<option value=00537>BASF COATINGS AG</option>
+<option value=00013>BASF CORPORATION</option>
+<option value=00095>BERK UNIVAR PLC</option>
+<option value=00445>CIKLOP INTERNACIONAL</option>
+<option value=05450>CRODA CHEMICALS EUROPE LTD</option>
+<option value=06279>DEVINIL LTDA</option>
+<option value=04644>H. C. STARCK GMBH</option>
+<option value=00305>HALTERMANN GMBH</option>
+<option value=00005>KAO INFOSYSTEMS</option>
+<option value=06069>NESTLE TRINIDAD AND TOBAGO LIM</option>
+<option value=00001>PHILLIPS CHE. COMP.</option>
+<option value=04337>ROTA DRUCK W.KIESER KG</option>
+<option value=02367>SCM CHEMICALS LIMITED</option>
+<option value=07182>STRAUSS & CO</option>
+<option value=00014>VFT AG</option>

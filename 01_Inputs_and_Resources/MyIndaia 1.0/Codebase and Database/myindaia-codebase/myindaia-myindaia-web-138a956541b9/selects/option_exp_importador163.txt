@@ -1,0 +1,17 @@
+
+<option value=05206>AGROPESCA CAPRI CA (05206)</option>
+<option value=04308>COMERCIAL SOLINGEN (04308)</option>
+<option value=04717>DISTRIBUIDORA EL CUCHILLO DE ORO (04717)</option>
+<option value=04405>DL MADURO Y CIA SUCS. LTDA (04405)</option>
+<option value=04839>GRUPO SOLINGEN + CO C.A. (04839)</option>
+<option value=04363>GUSTAVO LONDONO TRUJILLO (04363)</option>
+<option value=05197>HULSEN E BASTIDAS, C.A (05197)</option>
+<option value=05940>IMPATEX PASAMANERIA TEXTILES (05940)</option>
+<option value=04588>INDUSTRIA NACIONAL DE BLONDAS C.A. (04588)</option>
+<option value=05052>INDUSTRIAS TECNOFRIGO CA (05052)</option>
+<option value=05096>INTERMODA. S.A. (05096)</option>
+<option value=04870>INVERSIONES FUVAM CA (04870)</option>
+<option value=05101>INVERSIONES YOMAR CA (05101)</option>
+<option value=05697>OMIROS S.A (05697)</option>
+<option value=05071>REPRESENTACIONES RAM-SON S.G (05071)</option>
+<option value=04587>U. F. R. IMPORT-EXPORT (04587)</option>

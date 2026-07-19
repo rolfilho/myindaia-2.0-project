@@ -1,0 +1,13 @@
+*.dll
+*.pak
+*.bin
+*.swf
+*.xpath.min.js
+*.html
+*.png
+*.lib
+*.txt
+*.cfg
+*.log
+*.dat
+*.exe

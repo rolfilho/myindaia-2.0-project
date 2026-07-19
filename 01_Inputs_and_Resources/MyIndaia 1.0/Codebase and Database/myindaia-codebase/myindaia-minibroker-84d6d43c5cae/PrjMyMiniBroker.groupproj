@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{11515806-F1FE-49AD-B114-3A0897A3F821}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MiniBroker.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\temp_miniBrowser\MiniBrowser.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MiniBroker">
+        <MSBuild Projects="MiniBroker.dproj"/>
+    </Target>
+    <Target Name="MiniBroker:Clean">
+        <MSBuild Projects="MiniBroker.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MiniBroker:Make">
+        <MSBuild Projects="MiniBroker.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MiniBrowser">
+        <MSBuild Projects="..\temp_miniBrowser\MiniBrowser.dproj"/>
+    </Target>
+    <Target Name="MiniBrowser:Clean">
+        <MSBuild Projects="..\temp_miniBrowser\MiniBrowser.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MiniBrowser:Make">
+        <MSBuild Projects="..\temp_miniBrowser\MiniBrowser.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MiniBroker;MiniBrowser"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MiniBroker:Clean;MiniBrowser:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MiniBroker:Make;MiniBrowser:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

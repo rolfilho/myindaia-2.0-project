@@ -1,0 +1,4 @@
+
+<option value=02381>HONEYWELL DO BRASIL LTDA (BARUERI)</option>
+<option value=02378>HONEYWELL IND E EQUIP DE SEGURANÇA LTDA (JUNDIAÍ)</option>
+<option value=02360>INTERMEC SOUTH AMERICA LTDA</option>

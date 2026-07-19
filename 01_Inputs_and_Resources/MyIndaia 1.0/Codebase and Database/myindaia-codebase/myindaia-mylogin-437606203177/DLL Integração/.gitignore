@@ -1,0 +1,5 @@
+*.dcu
+*.dll
+*.dproj.local
+*.stat
+/MyLoginInt.identcache

@@ -1,0 +1,10 @@
+<option value="04">Aérea</option>                 
+<option value="12">By Sea</option>                
+<option value="06">Ferroviária</option>           
+<option value="02">Fluvial</option>               
+<option value="03">Lacustre</option>              
+<option value="01">Marítima</option>              
+<option value="09">Meios Próprios</option>        
+<option value="05">Postal</option>                
+<option value="07">Rodoviária</option>            
+<option value="08">Tubo-Conduto</option>          

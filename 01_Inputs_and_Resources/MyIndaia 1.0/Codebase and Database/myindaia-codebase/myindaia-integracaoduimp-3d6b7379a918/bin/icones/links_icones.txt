@@ -1,0 +1,4 @@
+yes => https://www.flaticon.com/free-icon/yes_9426997?term=checked&related_id=9426997&origin=search
+unchecked => https://www.flaticon.com/free-icon/geometric_7800076?k=1738691604774&log-in=google
+warning = > https://www.flaticon.com/free-icon/warning_1828622?term=warning+circle&related_id=1828622
+delete = > https://www.flaticon.com/free-icon/delete_1214428?term=delete&related_id=1214428

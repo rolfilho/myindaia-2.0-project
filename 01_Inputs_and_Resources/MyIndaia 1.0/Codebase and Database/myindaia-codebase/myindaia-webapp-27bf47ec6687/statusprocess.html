@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guanabara</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2F3BA2">  
+  
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<style>
+th {
+    border-bottom: 1px solid #d6d6d6;
+}
+
+tr:nth-child(even) {
+    background: #e9e9e9;
+}
+</style> 
+</head>
+<style>
+#accordion{
+    width: auto;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+#accordion h2{
+    font-size: 12pt;
+    margin: 0px;
+    padding: 10px;
+    background: #ccc;
+    border-bottom: 1px solid #fff;
+}
+#accordion li div.content{
+    display: none;
+    padding: 10px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+}
+#accordion li:hover div.content{
+    display: inherit;
+}
+</style>
+
+	
+<body>
+    <div class="app app__layout">
+      <header>
+        <span class="header__icon">
+          <svg class="menu__icon no--select" width="24px" height="24px" viewBox="0 0 48 48" fill="#fff">
+            <path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path>
+          </svg>
+        </span>
+
+        <span class="header__title no--select">Status do Processo</span>
+		<button id="butFilter" class="headerButton" aria-label="Filtro"></button>
+      </header>
+
+      <div class="menu">
+        <div class="menu__header"></div>
+        <ul class="menu__list">
+			<li><a href="index.html">Início</a></li>
+			<li><a href="consbilhetes.html">Status do Processo</a></li>
+			<li id="menuLogout"><a href="#">Logout</li>
+		</ul>
+      </div>
+
+	<div class="menu__overlay">
+  
+	</div>  	   
+
+    <main id="main" class="main" >
+		<ul id="accordion" class="accordion" data-accordion>
+			<li class="item cardTemplate" data-accordion-item hidden>
+				<h2 class="titulo"></h2>
+				<div class="content">
+					<div class="dataHoraViagem">Data Hora Viagem: <spam class="valor"></spam></div>
+					<div class="poltrona">Poltrona: <spam class="valor"></spam></div>
+					<div class="classe">Classe: <spam class="valor"></spam></div>
+					<div class="cliente">Cliente: <spam class="valor"></spam></div>
+					<div class="documento">Documento: <spam class="valor"></spam></div>
+					<div class="origem">Origem: <spam class="valor"></spam></div>
+					<div class="destino">Destino: <spam class="valor"></spam></div>
+					<div class="numero">Número: <spam class="valor"></spam></div>
+					<div class="agencia">Agência: <spam class="valor"></spam></div>
+				</div>
+			</li>			
+		</ul>
+	</main>
+	
+<div data-role="page" id="pageone">
+  <div data-role="header">
+    <h1>Styling Column Toggle Table</h1>
+  </div>
+<script> 
+/* 
+$(document).ready(function() {
+    var table = $('#myTable').DataTable( {
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    } );
+} ); 
+*/
+</script>  
+  <div data-role="main" class="ui-content">
+    <table data-role="table" data-mode="columntoggle" class="ui-responsive ui-shadow" id="myTable" data-column-btn-text="Colunas...">
+      <thead>
+        <tr>
+          <th >CustomerID</th>
+          <th>CustomerName</th>
+          <th data-priority="1">ContactName</th>
+          <th data-priority="2">Address</th>
+          <th data-priority="3">City</th>
+          <th data-priority="4">PostalCode</th>
+          <th data-priority="5">Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="1">
+          <td>1</td>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Obere Str. 57</td>
+          <td>Berlin</td>
+          <td>12209</td>
+          <td>Germany</td>
+        </tr>
+        <tr id="2">
+          <td>2</td>
+          <td>Antonio Moreno Taquería</td>
+          <td>Antonio Moreno</td>
+          <td>Mataderos 2312</td>
+          <td>México D.F.</td>
+          <td>05023</td>
+          <td>Mexico</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Around the Horn</td>
+          <td>Thomas Hardy</td>
+          <td>120 Hanover Sq.</td>
+          <td>London</td>
+          <td>WA1 1DP</td>
+          <td>UK</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Berglunds snabbköp</td>
+          <td>Christina Berglund</td>
+          <td>Berguvsvägen 8</td>
+          <td>Luleå</td>
+          <td>S-958 22</td>
+          <td>Sweden</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!--div data-role="footer">
+    <h1>Footer Text</h1>
+  </div-->
+</div> 	
+	
+  <div class="dialog-container">
+    <div class="dialog">
+		<div class="dialog-body">
+			Data Inicial:<br>
+			<input type="date" id="dataInicial" name="dataInicial"><br>
+			Data Final:<br>
+			<input type="date" id="dataFinal" name="dataFinal"><br>
+			<script>
+				var data = new Date();//.toISOString().substring(0, 10);
+				data.setDate(data.getDate() - 1);
+				document.getElementById('dataFinal').valueAsDate  = data;
+				data.setDate(data.getDate() - 1);
+				document.getElementById('dataInicial').valueAsDate  = data;
+			</script>
+			Serviço:<br>
+			<input type="number" id="servico" name="servico"><br>
+			Embarque:<br>
+			<input type="text" id="embarque" name="embarque"><br>		
+			<div class="dialog-buttons">				
+				<button id="butApplyFilter" class="button">Filtrar</button>
+				<button id="butCancel" class="button">Cancelar</button>
+			</div>
+		</div>
+	</div>
+  </div>
+  
+  </div>
+  
+  <div class="loader" hidden>
+    <svg viewBox="0 0 32 32" width="32" height="32">
+      <circle id="spinner" cx="16" cy="16" r="14" fill="none"></circle>
+    </svg>
+  </div>
+  
+<script>
+$(document).on("click", "#myTable tbody tr", function(e) {
+    alert(this.id);
+});
+</script>
+    <script src="./js/app.js"></script>
+    <!-- script src="./js/notification.js"></script -->
+    <script src="./js/toast.js"></script>
+    <script src="./js/offline.js"></script>
+    <script src="./js/menu.js"></script>
+		
+</body>
+</html>

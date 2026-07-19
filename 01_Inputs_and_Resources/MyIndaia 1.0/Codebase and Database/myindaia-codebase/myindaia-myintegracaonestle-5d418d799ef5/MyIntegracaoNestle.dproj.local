@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/02/06 10:08:54.000.730,=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/02/06 10:09:09.000.038,C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Projetos\Delphi\myIntegracaoNestle\Main.dfm</Transaction>
+    <Transaction>2018/02/06 10:09:09.000.038,C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Projetos\Delphi\myIntegracaoNestle\Main.pas</Transaction>
+    <Transaction>2018/02/06 10:09:17.000.643,C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Projetos\Delphi\myIntegracaoNestle\MyIntegracaoNestle.dproj</Transaction>
+    <Transaction>2018/02/06 10:19:07.000.388,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\uPreferencias.pas</Transaction>
+    <Transaction>2018/02/06 10:19:07.000.287,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\Settings.pas</Transaction>
+    <Transaction>2018/02/06 10:46:30.000.408,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\DmBroker.pas</Transaction>
+    <Transaction>2018/02/06 10:48:12.000.182,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\Utils.pas</Transaction>
+    <Transaction>2018/02/06 14:28:05.000.745,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\UDadosRap.pas</Transaction>
+    <Transaction>2018/02/06 15:40:44.000.489,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\ConnectionModule.pas</Transaction>
+    <Transaction>2018/02/06 15:45:37.000.708,C:\Projetos\Delphi\myIntegracaoNestle\projeto\DmBroker.pas=</Transaction>
+    <Transaction>2018/02/06 17:34:40.000.346,C:\Projetos\Delphi\myIntegracaoNestle\projeto\UDadosRap.pas=</Transaction>
+    <Transaction>2018/02/06 17:35:23.000.340,=C:\Projetos\Delphi\myIntegracaoNestle\projeto\DmBroker.pas</Transaction>
+    <Transaction>2018/02/06 17:35:29.000.114,C:\Projetos\Delphi\myIntegracaoNestle\projeto\ConnectionModule.pas=</Transaction>
+  </Transactions>
+</BorlandProject>

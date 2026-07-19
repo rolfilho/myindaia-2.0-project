@@ -1,0 +1,6 @@
+TABLE_NAME,COLUMN_NAME,DATA_TYPE,CHARACTER_MAXIMUM_LENGTH,NUMERIC_PRECISION,NUMERIC_SCALE,IS_NULLABLE,COLUMN_DEFAULT,CHAVE_PRIMARIA
+sysdiagrams,name,nvarchar,128.0,,,NO,,NAO
+sysdiagrams,principal_id,int,,10.0,0.0,NO,,NAO
+sysdiagrams,diagram_id,int,,10.0,0.0,NO,,SIM
+sysdiagrams,version,int,,10.0,0.0,YES,,NAO
+sysdiagrams,definition,varbinary,-1.0,,,YES,,NAO

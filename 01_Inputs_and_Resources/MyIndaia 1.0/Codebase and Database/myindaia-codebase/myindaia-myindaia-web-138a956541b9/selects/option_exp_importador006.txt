@@ -1,0 +1,24 @@
+
+<option value=04866>AUSTRALIAN TIMKEN PTY. LTD. (04866)</option>
+<option value=00718>BASF CHILE S.A. (00718)</option>
+<option value=04869>BIG LTDA (04869)</option>
+<option value=03978>BUENOS AIRES AL PACIFICO SAN MARTIN S.A (03978)</option>
+<option value=04407>DUCASSE COMERCIAL LTDA (04407)</option>
+<option value=02698>EUROPEENNE D'ENVOIS (02698)</option>
+<option value=03979>FERROEXPRESSO PAMPEANO S.A (03979)</option>
+<option value=04013>FERROSUR ROCA S.A (04013)</option>
+<option value=02432>FREUDENBERG SIMRIT KG (02432)</option>
+<option value=04002>GEFCO SERVICE MARITIME (04002)</option>
+<option value=00194>KOCH MEMBRANE SYSTEMS INC. (00194)</option>
+<option value=04926>KSB INC (04926)</option>
+<option value=05043>LAND ROVER GROUP LTD (05043)</option>
+<option value=04192>SPICER EJES PESADOS S.A (04192)</option>
+<option value=04024>THE TIMKEN COMPANY (04024)</option>
+<option value=04023>TIMKEN ARGENTINA S.R.L. (04023)</option>
+<option value=02532>TIMKEN DE MEXICO, S.A. DE C.V. (02532)</option>
+<option value=04052>TIMKEN EUROPE (04052)</option>
+<option value=01204>TIMKEN FRANCE (01204)</option>
+<option value=04162>TIMKEN SINGAPORE PTE LTD. (04162)</option>
+<option value=04051>TIMKEN SOUTH AFRICA (PTY) LIMITED (04051)</option>
+<option value=02838>UNILEVER SOUTH AFRICA HOME & PERSONAL CARE (Pty) LTD. (02838)</option>
+<option value=04297>VOLKSWAGEN ARGENTINA S.A (04297)</option>

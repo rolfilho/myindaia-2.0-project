@@ -1,0 +1,400 @@
+object frmRelatorioExpo: TfrmRelatorioExpo
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'Relat'#243'rio Importa'#231#227'o'
+  ClientHeight = 641
+  ClientWidth = 939
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 25
+    Width = 939
+    Height = 152
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 10841637
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clHighlightText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    object lblResultado: TLabel
+      Left = 9
+      Top = 115
+      Width = 79
+      Height = 16
+      Caption = 'lblResultado'
+      Color = clHighlightText
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      Visible = False
+    end
+    object Label4: TLabel
+      Left = 9
+      Top = 17
+      Width = 78
+      Height = 17
+      Caption = 'N'#250'mero Due'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 195
+      Top = 17
+      Width = 103
+      Height = 17
+      Caption = 'CNPJ Exportador'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label3: TLabel
+      Left = 498
+      Top = 17
+      Width = 87
+      Height = 17
+      Caption = 'Data final Reg.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 381
+      Top = 17
+      Width = 95
+      Height = 17
+      Caption = 'Data inicial Reg.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label8: TLabel
+      Left = 736
+      Top = 17
+      Width = 85
+      Height = 17
+      Caption = 'Data final Rec.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label9: TLabel
+      Left = 619
+      Top = 17
+      Width = 93
+      Height = 17
+      Caption = 'Data inicial Rec.'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblStatusProgressBar: TLabel
+      Left = 607
+      Top = 135
+      Width = 137
+      Height = 16
+      Caption = 'lblStatusProgressBar'
+      Color = clHighlightText
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+    end
+    object ProgressBar1: TProgressBar
+      Left = 9
+      Top = 135
+      Width = 592
+      Height = 15
+      TabOrder = 6
+      Visible = False
+    end
+    object edtNrDue: TEdit
+      Left = 9
+      Top = 35
+      Width = 170
+      Height = 25
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object Panel4: TPanel
+      Left = 9
+      Top = 72
+      Width = 114
+      Height = 34
+      Cursor = crHandPoint
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Pesquisar'
+      Color = 7237230
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 7
+      OnClick = Panel4Click
+    end
+    object Panel5: TPanel
+      Left = 145
+      Top = 72
+      Width = 156
+      Height = 34
+      Cursor = crHandPoint
+      BevelInner = bvLowered
+      BevelOuter = bvNone
+      Caption = 'Exportar para Excel'
+      Color = 7237230
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clHighlightText
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentBackground = False
+      ParentFont = False
+      TabOrder = 8
+      OnClick = Panel5Click
+    end
+    object edtDataInicial: TMaskEdit
+      Left = 381
+      Top = 35
+      Width = 95
+      Height = 25
+      EditMask = '!99/99/9999;1;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 2
+      Text = '  /  /    '
+    end
+    object edtDataFinal: TMaskEdit
+      Left = 498
+      Top = 35
+      Width = 95
+      Height = 25
+      EditMask = '!99/99/9999;1;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 3
+      Text = '  /  /    '
+    end
+    object edtDataInicialRecup: TMaskEdit
+      Left = 619
+      Top = 35
+      Width = 97
+      Height = 25
+      EditMask = '!99/99/9999;1;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 4
+      Text = '  /  /    '
+    end
+    object edtDataFinalRecup: TMaskEdit
+      Left = 736
+      Top = 35
+      Width = 98
+      Height = 25
+      EditMask = '!99/99/9999;1;_'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 10
+      ParentFont = False
+      TabOrder = 5
+      Text = '  /  /    '
+    end
+    object edtCNPJ: TMaskEdit
+      Left = 195
+      Top = 35
+      Width = 168
+      Height = 25
+      EditMask = '99.999.999/9999-99;0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      MaxLength = 18
+      ParentFont = False
+      TabOrder = 1
+      Text = ''
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 177
+    Width = 939
+    Height = 464
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 10841637
+    Padding.Left = 20
+    Padding.Top = 20
+    Padding.Right = 20
+    Padding.Bottom = 20
+    ParentBackground = False
+    TabOrder = 1
+    object DBGrid1: TDBGrid
+      Left = 20
+      Top = 20
+      Width = 899
+      Height = 424
+      Align = alClient
+      BorderStyle = bsNone
+      Color = clInfoBk
+      Ctl3D = False
+      DataSource = dmdBroker.dtsRelatorioExpo
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowFrame
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentCtl3D = False
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowFrame
+      TitleFont.Height = -13
+      TitleFont.Name = 'Segoe UI Semibold'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'NrDue'
+          Title.Caption = 'Nr Due'
+          Width = 120
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NrRuc'
+          Title.Caption = 'Nr Ruc'
+          Width = 274
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DataRegistro'
+          Title.Caption = 'Data Registro'
+          Width = 150
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'Situacao'
+          Title.Caption = 'Situa'#231#227'o'
+          Width = 200
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DataDueImportada'
+          Title.Caption = 'Data Recupera'#231#227'o'
+          Width = 150
+          Visible = True
+        end>
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 0
+    Width = 939
+    Height = 25
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 7162137
+    ParentBackground = False
+    TabOrder = 2
+    object Label5: TLabel
+      Left = 17
+      Top = 1
+      Width = 95
+      Height = 21
+      Caption = 'Exporta'#231#227'o > '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label6: TLabel
+      Left = 117
+      Top = 1
+      Width = 67
+      Height = 21
+      Caption = 'Relat'#243'rio'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+end

@@ -1,0 +1,53 @@
+object frm_Relatorio: Tfrm_Relatorio
+  Left = 144
+  Top = 126
+  Width = 642
+  Height = 480
+  Caption = 'Documentos'
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Visible = True
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object By_HE_Editor: TByHighEditPro
+    Left = 0
+    Top = 0
+    Width = 634
+    Height = 453
+    Align = alClient
+    TabOrder = 0
+    hePFFunctionVisible = False
+    hePFBkVisible = True
+    hePFBkColor = clSilver
+    hePictureFrame = False
+    heTabVisible = False
+    heUnit = utCentimeter
+    heMarginLeft = 1000
+    heMarginTop = 1000
+    heMarginRight = 1000
+    heMarginBottom = 1000
+    heTextSelectable = False
+    heClearDelete = False
+    heCrVisible = False
+    heGrayBk = False
+    heIgnoreEditable = False
+    hePercentThumb = False
+    heReadOnly = False
+    heSpaceVisible = False
+    heModified = False
+    heScreenFontsEnabled = False
+    heBkColor = clWhite
+    heShowControls = [scMenuBar, scIconBar, scRuler, scTabulator, scStatusLine]
+    heCreateOptions = [coHeadFoot, coUndo]
+    heHyperLinksVisible = True
+    heBookMarksVisible = True
+    heHyperLinksNotify = False
+    heHyperLinkColor = clLime
+    heBookMarkColor = clNavy
+    heGridLines = True
+  end
+end

@@ -1,0 +1,610 @@
+/*
+Sistema MyIndaia - Folha de Estilos
+Arquivo CSS - Redefinição de Tags e classe de style sheet
+Modificado por Alexandre Gonçalves Neto em 31/01/2005
+
+Redefinicao de Tags HTML
+*/
+
+body {
+	font-family: Calibri;
+	font-size: 10pt;
+	color: #000000;
+	background-color: #FFFFFF;
+	margin: 0px;
+	padding: 0px;
+	scrollbar-face-color: #ccd9e7;
+	scrollbar-track-color: #dae7f4;
+	scrollbar-arrow-color: #9ebac1;
+	scrollbar-shadow-color: #cad4d6;
+	scrollbar-3dlight-color: #dde9f6;
+	scrollbar-highlight-color: #dde9f6;
+	scrollbar-darkshadow-color: #cad4d6;
+	overflow:hidden;
+}
+
+#divInfoCR {
+	background-color:#b4c7db;
+	width:350px;
+	height:130px;
+	position:absolute;
+	border-width:1px;
+	border-color:#336699;
+	border-style:solid;
+	display:none;
+	z-index:3;
+}
+#divInfoCorpoCR{
+	padding-left:10px
+}
+
+.divInfo {
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:0px;
+	height:0px;
+	display: none;
+	z-index: 3;
+	overflow: auto;
+	border: solid 2px #b4c7db;
+	background-color: #f0f1f6;
+
+}
+
+.divDetalhes {
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:0px;
+	height:0px;
+	z-index: 3;
+	overflow: auto;
+	border: solid 2px #b4c7db;
+	background-color: #f0f1f6;
+	scrollbar-face-color: #ccd9e7;
+	scrollbar-track-color: #dae7f4;
+	scrollbar-arrow-color: #9ebac1;
+	scrollbar-shadow-color: #cad4d6;
+	scrollbar-3dlight-color: #dde9f6;
+	scrollbar-highlight-color: #dde9f6;
+	scrollbar-darkshadow-color: #cad4d6;
+}
+
+a:link, a:visited {
+	color: #000000;
+	font-size: 10pt;
+	text-decoration: none;
+}
+a:active, a:hover {
+	color: #FF0000;
+	font-size: 10pt;
+	text-decoration: none;
+}
+.table {
+	background-repeat: no-repeat;
+	background-position: center;
+	border-collapse: separate;
+}
+th {
+  font-size: 12px;
+}
+td {
+	font-size: 12px;
+}
+tr {
+	font-size: 12px;
+}
+
+.light:link, .light:hover, .light:active, .light:visited {
+	color: #FFFFFF;
+}
+
+.botao:link, .botao:visited {
+	color: #FFFFFF;
+}
+
+.botao:active, .botao:hover {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+/* style="filter: DropShadow(Color=#555555, OffX=2, OffY=2, Positive=2);"*/
+
+.folder1 
+{
+    font-size: 10pt;
+	color: #333333;
+	
+}
+.folder_busca 
+{
+    font-size: 10pt;
+	color: #0066cc;
+	
+}
+.folder_busca:link, .folder1:visited {
+	color: #0066cc;
+	font-weight: bold;
+}
+.bottom{
+vertical-align:bottom;
+}
+.top{
+vertical-align:top;
+}
+
+.folder1:link, .folder1:visited {
+	color: #333333;
+	font-weight: bold;
+}
+.folder2 
+{
+    font-size: 10pt;
+	cursor: hand;
+}
+
+.titulo {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+.label {
+	font-weight: bold;
+	cursor: hand;
+	padding: 6 0 0 0;
+}
+.dados {
+	padding: 2px;
+}
+.editbox {
+	color: #000000;
+	font-size: 12px;
+	background: #FEFEFE;
+	padding: 2px;
+	height: 18px;
+	border: solid 1px #336699;
+}
+.textbox {
+	color: #000000;
+	font-size: 12px;
+	background: #FEFEFE;
+	padding: 2px;
+	border: solid 1px #336699;
+}
+.button {
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	background: #FEFEFE;
+	padding: 2px;
+	border: solid 1px #333333;
+	cursor: hand;
+}
+.select {
+	color: #000000;
+	font-size: 12px;
+	background: #FEFEFE;
+	border: solid 1px #333333;
+}
+.btnImagem {
+	width: 32px;
+	height: 32px;
+	cursor: hand;
+}
+.detcampo {
+	color: #FFFFFF;
+	font-weight: bold;
+	background: #a2bbd5;
+}
+
+.gridleadtit {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	background: #335588;
+	border-style: solid;
+	border-color: #335588;
+	border-width: 0px;
+}
+.gridleadsub {
+	color: #000000;
+	font-weight: bold;
+	background-color: #D4E6DC;
+}
+
+.titpopup {
+	font-size: 13px;
+	font-style: italic;
+	font-weight: bold;
+}
+.ttbpopup {
+	color: #FFFFFF;
+	font-weight: bold;
+	background: #7799CC;
+	border: solid #FFFFFF 0px;
+}
+.abadownpopup {
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+	background: #EEEEEE;
+	border: solid 2px;
+	border-color: #333333 #AAAAAA #AAAAAA #333333;
+}
+.abauppopup {
+	color: #000000;
+	text-align: center;
+	font-weight: bold;
+	background: #EEEEEE;
+	border: solid 2px;
+	border-color: #AAAAAA #333333 #333333 #AAAAAA;
+}
+.tcppopup {
+	color: #000000;
+	font-weight: bold;
+}
+
+.cl_bold 
+{
+    color:#000000;
+    font-size:10pt;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.cl_bold2 
+{
+    color:#8fa3d5;
+    font-size:10pt;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+.cl_bold3 
+{
+    color:#deb235;
+    font-size:10pt;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+/* DIVS */
+.divMenuTop {
+	position:absolute;
+	top:86px;
+	left:5px;
+	width:235px;
+	height:100%;
+	z-index:1;
+	overflow:auto;
+	visibility: visible;	
+}
+
+.divMainTop {
+	position:absolute;
+	top:86px;
+	left:250px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+.divMainMid {
+	position:absolute;
+	top:135px;
+	left:10px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+.divMainMidOrders {
+	position:absolute;
+	top:120px;
+	left:11px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+
+.divMainMidBusca {
+	position:absolute;
+	top:121px;
+	left:11px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+
+.divMainAdm {
+	position:absolute;
+	top:190px;
+	left:10px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+.divMainDet {
+	position:static;
+	top:86px;
+	left:10px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+.divMainQld {
+	position:absolute;
+	top:86px;
+	left:250px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+
+.divMainVie {
+	position:absolute;
+	top:165px;
+	left:10px;
+	width:100%;
+	height:100%;
+	z-index:0;
+	overflow:auto;
+}
+.formClass {
+	position:relative;
+	width:100%;
+	height:100%;
+	z-index:1;
+	overflow:auto;
+}
+.popupClass {
+	position:relative;
+	width:100%;
+	height:100%;
+	z-index:2;
+	overflow:auto;
+}
+
+/* ESTILOS PARA GRIDS DE ADMINISTRACAO */
+.admtit {
+	color: #FFFFFF;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 2px;
+	background: #336699;
+	border-style: solid;
+	border-color: #6699CC #000066 #000066 #6699CC;
+	border-width: 1px;
+	cursor: hand;
+}
+.admsub {
+	color: #FFFFFF;
+	font-size: 10px;
+	font-style: italic;
+	padding: 2px;
+	background: #336699;
+	border-style: solid;
+	border-color: #6699CC #000066 #000066 #6699CC;
+	border-width: 1px 1px 1px 1px;
+}
+.admcel {
+	font-size: 10px;
+	padding: 2px;
+	background: #FFFFFF;
+	border-style: solid;
+	border-color: #6699CC #000066 #000066 #6699CC;
+	border-width: 0px 0px 0px 1px;
+}
+.admcom {
+	font-size: 10px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #6699CC #000066 #000066 #6699CC;
+	border-width: 0px 1px 0px 1px;
+}
+.admview {
+	font-size: 10px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #CCCCCC;
+	border-width: 0px 1px 1px 0px;
+}
+.admexec {
+  text-align: center;
+	background: #EEEEEE;
+	border-style: solid;
+	border-color: #FFFFFF;
+	border-width: 1px;
+}
+.admlink{}
+a.admlink:link, a.admlink:visited {
+	color: #000000;
+	font-size: 10px;
+	text-decoration: none;
+}
+a.admlink:active, a.admlink:hover {
+	color: #000000;
+	font-size: 10px;
+	text-decoration: underline;
+}
+.admtitulo {
+	color: #0099FF;
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+}
+.admlabel {
+	font-weight: bold;
+	text-align: right;
+	cursor: hand;
+	padding: 5px;
+	background-color: #EEEEEE;
+}
+.admdados {
+	padding: 5px;
+	background-color: #EEEEEE;
+}
+.admeditbox {
+	color: #000000;
+	font-size: 12px;
+	background: #FEFEFE;
+	padding: 2px;
+	height: 18px;
+	border: solid 1px #333333;
+}
+.admmemo {
+	color: #000000;
+	font-size: 12px;
+	background: #FEFEFE;
+	padding: 2px;
+	border: solid 1px #333333;
+}
+.admbutton {
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+	background: #FEFEFE;
+	padding: 2px;
+	border: solid 1px #333333;
+	cursor: hand;
+}
+.admselect {
+	color: #000000;
+	font-size: 12px;
+	background: #FEFEFE;
+	border: solid 1px #333333;
+}
+
+/* ESTILOS PARA RELATORIO NA TELA */
+.gridtop {
+	color: #FFFFFF;
+	font-style: none;
+	font-weight: bold;
+	font-size: 12px;
+	background: #374BAE;
+	border-style: solid;
+	border-color: #336699;
+	border-width: 0px;
+}
+.gridtit {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	background: #374BAE;
+	border:0;
+}
+
+.gridtit3 {
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+	background: #E7E101;
+	border-style: solid;
+	border-color: #b9bfc4;
+	border-width: 1px;
+}
+
+.gridtit3_1 {
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+	background: #02cc32;
+	border-style: solid;
+	border-color: #b9bfc4;
+	border-width: 1px;
+}
+
+.gridtit4 {
+	color: #FFFFFF;
+	font-weight: bold;
+	text-align: center;
+	background: #FF0000;
+	border-style: solid;
+	border-color: #b9bfc4;
+	border-width: 1px;
+}
+
+.gridtit2 {
+	color: #FFFFFF;
+	font-weight: bold;
+	background: #374BAE;
+	border-style: solid;
+	border-color: #b9bfc4;
+	border-width: 1px;
+}
+
+.gridsub {
+	color: #FFFFFF;
+	background: #374BAE;
+}
+.gridtitclick {
+	color: #FFFFFF;
+	cursor: hand;
+	font-weight: bold;
+	text-align: center;
+	background: #374BAE;
+    border:0;
+}
+
+/* ESTILOS PARA IMPRESSAO */
+.pgridtop {
+	color: #000000;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 12px;
+	border-style: dotted;
+	border-color: #333333;
+	border-width: 1px 0px 0px 0px;
+}
+.pgridtit {
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+	border-style: dotted;
+	border-color: #333333;
+	border-width: 1px 0px 0px 0px;
+}
+.pgridsub {
+	color: #000000;
+	font-size: 8px;
+	border-style: dotted;
+	border-color: #333333;
+	border-width: 1px 0px 0px 0px;
+}
+.pgridtotal {
+	text-align: right;
+	color: #000000;
+	font-size: 9px;
+	border-style: dotted;
+	border-color: #333333;
+	border-width: 1px 0px 0px 0px;
+}
+.pgridbottom {
+	color: #000000;
+	font-weight: bold;
+	border-style: dotted;
+	border-color: #333333;
+	border-width: 1px 0px 0px 0px;
+}
+
+/* ESTILOS ESTATISTICAS */
+.toprelat {
+	color: #FFFFFF;
+	background: #374BAE;
+	border-style: solid;
+	border-color: #374BAE;
+	border-width: 0px;
+	font-weight: bold;
+	text-align: center;
+}

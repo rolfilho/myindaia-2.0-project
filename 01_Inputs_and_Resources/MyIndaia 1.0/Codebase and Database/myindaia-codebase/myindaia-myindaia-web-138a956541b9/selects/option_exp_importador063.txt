@@ -1,0 +1,24 @@
+
+<option value=00883>BASF AG (00883)</option>
+<option value=13239>BULK LIQUID MANAGEMENT B.V. (13239)</option>
+<option value=11624>EBITS LLP (11624)</option>
+<option value=11209>EXXON REFINERY (11209)</option>
+<option value=04372>INFINEUM UK LTD (04372)</option>
+<option value=04967>INTERMODAL TANK TRANSPORT (USA) INC. (04967)</option>
+<option value=07419>JOKISCH GMBH (07419)</option>
+<option value=17627>LAB MANAGER (17627)</option>
+<option value=18808>POCHTECA MATERIAS PRIMAS SA DE CV (18808)</option>
+<option value=08126>SHEELL ANTILLES AND GUIANAS LTD (08126)</option>
+<option value=19088>SHELL (CHINA) LIMITED (19088)</option>
+<option value=04384>SHELL ASEOL AG (04384)</option>
+<option value=06019>SHELL AVIATION SERV LTD ST. KITTS (06019)</option>
+<option value=08084>SHELL AVIATION SERVICES LTD ST KITTS (08084)</option>
+<option value=08402>SHELL AVIATION SERVICES LTD. (08402)</option>
+<option value=08099>SHELL CAPSA (08099)</option>
+<option value=11749>Shell Capsa (11749)</option>
+<option value=06231>SHELL CHILE S.A.C.I (06231)</option>
+<option value=14070>SHELL GLOBAL SOLUTIONS US INC (14070)</option>
+<option value=09747>SHELL TRINIDAD LIMITED (09747)</option>
+<option value=06328>SHELL WESTERN SUPPLY AND TRADING LTD (06328)</option>
+<option value=08087>SOL PETROLEUM (08087)</option>
+<option value=04373>UNIQEMA LTD (04373)</option>

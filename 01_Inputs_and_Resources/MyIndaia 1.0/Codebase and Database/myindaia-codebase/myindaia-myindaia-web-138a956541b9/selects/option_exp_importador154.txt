@@ -1,0 +1,20 @@
+
+<option value=08292>AREVA NP GMBH (08292)</option>
+<option value=12792>BEIJING HMC MINING TRADE CO., LTD (12792)</option>
+<option value=08569>CAMECO CORPORATION (08569)</option>
+<option value=06919>CAMECO INC. (06919)</option>
+<option value=13625>CONUAR S.A. (13625)</option>
+<option value=06386>DEFONTAINE S.A. (06386)</option>
+<option value=14072>KEPCO NUCLEAR FUEL CO.,LTD. (14072)</option>
+<option value=08073>KNFC- KOREA NUCLEAR FUEL CO, LTD (08073)</option>
+<option value=08668>KOREA NUCLEAR FUEL COMPANY-KNF (08668)</option>
+<option value=08441>RSB LOGISTIC PROJECTOSPEDITION GMBH (08441)</option>
+<option value=08925>RSB LOGISTIC PROJEKTSPEDITION GMBH (08925)</option>
+<option value=08852>SPRINGFIELDS FUELS LIMITED (08852)</option>
+<option value=18699>TN INTERNACIONAL (18699)</option>
+<option value=17940>URANIUM ASSET MANAGEMENT LTD (17940)</option>
+<option value=07877>URENCO CAPENHURST LTD (07877)</option>
+<option value=15100>URENCO NETHERLAND B.V. (15100)</option>
+<option value=06898>WESTINGHOUSE ELECTRIC COMPANY LLC (06898)</option>
+<option value=17939>WESTINGHOUSE ELECTRIC SWEDEN AB (17939)</option>
+<option value=13398>WESTINGHOUSE WESTERN ZIRCONIUM (13398)</option>

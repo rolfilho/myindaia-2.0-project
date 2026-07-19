@@ -1,0 +1,31 @@
+program gerenciamentoDrawbackNovo;
+
+uses
+  Vcl.Forms,
+  Principal in 'Principal.pas' {Form1},
+  DiLeituraXML in 'DiLeituraXML.pas',
+  DmBroker in 'DmBroker.pas' {dmdBroker: TDataModule},
+  DueConsultaCompleta in 'DueConsultaCompleta.pas',
+  IntegracaoDue in 'IntegracaoDue.pas',
+  KrUtil in 'KrUtil.pas',
+  ParametrosDoSistema in 'ParametrosDoSistema.pas',
+  Pkg.Json.DTO in 'Pkg.Json.DTO.pas',
+  uCadastroDespachantes in 'uCadastroDespachantes.pas' {frmCadastroDespachante},
+  uGerarCertificado in 'uGerarCertificado.pas' {frmGerarCertificado},
+  uIntegracaoDI in 'uIntegracaoDI.pas' {frmIntegracaoDI},
+  uRelatorioImpo in 'uRelatorioImpo.pas' {frmRelatorioImpo},
+  Utils in 'Utils.pas',
+  uIntegracaoDue in 'uIntegracaoDue.pas' {frmIntegracaoDueNovo},
+  uRelatorioExpo in 'uRelatorioExpo.pas' {frmRelatorioExpo};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TdmdBroker, dmdBroker);
+  Application.CreateForm(TfrmIntegracaoDueNovo, frmIntegracaoDueNovo);
+  Application.CreateForm(TfrmRelatorioExpo, frmRelatorioExpo);
+  Application.Run;
+end.

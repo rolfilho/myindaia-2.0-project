@@ -1,0 +1,37 @@
+program gerenciamentoDrawbackNovo;
+
+uses
+  Vcl.Forms,
+  Principal in 'Principal.pas' {Form1},
+  DiLeituraXML in 'DiLeituraXML.pas',
+  DmBroker in 'DmBroker.pas' {dmdBroker: TDataModule},
+  DueConsultaCompleta in 'DueConsultaCompleta.pas',
+  IntegracaoDue in 'IntegracaoDue.pas',
+  KrUtil in 'KrUtil.pas',
+  Main in 'Main.pas' {FormMain},
+  ParametrosDoSistema in 'ParametrosDoSistema.pas',
+  Pkg.Json.DTO in 'Pkg.Json.DTO.pas',
+  uCadastroDespachantes in 'uCadastroDespachantes.pas' {frmCadastroDespachante},
+  uGerarCertificado in 'uGerarCertificado.pas' {frmGerarCertificado},
+  uIntegracaoDI in 'uIntegracaoDI.pas' {frmIntegracaoDI},
+  uIntegracaoDue in 'uIntegracaoDue.pas' {frmIntegracaoDue},
+  uRelatorioExpo in 'uRelatorioExpo.pas' {frmRelatoriorExpo},
+  uRelatorioImpo in 'uRelatorioImpo.pas' {frmRelatorioImpo},
+  Utils in 'Utils.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TdmdBroker, dmdBroker);
+  Application.CreateForm(TFormMain, FormMain);
+  Application.CreateForm(TfrmCadastroDespachante, frmCadastroDespachante);
+  Application.CreateForm(TfrmGerarCertificado, frmGerarCertificado);
+  Application.CreateForm(TfrmIntegracaoDI, frmIntegracaoDI);
+  Application.CreateForm(TfrmIntegracaoDue, frmIntegracaoDue);
+  Application.CreateForm(TfrmRelatoriorExpo, frmRelatoriorExpo);
+  Application.CreateForm(TfrmRelatorioImpo, frmRelatorioImpo);
+  Application.Run;
+end.

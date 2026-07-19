@@ -1,0 +1,17 @@
+
+<option value=00883>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=00073>BASF VERNICI E INCHIOSTRI SPA</option>
+<option value=01148>BAYER AG</option>
+<option value=01564>BERGERAC NC</option>
+<option value=01514>BP CHEMICALS TRADING LIMITED</option>
+<option value=02524>BRENNTAG STINEES LOGISTICS</option>
+<option value=01509>CAPPELLE PIGMENTS N.V.</option>
+<option value=00233>CLARIANT GMBH</option>
+<option value=03083>COGNIS DEUTSCHLAND GMBH & CO</option>
+<option value=02304>COLUMBIAN CHEMICALS COMPANY</option>
+<option value=01153>ECKART-WERKE</option>
+<option value=03009>NEO RESINS INC</option>
+<option value=02184>SOLVIN FRANCE</option>
+<option value=01333>SUN CHEMICAL S.A PIGMENTOS DIVISION</option>
+<option value=02516>TENNANT N.V.</option>

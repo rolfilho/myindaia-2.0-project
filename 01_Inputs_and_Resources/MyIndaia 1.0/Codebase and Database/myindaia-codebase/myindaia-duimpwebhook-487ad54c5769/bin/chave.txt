@@ -1,0 +1,4 @@
+secret:7eym0TScxh6JnRQ7Uz0ozSVlwGpsvVkP
+destinatario-tipo:
+destinatario-id:
+event-type:dimp-diag-import

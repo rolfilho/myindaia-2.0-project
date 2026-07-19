@@ -1,0 +1,601 @@
+object frmCadastroDespachante: TfrmCadastroDespachante
+  Left = 0
+  Top = 0
+  BorderStyle = bsNone
+  Caption = 'Cadastro Despachante'
+  ClientHeight = 500
+  ClientWidth = 806
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnShow = FormShow
+  DesignSize = (
+    806
+    500)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PageControl1: TPageControl
+    Left = 8
+    Top = 40
+    Width = 792
+    Height = 439
+    ActivePage = tbsCertificado
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    MultiLine = True
+    ParentShowHint = False
+    ShowHint = False
+    TabOrder = 0
+    ExplicitWidth = 686
+    object TabSheet1: TTabSheet
+      Caption = 'Consulta'
+      ParentShowHint = False
+      ShowHint = False
+      ExplicitLeft = 0
+      ExplicitWidth = 681
+      ExplicitHeight = 396
+      object Panel2: TPanel
+        Left = 0
+        Top = 81
+        Width = 784
+        Height = 330
+        Align = alClient
+        TabOrder = 0
+        ExplicitWidth = 681
+        ExplicitHeight = 315
+        object DBGrid2: TDBGrid
+          Left = 1
+          Top = 1
+          Width = 782
+          Height = 328
+          Align = alClient
+          BorderStyle = bsNone
+          Color = clInfoBk
+          Ctl3D = False
+          DataSource = dmdBroker.dtsCadDespachantes
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowFrame
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
+          Font.Style = []
+          Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+          ParentCtl3D = False
+          ParentFont = False
+          ReadOnly = True
+          TabOrder = 0
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowFrame
+          TitleFont.Height = -13
+          TitleFont.Name = 'Segoe UI Semibold'
+          TitleFont.Style = []
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'CODIGO'
+              Title.Caption = 'C'#243'digo'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NOME_DESPACHANTE'
+              Title.Caption = 'Nome'
+              Width = 150
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NOME_ARQUIVO'
+              Title.Caption = 'Arquivo'
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ORDEM_CONSULTA'
+              Title.Caption = 'Ordem Consulta'
+              Visible = True
+            end>
+        end
+      end
+      object Panel1: TPanel
+        Left = 0
+        Top = 0
+        Width = 784
+        Height = 81
+        Align = alTop
+        BevelOuter = bvNone
+        Color = 10841637
+        ParentBackground = False
+        TabOrder = 1
+        ExplicitWidth = 681
+        object Panel6: TPanel
+          Left = 12
+          Top = 19
+          Width = 114
+          Height = 34
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Novo'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+          OnClick = Panel6Click
+        end
+        object Panel7: TPanel
+          Left = 132
+          Top = 19
+          Width = 114
+          Height = 34
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Alterar'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 1
+          OnClick = Panel7Click
+        end
+        object Panel8: TPanel
+          Left = 252
+          Top = 19
+          Width = 114
+          Height = 34
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Excluir'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 2
+          OnClick = Panel8Click
+        end
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Cadastro'
+      ImageIndex = 1
+      ExplicitWidth = 681
+      ExplicitHeight = 396
+      object Panel3: TPanel
+        Left = 0
+        Top = 68
+        Width = 784
+        Height = 343
+        Align = alClient
+        BevelOuter = bvNone
+        Color = 10841637
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitWidth = 681
+        ExplicitHeight = 328
+        DesignSize = (
+          784
+          343)
+        object Label2: TLabel
+          Left = 24
+          Top = 23
+          Width = 119
+          Height = 17
+          Caption = 'Nome Despachante'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label3: TLabel
+          Left = 24
+          Top = 168
+          Width = 271
+          Height = 17
+          Caption = 'Nome Arquivo (sem espa'#231'o e sem extens'#227'o)'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 24
+          Top = 70
+          Width = 99
+          Height = 17
+          Caption = 'Ordem Consulta'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label1: TLabel
+          Left = 24
+          Top = 118
+          Width = 72
+          Height = 17
+          Caption = 'Vencimento'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object lblStatusArquivos: TLabel
+          Left = 419
+          Top = 103
+          Width = 349
+          Height = 16
+          Anchors = [akTop, akRight]
+          Caption = 'lblStatusArquivos'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentFont = False
+          Visible = False
+          ExplicitLeft = 416
+        end
+        object edtNomeDespachante: TDBEdit
+          Left = 24
+          Top = 40
+          Width = 385
+          Height = 21
+          DataField = 'NOME_DESPACHANTE'
+          DataSource = dmdBroker.dtsCadDespachantes
+          TabOrder = 0
+        end
+        object edtNomeArquivo: TDBEdit
+          Left = 24
+          Top = 185
+          Width = 385
+          Height = 21
+          DataField = 'NOME_ARQUIVO'
+          DataSource = dmdBroker.dtsCadDespachantes
+          TabOrder = 1
+          OnExit = edtNomeArquivoExit
+        end
+        object edtOrdem: TDBEdit
+          Left = 24
+          Top = 87
+          Width = 121
+          Height = 21
+          DataField = 'ORDEM_CONSULTA'
+          DataSource = dmdBroker.dtsCadDespachantes
+          TabOrder = 2
+        end
+        object edtVencimento: TDateTimePicker
+          Left = 24
+          Top = 136
+          Width = 186
+          Height = 21
+          Date = 44911.422142071760000000
+          Time = 44911.422142071760000000
+          TabOrder = 3
+        end
+        object Panel11: TPanel
+          Left = 588
+          Top = 14
+          Width = 180
+          Height = 34
+          Cursor = crHandPoint
+          Anchors = [akTop, akRight]
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Gerar Certificado'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 4
+          OnClick = Panel11Click
+          ExplicitLeft = 485
+        end
+        object Panel12: TPanel
+          Left = 588
+          Top = 54
+          Width = 180
+          Height = 34
+          Cursor = crHandPoint
+          Anchors = [akTop, akRight]
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Excluir Certificado'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 5
+          OnClick = Panel12Click
+          ExplicitLeft = 485
+        end
+      end
+      object Panel4: TPanel
+        Left = 0
+        Top = 0
+        Width = 784
+        Height = 68
+        Align = alTop
+        BevelOuter = bvNone
+        Color = 10841637
+        ParentBackground = False
+        TabOrder = 1
+        ExplicitWidth = 681
+        object Panel9: TPanel
+          Left = 12
+          Top = 17
+          Width = 114
+          Height = 34
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Gravar'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+          OnClick = Panel9Click
+        end
+        object Panel10: TPanel
+          Left = 132
+          Top = 17
+          Width = 114
+          Height = 34
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Cancelar'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 1
+          OnClick = Panel10Click
+        end
+      end
+    end
+    object tbsCertificado: TTabSheet
+      Caption = 'Certificado'
+      ImageIndex = 2
+      ExplicitWidth = 681
+      ExplicitHeight = 396
+      object Panel13: TPanel
+        Left = 0
+        Top = 0
+        Width = 784
+        Height = 411
+        Align = alClient
+        BevelOuter = bvNone
+        Color = 10841637
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitWidth = 681
+        ExplicitHeight = 396
+        object Label6: TLabel
+          Left = 24
+          Top = 24
+          Width = 590
+          Height = 21
+          Caption = 
+            'Siga os passos para gerar os arquivos .pem e .key do certificado' +
+            ' do despachante.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label7: TLabel
+          Left = 24
+          Top = 87
+          Width = 349
+          Height = 17
+          Caption = '1'#186' : Execute o programa OpenSSL pressionando o bot'#227'o: '
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label8: TLabel
+          Left = 24
+          Top = 156
+          Width = 534
+          Height = 17
+          Caption = 
+            '2'#186' : Copiar o texto abaixo, copiar no programa OpenSSL (tela pre' +
+            'ta) e pressionar ENTER.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label9: TLabel
+          Left = 24
+          Top = 276
+          Width = 538
+          Height = 17
+          Caption = 
+            '4'#186' : Copiar o texto abaixo, copiar no programa OpenSSL (tela pre' +
+            'ta)  e pressionar ENTER.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object Label10: TLabel
+          Left = 24
+          Top = 234
+          Width = 426
+          Height = 17
+          Caption = 
+            '3'#186' : Digitar a senha do certificado do despachante e pressionar ' +
+            'ENTER.'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -13
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentFont = False
+        end
+        object edit1: TMemo
+          Left = 24
+          Top = 179
+          Width = 700
+          Height = 40
+          TabOrder = 0
+        end
+        object edit2: TMemo
+          Left = 24
+          Top = 299
+          Width = 700
+          Height = 40
+          TabOrder = 1
+        end
+        object Panel14: TPanel
+          Left = 24
+          Top = 110
+          Width = 145
+          Height = 31
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Abrir o OpenSSL'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 2
+          OnClick = Panel14Click
+        end
+        object Panel15: TPanel
+          Left = 570
+          Top = 142
+          Width = 65
+          Height = 31
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Copiar'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 3
+          OnClick = Panel15Click
+        end
+        object Panel16: TPanel
+          Left = 570
+          Top = 262
+          Width = 65
+          Height = 31
+          Cursor = crHandPoint
+          BevelInner = bvLowered
+          BevelOuter = bvNone
+          Caption = 'Copiar'
+          Color = 7237230
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clHighlightText
+          Font.Height = -16
+          Font.Name = 'Segoe UI Semibold'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 4
+          OnClick = Panel16Click
+        end
+      end
+    end
+  end
+  object Panel5: TPanel
+    Left = 0
+    Top = 0
+    Width = 806
+    Height = 25
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 7162137
+    ParentBackground = False
+    TabOrder = 1
+    ExplicitLeft = -208
+    ExplicitWidth = 897
+    object Label5: TLabel
+      Left = 17
+      Top = 1
+      Width = 96
+      Height = 21
+      Caption = 'Despachantes'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = cl3DLight
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 580
+    Top = 208
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 144
+    Top = 304
+  end
+end

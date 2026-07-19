@@ -1,0 +1,5 @@
+
+<option value=01922>WHIRLPOOL S.A ( Embraco - Componentes )</option>
+<option value=01921>WHIRLPOOL S.A ( Embraco - Eletronicos )</option>
+<option value=01919>WHIRLPOOL S.A ( Embraco - Fundição )</option>
+<option value=01920>WHIRLPOOL S.A ( Embraco - Joinville )</option>

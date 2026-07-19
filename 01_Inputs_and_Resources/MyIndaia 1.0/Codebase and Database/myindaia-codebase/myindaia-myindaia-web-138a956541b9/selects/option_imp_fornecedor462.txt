@@ -1,0 +1,6 @@
+
+<option value=08555>ADIGE S.P.A</option>
+<option value=08066>AKERS SPECIALTY ROLLS AB</option>
+<option value=08682>SHUZ TUNG MACHINERY INDUSTRIAL CO., LTD.</option>
+<option value=08439>U.S.M. MAZZUCCHELLI S.R.L.</option>
+<option value=08775>USM - UTENSILI SPECIALI MONZA</option>

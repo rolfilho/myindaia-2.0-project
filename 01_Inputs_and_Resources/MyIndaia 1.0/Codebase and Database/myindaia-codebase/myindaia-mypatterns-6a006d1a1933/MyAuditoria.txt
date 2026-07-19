@@ -1,0 +1,226 @@
+unit MyAuditoria;
+
+interface
+
+uses Data.DB, system.Classes, System.SysUtils, System.Variants, MyGlobal,
+  TypInfo, Aurelius.Mapping.Metadata, IdGlobal;
+
+procedure AuditIt(Dataset: TDataSet; MetaId: TMetaId; State: TCdState);
+
+implementation
+
+function QuotedFieldValue(aValue: variant; aDataType: TFieldType; aProhibited: TSetOfChar = []):string;
+const
+  PRINTABLECHARS=[#32..#126]-['''','$',','];
+var
+  s:string;
+  i:integer;
+begin
+  if VarIsNull(aValue) then
+    result:='NULL'
+  else
+  begin
+    case aDataType of
+      ftString    ,
+      ftFixedChar ,
+      ftWideString: s:=aValue;
+      ftSmallint  ,
+      ftInteger   ,
+      ftWord      ,
+      ftLargeint  : s:=aValue;
+      //ftBoolean   :
+      ftFloat     ,
+      ftCurrency  ,
+      ftBCD       : s:=StringReplace(FloatToStr(aValue), FormatSettings.DecimalSeparator,'.',[rfReplaceAll,rfIgnoreCase]);
+      ftDate      : s:=DateToStr(aValue);
+      ftTime      : s:=TimeToStr(aValue);
+      ftDateTime  : s:=DateTimeToStr(aValue);
+      ftBlob      : s:=aValue;
+      ftMemo      : s:=aValue;
+      ftGraphic   : s:=aValue;
+    end;
+    result:='''';
+    for i:=1 to length(s) do
+      if CharInSet(s[i], (PRINTABLECHARS-aProhibited)) then
+        result := result + s[i]
+      else
+        result := result +'$'+ByteToHex(ord(s[i]));
+    result := Result + '''';
+  end;
+end;
+
+function AuditFormat(AValue: Variant; ADataType: TFieldType = ftString): string;
+begin
+  Result := QuotedFieldValue(AValue, ADataType, ['|']);
+end;
+
+function VarToInt(aValor: Variant): Integer;
+begin
+  if VarIsNull(aValor) then
+    Result := 0
+  else
+    Result := StrToIntDef(VarToStr(aValor), 0);
+end;
+
+function VarToFloat(aValor: Variant): Double;
+begin
+  if VarIsNull(aValor) then
+    Result := 0
+  else
+    Result := StrToFloatDef(VarToStr(aValor), 0);
+end;
+
+function GetValueField(Field: TField; State: TCdState; ResultField: TFieldType = ftVariant):Variant;
+begin
+  try
+    case State of
+      cdInsert,cdEdit: Result := Field.NewValue;
+      cdDelete: Result := Field.OldValue;
+    end;
+    //Campos que podem vir nulo mas o retorno dele é algum inteiro, String, Float e etc.. é feito uma conversão para o seu respectivo tipo.
+    case ResultField of
+      ftVariant : Result := Result;
+      ftInteger : Result := VarToInt(Result);
+      ftString  : Result := VarToStr(Result);
+      ftBoolean : if (Result = Null) then
+                    Result := False;
+      ftFloat   : Result := VarToFloat(Result);
+      ftDateTime: begin
+                    if (Result = Null) then
+                      Result := 0
+                    else
+                      Result := VarToDateTime(Result);
+                  end;
+    else
+      raise Exception.Create('Validação do tipo '+GetEnumName(TypeInfo(TFieldType), Integer(ResultField))+' não implementado.');
+    end;
+  except
+    on E: Exception do
+    begin
+      raise Exception.Create('Acesso incorreto ao campo '+Field.FullName+'('+Field.DisplayName+')'+
+                             ' com o UpdateKind '+GetEnumName(TypeInfo(TUpdateKind), Integer(State))
+                             +E.message);
+    end;
+  end;
+end;
+
+function GetUpdatedFields(Dataset: TDataSet; MetaId: TMetaId; State: TCdState; AList: TStringList): Boolean;
+var
+  I: Integer;
+  Field: TField;
+  Value: Variant;
+  SemCampos: Boolean;
+  KeyCol: TColumn;
+
+  function InKeyFields(const FieldName: string): Boolean;
+  var
+    Col: TColumn;
+  begin
+    Result := False;
+    for Col in MetaId.Columns do
+    begin
+      if Col.Name.Equals(FieldName) then
+        Exit(True);
+    end;
+  end;
+
+begin
+  Result := False;
+  AList.Clear;
+  AList.Add('[CHAVE]');
+  for KeyCol in MetaId.Columns do
+  begin
+    Field := Dataset.FieldByName(KeyCol.Name);
+    if Dataset.UpdateStatus = usInserted then
+      Value := Field.NewValue
+    else
+      Value := Field.OldValue;
+    AList.Add(Field.DisplayLabel + '=' + AuditFormat(Value, Field.DataType));
+  end;
+
+  for I := 0 to Dataset.FieldCount -1 do
+  begin
+    if Dataset.FieldList[I].Tag > 0 then
+      AList.Add(Dataset.FieldList[I].DisplayLabel + '=' + GetValueField(Dataset.FieldList[I], State ,ftString));
+  end;
+
+  AList.Add('');
+  AList.Add('[CAMPOS]');
+  SemCampos := True;
+  for I := 0 to Dataset.FieldCount - 1 do
+  begin
+    Field := Dataset.Fields[I];
+    if Field.FieldKind = fkData then
+      case State of
+        cdEdit:
+          if Field is TBlobField then
+          begin
+            if Field.Tag = 0 then
+              AList.Add(Field.DisplayLabel + '=' + AuditFormat(Field.OldValue, Field.DataType) + '|' + AuditFormat(Field.NewValue, Field.DataType))
+            else
+              AList.Add(Field.DisplayLabel + '=' + QuotedStr('') + '|' + QuotedStr(''));
+            SemCampos := False;
+            Result := True;
+          end
+          else if Field.OldValue <> Field.NewValue then
+          begin
+            AList.Add(Field.DisplayLabel + '=' + AuditFormat(Field.OldValue, Field.DataType) + '|' + AuditFormat(Field.NewValue, Field.DataType));
+            SemCampos := False;
+            Result := True;
+          end;
+        cdInsert:
+        begin
+          Result := True;
+          if not InKeyFields(Field.FieldName) and not VarIsNull(Field.NewValue) then
+          begin
+            AList.Add(Field.DisplayLabel + '=' + AuditFormat(Field.NewValue, Field.DataType));
+            SemCampos := False;
+          end;
+        end;
+        { Foi observado que na exclusão de um registro em um
+          cadastro, o UpdateStatus da Query é usUnmodified,
+          por isso está constante é utilizada. }
+        cdDelete:
+        begin
+          Result := True;
+          if not InKeyFields(Field.FieldName) then
+          begin
+            if not VarIsNull(Field.OldValue) then
+            begin
+              try
+                AList.Add(Field.DisplayLabel + '=' + AuditFormat(Field.OldValue, Field.DataType));
+              except
+                AList.Add(Field.DisplayLabel + '=' + AuditFormat(Field.Value, Field.DataType));
+              end;
+              SemCampos := False;
+            end;
+          end;
+        end;
+      end;
+  end;
+  if SemCampos then
+  begin
+    AList.Delete(AList.Count - 1);
+    AList.Delete(AList.Count - 1);
+  end;
+end;
+
+procedure AuditIt(Dataset: TDataSet; MetaId: TMetaId; State: TCdState);
+var
+  Changes: TStringList;
+begin
+  Changes := TStringList.Create;
+  try
+    if GetUpdatedFields(Dataset, MetaId, State, Changes) then
+      {if AModulo = '' then
+        RegistraAuditoria(GetTableNameOrAlias(Dataset), Operation[AUpdateKind], Changes.Text)
+      else
+        RegistraAuditoria(AModulo, Operation[AUpdateKind], Changes.Text);}
+  finally
+    //LastOperation := AUpdateKind;
+    Changes.Free;
+  end;
+end;
+
+
+end.

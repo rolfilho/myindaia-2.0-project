@@ -1,0 +1,3 @@
+[submodule "mypatterns"]
+	path = mypatterns
+	url = git@bitbucket.org:myindaia/mypatterns.git

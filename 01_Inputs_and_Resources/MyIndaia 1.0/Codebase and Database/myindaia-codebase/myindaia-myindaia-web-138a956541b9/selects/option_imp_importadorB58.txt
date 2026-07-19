@@ -1,0 +1,8 @@
+
+<option value=02417>CARGILL AGRICOLA S.A. (CASCAVEL)</option>
+<option value=02415>CARGILL AGRICOLA S.A. (CASTRO)</option>
+<option value=02377>CARGILL AGRICOLA S.A. (CONFRESA)</option>
+<option value=02416>CARGILL AGRICOLA S.A. (CORBELIA)</option>
+<option value=02428>CARGILL AGRICOLA S.A. (FORMOSA DO RIO PRETO)</option>
+<option value=02363>CARGILL AGRICOLA S.A. (PARAGOMINAS)</option>
+<option value=02414>CARGILL AGRICOLA S.A. (UBERLÂNDIA)</option>

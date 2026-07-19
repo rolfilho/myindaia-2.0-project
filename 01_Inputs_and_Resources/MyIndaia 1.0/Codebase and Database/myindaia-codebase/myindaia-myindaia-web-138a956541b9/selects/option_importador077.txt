@@ -1,0 +1,11 @@
+
+<option value=00883>BASF AG</option>
+<option value=01183>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=00482>BASF COATINGS AG</option>
+<option value=00013>BASF CORPORATION</option>
+<option value=04370>BASF CORPORATION</option>
+<option value=08940>NINGXIA LONGZE CHEMICALS CO., LTD.</option>
+<option value=00114>POLIOLES S.A. DE C.V.</option>
+<option value=00481>PT BASF INDONESIA</option>
+<option value=08885>THE BEAMING CO., LTD.</option>

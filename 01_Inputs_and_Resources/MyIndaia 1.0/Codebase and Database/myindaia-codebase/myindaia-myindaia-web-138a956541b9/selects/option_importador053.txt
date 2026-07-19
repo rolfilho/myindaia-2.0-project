@@ -1,0 +1,9 @@
+
+<option value=00312>EFKA CHEMICALS BV</option>
+<option value=04054>HAIR DREAMS HAARHANDELS GES.MBH</option>
+<option value=04040>NA DERINGER INC.</option>
+<option value=03520>PUROLITE (CHINA) CO. LTD</option>
+<option value=03446>THE PUROLITE COMPANY</option>
+<option value=03451>THE PUROLITE COMPANY</option>
+<option value=03374>THE PUROLITE LIMITED</option>
+<option value=00374>WUXI HUAJIE DYE CHEM.</option>

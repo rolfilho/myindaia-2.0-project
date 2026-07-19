@@ -1,0 +1,9 @@
+
+<option value=03880>"TO THE ORDER OF BUMIPUTRA-COMMERCE BANK BERHAD" (03880)</option>
+<option value=00883>BASF AG (00883)</option>
+<option value=01051>BASF ARGENTINA S.A. (01051)</option>
+<option value=03221>BASF COATINGS AG (03221)</option>
+<option value=00537>BASF COATINGS AG (00537)</option>
+<option value=06279>DEVINIL LTDA (06279)</option>
+<option value=06069>NESTLE TRINIDAD AND TOBAGO LIM (06069)</option>
+<option value=00001>PHILLIPS CHE. COMP. (00001)</option>

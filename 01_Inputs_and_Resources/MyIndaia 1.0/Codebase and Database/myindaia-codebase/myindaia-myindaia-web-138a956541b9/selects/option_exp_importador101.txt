@@ -1,0 +1,15 @@
+
+<option value=06265>ABB INC (06265)</option>
+<option value=00883>BASF AG (00883)</option>
+<option value=07616>BERICAP B.T. (07616)</option>
+<option value=07505>BERICAP POLSKA SP. Z O.O (07505)</option>
+<option value=08164>ENGCHEM USA INC. (08164)</option>
+<option value=07508>EXTREL CMS LLC (07508)</option>
+<option value=06362>FRATELLI BIANCHI S.R.L (06362)</option>
+<option value=06423>INEOS EUROPE LIMETED (06423)</option>
+<option value=08709>REICHEM INTERNATIONAL (HK) LTD (08709)</option>
+<option value=07325>SIKA S.A CHILE (07325)</option>
+<option value=05734>SOLVAY INDUPA S.A .I.C. (05734)</option>
+<option value=05797>SOLVAY INDUPA S.A .I.C. (05797)</option>
+<option value=06143>SOLVIN FRANCE (06143)</option>
+<option value=08905>VACCARINO PLASTICI SPA (08905)</option>

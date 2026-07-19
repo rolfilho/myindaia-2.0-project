@@ -216,3 +216,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# macOS
+.DS_Store
+
+# Large archives and binaries exceeding GitHub 100MB limit
+*.rar
+*.exe
+ER_Studio_8.0.3.rar

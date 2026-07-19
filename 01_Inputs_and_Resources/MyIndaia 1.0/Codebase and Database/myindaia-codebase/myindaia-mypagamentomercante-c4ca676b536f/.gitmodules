@@ -1,0 +1,3 @@
+[submodule "dwba"]
+	path = dwba
+	url = ../dwba.git

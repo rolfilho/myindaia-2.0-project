@@ -1,0 +1,20 @@
+
+<option value=08903>BENTELER AUTOMOTIVE S.A (08903)</option>
+<option value=10384>CARLOS CABALLERO SRL (10384)</option>
+<option value=10328>COMPAÑIA INDUSTRIAL AZUCARERA " SAN AURELIO " S.A (10328)</option>
+<option value=09161>CORPORATION UNAGRO (09161)</option>
+<option value=08216>CPW AMERICA COMPANY (08216)</option>
+<option value=08302>CYBERSTEEL CORPORATION (08302)</option>
+<option value=08398>DANA ARGENTINA S.A. (08398)</option>
+<option value=08413>DANA DRIVESHAFT PRODUCTS, LLC (08413)</option>
+<option value=08458>DANA-SPICER AXLE SOUTH AFRICA (08458)</option>
+<option value=09519>Esther Nunez Callejas (09519)</option>
+<option value=10436>EZI METALES S.A. DE C.V. (10436)</option>
+<option value=10930>FANGIO REPRESENTACIONES (10930)</option>
+<option value=08457>INDUSTRIA DE EJES Y TRANSMISIONES S.A. (08457)</option>
+<option value=08896>INGENIERIA COMERCIAL ESPECIALIZADA S.A.C (08896)</option>
+<option value=10370>INGENIO AZUCARERO GUABIRA S.A. (10370)</option>
+<option value=09420>MENACORPBOL / MENAGAS (09420)</option>
+<option value=09164>OPERACIONES INTERNACIONALES, S.A. (09164)</option>
+<option value=09545>Planta Industrial "DON GUILLERMO" Ltda (09545)</option>
+<option value=08699>SPICER DRIVESHAFT U.K. Assembly Plant (08699)</option>

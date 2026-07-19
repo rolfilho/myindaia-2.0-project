@@ -1,0 +1,256 @@
+unit uIntegracaoDue;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.ComCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls,
+  Excel2000, OleServer, ComObj,
+  DmBroker, DueConsultaCompleta, IntegracaoDue, IdBaseComponent, IdComponent,
+  IdTCPConnection, IdTCPClient, IdHTTP;
+
+type
+
+  TfrmIntegracaoDueNovo = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
+    DBGrid1: TDBGrid;
+    lblStatus: TLabel;
+    ProgressBar1: TProgressBar;
+    Panel3: TPanel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Panel4: TPanel;
+    btnImportar: TPanel;
+    lblFila: TLabel;
+    Panel6: TPanel;
+    txtLog: TMemo;
+    OpenDialog1: TOpenDialog;
+    IdHTTP1: TIdHTTP;
+    procedure FormShow(Sender: TObject);
+    procedure btnImportarDadosSiscomexClick(Sender: TObject);
+    procedure Panel4Click(Sender: TObject);
+    procedure btnImportarClick(Sender: TObject);
+  private
+    procedure IntegrarPlanilhaDue;
+    procedure ImportarDUE;
+    procedure Pesquisar;
+    procedure CarregaCertificados;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmIntegracaoDueNovo: TfrmIntegracaoDueNovo;
+
+implementation
+
+{$R *.dfm}
+
+uses FireDAC.Comp.Client, System.Contnrs, System.Generics.Collections;
+
+function MyInc(var value: integer; valueInc: integer = 1): integer;
+begin
+  value := value + 1;
+  result := value;
+end;
+
+procedure TfrmIntegracaoDueNovo.btnImportarDadosSiscomexClick(Sender: TObject);
+begin
+  if dmdBroker.qryFilaExpo.RecordCount > 0 then
+    ImportarDue
+  else
+    showmessage('Não foi encontrado resultado de pesquisa para exportação.');
+end;
+
+
+procedure TfrmIntegracaoDueNovo.Panel4Click(Sender: TObject);
+begin
+  IntegrarPlanilhaDue;
+end;
+
+procedure TfrmIntegracaoDueNovo.btnImportarClick(Sender: TObject);
+begin
+  ImportarDUE;
+end;
+
+procedure TfrmIntegracaoDueNovo.Pesquisar;
+begin
+  dmdBroker.MostraFila;
+  if dmdBroker.qryFilaExpo.RecordCount > 0 then
+  begin
+    lblFila.Caption := IntToStr(dmdBroker.qryFilaExpo.RecordCount) + ' estão na fila aguardando Importar os dados do Siscomex.';
+    btnImportar.Enabled := True;
+  end
+  else
+  begin
+    lblFila.Caption := 'Não há DUEs pendentes de importação no momento.';
+    btnImportar.Enabled := False;
+  end;
+end;
+
+procedure TfrmIntegracaoDueNovo.ImportarDUE;
+var
+  DUe: TDUe;
+  Qtd, QtdLote: Integer;
+  Atual: Integer;
+  Hora: TDateTime;
+  statusTexto : string;
+  mDados : TFDMemTable;
+  CodDespachante: Integer;
+  i: integer;
+
+FRespostaStr: TStringList;
+
+begin
+  i := 0;
+  if not btnImportar.Enabled then
+  begin
+    lblFila.Caption := 'Importação de dados finalizada com sucesso.';
+    exit;
+  end;
+
+  mdados := TFDMemTable.Create(nil);
+  mdados.Data := dmdBroker.qryFilaExpo.Data;
+
+  lblstatus.Visible := true;
+  ProgressBar1.Visible := true;
+  ProgressBar1.Min := 0;
+  ProgressBar1.Max := mdados.RecordCount;
+
+  CodDespachante := mDados.FieldByName('CodigoCertificadoDespachante').AsInteger;
+  if CodDespachante = 999 then
+  begin
+    lblFila.Caption := 'As DUEs que restaram não puderam ser consultadas pelos despachantes cadastrados.';
+    btnImportar.Enabled := false;
+    exit;
+  end;
+
+  //DUE.teste;
+  try
+    while not mdados.Eof do
+    begin
+      inc(i);
+      DUe := TDUe.Create(True);
+      try
+        lblstatus.Caption := 'Importando DUE ' + ExtractFileName(mdados.fieldByName('NrDue').AsString) + ' |  ' + IntToStr(i) + ' de ' + IntToStr(mdados.RecordCount) + ' Dues.';
+        ProgressBar1.Position := mdados.RecNo;
+        try
+          if CodDespachante <> mDados.FieldByName('CodigoCertificadoDespachante').AsInteger then
+          begin
+            CodDespachante := mDados.FieldByName('CodigoCertificadoDespachante').AsInteger;
+            DUe.Consulta(Trim(mdados.fieldByName('NrDue').AsString), tcCompleta, CodDespachante, true);
+          end
+          else
+            DUe.Consulta(Trim(mdados.fieldByName('NrDue').AsString), tcCompleta, CodDespachante, false);
+
+          txtLog.Lines.Add('Due ' + mdados.fieldByName('NrDue').AsString + ' integrada com sucesso' );
+          except
+          on E: Exception do
+          begin
+            txtLog.Lines.Add('Erro ao integrar a Due ' + mdados.fieldByName('NrDue').AsString +
+                             ' erro: ' + E.Message);
+            if E.Message.Contains('Unauthorized') or
+               E.Message.Contains('Internal') or
+               E.Message.Contains('expired') or
+               E.Message.Contains('Unprocessable') then
+            begin
+              dmdBroker.UpdateDueRecuperarCertificado(mdados.fieldByName('NrDue').AsString, CodDespachante);
+              mdados.Next;
+              Sleep(1000);
+              Continue;
+            end
+            else
+            begin
+              mdados.Next;
+              Sleep(1000);
+              Continue;
+            end;
+          end;
+        end;
+
+        if not DUe.RespostaStr.IsEmpty then
+        begin
+//          dmdBroker.TesteTamanhoCampos(mdados.fieldByName('NrDue').AsString, Due, PreencheMemo);
+          dmdBroker.GravaDueCompleta(mdados.fieldByName('NrDue').AsString, Due);
+          dmdBroker.UpdateDueRecuperar(mdados.fieldByName('NrDue').AsString);
+        end;
+
+        mdados.Next;
+      finally
+        Due.Free;
+      end;
+      lblstatus.Caption := 'Importação concluída.';
+    end;
+  finally
+    Pesquisar;
+    ImportarDUE;
+  end;
+end;
+
+procedure TfrmIntegracaoDueNovo.CarregaCertificados;
+var
+  iCertificado: integer;
+begin
+  if assigned(Certificados) then
+    Certificados.free;
+
+  dmdBroker.qrySelectCertificados.Open;
+  Certificados := TObjectList<TCertificados>.create;
+  dmdBroker.qrySelectCertificados.first;
+  while not dmdBroker.qrySelectCertificados.eof do
+  begin
+    iCertificado := Certificados.add(TCertificados.Create);
+    Certificados.Items[iCertificado].Codigo := dmdBroker.qrySelectCertificadosCODIGO.AsInteger;
+    Certificados.Items[iCertificado].NomeArquivo := dmdBroker.qrySelectCertificadosNomeArquivo.AsString;
+    Certificados.Items[iCertificado].Ordem := dmdBroker.qrySelectCertificadosOrdemConsulta.AsInteger;
+    dmdBroker.qrySelectCertificados.next;
+  end;
+end;
+
+procedure TfrmIntegracaoDueNovo.FormShow(Sender: TObject);
+begin
+  Pesquisar;
+  CarregaCertificados;
+end;
+
+procedure TfrmIntegracaoDueNovo.IntegrarPlanilhaDue;
+var
+  Excel: OleVariant;
+  oSheet: OleVariant;
+  vNrDue: String;
+  Linhas, LinhaItem: integer ;
+begin
+  if not OpenDialog1.Execute then
+    exit;
+
+  Excel := CreateOleObject('Excel.Application');
+  try
+    Excel.WorkBooks.Add(OpenDialog1.FileName);
+    oSheet := Excel.Workbooks[1].WorkSheets[1];
+    Linhas := oSheet.Cells.SpecialCells(11).Row;
+    LinhaItem := 1;
+
+    ProgressBar1.Visible := true;
+    ProgressBar1.Min := 0;
+    ProgressBar1.Max := Linhas;
+
+    while oSheet.Cells[LinhaItem, 1].Value <> '' do
+    begin
+      ProgressBar1.Position := LinhaItem;
+      vNrDue := Trim(oSheet.Cells[LinhaItem,1].value);
+      dmdBroker.IncluirDueRecuperar(vNrDue, Certificados.Items[0].Codigo);
+      Inc(LinhaItem);
+    end;
+
+    ShowMessage('Integração realizada com SUCESSO. ');
+  finally
+    Excel.WorkBooks.Close;
+    Excel.Quit;
+    Pesquisar;
+  end;
+end;
+
+end.

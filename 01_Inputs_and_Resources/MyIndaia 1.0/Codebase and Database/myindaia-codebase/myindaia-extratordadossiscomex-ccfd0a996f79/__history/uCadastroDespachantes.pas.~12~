@@ -1,0 +1,304 @@
+unit uCadastroDespachantes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, Vcl.ComCtrls, DmBroker, Vcl.Mask,
+  Vcl.DBCtrls, uGerarCertificado, KrUtil;
+
+type
+  TfrmCadastroDespachante = class(TForm)
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
+    Panel2: TPanel;
+    Panel1: TPanel;
+    Panel3: TPanel;
+    edtNomeDespachante: TDBEdit;
+    Label2: TLabel;
+    edtNomeArquivo: TDBEdit;
+    Label3: TLabel;
+    edtOrdem: TDBEdit;
+    Label4: TLabel;
+    Panel4: TPanel;
+    Label1: TLabel;
+    edtVencimento: TDateTimePicker;
+    OpenDialog1: TOpenDialog;
+    lblStatusArquivos: TLabel;
+    DBGrid2: TDBGrid;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel8: TPanel;
+    Panel5: TPanel;
+    Label5: TLabel;
+    Panel9: TPanel;
+    Panel10: TPanel;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    tbsCertificado: TTabSheet;
+    Panel13: TPanel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
+    edit1: TMemo;
+    edit2: TMemo;
+    Timer1: TTimer;
+    Panel14: TPanel;
+    Panel15: TPanel;
+    Panel16: TPanel;
+    procedure btnGravarClick(Sender: TObject);
+    procedure edtNomeArquivoExit(Sender: TObject);
+    procedure Panel6Click(Sender: TObject);
+    procedure Panel7Click(Sender: TObject);
+    procedure Panel8Click(Sender: TObject);
+    procedure Panel9Click(Sender: TObject);
+    procedure Panel10Click(Sender: TObject);
+    procedure Panel11Click(Sender: TObject);
+    procedure Panel12Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Panel14Click(Sender: TObject);
+    procedure Panel15Click(Sender: TObject);
+    procedure Panel16Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+  private
+    procedure GetNomeArquivos;
+    procedure ConfereArquivosCriados;
+    procedure ConcluiOperacao;
+    { Private declarations }
+  public
+    { Public declarations }
+    ArquivoPFX: String;
+    ArquivoPEM: String;
+    ArquivoKEY: String;
+  end;
+
+var
+  frmCadastroDespachante: TfrmCadastroDespachante;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  Vcl.Clipbrd;
+
+procedure TfrmCadastroDespachante.GetNomeArquivos;
+begin
+  ArquivoPEM := GetLocalPath + 'certificados\' + ExtractFileName(edtNomeArquivo.Text) + '.pem';
+  ArquivoKEY := GetLocalPath + 'certificados\' + ExtractFileName(edtNomeArquivo.Text) + '.key';
+end;
+
+procedure TfrmCadastroDespachante.Panel10Click(Sender: TObject);
+begin
+  dmdBroker.qryCadDespachantes.Cancel;
+  PageControl1.ActivePageIndex := 0;
+  dmdBroker.qryCadDespachantes.FetchAll;
+end;
+
+procedure TfrmCadastroDespachante.Panel11Click(Sender: TObject);
+var
+  FileName: String;
+begin
+
+  if pos(' ', edtNomeArquivo.text) > 0 then
+  begin
+    showMessage('Favor retirar os espaços do nome do arquivo.');
+    exit;
+  end;
+
+  if TRIM(edtNomeArquivo.Text) = '' then
+  begin
+    showMessage('Favor preencher o nome do arquivo antes.');
+    exit;
+  end;
+
+  if FileExists(ArquivoPEM) and FileExists(ArquivoKEY) then
+  begin
+    showMessage('Os arquivos já existem, favor excluí-los antes de gerá-los novamente.');
+    exit;
+  end;
+
+  if not FileExists(GetLocalPath + 'OPENSSL.exe') then
+  begin
+    showMessage('Favor inserir o arquivo OPENSSL.exe na pasta CERTIFICADOS desse programa.');
+    exit;
+  end;
+
+  OpenDialog1.Filter := '*.pfx, *.p12';
+  if not OpenDialog1.Execute then
+  begin
+    showMessage('Selecione um certificado');
+    exit;
+  end;
+
+  FileName := StringReplace(ExtractFileName(OpenDialog1.FileName), ExtractFileExt(OpenDialog1.FileName), '', [rfReplaceAll]);
+  if FileName <> edtNomeArquivo.Text then
+  begin
+    ArquivoPFX := GetLocalPath + 'certificados\' + edtNomeArquivo.Text + ExtractFileExt(OpenDialog1.FileName);
+    if not CopyFile(OpenDialog1.FileName, ArquivoPFX) then
+    begin
+      showmessage('Não foi possível copiar o arquivo para a pasta Certificados.');
+      exit;
+    end;
+  end
+  else
+    ArquivoPFX := OpenDialog1.FileName;
+
+  GetNomeArquivos;
+
+  try
+    Timer1.Enabled;
+    PageControl1.ActivePageIndex := 2;
+    Edit1.Text := 'pkcs12 -in ' + ArquivoPFX + ' -out ' + ArquivoPEM + ' -nodes';
+    Edit2.Text := 'rsa -in ' + ArquivoPEM + ' -out ' + ArquivoKEY;
+  finally
+    ConfereArquivosCriados;
+  end;
+end;
+
+procedure TfrmCadastroDespachante.Panel12Click(Sender: TObject);
+begin
+  if FileExists(ArquivoPEM) and FileExists(ArquivoKEY) then
+  begin
+    DeleteFile(ArquivoPEM);
+    DeleteFile(ArquivoKEY);
+    ConfereArquivosCriados;
+  end;
+end;
+
+procedure TfrmCadastroDespachante.Panel6Click(Sender: TObject);
+begin
+  PageControl1.ActivePageIndex := 1;
+  dmdBroker.qryCadDespachantes.Append;
+end;
+
+procedure TfrmCadastroDespachante.Panel7Click(Sender: TObject);
+begin
+  ConfereArquivosCriados;
+  PageControl1.ActivePageIndex := 1;
+  dmdBroker.qryCadDespachantes.Edit;
+  edtVencimento.DateTime := dmdBroker.qryCadDespachantesVENCIMENTO.AsDateTime;
+end;
+
+procedure TfrmCadastroDespachante.Panel8Click(Sender: TObject);
+begin
+  dmdBroker.qryCadDespachantes.delete;
+  dmdBroker.qryCadDespachantes.FetchAll;
+end;
+
+procedure TfrmCadastroDespachante.Panel9Click(Sender: TObject);
+begin
+  if (edtNomeDespachante.Text = '') or
+     (edtNomeArquivo.Text = '') or
+     (edtOrdem.Text = '') then
+  begin
+    ShowMessage('Todos os campos devem ser preenchidos');
+    Exit;
+  end;
+
+  dmdBroker.qryCadDespachantesVENCIMENTO.AsDateTime := edtVencimento.DateTime;
+  dmdBroker.qryCadDespachantes.Post;
+  PageControl1.ActivePageIndex := 0;
+  dmdBroker.qryCadDespachantes.FetchAll;
+end;
+
+procedure TfrmCadastroDespachante.btnGravarClick(Sender: TObject);
+begin
+  if (edtNomeDespachante.Text = '') or
+     (edtNomeArquivo.Text = '') or
+     (edtOrdem.Text = '') then
+  begin
+    ShowMessage('Todos os campos devem ser preenchidos');
+    Exit;
+  end;
+
+  dmdBroker.qryCadDespachantesVENCIMENTO.AsDateTime := edtVencimento.DateTime;
+  dmdBroker.qryCadDespachantes.Post;
+  PageControl1.ActivePageIndex := 0;
+  dmdBroker.qryCadDespachantes.FetchAll;
+end;
+
+
+procedure TfrmCadastroDespachante.ConfereArquivosCriados;
+begin
+  GetNomeArquivos;
+  lblStatusArquivos.Visible := true;
+  if FileExists(ArquivoPEM) and FileExists(ArquivoKEY) then
+  begin
+    lblStatusArquivos.Caption := 'Arquivos ' + ExtractfileName(ArquivoPEM) + ' e ' + ExtractfileName(ArquivoKEY) + ' estão criados corretamente.';
+    lblStatusArquivos.Font.Color := clBlue;
+  end
+  else
+  begin
+    lblStatusArquivos.Caption := 'Arquivos ' + ExtractfileName(ArquivoPEM) + ' e ' + ExtractfileName(ArquivoKEY) + ' ainda NÃO criados.';
+    lblStatusArquivos.Font.Color := clRed;
+  end;
+end;
+
+
+procedure TfrmCadastroDespachante.edtNomeArquivoExit(Sender: TObject);
+begin
+  ConfereArquivosCriados;
+end;
+
+procedure TfrmCadastroDespachante.FormShow(Sender: TObject);
+var
+  i: Integer;
+begin
+
+  PageControl1.Top := panel5.Height - 10;
+  PageControl1.Left := -5;
+  PageControl1.Width := self.Width + 10;
+  PageControl1.Height := self.Height - panel5.Height + 15;
+
+  for I := 0 to PageControl1.PageCount - 1 do
+  begin
+    PageControl1.Pages[i].TabVisible := False;
+  end;
+
+  dmdBroker.qryCadDespachantes.Open;
+  PageControl1.ActivePageIndex := 0;
+end;
+
+procedure TfrmCadastroDespachante.Panel14Click(Sender: TObject);
+begin
+  StartApp('Open', PChar(GetLocalPath + 'OPENSSL.EXE'), PChar(''), PChar(GetLocalPath), SW_SHOW);
+end;
+
+
+procedure TfrmCadastroDespachante.Panel15Click(Sender: TObject);
+begin
+  Clipboard.AsText := Edit1.Text;
+end;
+
+procedure TfrmCadastroDespachante.Panel16Click(Sender: TObject);
+begin
+  Clipboard.AsText := Edit2.Text;
+end;
+
+procedure TfrmCadastroDespachante.Timer1Timer(Sender: TObject);
+begin
+  if FileExists(ArquivoPEM) and FileExists(ArquivoKEY) then
+    ConcluiOperacao;
+end;
+
+procedure TfrmCadastroDespachante.ConcluiOperacao;
+var
+  vArquivoPFXnaPasta: String;
+begin
+  Timer1.Enabled := false;
+  showmessage('Arquivos ' + ExtractFileName(ArquivoPEM) + ' e ' + ExtractFileName(ArquivoKEY) + ' criados com sucesso');
+
+  vArquivoPFXnaPasta := GetLocalPath + 'certificados\' + ExtractFileName(ArquivoPFX);
+  if FileExists(vArquivoPFXnaPasta) then
+    DeleteFile(vArquivoPFXnaPasta);
+
+  Close;
+end;
+
+end.
+

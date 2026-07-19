@@ -1,0 +1,494 @@
+unit DiLeituraXML;
+
+interface
+
+uses
+  System.Generics.Collections;
+
+type
+  TAdicao = class;
+  TItem = class;
+
+  TDi = class
+  private
+    FnumeroSequencialIcms: string;
+    FcodigoTipoRecolhimentoIcms: string;
+    FcargaUrfEntradaNome: string;
+    FtipoDeclaracaoNome: string;
+    FfreteMoedaNegociadaCodigo: string;
+    FseguroTotalReais: Double;
+    FseguroMoedaNegociadaNome: string;
+    FconhecimentoCargaEmbarqueLocal: string;
+    FcargaNumeroAgente: string;
+    FcargaDataChegada: TDateTime;
+    FsequencialRetificacao: string;
+    FdataRegistro: TDateTime;
+    FdocumentoChegadaCargaNumero: string;
+    FagenciaIcms: string;
+    FcargaPaisProcedenciaCodigo: string;
+    FviaTransportePaisTransportadorCodigo: string;
+    FdataDesembaraco: TDateTime;
+    FinformacaoComplementar: string;
+    FfreteCollect: string;
+    FfreteTotalDolares: Double;
+    FimportadorNome: string;
+    FimportadorCpfRepresentanteLegal: string;
+    FconhecimentoCargaTipoCodigo: string;
+    FbancoIcms: string;
+    FimportadorEnderecoLogradouro: string;
+    FlocalDescargaTotalReais: Double;
+    FmodalidadeDespachoCodigo: string;
+    FhoraRegistro: string;
+    FviaTransporteCodigo: string;
+    FfretePrepaid: string;
+    FlocalEmbarqueTotalDolares: Double;
+    FdocumentoChegadaCargaNome: string;
+    FimportadorEnderecoBairro: string;
+    FconhecimentoCargaUtilizacaoNome: string;
+    FviaTransporteMultimodal: string;
+    FarmazenamentoRecintoAduaneiroNome: string;
+    FconhecimentoCargaId: string;
+    FurfDespachoCodigo: string;
+    FnomeArmazem: string;
+    FnomeTipoRecolhimentoIcms: string;
+    FcargaUrfEntradaCodigo: string;
+    FtipoDeclaracaoCodigo: string;
+    FufIcms: string;
+    FarmazenamentoSetor: string;
+    FimportadorEnderecoUf: string;
+    FfreteTotalReais: Double;
+    FfreteMoedaNegociadaNome: string;
+    FseguroMoedaNegociadaCodigo: string;
+    FcanalSelecaoParametrizada: string;
+    FimportadorCodigoTipo: string;
+    FconhecimentoCargaUtilizacao: string;
+    FseguroTotalMoedaNegociada: Double;
+    FcargaPaisProcedenciaNome: string;
+    FviaTransportePaisTransportadorNome: string;
+    FcargaPesoLiquido: Double;
+    FimportadorNomeRepresentanteLegal: string;
+    FfreteEmTerritorioNacional: string;
+    FseguroTotalDolares: Double;
+    FconhecimentoCargaTipoNome: string;
+    FcaracterizacaoOperacaoDescricaoTipo: string;
+    FviaTransporteNomeTransportador: string;
+    FdataPagamentoIcms: TDateTime;
+    FimportadorEnderecoCep: string;
+    FfreteTotalMoeda: Double;
+    FcaracterizacaoOperacaoCodigoTipo: string;
+    FtotalAdicoes: Integer;
+    FimportadorEnderecoNumero: string;
+    FconhecimentoCargaIdMaster: string;
+    FlocalEmbarqueTotalReais: Double;
+    FmodalidadeDespachoNome: string;
+    FdocumentoChegadaCargaCodigoTipo: string;
+    FvalorTotalIcms: Double;
+    FimportadorEnderecoMunicipio: string;
+    FviaTransporteNome: string;
+    FimportadorNumero: string;
+    FcpfResponsavelRegistro: string;
+    FlocalDescargaTotalDolares: Double;
+    FsituacaoEntregaCarga: string;
+    FarmazenamentoRecintoAduaneiroCodigo: string;
+    FurfDespachoNome: string;
+    FoperacaoFundap: string;
+    FvalorTotalMultaARecolherAjustado: Double;
+    FconhecimentoCargaEmbarqueData: TDateTime;
+    FcargaPesoBruto: Double;
+    FnumeroDI: string;
+    FcpfResponsavelRegistroIcms: string;
+    FdataRegistroIcms: TDateTime;
+    FhoraRegistroIcms: string;
+    Fadicoes: TObjectList<TAdicao>;
+
+  published
+    property tipoDeclaracaoCodigo : string read FtipoDeclaracaoCodigo write FtipoDeclaracaoCodigo;
+    property tipoDeclaracaoNome : string read FtipoDeclaracaoNome write FtipoDeclaracaoNome;
+    property modalidadeDespachoCodigo : string read FmodalidadeDespachoCodigo write FmodalidadeDespachoCodigo;
+    property modalidadeDespachoNome : string read FmodalidadeDespachoNome write FmodalidadeDespachoNome;
+    property numeroDI : string read FnumeroDI write FnumeroDI;
+    property dataDesembaraco : TDateTime read FdataDesembaraco write FdataDesembaraco;
+    property dataRegistro : TDateTime read FdataRegistro write FdataRegistro;
+    property operacaoFundap : string read FoperacaoFundap write FoperacaoFundap;
+    property urfDespachoCodigo : string read FurfDespachoCodigo write FurfDespachoCodigo;
+    property urfDespachoNome : string read FurfDespachoNome write FurfDespachoNome;
+    property localDescargaTotalDolares : Double read FlocalDescargaTotalDolares write FlocalDescargaTotalDolares;
+    property localDescargaTotalReais : Double read FlocalDescargaTotalReais write FlocalDescargaTotalReais;
+    property localEmbarqueTotalDolares : Double read FlocalEmbarqueTotalDolares write FlocalEmbarqueTotalDolares;
+    property localEmbarqueTotalReais : Double read FlocalEmbarqueTotalReais write FlocalEmbarqueTotalReais;
+    property viaTransporteCodigo : string read FviaTransporteCodigo write FviaTransporteCodigo;
+    property viaTransporteMultimodal : string read FviaTransporteMultimodal write FviaTransporteMultimodal;
+    property viaTransporteNome : string read FviaTransporteNome write FviaTransporteNome;
+    property viaTransporteNomeTransportador : string read FviaTransporteNomeTransportador write FviaTransporteNomeTransportador;
+    property viaTransportePaisTransportadorCodigo : string read FviaTransportePaisTransportadorCodigo write FviaTransportePaisTransportadorCodigo;
+    property viaTransportePaisTransportadorNome : string read FviaTransportePaisTransportadorNome write FviaTransportePaisTransportadorNome;
+    property sequencialRetificacao : string read FsequencialRetificacao write FsequencialRetificacao;
+    property situacaoEntregaCarga : string read FsituacaoEntregaCarga write FsituacaoEntregaCarga;
+    property canalSelecaoParametrizada : string read FcanalSelecaoParametrizada write FcanalSelecaoParametrizada;
+    property caracterizacaoOperacaoCodigoTipo : string read FcaracterizacaoOperacaoCodigoTipo write FcaracterizacaoOperacaoCodigoTipo;
+    property caracterizacaoOperacaoDescricaoTipo : string read FcaracterizacaoOperacaoDescricaoTipo write FcaracterizacaoOperacaoDescricaoTipo;
+    property cargaDataChegada : TDateTime read FcargaDataChegada write FcargaDataChegada;
+    property cargaNumeroAgente : string read FcargaNumeroAgente write FcargaNumeroAgente;
+    property cargaPaisProcedenciaCodigo : string read FcargaPaisProcedenciaCodigo write FcargaPaisProcedenciaCodigo;
+    property cargaPaisProcedenciaNome : string read FcargaPaisProcedenciaNome write FcargaPaisProcedenciaNome;
+    property cargaPesoBruto : Double read FcargaPesoBruto write FcargaPesoBruto;
+    property cargaPesoLiquido : Double read FcargaPesoLiquido write FcargaPesoLiquido;
+    property cargaUrfEntradaCodigo : string read FcargaUrfEntradaCodigo write FcargaUrfEntradaCodigo;
+    property cargaUrfEntradaNome : string read FcargaUrfEntradaNome write FcargaUrfEntradaNome;
+    property conhecimentoCargaEmbarqueData : TDateTime read FconhecimentoCargaEmbarqueData write FconhecimentoCargaEmbarqueData;
+    property conhecimentoCargaEmbarqueLocal : string read FconhecimentoCargaEmbarqueLocal write FconhecimentoCargaEmbarqueLocal;
+    property conhecimentoCargaId : string read FconhecimentoCargaId write FconhecimentoCargaId;
+    property conhecimentoCargaIdMaster : string read FconhecimentoCargaIdMaster write FconhecimentoCargaIdMaster;
+    property conhecimentoCargaTipoCodigo : string read FconhecimentoCargaTipoCodigo write FconhecimentoCargaTipoCodigo;
+    property conhecimentoCargaTipoNome : string read FconhecimentoCargaTipoNome write FconhecimentoCargaTipoNome;
+    property conhecimentoCargaUtilizacao : string read FconhecimentoCargaUtilizacao write FconhecimentoCargaUtilizacao;
+    property conhecimentoCargaUtilizacaoNome : string read FconhecimentoCargaUtilizacaoNome write FconhecimentoCargaUtilizacaoNome;
+    property valorTotalMultaARecolherAjustado : Double read FvalorTotalMultaARecolherAjustado write FvalorTotalMultaARecolherAjustado;
+    property seguroMoedaNegociadaCodigo : string read FseguroMoedaNegociadaCodigo write FseguroMoedaNegociadaCodigo;
+    property seguroMoedaNegociadaNome : string read FseguroMoedaNegociadaNome write FseguroMoedaNegociadaNome;
+    property seguroTotalDolares : Double read FseguroTotalDolares write FseguroTotalDolares;
+    property seguroTotalMoedaNegociada : Double read FseguroTotalMoedaNegociada write FseguroTotalMoedaNegociada;
+    property seguroTotalReais : Double read FseguroTotalReais write FseguroTotalReais;
+    property freteCollect : string read FfreteCollect write FfreteCollect;
+    property freteEmTerritorioNacional : string read FfreteEmTerritorioNacional write FfreteEmTerritorioNacional;
+    property freteMoedaNegociadaCodigo : string read FfreteMoedaNegociadaCodigo write FfreteMoedaNegociadaCodigo;
+    property freteMoedaNegociadaNome : string read FfreteMoedaNegociadaNome write FfreteMoedaNegociadaNome;
+    property fretePrepaid : string read FfretePrepaid write FfretePrepaid;
+    property freteTotalDolares : Double read FfreteTotalDolares write FfreteTotalDolares;
+    property freteTotalMoeda : Double read FfreteTotalMoeda write FfreteTotalMoeda;
+    property freteTotalReais : Double read FfreteTotalReais write FfreteTotalReais;
+    property importadorCodigoTipo : string read FimportadorCodigoTipo write FimportadorCodigoTipo;
+    property importadorCpfRepresentanteLegal : string read FimportadorCpfRepresentanteLegal write FimportadorCpfRepresentanteLegal;
+    property importadorEnderecoBairro : string read FimportadorEnderecoBairro write FimportadorEnderecoBairro;
+    property importadorEnderecoCep : string read FimportadorEnderecoCep write FimportadorEnderecoCep;
+    property importadorEnderecoLogradouro : string read FimportadorEnderecoLogradouro write FimportadorEnderecoLogradouro;
+    property importadorEnderecoMunicipio : string read FimportadorEnderecoMunicipio write FimportadorEnderecoMunicipio;
+    property importadorEnderecoNumero : string read FimportadorEnderecoNumero write FimportadorEnderecoNumero;
+    property importadorEnderecoUf : string read FimportadorEnderecoUf write FimportadorEnderecoUf;
+    property importadorNome : string read FimportadorNome write FimportadorNome;
+    property importadorNomeRepresentanteLegal : string read FimportadorNomeRepresentanteLegal write FimportadorNomeRepresentanteLegal;
+    property importadorNumero : string read FimportadorNumero write FimportadorNumero;
+    property armazenamentoRecintoAduaneiroCodigo : string read FarmazenamentoRecintoAduaneiroCodigo write FarmazenamentoRecintoAduaneiroCodigo;
+    property armazenamentoRecintoAduaneiroNome : string read FarmazenamentoRecintoAduaneiroNome write FarmazenamentoRecintoAduaneiroNome;
+    property armazenamentoSetor : string read FarmazenamentoSetor write FarmazenamentoSetor;
+    property informacaoComplementar : string read FinformacaoComplementar write FinformacaoComplementar;
+    property totalAdicoes : Integer read FtotalAdicoes write FtotalAdicoes;
+
+    property nomeArmazem : string read FnomeArmazem write FnomeArmazem;
+    property agenciaIcms : string read FagenciaIcms write FagenciaIcms;
+    property bancoIcms : string read FbancoIcms write FbancoIcms;
+    property codigoTipoRecolhimentoIcms : string read FcodigoTipoRecolhimentoIcms write FcodigoTipoRecolhimentoIcms;
+    property cpfResponsavelRegistroIcms : string read FcpfResponsavelRegistroIcms write FcpfResponsavelRegistroIcms;
+    property dataPagamentoIcms : TDateTime read FdataPagamentoIcms write FdataPagamentoIcms;
+    property dataRegistroIcms : TDateTime read FdataRegistroIcms write FdataRegistroIcms;
+    property horaRegistroIcms : string read FhoraRegistroIcms write FhoraRegistroIcms;
+    property nomeTipoRecolhimentoIcms : string read FnomeTipoRecolhimentoIcms write FnomeTipoRecolhimentoIcms;
+    property numeroSequencialIcms : string read FnumeroSequencialIcms write FnumeroSequencialIcms;
+    property ufIcms : string read FufIcms write FufIcms;
+    property valorTotalIcms : Double read FvalorTotalIcms write FvalorTotalIcms;
+
+    property documentoChegadaCargaCodigoTipo : string read FdocumentoChegadaCargaCodigoTipo write FdocumentoChegadaCargaCodigoTipo;
+    property documentoChegadaCargaNome : string read FdocumentoChegadaCargaNome write FdocumentoChegadaCargaNome;
+    property documentoChegadaCargaNumero : string read FdocumentoChegadaCargaNumero write FdocumentoChegadaCargaNumero;
+    property adicoes : TObjectList<TAdicao> read Fadicoes write Fadicoes;
+  public
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+  TAdicao = class
+  private
+    FpisCofinsBaseCalculoAliquotaICMS: Double;
+    FcofinsAliquotaReduzida: Double;
+    FdcrIdentificacao: string;
+    FdadosMercadoriaCodigoNaladiSH: string;
+    FpisPasepAliquotaReduzida: Double;
+    FpisCofinsRegimeTributacaoNome: string;
+    FpisCofinsFundamentoLegalReducaoCodigo: string;
+    FipiAliquotaAdValorem: Double;
+    FiiBaseCalculo: Double;
+    FfreteMoedaNegociadaCodigo: string;
+    FcondicaoVendaMoedaNome: string;
+    FsequencialRetificacao: string;
+    FdadosCambiaisInstituicaoFinanciadoraCodigo: string;
+    FcofinsAliquotaEspecificaValor: Double;
+    FdadosCargaPaisProcedenciaCodigo: string;
+    FdadosCambiaisValorRealCambio: Double;
+    FdadosMercadoriaAplicacao: string;
+    FpisPasepAliquotaEspecificaValor: Double;
+    FdadosCambiaisCoberturaCambialNome: string;
+    FdadosMercadoriaCodigoNaladiNCCA: string;
+    FfabricanteNumero: string;
+    FdcrValorReal: Double;
+    FcondicaoVendaValorReais: Double;
+    FfornecedorNumero: string;
+    FdadosMercadoriaCondicao: string;
+    FipiAliquotaEspecificaCapacidadeRecipciente: Double;
+    FiiMotivoAdmissaoTemporariaCodigo: string;
+    FiiAliquotaValorDevido: Double;
+    FcideValorRecolher: Double;
+    FpaisOrigemMercadoriaNome: string;
+    FdadosMercadoriaPesoLiquido: Double;
+    FipiRegimeTributacaoCodigo: string;
+    FiiAliquotaAdValorem: Double;
+    FdcrValorDolar: Double;
+    FdadosCambiaisMotivoSemCoberturaNome: string;
+    FpisCofinsBaseCalculoValor: Double;
+    FcofinsAliquotaValorRecolher: Double;
+    FcofinsAliquotaEspecificaQuantidadeUnidade: Double;
+    FipiAliquotaReduzida: Double;
+    FfreteValorReais: Double;
+    FvalorTotalCondicaoVenda: Double;
+    FdadosCargaViaTransporteCodigo: string;
+    FpisPasepAliquotaValorRecolher: Double;
+    FpisPasepAliquotaEspecificaQuantidadeUnidade: Double;
+    FfabricanteComplemento: string;
+    FpisCofinsBaseCalculoPercentualReducao: Double;
+    FseguroValorMoedaNegociada: Double;
+    FcondicaoVendaValorMoeda: Double;
+    FfornecedorComplemento: string;
+    FipiAliquotaNotaComplementarTIPI: Double;
+    FipiAliquotaEspecificaQuantidadeUnidadeMedida: Double;
+    FvalorReaisSeguroInternacional: Double;
+    FdcrValorRecolher: Double;
+    FcondicaoVendaMetodoValoracaoCodigo: string;
+    FrelacaoCompradorVendedor: string;
+    FpaisAquisicaoMercadoriaCodigo: string;
+    FdadosMercadoriaCodigoNcm: string;
+    FiiRegimeTributacaoCodigo: string;
+    FiiAliquotaValorReduzido: Double;
+    Fid: integer;
+    FnumeroDestaque: string;
+    FfabricanteNome: string;
+    FcondicaoVendaIncoterm: string;
+    FiiAliquotaReduzida: Double;
+    FdadosCargaUrfEntradaCodigo: string;
+    FfornecedorNome: string;
+    FfabricanteCidade: string;
+    FpisCofinsRegimeTributacaoCodigo: string;
+    FseguroMoedaNegociadaCodigo: string;
+    FcondicaoVendaMoedaCodigo: string;
+    FfornecedorCidade: string;
+    FipiAliquotaValorRecolher: Double;
+    FvalorMultaARecolherAjustado: Double;
+    FdadosCambiaisInstituicaoFinanciadoraNome: string;
+    FvinculoCompradorVendedor: string;
+    FfabricanteEstado: string;
+    FcideValorDevido: Double;
+    FfornecedorEstado: string;
+    FipiAliquotaEspecificaTipoRecipienteCodigo: Double;
+    FcideValorAliquotaEspecifica: Double;
+    FdadosCambiaisCoberturaCambialCodigo: string;
+    FfabricanteLogradouro: string;
+    FfornecedorLogradouro: string;
+    FdadosMercadoriaMedidaEstatisticaUnidade: string;
+    FcofinsAliquotaValorDevido: Double;
+    FiiAliquotaAcordo: Double;
+    FpaisOrigemMercadoriaCodigo: string;
+    FdadosMercadoriaMedidaEstatisticaQuantidade: Double;
+    FpisPasepAliquotaValorDevido: Double;
+    FipiRegimeTributacaoNome: string;
+    FcondicaoVendaLocal: string;
+    FnumeroLI: string;
+    FpisCofinsBaseCalculoFundamentoLegalCodigo: Double;
+    FcofinsAliquotaAdValorem: Double;
+    FiiFundamentoLegalCodigo: string;
+    FdadosCambiaisMotivoSemCoberturaCodigo: string;
+    FcodigoRelacaoCompradorVendedor: string;
+    FpisPasepAliquotaAdValorem: Double;
+    FiiAliquotaValorRecolher: Double;
+    FseguroValorReais: Double;
+    FiiAliquotaValorCalculado: Double;
+    FdcrValorDevido: Double;
+    FipiAliquotaEspecificaValorUnidadeMedida: Double;
+    FiiAcordoTarifarioTipoCodigo: string;
+    FfreteValorMoedaNegociada: Double;
+    FvalorMultaARecolher: Double;
+    FvalorReaisFreteInternacional: Double;
+    FcondicaoVendaMetodoValoracaoNome: string;
+    FcodigoVinculoCompradorVendedor: string;
+    FpaisAquisicaoMercadoriaNome: string;
+    FdadosMercadoriaNomeNcm: string;
+    FiiRegimeTributacaoNome: string;
+    FipiAliquotaValorDevido: Double;
+    FiiAliquotaPercentualReducao: Double;
+    FdcrCoeficienteReducao: string;
+    FnumeroDI: string;
+    FnumeroAdicao: string;
+    Fitens: TObjectList<TItem>;
+  published
+    property numeroAdicao : string read FnumeroAdicao write FnumeroAdicao;
+    property numeroLI : string read FnumeroLI write FnumeroLI;
+    property sequencialRetificacao : string read FsequencialRetificacao write FsequencialRetificacao;
+    property dadosMercadoriaAplicacao : string read FdadosMercadoriaAplicacao write FdadosMercadoriaAplicacao;
+    property dadosMercadoriaCodigoNaladiNCCA : string read FdadosMercadoriaCodigoNaladiNCCA write FdadosMercadoriaCodigoNaladiNCCA;
+    property dadosMercadoriaCodigoNaladiSH : string read FdadosMercadoriaCodigoNaladiSH write FdadosMercadoriaCodigoNaladiSH;
+    property dadosMercadoriaCodigoNcm : string read FdadosMercadoriaCodigoNcm write FdadosMercadoriaCodigoNcm;
+    property dadosMercadoriaCondicao : string read FdadosMercadoriaCondicao write FdadosMercadoriaCondicao;
+    property dadosMercadoriaMedidaEstatisticaQuantidade : Double read FdadosMercadoriaMedidaEstatisticaQuantidade write FdadosMercadoriaMedidaEstatisticaQuantidade;
+    property dadosMercadoriaMedidaEstatisticaUnidade : string read FdadosMercadoriaMedidaEstatisticaUnidade write FdadosMercadoriaMedidaEstatisticaUnidade;
+    property dadosMercadoriaNomeNcm : string read FdadosMercadoriaNomeNcm write FdadosMercadoriaNomeNcm;
+    property dadosMercadoriaPesoLiquido : Double read FdadosMercadoriaPesoLiquido write FdadosMercadoriaPesoLiquido;
+    property paisAquisicaoMercadoriaCodigo : string read FpaisAquisicaoMercadoriaCodigo write FpaisAquisicaoMercadoriaCodigo;
+    property paisAquisicaoMercadoriaNome : string read FpaisAquisicaoMercadoriaNome write FpaisAquisicaoMercadoriaNome;
+    property paisOrigemMercadoriaCodigo : string read FpaisOrigemMercadoriaCodigo write FpaisOrigemMercadoriaCodigo;
+    property paisOrigemMercadoriaNome : string read FpaisOrigemMercadoriaNome write FpaisOrigemMercadoriaNome;
+    property fornecedorCidade : string read FfornecedorCidade write FfornecedorCidade;
+    property fornecedorComplemento : string read FfornecedorComplemento write FfornecedorComplemento;
+    property fornecedorEstado : string read FfornecedorEstado write FfornecedorEstado;
+    property fornecedorLogradouro : string read FfornecedorLogradouro write FfornecedorLogradouro;
+    property fornecedorNome : string read FfornecedorNome write FfornecedorNome;
+    property fornecedorNumero : string read FfornecedorNumero write FfornecedorNumero;
+    property codigoRelacaoCompradorVendedor : string read FcodigoRelacaoCompradorVendedor write FcodigoRelacaoCompradorVendedor;
+    property relacaoCompradorVendedor : string read FrelacaoCompradorVendedor write FrelacaoCompradorVendedor;
+    property codigoVinculoCompradorVendedor : string read FcodigoVinculoCompradorVendedor write FcodigoVinculoCompradorVendedor;
+    property vinculoCompradorVendedor : string read FvinculoCompradorVendedor write FvinculoCompradorVendedor;
+    property dadosCambiaisCoberturaCambialCodigo : string read FdadosCambiaisCoberturaCambialCodigo write FdadosCambiaisCoberturaCambialCodigo;
+    property dadosCambiaisCoberturaCambialNome : string read FdadosCambiaisCoberturaCambialNome write FdadosCambiaisCoberturaCambialNome;
+    property dadosCambiaisInstituicaoFinanciadoraCodigo : string read FdadosCambiaisInstituicaoFinanciadoraCodigo write FdadosCambiaisInstituicaoFinanciadoraCodigo;
+    property dadosCambiaisInstituicaoFinanciadoraNome : string read FdadosCambiaisInstituicaoFinanciadoraNome write FdadosCambiaisInstituicaoFinanciadoraNome;
+    property dadosCambiaisMotivoSemCoberturaCodigo : string read FdadosCambiaisMotivoSemCoberturaCodigo write FdadosCambiaisMotivoSemCoberturaCodigo;
+    property dadosCambiaisMotivoSemCoberturaNome : string read FdadosCambiaisMotivoSemCoberturaNome write FdadosCambiaisMotivoSemCoberturaNome;
+    property dadosCambiaisValorRealCambio : Double read FdadosCambiaisValorRealCambio write FdadosCambiaisValorRealCambio;
+    property dadosCargaPaisProcedenciaCodigo : string read FdadosCargaPaisProcedenciaCodigo write FdadosCargaPaisProcedenciaCodigo;
+    property dadosCargaUrfEntradaCodigo : string read FdadosCargaUrfEntradaCodigo write FdadosCargaUrfEntradaCodigo;
+    property dadosCargaViaTransporteCodigo : string read FdadosCargaViaTransporteCodigo write FdadosCargaViaTransporteCodigo;
+    property condicaoVendaLocal : string read FcondicaoVendaLocal write FcondicaoVendaLocal;
+    property condicaoVendaMetodoValoracaoCodigo : string read FcondicaoVendaMetodoValoracaoCodigo write FcondicaoVendaMetodoValoracaoCodigo;
+    property condicaoVendaMetodoValoracaoNome : string read FcondicaoVendaMetodoValoracaoNome write FcondicaoVendaMetodoValoracaoNome;
+    property condicaoVendaMoedaCodigo : string read FcondicaoVendaMoedaCodigo write FcondicaoVendaMoedaCodigo;
+    property condicaoVendaMoedaNome : string read FcondicaoVendaMoedaNome write FcondicaoVendaMoedaNome;
+    property condicaoVendaValorMoeda : Double read FcondicaoVendaValorMoeda write FcondicaoVendaValorMoeda;
+    property condicaoVendaValorReais : Double read FcondicaoVendaValorReais write FcondicaoVendaValorReais;
+    property cideValorAliquotaEspecifica : Double read FcideValorAliquotaEspecifica write FcideValorAliquotaEspecifica;
+    property cideValorDevido : Double read FcideValorDevido write FcideValorDevido;
+    property cideValorRecolher : Double read FcideValorRecolher write FcideValorRecolher;
+    property dcrCoeficienteReducao : string read FdcrCoeficienteReducao write FdcrCoeficienteReducao;
+    property dcrIdentificacao : string read FdcrIdentificacao write FdcrIdentificacao;
+    property dcrValorDevido : Double read FdcrValorDevido write FdcrValorDevido;
+    property dcrValorDolar : Double read FdcrValorDolar write FdcrValorDolar;
+    property dcrValorReal : Double read FdcrValorReal write FdcrValorReal;
+    property dcrValorRecolher : Double read FdcrValorRecolher write FdcrValorRecolher;
+    property valorMultaARecolher : Double read FvalorMultaARecolher write FvalorMultaARecolher;
+    property valorMultaARecolherAjustado : Double read FvalorMultaARecolherAjustado write FvalorMultaARecolherAjustado;
+    property valorReaisFreteInternacional : Double read FvalorReaisFreteInternacional write FvalorReaisFreteInternacional;
+    property valorReaisSeguroInternacional : Double read FvalorReaisSeguroInternacional write FvalorReaisSeguroInternacional;
+    property valorTotalCondicaoVenda : Double read FvalorTotalCondicaoVenda write FvalorTotalCondicaoVenda;
+    property freteMoedaNegociadaCodigo : string read FfreteMoedaNegociadaCodigo write FfreteMoedaNegociadaCodigo;
+    property freteValorMoedaNegociada : Double read FfreteValorMoedaNegociada write FfreteValorMoedaNegociada;
+    property freteValorReais : Double read FfreteValorReais write FfreteValorReais;
+    property seguroMoedaNegociadaCodigo : string read FseguroMoedaNegociadaCodigo write FseguroMoedaNegociadaCodigo;
+    property seguroValorMoedaNegociada : Double read FseguroValorMoedaNegociada write FseguroValorMoedaNegociada;
+    property seguroValorReais : Double read FseguroValorReais write FseguroValorReais;
+    property iiAcordoTarifarioTipoCodigo : string read FiiAcordoTarifarioTipoCodigo write FiiAcordoTarifarioTipoCodigo;
+    property iiAliquotaAcordo : Double read FiiAliquotaAcordo write FiiAliquotaAcordo;
+    property iiAliquotaAdValorem : Double read FiiAliquotaAdValorem write FiiAliquotaAdValorem;
+    property iiAliquotaPercentualReducao : Double read FiiAliquotaPercentualReducao write FiiAliquotaPercentualReducao;
+    property iiAliquotaReduzida : Double read FiiAliquotaReduzida write FiiAliquotaReduzida;
+    property iiAliquotaValorCalculado : Double read FiiAliquotaValorCalculado write FiiAliquotaValorCalculado;
+    property iiAliquotaValorDevido : Double read FiiAliquotaValorDevido write FiiAliquotaValorDevido;
+    property iiAliquotaValorRecolher : Double read FiiAliquotaValorRecolher write FiiAliquotaValorRecolher;
+    property iiAliquotaValorReduzido : Double read FiiAliquotaValorReduzido write FiiAliquotaValorReduzido;
+    property iiBaseCalculo : Double read FiiBaseCalculo write FiiBaseCalculo;
+    property iiFundamentoLegalCodigo : string read FiiFundamentoLegalCodigo write FiiFundamentoLegalCodigo;
+    property iiMotivoAdmissaoTemporariaCodigo : string read FiiMotivoAdmissaoTemporariaCodigo write FiiMotivoAdmissaoTemporariaCodigo;
+    property iiRegimeTributacaoCodigo : string read FiiRegimeTributacaoCodigo write FiiRegimeTributacaoCodigo;
+    property iiRegimeTributacaoNome : string read FiiRegimeTributacaoNome write FiiRegimeTributacaoNome;
+    property ipiAliquotaAdValorem : Double read FipiAliquotaAdValorem write FipiAliquotaAdValorem;
+    property ipiAliquotaEspecificaCapacidadeRecipciente : Double read FipiAliquotaEspecificaCapacidadeRecipciente write FipiAliquotaEspecificaCapacidadeRecipciente;
+    property ipiAliquotaEspecificaQuantidadeUnidadeMedida : Double read FipiAliquotaEspecificaQuantidadeUnidadeMedida write FipiAliquotaEspecificaQuantidadeUnidadeMedida;
+    property ipiAliquotaEspecificaTipoRecipienteCodigo : Double read FipiAliquotaEspecificaTipoRecipienteCodigo write FipiAliquotaEspecificaTipoRecipienteCodigo;
+    property ipiAliquotaEspecificaValorUnidadeMedida : Double read FipiAliquotaEspecificaValorUnidadeMedida write FipiAliquotaEspecificaValorUnidadeMedida;
+    property ipiAliquotaNotaComplementarTIPI : Double read FipiAliquotaNotaComplementarTIPI write FipiAliquotaNotaComplementarTIPI;
+    property ipiAliquotaReduzida : Double read FipiAliquotaReduzida write FipiAliquotaReduzida;
+    property ipiAliquotaValorDevido : Double read FipiAliquotaValorDevido write FipiAliquotaValorDevido;
+    property ipiAliquotaValorRecolher : Double read FipiAliquotaValorRecolher write FipiAliquotaValorRecolher;
+    property ipiRegimeTributacaoCodigo : string read FipiRegimeTributacaoCodigo write FipiRegimeTributacaoCodigo;
+    property ipiRegimeTributacaoNome : string read FipiRegimeTributacaoNome write FipiRegimeTributacaoNome;
+    property cofinsAliquotaAdValorem : Double read FcofinsAliquotaAdValorem write FcofinsAliquotaAdValorem;
+    property cofinsAliquotaEspecificaQuantidadeUnidade : Double read FcofinsAliquotaEspecificaQuantidadeUnidade write FcofinsAliquotaEspecificaQuantidadeUnidade;
+    property cofinsAliquotaEspecificaValor : Double read FcofinsAliquotaEspecificaValor write FcofinsAliquotaEspecificaValor;
+    property cofinsAliquotaReduzida : Double read FcofinsAliquotaReduzida write FcofinsAliquotaReduzida;
+    property cofinsAliquotaValorDevido : Double read FcofinsAliquotaValorDevido write FcofinsAliquotaValorDevido;
+    property cofinsAliquotaValorRecolher : Double read FcofinsAliquotaValorRecolher write FcofinsAliquotaValorRecolher;
+    property pisCofinsBaseCalculoAliquotaICMS : Double read FpisCofinsBaseCalculoAliquotaICMS write FpisCofinsBaseCalculoAliquotaICMS;
+    property pisCofinsBaseCalculoFundamentoLegalCodigo : Double read FpisCofinsBaseCalculoFundamentoLegalCodigo write FpisCofinsBaseCalculoFundamentoLegalCodigo;
+    property pisCofinsBaseCalculoPercentualReducao : Double read FpisCofinsBaseCalculoPercentualReducao write FpisCofinsBaseCalculoPercentualReducao;
+    property pisCofinsBaseCalculoValor : Double read FpisCofinsBaseCalculoValor write FpisCofinsBaseCalculoValor;
+    property pisCofinsFundamentoLegalReducaoCodigo : string read FpisCofinsFundamentoLegalReducaoCodigo write FpisCofinsFundamentoLegalReducaoCodigo;
+    property pisCofinsRegimeTributacaoCodigo : string read FpisCofinsRegimeTributacaoCodigo write FpisCofinsRegimeTributacaoCodigo;
+    property pisCofinsRegimeTributacaoNome : string read FpisCofinsRegimeTributacaoNome write FpisCofinsRegimeTributacaoNome;
+    property pisPasepAliquotaAdValorem : Double read FpisPasepAliquotaAdValorem write FpisPasepAliquotaAdValorem;
+    property pisPasepAliquotaEspecificaQuantidadeUnidade : Double read FpisPasepAliquotaEspecificaQuantidadeUnidade write FpisPasepAliquotaEspecificaQuantidadeUnidade;
+    property pisPasepAliquotaEspecificaValor : Double read FpisPasepAliquotaEspecificaValor write FpisPasepAliquotaEspecificaValor;
+    property pisPasepAliquotaReduzida : Double read FpisPasepAliquotaReduzida write FpisPasepAliquotaReduzida;
+    property pisPasepAliquotaValorDevido : Double read FpisPasepAliquotaValorDevido write FpisPasepAliquotaValorDevido;
+    property pisPasepAliquotaValorRecolher : Double read FpisPasepAliquotaValorRecolher write FpisPasepAliquotaValorRecolher;
+    property condicaoVendaIncoterm : string read FcondicaoVendaIncoterm write FcondicaoVendaIncoterm;
+    property fabricanteNome : string read FfabricanteNome write FfabricanteNome;
+    property fabricanteCidade : string read FfabricanteCidade write FfabricanteCidade;
+    property fabricanteComplemento : string read FfabricanteComplemento write FfabricanteComplemento;
+    property fabricanteEstado : string read FfabricanteEstado write FfabricanteEstado;
+    property fabricanteLogradouro : string read FfabricanteLogradouro write FfabricanteLogradouro;
+    property fabricanteNumero : string read FfabricanteNumero write FfabricanteNumero;
+
+    property numeroDestaque : string read FnumeroDestaque write FnumeroDestaque;
+    property itens : TObjectList<TItem> read Fitens write Fitens;
+
+  public
+    constructor Create;
+    destructor Destroy; override;
+  end;
+
+
+  TItem = class
+  private
+    FnumeroSequencialItem: string;
+    FvalorUnitario: Double;
+    FunidadeMedida: string;
+    Fquantidade: Double;
+    FdescricaoMercadoria: string;
+    FquantidadeEstatistica: Double;
+    Fvmle: Double;
+  published
+    property descricaoMercadoria : string read FdescricaoMercadoria write FdescricaoMercadoria;
+    property numeroSequencialItem : string read FnumeroSequencialItem write FnumeroSequencialItem;
+    property quantidade : Double read Fquantidade write Fquantidade;
+    property unidadeMedida : string read FunidadeMedida write FunidadeMedida;
+    property valorUnitario : Double read FvalorUnitario write FvalorUnitario;
+    property vmle: Double read Fvmle write Fvmle;
+    property quantidadeEstatistica: Double read FquantidadeEstatistica write FquantidadeEstatistica;
+  end;
+
+var
+  DIs: TObjectList<TDI>;
+
+implementation
+
+{ TDi }
+
+constructor TDi.Create;
+begin
+
+end;
+
+destructor TDi.Destroy;
+begin
+
+  inherited;
+end;
+
+{ TAdicao }
+
+constructor TAdicao.Create;
+begin
+
+end;
+
+destructor TAdicao.Destroy;
+begin
+
+  inherited;
+end;
+
+end.

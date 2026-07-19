@@ -1,0 +1,12 @@
+
+<option value=16764>ANGLO AMERICAN MARKETING LIMITED (16764)</option>
+<option value=16995>C. STEINWEG HANDELSVEEN (16995)</option>
+<option value=16585>CHINA METAL AND SPECIAL STEEL CO., LTD (16585)</option>
+<option value=16564>CRONIMET NOBLE ALLOYS HANDELSGES MBH (16564)</option>
+<option value=16518>FONDEL METALS (16518)</option>
+<option value=16636>M.P. DIFFUSION SPRL (16636)</option>
+<option value=16742>POSCO M-TECH (16742)</option>
+<option value=16572>SUMITOMO CORPORATION (16572)</option>
+<option value=16617>TITAN INTERNACIONAL, INC. (16617)</option>
+<option value=16592>TRAXYS NORTH AMERICA LLC (16592)</option>
+<option value=16726>WUGANG TRADING CO LTD (16726)</option>

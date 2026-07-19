@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{148F515C-1BD6-46EA-9B06-8C65B386749D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MiniBroker.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\temp_miniBrowser\MiniBrowser.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\temp_myindaianovo\myIndaia.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\ImportadorNCMAtributosXML\ImportadorNCMAtributos.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\mypatterns\pkgMyEntitiesBroker\pkgMyEntitiesBroker.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MiniBroker">
+        <MSBuild Projects="MiniBroker.dproj"/>
+    </Target>
+    <Target Name="MiniBroker:Clean">
+        <MSBuild Projects="MiniBroker.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MiniBroker:Make">
+        <MSBuild Projects="MiniBroker.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MiniBrowser">
+        <MSBuild Projects="..\temp_miniBrowser\MiniBrowser.dproj"/>
+    </Target>
+    <Target Name="MiniBrowser:Clean">
+        <MSBuild Projects="..\temp_miniBrowser\MiniBrowser.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MiniBrowser:Make">
+        <MSBuild Projects="..\temp_miniBrowser\MiniBrowser.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="myIndaia">
+        <MSBuild Projects="..\temp_myindaianovo\myIndaia.dproj"/>
+    </Target>
+    <Target Name="myIndaia:Clean">
+        <MSBuild Projects="..\temp_myindaianovo\myIndaia.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="myIndaia:Make">
+        <MSBuild Projects="..\temp_myindaianovo\myIndaia.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="ImportadorNCMAtributos">
+        <MSBuild Projects="..\ImportadorNCMAtributosXML\ImportadorNCMAtributos.dproj"/>
+    </Target>
+    <Target Name="ImportadorNCMAtributos:Clean">
+        <MSBuild Projects="..\ImportadorNCMAtributosXML\ImportadorNCMAtributos.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ImportadorNCMAtributos:Make">
+        <MSBuild Projects="..\ImportadorNCMAtributosXML\ImportadorNCMAtributos.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pkgMyEntitiesBroker">
+        <MSBuild Projects="..\mypatterns\pkgMyEntitiesBroker\pkgMyEntitiesBroker.dproj"/>
+    </Target>
+    <Target Name="pkgMyEntitiesBroker:Clean">
+        <MSBuild Projects="..\mypatterns\pkgMyEntitiesBroker\pkgMyEntitiesBroker.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgMyEntitiesBroker:Make">
+        <MSBuild Projects="..\mypatterns\pkgMyEntitiesBroker\pkgMyEntitiesBroker.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MiniBroker;MiniBrowser;myIndaia;ImportadorNCMAtributos;pkgMyEntitiesBroker"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MiniBroker:Clean;MiniBrowser:Clean;myIndaia:Clean;ImportadorNCMAtributos:Clean;pkgMyEntitiesBroker:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MiniBroker:Make;MiniBrowser:Make;myIndaia:Make;ImportadorNCMAtributos:Make;pkgMyEntitiesBroker:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

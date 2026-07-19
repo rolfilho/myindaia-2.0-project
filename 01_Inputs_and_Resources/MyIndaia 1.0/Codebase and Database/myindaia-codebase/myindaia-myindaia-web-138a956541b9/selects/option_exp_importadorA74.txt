@@ -1,0 +1,12 @@
+
+<option value=13933>CONDOR SACI (13933)</option>
+<option value=13467>GUMSUR S.A. (13467)</option>
+<option value=17627>LAB MANAGER (17627)</option>
+<option value=18741>PETROBRAS PARAGUAY OPERACIONES Y LOGÍSTICA S.R.L. (18741)</option>
+<option value=18808>POCHTECA MATERIAS PRIMAS SA DE CV (18808)</option>
+<option value=19088>SHELL (CHINA) LIMITED (19088)</option>
+<option value=08099>SHELL CAPSA (08099)</option>
+<option value=16733>Shell Colombia S.A (16733)</option>
+<option value=16743>SHELL GLOBAL SOLUTION (16743)</option>
+<option value=12751>SHELL GLOBAL SOLUTIONS UK (12751)</option>
+<option value=09747>SHELL TRINIDAD LIMITED (09747)</option>

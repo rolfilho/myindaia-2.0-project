@@ -1,0 +1,23 @@
+
+<option value=01294>AKZO NOBEL FUNCIONAL CHEMICALS AB</option>
+<option value=00041>AKZO NOBEL SURFACE CHEMISTRY AB</option>
+<option value=00883>BASF AG</option>
+<option value=00646>BASF AKTIENGESELLSCHAFT</option>
+<option value=01463>C.P KELCO</option>
+<option value=12011>CARBOCLOR S.A.</option>
+<option value=00233>CLARIANT GMBH</option>
+<option value=01436>DYSTAR CHINA LIMITED</option>
+<option value=00505>E.I. DU PONT DE NEMOURS AND COMPANY</option>
+<option value=10733>HAISHING CO., LTD.</option>
+<option value=01540>JAYSYNTH IMPEX PVT LTD</option>
+<option value=12173>JIZHOU CITY HUAYANG CHEMICAL CO., LTD.</option>
+<option value=00030>LONZA LTD</option>
+<option value=01776>NANAVATU SPECIALITY CHEMICALS PVT. LTD</option>
+<option value=01388>RHODIA ORGANIQUE</option>
+<option value=00029>SAJJAN INDIA LIMITED</option>
+<option value=10619>SCI PHARMTECH, INC</option>
+<option value=10618>SINO-KING MARKETING LIMITED</option>
+<option value=10346>SINOCHEM NINGBO LTD.</option>
+<option value=10509>WUHAN UNIVERSITY HOYO CO.</option>
+<option value=10732>ZHEJIANG SANMEN KANGNING CHEMICAL CO., LTD.</option>
+<option value=10765>ZHEJIANG SHENGHUA BLOK BIOLOGY</option>

@@ -1,0 +1,9 @@
+*.dcu
+*.exe
+*.ico
+*.stat
+*.otares
+/MyLogin.dproj.local
+/MyLogin.identcache
+*.skincfg
+*.ini

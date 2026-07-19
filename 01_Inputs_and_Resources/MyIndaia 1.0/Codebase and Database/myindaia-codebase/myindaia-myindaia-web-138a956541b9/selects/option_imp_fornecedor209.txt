@@ -1,0 +1,16 @@
+
+<option value=12736>AJICO INC</option>
+<option value=06624>AJINOMOTO AMINOSCIENCE LLC</option>
+<option value=12830>AJINOMOTO CO. INC.</option>
+<option value=11640>AJINOMOTO CO., INC.</option>
+<option value=11641>AJINOMOTO CO., INC.</option>
+<option value=12693>AJINOMOTO FOODS EUROPE SAS</option>
+<option value=13542>AJINOMOTO NORTH AMERICA</option>
+<option value=06623>AJINOMOTO SWEETENERS EUROPE S.A.S</option>
+<option value=09006>AJINOMOTO U.S.A., INC</option>
+<option value=09021>AMINO GMBH</option>
+<option value=11504>CAMBRIDGE PHARMACEUTICAL S.A.S.</option>
+<option value=11574>JAMES BROWN PHARMA C.A..</option>
+<option value=11639>SEKISUI MEDICAL CO., LTD..</option>
+<option value=14220>SHANGHAI AJINOMOTO AMINO ACID CO., LTD.</option>
+<option value=13408>YUKI GOSEI KOGYO</option>

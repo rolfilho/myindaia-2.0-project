@@ -1,0 +1,6 @@
+*.log
+*.txt
+*.map
+*.drc
+*.exe
+/Config.cfg

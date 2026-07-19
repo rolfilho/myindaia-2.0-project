@@ -1,0 +1,34 @@
+object frmMySistemas: TfrmMySistemas
+  Left = 411
+  Top = 336
+  Align = alRight
+  AlphaBlend = True
+  BorderStyle = bsToolWindow
+  Caption = 'Sistemas'
+  ClientHeight = 127
+  ClientWidth = 188
+  Color = clBtnFace
+  DoubleBuffered = True
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  KeyPreview = True
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyUp = FormKeyUp
+  OnMouseLeave = FormMouseLeave
+  PixelsPerInch = 96
+  TextHeight = 13
+  object sSkinProvider1: TsSkinProvider
+    ShowAppIcon = False
+    CaptionAlignment = taCenter
+    SkinData.SkinSection = 'FORM'
+    TitleButtons = <>
+    Left = 24
+    Top = 24
+  end
+end

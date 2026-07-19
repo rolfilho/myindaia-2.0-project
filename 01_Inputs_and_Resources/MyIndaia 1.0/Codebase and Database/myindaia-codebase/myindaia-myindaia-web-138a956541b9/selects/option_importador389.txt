@@ -1,0 +1,19 @@
+
+<option value=08129>BELORETSK IRON AND STEEL WORKS</option>
+<option value=06492>EHT WERKZEUGMASCHINEN GMBH VERKAUFSBURO STAHLWOLLEMASCHINEN</option>
+<option value=09170>EUROLLS S.P.A.</option>
+<option value=07625>GLOBAL STEEL WIRE, S.A.</option>
+<option value=08912>LU QIN (HONG KONG) COMPANY LIMITED</option>
+<option value=06295>MAKEYEVKSKY IRON & STEEL PLANT</option>
+<option value=09077>MIDLAND RESOURCES HOLDING LIMITED</option>
+<option value=07880>MOLDOVIAN IRON AND STEEL MILL (MMZ)</option>
+<option value=07154>Philipp Hafner GMBH & CO . KG</option>
+<option value=09364>RISELINE CORPORATION LIMITED</option>
+<option value=07267>ROHREN-UND STAHLEXPORT DOBBERTINI GMBH</option>
+<option value=01034>SULZER CHEMTECH AG</option>
+<option value=07570>SUTEC GMBH</option>
+<option value=08514>TEAM MECCANICA SPA</option>
+<option value=09365>TIANJIN XIANTONG MATERIAL & TRADE CO., LTD</option>
+<option value=09213>VITARI S.P.A.</option>
+<option value=07460>XINGTAI STEEL CORPORATION - CHINA</option>
+<option value=08913>XUANHUA IRON & STEEL GROUP CORP., LTD</option>

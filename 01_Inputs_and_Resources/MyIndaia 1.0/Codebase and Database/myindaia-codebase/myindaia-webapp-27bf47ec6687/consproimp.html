@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./js/i18n.js"></script>  
+  <title>Importação</title>
+  <link rel="stylesheet" type="text/css" href="css/timeline.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="manifest" href="./manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Weather PWA">
+  <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+  <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#2F3BA2">  
+  <script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="./js/jquery-ui.min.js" ></script>
+  <link href="./css/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+  <link href="./css/loader.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="css/conspro.css">
+  <script type="text/javascript" src="./js/bootstrap.bundle.min.js"></script>  
+</head>
+
+<body>
+
+<script type="text/javascript">
+
+  function download(dataurl, filename) {
+	var a = document.createElement("a");
+	a.href = dataurl;
+	a.setAttribute("download", filename);
+	a.setAttribute("target", "_blank");
+	a.setAttribute("type", "application/octet-stream");
+	//a.setAttribute("class", "force-download");
+	a.classList.add("force-download");
+	var b = document.createEvent("MouseEvents");
+	b.initEvent("click", false, true);
+	a.dispatchEvent(b);
+	return false;
+  }
+
+
+$(function () {   
+
+//var object = "<object data=\"{FileName}\" type=\"application/pdf\" width=\"100%\" height=\"100%\">";
+//object += " <p>Este browser não suporta PDFs. Por favor, faça o download do PDF: <a href=\"{FileName}\">Download PDF</a>.</p>";
+//object += " <p>This browser does not support PDFs. Please download the PDF to view it: <a href=\"{FileName}\">Download PDF</a>.</p>";
+//object += "</object>";  
+
+	$(document).on('click', '.linkpdf', function(e){      
+	  var object = "<object data=\"{FileName}\" type=\"{TypeFile}\" width=\"100%\" height=\"100%\"></object>";  
+	  var wHeight = $(window).height();
+	  var fileName = $(this).attr("fileName");
+	  var filePath = $(this).attr("path");
+	  var extFile = fileName.split('.').pop().toUpperCase();    
+	  var opt = {
+	   autoOpen: false,
+	   modal: true,
+	   width: $(window).width(),
+	   height: $(window).height(),
+	   title: fileName,
+	   position: 'top',
+      /*buttons: [
+          {
+            text: "Download",
+            //id: "checkout-d-btn"
+            click: function() {           
+            if (extFile==='PDF')
+              download(filePath.substring(0, filePath.length - 10), fileName);
+            else
+              download(filePath, fileName);
+            return false;
+            }
+          }
+          ]*/
+        };
+        console.log(extFile)
+        if (extFile==='PDF')
+         object = object.replace(/{TypeFile}/g,  'application/pdf');
+       else if ((extFile==='TXT') || (extFile==='CSV'))
+         object = object.replace(/{TypeFile}/g,  'text/plain');
+       else if (extFile==='XML')
+         object = object.replace(/{TypeFile}/g,  'text/xml');
+       else if (extFile==='PNG')
+         object = object.replace(/{TypeFile}/g,  'image/png');
+       else if (extFile==='GIF')
+         object = object.replace(/{TypeFile}/g,  'image/gif');  
+       else if (extFile==='BMP')
+         object = object.replace(/{TypeFile}/g,  'image/bmp');  
+       else if (extFile==='JPG')
+         object = object.replace(/{TypeFile}/g,  'image/jpeg'); 
+       else if (extFile==='MPEG')
+         object = object.replace(/{TypeFile}/g,  'application/mpeg');
+
+       object = object.replace(/{FileName}/g,  filePath);
+       $("#dialogPDF").empty();
+       $("#dialogPDF").html(object);
+       $("#dialogPDF").dialog(opt).dialog("open");
+     });
+	 
+
+	$(document).on('click', '.notify', function(e){        
+	    var isChecked = $(this).prop("checked");
+		var evento = $(this).attr("codigo");
+		var processo = $(this).attr("processo");
+		SetNotification(processo,evento,isChecked);
+    });	 
+});  
+
+</script>
+
+
+<div id="dialogPDF" style="display: none">
+</div>
+
+<div class="app app__layout">
+  <header>
+
+    <div class="icone-menu">
+      <span class="header__icon">
+        <svg class="menu__icon no--select" width="35px" height="35px" viewBox="0 0 48 48" fill="rgba(130, 130, 130, 1)">
+          <path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path>
+        </svg>
+      </span>
+    </div>
+    <!--nav class="navbar navbar-expand-lg navbar-light bg-light"-->
+    <div class="logo">
+      <a href="index.html"">
+        <img class="img-logo" src="./images/logo.png" href="index.html">      
+      </a>
+    </div>
+    <div class="menu-sup">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <script>document.write(strHome());</script>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            <script>document.write(strExport());</script>  
+          </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="consproexp.html">Consulta de Processo</a></li>
+              <li><a class="dropdown-item" href="processosemandamentoexp.html">Processos em Andamento</a></li>
+            </ul>            
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            <script>document.write(strImport());</script>
+          </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="consproimp.html">Consulta de Processo</a></li>
+              <li><a class="dropdown-item" href="processosemandamentoimp.html">Processos em Andamento</a></li>
+            </ul>                
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="logout()">
+            <script>document.write(strLogout());</script>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="logoc">
+    </div>           
+
+    <!--span class="header__icon">
+      <svg class="menu__icon no--select" width="24px" height="24px" viewBox="0 0 48 48" fill="#fff">
+        <path d="M6 36h36v-4H6v4zm0-10h36v-4H6v4zm0-14v4h36v-4H6z"></path>
+      </svg>
+    </span-->
+
+    <!-- <span class="header__title no--select"><script>document.write(strImport());</script></span> -->
+
+    <span class="header__userName no--select">
+      <script>if (localStorage.Nome) document.write("("+localStorage.Nome+")");</script>
+    </span>
+
+    <div class="botao-pesquisar">
+      <svg id="butFilter" class="headerButton" width="45px" height="45px" viewBox="0 0 25 25" fill="rgba(130, 130, 130, 1)">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        <path d="M0 0h24v24H0z" fill="none"/>
+      </svg>
+    </div>   
+
+    <!--button id="butFilter" class="headerButton" aria-label="Filtro"></button--> 
+  </header>
+
+  <div class="menu">
+    <ul class="menu__list">
+     <li><a href="index.html"><script>document.write(strHome());</script></a></li>
+     <li><a href="consproexp.html"><script>document.write(strExport());</script></a></li>
+     <li><a class="active" href="consproimp.html"><script>document.write(strImport());</script></a></li>        
+     <li><a id=logout-imp href="#" onclick="logout()"><script>document.write(strLogout());</script></a></li>
+   </ul>
+ </div>
+
+ <div class="menu__overlay">
+ </div>
+
+ <main id="main" class="main" >
+  <div class="container result-pesquisa" hidden>
+    <section id="sec-container" class="container sec-container" >
+      <h2 class="titulo-result-pesquisa"><script>document.write(strImport());</script></h2>    
+      <div class="alert alert-warning" hidden></div>
+
+      <div class="ac cardTemplate" hidden>    
+       <input class="ac-input" id="ac-01" name="ac-01" type="checkbox" />
+       <label class="ac-label" for="ac-01"></label>
+       <article class="ac-text">
+         <div class="ac-sub">
+          <div class="timeline-wrapper"> 
+           <ul class="StepProgress">
+            <!--li class="Etd StepProgress-item is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold">ETD</span>              
+              <span class="Previsto"></span>
+             </div>
+           </li-->
+           <li class="Embarque StepProgress-item is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strDeparture());</script></span>
+              <span class="Previsto"></span>
+            </div>
+            <div>
+           </li>
+           <li class="Chegada StepProgress-item  is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strArrivalShipPlaneTruck());</script></span>
+              <span class="Previsto"></span>
+            </div>
+           </li>
+           <li class="Presenca StepProgress-item  is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strLoadPresence());</script></span>
+              <span class="Previsto"></span>
+            </div>
+           </li>
+           <li class="Registro StepProgress-item is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strRecordDI_DUIMP());</script></span>
+              <span class="Previsto"></span>
+            </div>
+           </li>
+           <li class="Desembaraco StepProgress-item  is-done">
+            <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strDisembarkation());</script></span>
+              <span class="Previsto"></span>
+            </div>
+           </li>
+           <li class="Liberacao StepProgress-item  is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strReleaseForCarrier());</script></span>
+              <span class="Previsto"></span>
+            </div>
+           </li>
+           <li class="MercadoriaFabrica StepProgress-item  is-done">
+             <div class="bold time"></div> 
+             <div>
+              <span class="bold"><script>document.write(strMercadoriaNaFabrica());</script></span>
+              <span class="Previsto"></span>
+             </div>             
+           </li>          
+         </ul>
+       </div>
+
+        <ul class="timeline" id="timeline">
+          <!--li class="li Etd complete">
+            <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+            </div>
+            <div class="status">
+                <span class="bold">ETD</span>
+            </div>
+            <div class="Previsto"></div>
+          </li-->
+          <li class="li Embarque complete">
+           <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+           </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strDeparture());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+          <li class="li Chegada complete">
+           <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+            </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strArrivalShipPlaneTruck());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+          <li class="li Presenca complete">
+           <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+            </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strLoadPresence());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+          <li class="li Registro complete">
+            <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+            </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strRecordDI_DUIMP());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+          <li class="li Desembaraco complete">
+           <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+           </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strDisembarkation());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+          <li class="li Liberacao complete">
+           <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+            </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strReleaseForCarrier());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+          <li class="li MercadoriaFabrica complete">
+           <div class="timestamp">
+              <span class="bold date">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span> 
+            </div>
+            <div class="status">
+                <span class="bold"><script>document.write(strMercadoriaNaFabrica());</script></span>
+            </div>
+            <div class="Previsto"></div>
+          </li>
+
+        </ul>    
+
+
+
+            
+       <input class="ac-input" id="ac-02" name="ac-02" type="checkbox" />
+       <label class="ac-label" for="ac-02"><script>document.write(strBasicData());</script></label>
+       <article class="ac-sub-text">
+         <ul class="dadosBasicos list-group">
+          <li class="refCliente list-group-item"><strong><script>document.write(strRefCustomer());</script>: </strong><spam class="valor"></spam></li>
+          <li class="canal list-group-item"><strong><script>document.write(strChannel());</script>: </strong><spam class="valor"></spam></li>
+          <li class="mercadoria list-group-item"><strong><script>document.write(strMerchandise());</script>: </strong><spam class="valor"></spam></li>
+          <li class="quantidade list-group-item"><strong><script>document.write(strAmount());</script>: </strong><spam class="valor"></spam></li>
+          <li class="pesoLiquido list-group-item"><strong><script>document.write(strNetWeight());</script>: </strong><spam class="valor"></spam></li>
+          <li class="DeliveryDateRevisada list-group-item"><strong><script>document.write(strDeliveryDateRevised());</script>: </strong><spam class="valor"></spam></li>
+          <li class="ExportadorNome list-group-item"><strong><script>document.write(strExporter());</script>: </strong><spam class="valor"></spam></li>
+          <li class="Anuencias list-group-item"><strong><script>document.write(strAnuencia());</script>: </strong><spam class="valor"></spam></li>          
+<!--            <li class="StatusAtual list-group-item"><strong><script>document.write(strCurrentStatus());</script>: </strong><spam class="valor"></spam></li> -->
+        </ul>
+          </article>
+        </div>      
+        <div class="ac-sub">
+          <input class="ac-input" id="ac-03" name="ac-03" type="checkbox" />
+          <label class="ac-label" for="ac-03"><script>document.write(strEvents());</script></label>
+          <article class="ac-sub-text">
+          <div class="container">          
+           <table class="eventos table table-striped">
+            <thead>
+              <tr>
+                <th><script>document.write(strName());</script></th>
+                <th><script>document.write(strData());</script></th>
+				        <th style="text-align:center;"><script>document.write(strNotificacao());</script></th>
+              </tr>
+            </thead>
+            <tr class="evento" hidden>
+              <td class="nome"><script>document.write(strName());</script></td>
+              <td class="realizado"><script>document.write(strData());</script></td>
+			        <td class="notificacao" style="text-align:center;">
+				      <label class="switch">
+  				      <input type="checkbox" class="notify">
+  				      <span class="slider round"></span>
+				      </label>
+			        </td>
+            </tr>
+          </table>
+        </div>
+        </article>
+        </div>
+        <div class="ac-sub">
+          <input class="ac-input" id="ac-04" name="ac-04" type="checkbox" />
+          <label class="ac-label" for="ac-04"><script>document.write(strDocuments());</script></label>
+          <article class="ac-sub-text">
+            <div class="container container-tipo-doc">
+                <div class="ac-sub ac-sub-tipo-doc" hidden>
+                  <input class="ac-input" id="ac-15" name="ac-15" type="checkbox" />                
+                  <label class="ac-label" for="ac-15"></script></label>
+                  <article class="ac-sub-text">
+                    <div class="container">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <!--th class="td-desc-doc"><script>document.write(strDescription());</script></th>
+                          <th><script>document.write(strData());</script></th>
+                          <th hidden><script>document.write(strFileName());</script></th-->
+                        </tr>
+                      </thead>
+                      <tbody class="body-documentos">
+                        <tr class="tr-documento">
+                          <td class="desc-documento td-desc-doc"><a href="#" path="" fileName="" class="linkpdf"></a></td>
+                          <td class="data-Criacao "></td>
+                          <td class="nomeArqivo" hidden></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </article>
+          </div>
+        </article><!--/ac-text-->
+        </div><!--/ac-->
+    </section>
+    <div class="container" id="pagi-rodape" style="display: none;">
+      <input id=current_page type=hidden>
+      <input id=mostrar_por_pagina type=hidden>
+      <input id=qtd_resultado_total value=0 type=hidden>
+      <input id=qtd_resultado_atual value=0 type=hidden>
+      <input id=grupo_pag_atual value=0 type=hidden>      
+      <input id=qtd_paginas_visiveis value=0 type=hidden>            
+    </div> 
+  </div>
+</main>
+
+<div class="dialog-container">
+  <div class="dialog frm-pesquisa">
+    <div class="dialog-body">
+      <h2 class="titulo-frm-pesquisa"><script>document.write(strImport());</script></h2>
+      <div class="input-field">
+        <input class="input-label" type="text" id="pedido" name="pedido">
+        <label for="pedido" class="label-input"><script>document.write(strOrder());</script>:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="refIndaia" name="refIndaia">
+        <label for="refIndaia" class="label-input"><script>document.write(strIndaiaReference());</script>:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="nrcontainer" name="nrcontainer">
+        <label for="nrcontainer" class="label-input"><script>document.write(strContainer());</script>:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="diduimp" name="diduimp">
+        <label for="diduimp" class="label-input">DI/DUIMP:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="mercadoria" name="mercadoria">
+        <label for="mercadoria" class="label-input"><script>document.write(strMerchandise());</script>:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="exportador" name="exportador">
+        <label for="exportador" class="label-input"><script>document.write(strExporter());</script>:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="numerobl" name="numerobl">
+        <label for="numerobl" class="label-input"><script>document.write(strBLNumber());</script>:</label>       
+      </div>
+      <div class="input-field">
+        <input class="input-label" type="text" id="cliente" name="cliente">
+        <label for="cliente" class="label-input"><script>document.write(strClient());</script>:</label>       
+      </div>
+      <div class="input-field">
+         <select class="input-label" id="statusatual" name="statusatual">
+          <option value="" selected></option>
+          <!--option value="" selected><script>document.write(strAll());</script></option-->
+          <option value="SAE"><script>document.write(strAwaitingDeparture());</script></option>
+          <option value="SEAC"><script>document.write(strBoardedAwaitingArrival());</script></option>
+          <option value="SED"><script>document.write(strAtClearence());</script></option>
+          <option value="SDAPE"><script>document.write(strClearedAwaitingDeliverySchedule());</script></option>
+          <option value="SPAEF"><script>document.write(strScheduledAwaitingDeliveryFactory());</script></option>
+          <option value="SCE"><script>document.write(strCargoDelivered());</script></option>
+        </select>
+        <label for="statusatual"><script>document.write(strCurrentStatus());</script>:</label>
+      </div>
+      <div class="btn-pesquisa">
+        <button class="btn btn-pri" id="butApplyFilter" class="button"><script>document.write(strBtnFiltrar());</script></button>
+        <button class="btn btn-sec" id="butCancel" class="button"><script>document.write(strBtnCancelar());</script></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  <footer>
+    <p>Indaiá Logística Internacional   -   webapp versão: 1.0</p>
+  </footer>
+
+  <div class="loader" hidden>
+  </div>
+
+  <!-- script src="./js/notification.js"></script -->
+  <script src="./js/paginacao.js"></script>    
+  <script src="./js/app.js"></script>
+  <script src="./js/util.js"></script> 
+  <script src="./js/toast.js"></script>
+  <script src="./js/offline.js"></script>
+  <script src="./js/menu.js"></script>
+  <script src="./js/logout.js"></script>  
+  <script src="./js/style.js"></script>
+
+  <!--script type="text/javascript" src="js/download.js"></script-->  
+
+<script type="text/javascript">
+  if ((!localStorage._cs) || (localStorage._cs==="")){
+    console.log('=> Redirect');
+    redirect('./index.html');
+  } 
+</script>
+
+</body>
+</html>

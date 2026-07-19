@@ -1,0 +1,27 @@
+
+<option value=07201>Alfa Martelli snc</option>
+<option value=07212>ARIA  srl</option>
+<option value=07203>ARMA srl</option>
+<option value=01038>ATLAS ELETRIC DEVICES COMPRANY</option>
+<option value=07206>Ciemme</option>
+<option value=07202>Cross Point srl</option>
+<option value=00596>ELICA S.P.A</option>
+<option value=08445>ELICAMEX S.A DE C.V</option>
+<option value=07208>Enterprise spa</option>
+<option value=07214>Fast Milano</option>
+<option value=07219>FIME spa</option>
+<option value=07218>FORMA e FUNZIONE</option>
+<option value=07215>Graphics Grace</option>
+<option value=00601>I.S.M. S.r.l.</option>
+<option value=00788>I.S.M. Srl</option>
+<option value=07211>INCO massalombarda srl</option>
+<option value=07204>Italfilter spa</option>
+<option value=07216>P.B.F.  srl</option>
+<option value=07209>P.G.A. srl</option>
+<option value=07217>Philips spa</option>
+<option value=07213>S.T.S. Tecnopolimeri srl</option>
+<option value=07205>T.R.T.</option>
+<option value=00605>TOME STAMPI S.N.C.</option>
+<option value=07210>Tridonic ATCO GmbH CO</option>
+<option value=00786>TRT S.r.l</option>
+<option value=07207>V.L.M.  Spa</option>

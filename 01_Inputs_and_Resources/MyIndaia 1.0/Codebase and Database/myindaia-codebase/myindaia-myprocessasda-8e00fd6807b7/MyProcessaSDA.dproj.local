@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/07/25 14:10:00.000.117,=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/07/25 15:37:50.000.597,=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/10/26 10:20:35.000.306,=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/10/26 10:21:12.000.578,C:\Projetos\Delphi\myProcessaSDA\uProcessaSDA.dfm=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/10/26 10:21:12.000.578,C:\Projetos\Delphi\myProcessaSDA\uProcessaSDA.pas=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/10/26 10:21:22.000.120,C:\Projetos\Delphi\myProcessaSDA\MyProcessaSDA.dproj=C:\Users\programador.INDAIA\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2018/10/26 11:45:12.000.838,=C:\Projetos\Delphi\myProcessaSDA\DmBroker.pas</Transaction>
+    <Transaction>2018/10/26 11:45:12.000.849,=C:\Projetos\Delphi\myProcessaSDA\Settings.pas</Transaction>
+    <Transaction>2018/10/26 11:45:13.000.071,=C:\Projetos\Delphi\myProcessaSDA\Utils.pas</Transaction>
+    <Transaction>2018/10/26 11:45:13.000.058,=C:\Projetos\Delphi\myProcessaSDA\uPreferencias.pas</Transaction>
+    <Transaction>2018/10/29 16:06:13.000.629,=C:\Projetos\Delphi\myProcessaSDA\Componentes.pas</Transaction>
+    <Transaction>2018/10/31 17:22:21.000.624,=C:\Projetos\Delphi\myProcessaSDA\GravaArquivoDigitalizacao.pas</Transaction>
+    <Transaction>2018/11/01 11:49:45.000.531,=C:\Projetos\Delphi\myProcessaSDA\Unit1.pas</Transaction>
+    <Transaction>2018/11/01 11:50:38.000.589,C:\Projetos\Delphi\myProcessaSDA\Unit1.pas=C:\Projetos\Delphi\myProcessaSDA\PrinterSettings.pas</Transaction>
+    <Transaction>2018/11/01 15:55:50.000.909,C:\Projetos\Delphi\myProcessaSDA\PrinterSettings.pas=</Transaction>
+    <Transaction>2019/01/03 10:26:13.000.163,=C:\Projetos\Delphi\myprocessasda\Unit1.pas</Transaction>
+    <Transaction>2019/01/03 10:26:28.000.918,C:\Projetos\Delphi\myprocessasda\Unit1.pas=C:\Projetos\Delphi\myprocessasda\uSDASantos.pas</Transaction>
+    <Transaction>2019/01/03 10:27:30.000.291,=C:\Projetos\Delphi\myprocessasda\Unit1.pas</Transaction>
+    <Transaction>2019/01/03 10:28:02.000.174,C:\Projetos\Delphi\myprocessasda\Unit1.pas=C:\Projetos\Delphi\myprocessasda\uSDASantos.pas</Transaction>
+    <Transaction>2019/01/03 10:28:02.000.174,C:\Projetos\Delphi\myprocessasda\Unit1.dfm=C:\Projetos\Delphi\myprocessasda\uSDASantos.dfm</Transaction>
+    <Transaction>2019/01/03 10:31:57.000.656,C:\Projetos\Delphi\myprocessasda\uSDASantos.pas=</Transaction>
+    <Transaction>2019/01/03 10:32:05.000.150,=C:\Projetos\Delphi\myprocessasda\Unit1.pas</Transaction>
+    <Transaction>2019/01/03 10:32:13.000.447,=C:\Projetos\Delphi\myprocessasda\Unit1.pas</Transaction>
+    <Transaction>2019/01/03 10:32:24.000.261,C:\Projetos\Delphi\myprocessasda\Unit1.pas=C:\Projetos\Delphi\myprocessasda\uSDASantos.pas</Transaction>
+    <Transaction>2019/01/03 14:23:28.000.004,=C:\Projetos\Delphi\myprocessasda\uSDARJ.pas</Transaction>
+  </Transactions>
+</BorlandProject>

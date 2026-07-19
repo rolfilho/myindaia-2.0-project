@@ -1,0 +1,6224 @@
+object AppMetaData: TAppMetaData
+  VersionControlPath = '%projectdir%\versions'
+  VersionControl = <
+    item
+      VersionID = 1
+      DateTime = 43452.466423437500000000
+    end>
+  DataDictionary.DatabaseTypeID = 'mssql2008'
+  DataDictionary.NextTableID = 81
+  DataDictionary.NextFieldID = 673
+  DataDictionary.NextConstraintID = 1
+  DataDictionary.NextIndexID = 23
+  DataDictionary.NextRelationshipID = 117
+  DataDictionary.Domains = <>
+  DataDictionary.Tables = <
+    item
+      TableName = 'Account'
+      TID = 1
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 1
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'agency'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 2
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'number'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 3
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'bank_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 4
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'beneficiary_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 5
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Account__3213E83F7F60ED59'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'AuthUser'
+      TID = 7
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 38
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'gender'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 39
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 40
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'password'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 41
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'status'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 42
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'username'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 43
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'branch_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 44
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'financial_auth'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 567
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__AuthUser__3213E83F03317E3D'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Balance'
+      TID = 8
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 45
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Value'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 46
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Balance__3213E83F07020F21'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Bank'
+      TID = 9
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 47
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'code'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 48
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 49
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Bank__3213E83F0AD2A005'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Beneficiary'
+      TID = 10
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 50
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 51
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 52
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxID'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = True
+          FID = 53
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = 'UK_s1ecy3uxxog47y5nmuawabp2l'
+          IndexType = itUnique
+          IndexOrder = ioAscending
+          IID = 4
+          IFields = <
+            item
+              FieldIndex = 3
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Benefici__3213E83F0EA330E9'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Billing'
+      TID = 11
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 54
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'akey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 55
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'created'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 56
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'dueDate'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 57
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'invoiceReceiverType'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 58
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'obs'
+          DataTypeName = 'NText'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 59
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorDateNFE'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 60
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 61
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'status'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 62
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'type'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 63
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'branch_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 64
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'user_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 65
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'irRetained'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 66
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'ir'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 67
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'total'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 68
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'valorTibutavel'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 69
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'cofins'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 70
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'iss'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 71
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'nr_nota'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 72
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = '_dta_index_Billing_12_277576027__K4_1_11_13_16'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 5
+          IFields = <
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 8
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 9
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 11
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 2
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end
+        item
+          IndexName = '_dta_index_Billing_17_277576027__K1_4_10'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 6
+          IFields = <
+            item
+              FieldIndex = 2
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 7
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end
+        item
+          IndexName = '_dta_index_Billing_17_277576027__K11_K1_4_10'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 7
+          IFields = <
+            item
+              FieldIndex = 2
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 7
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 8
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Billing__3213E83F1273C1CD'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Billing_CashRequested'
+      TID = 13
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'Billing_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 91
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'cashRequests_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 92
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = 'IDX_Billing_CashRequested_Billing_id'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 8
+          IFields = <
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end
+        item
+          IndexName = 'UK_doggk4fg56f05l4eouks2atbh'
+          IndexType = itUnique
+          IndexOrder = ioAscending
+          IID = 9
+          IFields = <
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey13'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Billing_ItemInvoiced'
+      TID = 14
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'Billing_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 93
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'itensInvoiced_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 94
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = '_dta_index_Billing_ItemInvoiced_12_357576312__K1_K2'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 10
+          IFields = <
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end
+        item
+          IndexName = 'UK_4hfobcc21e59svlcjw6axnll9'
+          IndexType = itUnique
+          IndexOrder = ioAscending
+          IID = 11
+          IFields = <
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey14'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Billing_PaymentRequested'
+      TID = 15
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'Billing_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 95
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'payments_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 96
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = 'UK_4n22c7yfwnoxp3jy71ggnl71t'
+          IndexType = itUnique
+          IndexOrder = ioAscending
+          IID = 12
+          IFields = <
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey15'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Branch'
+      TID = 16
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 97
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 98
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 99
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 100
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxID'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 101
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'organization_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 102
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'iss'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 103
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Branch__3213E83F1920BF5C'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CashRequested'
+      TID = 17
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 104
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'created'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 105
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'receivedDate'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 106
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 107
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'status'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 108
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'branch_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 109
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customClearance_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 110
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customer_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 111
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'product_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 112
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'service_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 113
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'user_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 114
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'cashRequestTotal'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 115
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = 'IX_CUSTOMCLEARANCE_ID_CASHREQUESTED'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 13
+          IFields = <
+            item
+              FieldIndex = 6
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__CashRequ__3213E83F1CF15040'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CashRequested_ItemCashRequested'
+      TID = 18
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'CashRequested_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 116
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'items_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 117
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey18'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Country'
+      TID = 20
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 126
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 127
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 128
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Country__3213E83F25869641'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CustomClearance'
+      TID = 21
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 129
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 130
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customID'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = True
+          FID = 131
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'balance_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 132
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customer_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 133
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'service_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 134
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = 'UK_CustomClearance_CustomID'
+          IndexType = itUnique
+          IndexOrder = ioAscending
+          IID = 14
+          IFields = <
+            item
+              FieldIndex = 2
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__CustomCl__3213E83F29572725'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Customer'
+      TID = 22
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 135
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 136
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'active'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 137
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'city'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 138
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'neighborhood'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 139
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'number'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 140
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'state'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 141
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'street'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 142
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'zipCode'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 143
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'fax'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 144
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'fone'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 145
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'inscEstadual'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 146
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'inscMunicipal'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 147
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 148
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 149
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxID'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 150
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'type'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 151
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Country_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 152
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'group_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 153
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = '_dta_index_Customer_17_725577623__K1_14_16'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 15
+          IFields = <
+            item
+              FieldIndex = 13
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 15
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Customer__3213E83F2D27B809'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CustomerGroup'
+      TID = 25
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 158
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 159
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'definitions_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 160
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Customer__3213E83F30F848ED'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CustomerGroup_CustomerProfile'
+      TID = 26
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'CustomerGroup_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 161
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'cps_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 162
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey26'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CustomerProfile'
+      TID = 27
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 163
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'consolidatedBilling'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 164
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'consolidatedInvoice'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 165
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'costCenter'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 166
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'descricao'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 167
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'loadDITax'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 168
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'sendToBank'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 169
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'withCashRequest'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 170
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'product_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 171
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'limitValue'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 172
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Customer__3213E83F35BCFE0A'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Item'
+      TID = 37
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 248
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 249
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'active'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 250
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 251
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'productItem'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 252
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 253
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxable'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 254
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'type'
+          DataTypeName = 'VarChar'
+          Size = 1
+          Size2 = 0
+          Required = True
+          FID = 255
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'ContaFinanceiraImp'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 256
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'ContaFinanceiraExp'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 257
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Item__3213E83F4222D4EF'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'ItemCashRequested'
+      TID = 38
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 258
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'destino'
+          DataTypeName = 'NVarChar'
+          Size = 1
+          Size2 = 0
+          Required = False
+          FID = 259
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'item_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 260
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'price'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 261
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__ItemCash__3213E83F45F365D3'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'ItemInvoiced'
+      TID = 39
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 262
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customClearance_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 263
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'item_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 264
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'price'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 265
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = 'IX_CUSTOMCLEARANCE_ID'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 17
+          IFields = <
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__ItemInvo__3213E83F49C3F6B7'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'ItemPaymentRequested'
+      TID = 40
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 266
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'destino'
+          DataTypeName = 'NVarChar'
+          Size = 1
+          Size2 = 0
+          Required = False
+          FID = 267
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'item_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 268
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'price'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 269
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = '_dta_index_ItemPaymentRequested_17_1269579561__K1_K4_5'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 18
+          IFields = <
+            item
+              FieldIndex = 3
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 2
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__ItemPaym__3213E83F4D94879B'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Organization'
+      TID = 43
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 282
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 283
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 284
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 285
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxID'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 286
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Organiza__3213E83F5165187F'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'PaymentDefinition'
+      TID = 44
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 287
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'branch_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 288
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'product_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 289
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customer_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 290
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'dueInvoiceDay'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 291
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__PaymentD__3213E83F76619304'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'PaymentRequested'
+      TID = 45
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 292
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'barCode'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 293
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'created'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 294
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'paymentTotal'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 295
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'receivedDate'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 296
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 297
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'status'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 298
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'type'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 299
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'approvedUser_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 300
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'beneficiary_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 301
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'billing_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 302
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'branch_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 303
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customClearance_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 304
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customer_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 305
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'product_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 306
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'service_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 307
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'user_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 308
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'dueDate'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 309
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniorSubKey'
+          DataTypeName = 'VarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 310
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = '_dta_index_PaymentRequested_17_1461580245__K13_K3_K14_K10_K1_K11'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 19
+          IFields = <
+            item
+              FieldIndex = 12
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 2
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 13
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 9
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 10
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end
+        item
+          IndexName = '_dta_index_PaymentRequested_17_1461580245__K5_K7_K1_K11_K10_K13'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 20
+          IFields = <
+            item
+              FieldIndex = 4
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 6
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 10
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 9
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 12
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__PaymentR__3213E83F59063A47'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'PaymentRequested_ItemPaymentRequested'
+      TID = 46
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'PaymentRequested_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 311
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'items_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 312
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <
+        item
+          IndexName = '_dta_index_PaymentRequested_ItemPaymentRequ_17_1525580473__K1_2'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 21
+          IFields = <
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end
+        item
+          IndexName = '_dta_index_PaymentRequested_ItemPaymentRequ_17_1525580473__K2_K1'
+          IndexType = itNone
+          IndexOrder = ioAscending
+          IID = 22
+          IFields = <
+            item
+              FieldIndex = 1
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end
+            item
+              FieldIndex = 0
+              FieldOrder = ioAsc
+              KeyByRelationship = False
+            end>
+        end>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey46'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Product'
+      TID = 48
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 368
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 369
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 370
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Product__3213E83F5DCAEF64'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Product_Service'
+      TID = 49
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'Product_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 371
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'services_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 372
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey49'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end
+        item
+          FieldIndex = 1
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Refund'
+      TID = 50
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 373
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'days'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 374
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'price'
+          DataTypeName = 'Numeric'
+          Size = 19
+          Size2 = 2
+          Required = False
+          FID = 375
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Billing_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 376
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'ItemPaymentRequested_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 377
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Refund__3213E83F69FBBC1F'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Service'
+      TID = 58
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 525
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 1
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 526
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 255
+          Size2 = 0
+          Required = False
+          FID = 527
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PK__Service__3213E83F628FA481'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'PaymentTypes'
+      TID = 60
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 10
+          Size2 = 0
+          Required = True
+          FID = 546
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 10
+          Size2 = 0
+          Required = False
+          FID = 547
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'seniokey'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 564
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey1'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'PaymentStatus'
+      TID = 61
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 10
+          Size2 = 0
+          Required = True
+          FID = 548
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 35
+          Size2 = 0
+          Required = False
+          FID = 549
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey2'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'CashrequestedStatus'
+      TID = 62
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 10
+          Size2 = 0
+          Required = True
+          FID = 550
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 35
+          Size2 = 0
+          Required = False
+          FID = 551
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey7'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_BeneficiaryOpenPayments'
+      TID = 64
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 559
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'NVarChar'
+          Size = 10
+          Size2 = 0
+          Required = False
+          FID = 560
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'NVarChar'
+          Size = 50
+          Size2 = 0
+          Required = False
+          FID = 561
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxID'
+          DataTypeName = 'NVarChar'
+          Size = 50
+          Size2 = 0
+          Required = False
+          FID = 562
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey8'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'Destino'
+      TID = 65
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'codDestino'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 565
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'descricao'
+          DataTypeName = 'VarChar'
+          Size = 30
+          Size2 = 0
+          Required = False
+          FID = 566
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey9'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'BillingCustomerProfile'
+      TID = 66
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint (identity)'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 568
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customer_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 613
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'customerGroup_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 569
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'item_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 570
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'price'
+          DataTypeName = 'Decimal'
+          Size = 18
+          Size2 = 2
+          Required = True
+          FID = 571
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'product_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 572
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'service_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 573
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'billingType_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 574
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'baseEvent_id'
+          DataTypeName = 'Char'
+          Size = 3
+          Size2 = 0
+          Required = True
+          FID = 575
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'startDate'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 576
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'endDate'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 577
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'typeOfTransport_id'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = True
+          FID = 578
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'typeOfStuffing_id'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = True
+          FID = 579
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'placeOfShipment_id'
+          DataTypeName = 'Char'
+          Size = 4
+          Size2 = 0
+          Required = True
+          FID = 580
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'placeOfShipment_Except'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 581
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'placeOfDischarge_id'
+          DataTypeName = 'Char'
+          Size = 4
+          Size2 = 0
+          Required = True
+          FID = 582
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'placeOfDischarge_Except'
+          DataTypeName = 'Bit'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 583
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'representante_id'
+          DataTypeName = 'Char'
+          Size = 5
+          Size2 = 0
+          Required = False
+          FID = 616
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'increaseRate'
+          DataTypeName = 'Float'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 584
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey10'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'BillingType'
+      TID = 67
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 585
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 100
+          Size2 = 0
+          Required = True
+          FID = 586
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey11'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Estufagem'
+      TID = 68
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = True
+          FID = 588
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 15
+          Size2 = 0
+          Required = False
+          FID = 589
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey16'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_LocalEmbarque'
+      TID = 70
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 4
+          Size2 = 0
+          Required = True
+          FID = 592
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 50
+          Size2 = 0
+          Required = False
+          FID = 593
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey17'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_ViaTransporte'
+      TID = 71
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = True
+          FID = 594
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 20
+          Size2 = 0
+          Required = False
+          FID = 595
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey19'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Service'
+      TID = 72
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 596
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'Char'
+          Size = 3
+          Size2 = 0
+          Required = False
+          FID = 597
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 50
+          Size2 = 0
+          Required = False
+          FID = 598
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey20'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Product'
+      TID = 73
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 599
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'aKey'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = False
+          FID = 600
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 40
+          Size2 = 0
+          Required = False
+          FID = 601
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey21'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Event'
+      TID = 74
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 3
+          Size2 = 0
+          Required = True
+          FID = 607
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Name'
+          DataTypeName = 'Char'
+          Size = 50
+          Size2 = 0
+          Required = False
+          FID = 608
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey3'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Representante'
+      TID = 76
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Char'
+          Size = 5
+          Size2 = 0
+          Required = True
+          FID = 614
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'Char'
+          Size = 50
+          Size2 = 0
+          Required = False
+          FID = 615
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey4'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Customer'
+      TID = 77
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 618
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'name'
+          DataTypeName = 'VarChar'
+          Size = 300
+          Size2 = 0
+          Required = False
+          FID = 619
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'taxID'
+          DataTypeName = 'Char'
+          Size = 20
+          Size2 = 0
+          Required = False
+          FID = 622
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey5'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end
+    item
+      TableName = 'vw_Processo_Resumo'
+      TID = 78
+      OidIndex = 0
+      Fields = <
+        item
+          FieldName = 'customClearance_id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = True
+          FID = 667
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Nr_Processo'
+          DataTypeName = 'Char'
+          Size = 18
+          Size2 = 0
+          Required = True
+          FID = 623
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Group_Id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 624
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Customer_Id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 625
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Product_Id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 626
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Service_Id'
+          DataTypeName = 'Bigint'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 627
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Cd_Representante'
+          DataTypeName = 'Char'
+          Size = 5
+          Size2 = 0
+          Required = False
+          FID = 628
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Cd_Via_Transporte'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = False
+          FID = 629
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Tp_Estufagem'
+          DataTypeName = 'Char'
+          Size = 2
+          Size2 = 0
+          Required = False
+          FID = 630
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Cd_Local_Embarque'
+          DataTypeName = 'Char'
+          Size = 4
+          Size2 = 0
+          Required = False
+          FID = 631
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Cd_Local_Desembarque'
+          DataTypeName = 'Char'
+          Size = 4
+          Size2 = 0
+          Required = False
+          FID = 632
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Dt_Abertura'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 633
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Dt_Desembaraco'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 634
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Dt_Saida'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 635
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Dt_Chegada'
+          DataTypeName = 'Datetime'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 636
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Qt_Lis'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 637
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Qt_Lis_Anvisa'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 638
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Qt_Lis_Inmetro'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 639
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Qt_Lis_Mapa'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 640
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end
+        item
+          FieldName = 'Qt_Containers'
+          DataTypeName = 'Int'
+          Size = 0
+          Size2 = 0
+          Required = False
+          FID = 641
+          DefaultValueSpecific = False
+          RequiredSpecific = False
+          ConstraintExprSpecific = False
+          SeedValue = 0
+          IncrementValue = 1
+          GeneratedByRelationship = False
+        end>
+      Indexes = <>
+      Constraints = <>
+      Triggers = <>
+      PrimaryKeyIndex.IndexName = 'PrimaryKey6'
+      PrimaryKeyIndex.IndexType = itNone
+      PrimaryKeyIndex.IndexOrder = ioAscending
+      PrimaryKeyIndex.IID = 0
+      PrimaryKeyIndex.IFields = <
+        item
+          FieldIndex = 0
+          FieldOrder = ioAsc
+          KeyByRelationship = False
+        end>
+    end>
+  DataDictionary.Relationships = <
+    item
+      RelationshipName = 'FK_43dy9n9qdds6tem2oyiqwge7n'
+      ParentTableIndex = 24
+      ChildTableIndex = 25
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 3
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'PaymentRequested_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_4hfobcc21e59svlcjw6axnll9'
+      ParentTableIndex = 20
+      ChildTableIndex = 7
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 5
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'itensInvoiced_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_4n22c7yfwnoxp3jy71ggnl71t'
+      ParentTableIndex = 24
+      ChildTableIndex = 8
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 6
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'payments_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_5j81onuv3wv35venotnwghnjm'
+      ParentTableIndex = 26
+      ChildTableIndex = 27
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 7
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Product_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_9he4l0v5jl3mn52w5dm1hv7yg'
+      ParentTableIndex = 5
+      ChildTableIndex = 8
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 9
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Billing_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Account_Bank'
+      ParentTableIndex = 3
+      ChildTableIndex = 0
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 11
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'bank_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Account_Beneficiary'
+      ParentTableIndex = 4
+      ChildTableIndex = 0
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 12
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'beneficiary_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Billing_Branch'
+      ParentTableIndex = 9
+      ChildTableIndex = 5
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 15
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'branch_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Billing_id_Refund'
+      ParentTableIndex = 5
+      ChildTableIndex = 28
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 16
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Billing_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Billing_User'
+      ParentTableIndex = 1
+      ChildTableIndex = 5
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 17
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'user_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Branch_Organization'
+      ParentTableIndex = 22
+      ChildTableIndex = 9
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 19
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'organization_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CashRequested_Branch'
+      ParentTableIndex = 9
+      ChildTableIndex = 10
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 21
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'branch_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CashRequested_Customer'
+      ParentTableIndex = 14
+      ChildTableIndex = 10
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 22
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customer_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CashRequested_CustomerClearance'
+      ParentTableIndex = 13
+      ChildTableIndex = 10
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 23
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customClearance_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CashRequested_Product'
+      ParentTableIndex = 26
+      ChildTableIndex = 10
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 24
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'product_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CashRequested_Service'
+      ParentTableIndex = 29
+      ChildTableIndex = 10
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 25
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'service_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CashRequested_User'
+      ParentTableIndex = 1
+      ChildTableIndex = 10
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 26
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'user_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_cnxw4gwfu9y6313tnld391vjo'
+      ParentTableIndex = 15
+      ChildTableIndex = 16
+      UpdateMethod = umRestrict
+      DeleteMethod = dmCascade
+      RelID = 27
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'CustomerGroup_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CustomClearance_Balance'
+      ParentTableIndex = 2
+      ChildTableIndex = 13
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 30
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'balance_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CustomClearance_Customer'
+      ParentTableIndex = 14
+      ChildTableIndex = 13
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 31
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customer_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CustomClearance_Service'
+      ParentTableIndex = 29
+      ChildTableIndex = 13
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 32
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'service_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_Customer_CustomerGroup'
+      ParentTableIndex = 15
+      ChildTableIndex = 14
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 33
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'group_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CustomerGroup_PaymentDefinition'
+      ParentTableIndex = 23
+      ChildTableIndex = 15
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 34
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'definitions_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_CustomerProfile_Product'
+      ParentTableIndex = 26
+      ChildTableIndex = 17
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 35
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'product_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_doggk4fg56f05l4eouks2atbh'
+      ParentTableIndex = 10
+      ChildTableIndex = 6
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 37
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'cashRequests_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_e2723kufoq1eagfpyox7bpfio'
+      ParentTableIndex = 21
+      ChildTableIndex = 25
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 38
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'items_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_efbwkr43g0jxvp0nvlc3d0qma'
+      ParentTableIndex = 29
+      ChildTableIndex = 27
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 39
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'services_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_fbenc5taol54ewvr1fxhotyms'
+      ParentTableIndex = 17
+      ChildTableIndex = 16
+      UpdateMethod = umRestrict
+      DeleteMethod = dmCascade
+      RelID = 40
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'cps_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_ItemCashRequested_Item'
+      ParentTableIndex = 18
+      ChildTableIndex = 19
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 42
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'item_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_ItemInvoiced_CustomClearance'
+      ParentTableIndex = 13
+      ChildTableIndex = 20
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 43
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customClearance_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_ItemInvoiced_Item'
+      ParentTableIndex = 18
+      ChildTableIndex = 20
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 44
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'item_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_ItemPaymentRequested_id_Refund'
+      ParentTableIndex = 21
+      ChildTableIndex = 28
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 45
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'ItemPaymentRequested_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_ItemPaymentRequested_Item'
+      ParentTableIndex = 18
+      ChildTableIndex = 21
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 46
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'item_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_mebltrbjix2aqn4ptcok5xuhv'
+      ParentTableIndex = 5
+      ChildTableIndex = 6
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 51
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Billing_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_ogy73h31g1aix0uf8qcywswgu'
+      ParentTableIndex = 19
+      ChildTableIndex = 11
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 52
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'items_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_omtwggg7mbrhpxwrvirmunxkd'
+      ParentTableIndex = 10
+      ChildTableIndex = 11
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 53
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'CashRequested_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentDefinition_Branch'
+      ParentTableIndex = 9
+      ChildTableIndex = 23
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 55
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'branch_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentDefinition_Customer'
+      ParentTableIndex = 14
+      ChildTableIndex = 23
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 56
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customer_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentDefinition_Product'
+      ParentTableIndex = 26
+      ChildTableIndex = 23
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 57
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'product_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_ApprovedUser'
+      ParentTableIndex = 1
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 58
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'approvedUser_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_Beneficiary'
+      ParentTableIndex = 4
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 59
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'beneficiary_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_Billing'
+      ParentTableIndex = 5
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 60
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'billing_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_Branch'
+      ParentTableIndex = 9
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 61
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'branch_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_CustomClearance'
+      ParentTableIndex = 13
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 62
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customClearance_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_Customer'
+      ParentTableIndex = 14
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 63
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customer_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_Product'
+      ParentTableIndex = 26
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 64
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'product_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_Service'
+      ParentTableIndex = 29
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 65
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'service_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_PaymentRequested_User'
+      ParentTableIndex = 1
+      ChildTableIndex = 24
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 66
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'user_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_tavcyxehmpi3exhgikr9gckgm'
+      ParentTableIndex = 5
+      ChildTableIndex = 7
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 70
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Billing_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_tl499gf2ll9bu6dixf2nvvxw'
+      ParentTableIndex = 12
+      ChildTableIndex = 14
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 72
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Country_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'FK_User_Branch'
+      ParentTableIndex = 9
+      ChildTableIndex = 1
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 73
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'branch_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryUndefined
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_CustomerGroup'
+      ParentTableIndex = 15
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 82
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customerGroup_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_Item'
+      ParentTableIndex = 18
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 83
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'item_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_BillingType'
+      ParentTableIndex = 36
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 86
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'billingType_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_Product'
+      ParentTableIndex = 41
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 88
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'product_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_Service'
+      ParentTableIndex = 40
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 89
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'service_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_LocalEmbarque'
+      ParentTableIndex = 38
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 90
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'placeOfShipment_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_LocalEmbarque'
+      ParentTableIndex = 38
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 91
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'placeOfDischarge_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_Event'
+      ParentTableIndex = 42
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 92
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'baseEvent_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_ViaTransporte'
+      ParentTableIndex = 39
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 93
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'typeOfTransport_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'BillingCustomerProfile_vw_Estufagem'
+      ParentTableIndex = 37
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 95
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'typeOfStuffing_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Customer_BillingCustomerProfile'
+      ParentTableIndex = 44
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 98
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'customer_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Representante_BillingCustomerProfile'
+      ParentTableIndex = 43
+      ChildTableIndex = 35
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 99
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'representante_id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_CustomerGroup'
+      ParentTableIndex = 15
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 100
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Group_Id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_Customer'
+      ParentTableIndex = 14
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 101
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Customer_Id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_Product'
+      ParentTableIndex = 26
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 102
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Product_Id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_Service'
+      ParentTableIndex = 29
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 103
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Service_Id'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_vw_Representante'
+      ParentTableIndex = 43
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 104
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Cd_Representante'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_vw_ViaTransporte'
+      ParentTableIndex = 39
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 105
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Cd_Via_Transporte'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_vw_Estufagem'
+      ParentTableIndex = 37
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 107
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Tp_Estufagem'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_vw_LocalEmbarque'
+      ParentTableIndex = 38
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 108
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Cd_Local_Embarque'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end
+    item
+      RelationshipName = 'vw_Processo_Resumo_vw_LocalEmbarque'
+      ParentTableIndex = 38
+      ChildTableIndex = 45
+      UpdateMethod = umRestrict
+      DeleteMethod = dmRestrict
+      RelID = 109
+      FieldLinks = <
+        item
+          ParentFieldName = 'id'
+          ChildFieldName = 'Cd_Local_Desembarque'
+        end>
+      ParentIndexID = 0
+      RelationshipType = ryNonIdentifying
+    end>
+  DataDictionary.Categories = <
+    item
+      CategoryType = ctProcedure
+      Objects = <
+        item
+          ObjectName = 'SP_INSERE_PGMTO_MERCANTE_WALLET'
+          CreateImplementation = 
+            'CREATE PROCEDURE [DBO].[SP_INSERE_PGMTO_MERCANTE_WALLET]'#13#10'(@PROC' +
+            'ESSO CHAR(18), @TIPO_CONTA CHAR(15), @USUARIO CHAR(4), @VALOR_DE' +
+            'BITO NUMERIC(15,2), @RESULTADO VARCHAR(50) OUTPUT)            '#13#10 +
+            'AS BEGIN            '#13#10'            '#13#10' DECLARE @FILIAL  CHAR(2)   ' +
+            '         '#13#10' DECLARE @PRODUTO CHAR(2)            '#13#10' DECLARE @CHAV' +
+            'E_PAYMENTREQUESTED BIGINT            '#13#10' DECLARE @CHAVE_ITEMPAYME' +
+            'NTREQUESTED BIGINT            '#13#10' DECLARE @CHAVE_CASHREQUESTED BI' +
+            'GINT            '#13#10' DECLARE @CHAVE_ITEMCASHREQUESTED BIGINT      ' +
+            '      '#13#10' DECLARE @ID_BRANCH BIGINT            '#13#10' DECLARE @ID_PRO' +
+            'DUCT BIGINT    '#13#10' DECLARE @CHAVE_BALANCE BIGINT        '#13#10'       ' +
+            '     '#13#10' --SET @PROCESSO   = '#39'0101IM-007717-18'#39'            '#13#10' --S' +
+            'ET @TIPO_CONTA = '#39'INDAIA'#39'              '#13#10'                       ' +
+            ' '#13#10' SELECT @PRODUTO = CD_PRODUTO ,             '#13#10'        @FILIAL' +
+            '  = CD_UNID_NEG            '#13#10'   FROM BROKER..TPROCESSO A (NOLOCK' +
+            ')            '#13#10'  WHERE NR_PROCESSO = @PROCESSO            '#13#10'    ' +
+            '        '#13#10'            '#13#10' SELECT @ID_BRANCH = ID             '#13#10'  ' +
+            ' FROM MYINDAIAV2..BRANCH A (NOLOCK)             '#13#10'     WHERE A.A' +
+            'KEY = @FILIAL            '#13#10'               '#13#10' SELECT @ID_PRODUCT ' +
+            '= ID             '#13#10'   FROM MYINDAIAV2..PRODUCT A (NOLOCK)       ' +
+            '      '#13#10'  WHERE A.AKEY = @PRODUTO              '#13#10'            '#13#10' ' +
+            '         '#13#10' BEGIN TRAN        '#13#10' BEGIN TRY           '#13#10'   IF @TI' +
+            'PO_CONTA = '#39'INDAIA'#39'            '#13#10'   BEGIN            '#13#10'         ' +
+            'INSERT INTO MYINDAIAV2..PAYMENTREQUESTED(BARCODE,             '#13#10 +
+            '                                    PAYMENTTOTAL,             '#13#10 +
+            '                                    RECEIVEDDATE,             '#13#10 +
+            '                                    SENIORKEY,             '#13#10'   ' +
+            '                                 STATUS,             '#13#10'         ' +
+            '                           TYPE,             '#13#10'                 ' +
+            '                   APPROVEDUSER_ID,             '#13#10'              ' +
+            '                      BENEFICIARY_ID,            '#13#10'             ' +
+            '                       BILLING_ID,            '#13#10'                ' +
+            '                    BRANCH_ID,             '#13#10'                   ' +
+            '                 CUSTOMCLEARANCE_ID,             '#13#10'             ' +
+            '                       CUSTOMER_ID,             '#13#10'              ' +
+            '                      PRODUCT_ID,             '#13#10'                ' +
+            '                    SERVICE_ID,             '#13#10'                  ' +
+            '                  USER_ID,             '#13#10'                       ' +
+            '             DUEDATE,             '#13#10'                            ' +
+            '        SENIORSUBKEY,      '#13#10'                                   ' +
+            ' CREATED )            '#13#10'    SELECT                              ' +
+            '            '#13#10'     NULL           AS BARCODE,             '#13#10'    ' +
+            ' @VALOR_DEBITO  AS PAYMENTTOTAL,             '#13#10'     NULL        ' +
+            '   AS RECEIVEDDATE,             '#13#10'     NULL           AS SENIORK' +
+            'EY,             '#13#10'     '#39'WAIT'#39'         AS STATUS,             '#13#10' ' +
+            '    NULL           AS TYPE,             '#13#10'     NULL           AS' +
+            ' APPROVEDUSER_ID,             '#13#10'     '#39'399'#39'          AS BENEFICIA' +
+            'RY_ID,            '#13#10'     NULL           AS BILLING_ID,          ' +
+            '  '#13#10'     @ID_BRANCH     AS BRANCH_ID,             '#13#10'     A.ID   ' +
+            '        AS CUSTOMCLEARANCE_ID,             '#13#10'     A.CUSTOMER_ID ' +
+            ' AS CUSTOMER_ID,             '#13#10'     @ID_PRODUCT    AS PRODUCT_ID' +
+            ',             '#13#10'     A.SERVICE_ID   AS SERVICE_ID,             '#13 +
+            #10'     @USUARIO       AS USER_ID,             '#13#10'     NULL        ' +
+            '   AS DUE_DATE,             '#13#10'     NULL           AS SENIORSUBKE' +
+            'Y,      '#13#10'     GETDATE()      AS CREATED                '#13#10'     F' +
+            'ROM MYINDAIAV2..CUSTOMCLEARANCE A(NOLOCK)            '#13#10'    WHERE' +
+            ' CUSTOMID  = @PROCESSO             '#13#10'                      '#13#10'   ' +
+            '   SELECT @CHAVE_PAYMENTREQUESTED =  @@IDENTITY                 ' +
+            #13#10'                                      '#13#10'              '#13#10'    IN' +
+            'SERT INTO MYINDAIAV2..ITEMPAYMENTREQUESTED (DESTINO,            ' +
+            #13#10'                                                  ITEM_ID,    ' +
+            '         '#13#10'                                                  PRI' +
+            'CE)            '#13#10'    SELECT 1,             '#13#10'           1,      ' +
+            '      '#13#10'           @VALOR_DEBITO             '#13#10'              '#13#10' ' +
+            '   SELECT @CHAVE_ITEMPAYMENTREQUESTED =  @@IDENTITY             ' +
+            '    '#13#10'              '#13#10'              '#13#10'    INSERT INTO MYINDAIAV2' +
+            '..PAYMENTREQUESTED_ITEMPAYMENTREQUESTED (PAYMENTREQUESTED_ID,   ' +
+            '          '#13#10'                                                    ' +
+            '               ITEMS_ID)            '#13#10'    SELECT @CHAVE_PAYMENTR' +
+            'EQUESTED,             '#13#10'           @CHAVE_ITEMPAYMENTREQUESTED  ' +
+            '    '#13#10'           '#13#10'    /*ATUALIZAR SALDO*/'#13#10'    IF ( SELECT CC.B' +
+            'ALANCE_ID '#13#10'    '#9'   FROM MYINDAIAV2.DBO.CUSTOMCLEARANCE  CC (NOL' +
+            'OCK) '#13#10#9'      WHERE CC.CUSTOMID = @PROCESSO ) IS NOT NULL'#13#10#9' BEG' +
+            'IN'#9'   '#13#10#9#9#9'UPDATE MYINDAIAV2.DBO.BALANCE  '#13#10#9#9#9'   SET VALUE = (V' +
+            'ALUE - @VALOR_DEBITO)'#13#10#9#9#9'  FROM MYINDAIAV2.DBO.BALANCE         ' +
+            ' B  (NOLOCK)  '#13#10#9#9'INNER JOIN MYINDAIAV2.DBO.CUSTOMCLEARANCE  CC ' +
+            '(NOLOCK)ON CC.BALANCE_ID = B.ID'#13#10#9#9#9' WHERE CC.CUSTOMID = @PROCES' +
+            'SO'#13#10#9' END'#13#10#9' ELSE'#13#10#9' BEGIN'#13#10#9#9#9'INSERT INTO MYINDAIAV2.DBO.BALANC' +
+            'E (VALUE)'#9#9#9#13#10#9#9#9'SELECT 0 - @VALOR_DEBITO AS VALUE'#13#10#9#9#9#13#10#9#9#9'SELE' +
+            'CT @CHAVE_BALANCE = @@IDENTITY'#13#10#9#9#9#13#10#9#9#9'UPDATE MYINDAIAV2.DBO.CU' +
+            'STOMCLEARANCE '#13#10#9#9#9'   SET BALANCE_ID  = @CHAVE_BALANCE'#13#10#9#9#9'  FRO' +
+            'M MYINDAIAV2.DBO.CUSTOMCLEARANCE  CC (NOLOCK)'#13#10#9#9#9' WHERE CC.CUST' +
+            'OMID = @PROCESSO'#13#10#9' END '#9'          '#13#10'     /*ATUALIZAR SALDO*/   ' +
+            '      '#13#10'              '#13#10'   END            '#13#10'   ELSE             ' +
+            #13#10'   IF @TIPO_CONTA = '#39'CLIENTE'#39'            '#13#10'   BEGIN           ' +
+            '         '#13#10'    INSERT INTO MYINDAIAV2..CASHREQUESTED( CREATED,  ' +
+            '          '#13#10'                                    RECEIVEDDATE,   ' +
+            '          '#13#10'                                    SENIORKEY,      ' +
+            '       '#13#10'                                    STATUS,            ' +
+            ' '#13#10'                                    BRANCH_ID,             '#13#10 +
+            '                                    CUSTOMCLEARANCE_ID,         ' +
+            '    '#13#10'                                    CUSTOMER_ID,          ' +
+            '   '#13#10'                                    PRODUCT_ID,            ' +
+            #13#10'                                    SERVICE_ID,             '#13#10 +
+            '                                    USER_ID,             '#13#10'     ' +
+            '                               CASHREQUESTTOTAL      '#13#10'         ' +
+            '                          )                                     ' +
+            '  '#13#10'    SELECT         '#13#10'       GETDATE()     AS CREATED,       ' +
+            '      '#13#10'       NULL          AS RECEIVEDDATE,             '#13#10'    ' +
+            '   NULL          AS SENIORKEY,             '#13#10'       '#39'APPROVED'#39'  ' +
+            '  AS STATUS,             '#13#10'       @ID_BRANCH    AS BRANCH_ID,   ' +
+            '          '#13#10'       A.ID          AS CUSTOMCLEARANCE_ID,         ' +
+            '    '#13#10'       A.CUSTOMER_ID AS CUSTOMER_ID,             '#13#10'       ' +
+            '@ID_PRODUCT   AS PRODUCT_ID,            '#13#10'       A.SERVICE_ID  A' +
+            'S SERVICE_ID,             '#13#10'       @USUARIO      AS USER_ID,    ' +
+            '         '#13#10'       0             AS CASHREQUESTTOTAL             ' +
+            ' '#13#10'     FROM MYINDAIAV2..CUSTOMCLEARANCE A(NOLOCK)            '#13#10 +
+            '    WHERE CUSTOMID  = @PROCESSO            '#13#10'              '#13#10'   ' +
+            ' SELECT @CHAVE_CASHREQUESTED = @@IDENTITY            '#13#10'         ' +
+            '     '#13#10'              '#13#10'    INSERT INTO MYINDAIAV2..ITEMCASHREQUE' +
+            'STED (DESTINO,              '#13#10'                                  ' +
+            '             ITEM_ID,             '#13#10'                            ' +
+            '                   PRICE)            '#13#10'    SELECT 2             ' +
+            'AS DESTINO,             '#13#10'           1             AS ITEM_ID,  ' +
+            '           '#13#10'           @VALOR_DEBITO AS PRICE            '#13#10'    ' +
+            '                   '#13#10'    SELECT @CHAVE_ITEMCASHREQUESTED = @@IDE' +
+            'NTITY            '#13#10'              '#13#10'              '#13#10'             ' +
+            ' '#13#10'    INSERT INTO MYINDAIAV2..CASHREQUESTED_ITEMCASHREQUESTED (' +
+            ' CASHREQUESTED_ID,             '#13#10'                               ' +
+            '                               ITEMS_ID)            '#13#10'    SELECT' +
+            ' @CHAVE_CASHREQUESTED,             '#13#10'           @CHAVE_ITEMCASHR' +
+            'EQUESTED            '#13#10'      '#13#10'      '#13#10'    /*ATUALIZAR SALDO*/'#13#10' ' +
+            '   IF ( SELECT CC.BALANCE_ID '#13#10'    '#9'   FROM MYINDAIAV2.DBO.CUSTO' +
+            'MCLEARANCE  CC (NOLOCK) '#13#10#9'      WHERE CC.CUSTOMID = @PROCESSO )' +
+            ' IS NOT NULL'#13#10#9' BEGIN'#9'   '#13#10#9#9#9'UPDATE MYINDAIAV2.DBO.BALANCE  '#13#10#9 +
+            #9#9'   SET VALUE = (VALUE - @VALOR_DEBITO)'#13#10#9#9#9'  FROM MYINDAIAV2.D' +
+            'BO.BALANCE          B  (NOLOCK)  '#13#10#9#9'INNER JOIN MYINDAIAV2.DBO.C' +
+            'USTOMCLEARANCE  CC (NOLOCK)ON CC.BALANCE_ID = B.ID'#13#10#9#9#9' WHERE CC' +
+            '.CUSTOMID = @PROCESSO'#13#10#9' END'#13#10#9' ELSE'#13#10#9' BEGIN'#13#10#9#9#9'INSERT INTO MY' +
+            'INDAIAV2.DBO.BALANCE (VALUE)'#9#9#9#13#10#9#9#9'SELECT 0 - @VALOR_DEBITO AS ' +
+            'VALUE'#13#10#9#9#9#13#10#9#9#9'SELECT @CHAVE_BALANCE = @@IDENTITY'#13#10#9#9#9#13#10#9#9#9'UPDAT' +
+            'E MYINDAIAV2.DBO.CUSTOMCLEARANCE '#13#10#9#9#9'   SET BALANCE_ID  = @CHAV' +
+            'E_BALANCE'#13#10#9#9#9'  FROM MYINDAIAV2.DBO.CUSTOMCLEARANCE  CC (NOLOCK)' +
+            #13#10#9#9#9' WHERE CC.CUSTOMID = @PROCESSO'#13#10#9' END '#9'          '#13#10'     /*A' +
+            'TUALIZAR SALDO*/     '#13#10#9' '#13#10'   END                      '#13#10'  COMMI' +
+            'T                                          '#13#10'  SET @RESULTADO = ' +
+            #39'OK'#39'         '#13#10' END TRY                                         ' +
+            '   '#13#10' BEGIN CATCH                                          '#13#10'  R' +
+            'OLLBACK         '#13#10'  SET @RESULTADO =  '#39'ERRO'#39'         '#13#10' END CATC' +
+            'H        '#13#10'             '#13#10'END'
+        end
+        item
+          ObjectName = 'SP_GENERATE_INSERTS_2'
+          CreateImplementation = 
+            'create PROCEDURE SP_GENERATE_INSERTS_2      '#13#10'(      '#13#10'    @TABL' +
+            'ENAME        VARCHAR(MAX),      '#13#10'    @FILTER_CONDITION VARCHAR(' +
+            'MAX) = '#39#39', -- FILTRO EX. '#39'WHERE CAMPO = 1'#39'      '#13#10' @COLUMNS     ' +
+            '     VARCHAR(MAX) = '#39#39', -- COLUNAS QUE NAO DEVEM ESTAR NO INSERT' +
+            ' EX. '#39'[CAMPO_1],[CAMPO_2]'#39'       '#13#10' @IDENTITY         BIT       ' +
+            '   = 1   -- 1 - TRAZ CHAVE PRIMARIA  0 - N'#195'O TRAZ CHAVE PRIMARIA' +
+            '      '#13#10')      '#13#10'AS      '#13#10'BEGIN      '#13#10'      '#13#10'SET NOCOUNT ON  ' +
+            '    '#13#10'      '#13#10'DECLARE @TABLE_NAME     VARCHAR(MAX),      '#13#10'     ' +
+            '   @CSV_COLUMN     VARCHAR(MAX),      '#13#10'        @QUOTED_DATA    ' +
+            'VARCHAR(MAX),      '#13#10'        @TEXT           VARCHAR(MAX),      ' +
+            #13#10'        @FILTER         VARCHAR(MAX),      '#13#10'  @IDQUERY       ' +
+            ' VARCHAR(MAX),      '#13#10'  @SQL_ON         VARCHAR(100) = '#39#39',      ' +
+            #13#10'  @SQL_OFF        VARCHAR(100) = '#39#39',      '#13#10'        @IDENTITY_' +
+            'TABLE BIT      '#13#10'      '#13#10'DECLARE @EXCLUDEDLIST TABLE(NAME VARCHA' +
+            'R(MAX))      '#13#10'DECLARE @RESULT       TABLE(INSERTS VARCHAR(MAX))' +
+            '      '#13#10'      '#13#10'SET @TABLE_NAME = @TABLENAME      '#13#10'SET @FILTER ' +
+            '    = @FILTER_CONDITION      '#13#10'SET @COLUMNS    = REPLACE((REPLAC' +
+            'E(@COLUMNS, '#39'['#39', '#39#39#39#39')), '#39']'#39', '#39#39#39#39')      '#13#10'      '#13#10'IF LEN(@COLUM' +
+            'NS) > 0      '#13#10'SET @IDQUERY    = '#39'SELECT '#39#39#39#39'+ NAME +'#39#39#39#39' FROM S' +
+            'YS.ALL_COLUMNS WHERE OBJECT_ID = OBJECT_ID('#39#39#39'+@TABLENAME+'#39#39#39') A' +
+            'ND NAME IN ('#39'+@COLUMNS+'#39')'#39'      '#13#10'      '#13#10'INSERT INTO @EXCLUDEDL' +
+            'IST       '#13#10'       EXEC(@IDQUERY)         '#13#10'          '#13#10'SELECT @' +
+            'IDENTITY_TABLE = ISNULL( (SELECT 1      '#13#10'   FROM SYS.ALL_COLUMN' +
+            'S       '#13#10'  WHERE OBJECT_ID = OBJECT_ID(@TABLE_NAME)       '#13#10'   ' +
+            ' AND IS_IDENTITY = 1 ) , 0)      '#13#10'      '#13#10'IF @IDENTITY_TABLE = ' +
+            '1      '#13#10'BEGIN      '#13#10'  SET @SQL_ON  = '#39'-- SET IDENTITY_INSERT '#39 +
+            ' + @TABLE_NAME + '#39' ON '#39'      '#13#10'  SET @SQL_OFF = '#39'-- SET IDENTITY' +
+            '_INSERT '#39' + @TABLE_NAME + '#39' OFF '#39'      '#13#10'END           '#13#10'      '#13 +
+            #10'SELECT @CSV_COLUMN=STUFF      '#13#10'(      '#13#10'    (      '#13#10'     SELE' +
+            'CT '#39',['#39'+ NAME +'#39']'#39'       '#13#10'    FROM SYS.ALL_COLUMNS       '#13#10'    ' +
+            '  WHERE OBJECT_ID = OBJECT_ID(@TABLE_NAME)       '#13#10'     AND ( ( ' +
+            '(IS_IDENTITY != 1) AND (@IDENTITY = 0) ) OR (@IDENTITY = 1) )   ' +
+            '    '#13#10'     AND NAME NOT IN (SELECT NAME FROM @EXCLUDEDLIST)     ' +
+            ' '#13#10'    FOR XML PATH('#39#39')      '#13#10'     ),1,1,'#39#39'      '#13#10')      '#13#10'   ' +
+            '   '#13#10'SELECT @QUOTED_DATA=STUFF      '#13#10'(      '#13#10'    (      '#13#10'    ' +
+            ' SELECT '#39' ISNULL(QUOTENAME('#39'+CASE WHEN UPPER(B.NAME) = '#39'DATETIME' +
+            #39' THEN '#39'CONVERT(VARCHAR,'#39' + A.NAME +'#39',21)'#39' ELSE A.NAME END+'#39','#39'+Q' +
+            'UOTENAME('#39#39#39#39','#39#39#39#39#39#39')+'#39'),'#39'+'#39#39#39'NULL'#39#39#39'+'#39')+'#39#39','#39#39#39'+'#39'+'#39'       '#13#10'    ' +
+            'FROM SYS.ALL_COLUMNS a      '#13#10'    LEFT JOIN SYS.TYPES B ON B.sys' +
+            'tem_type_id = A.system_type_id      '#13#10'      WHERE OBJECT_ID=OBJE' +
+            'CT_ID(@TABLE_NAME)       '#13#10'     AND ( ( (IS_IDENTITY != 1) AND (' +
+            '@IDENTITY = 0) ) OR (@IDENTITY = 1) )       '#13#10'  AND A.NAME NOT I' +
+            'N (SELECT NAME FROM @EXCLUDEDLIST)      '#13#10'    FOR XML PATH('#39#39')  ' +
+            '    '#13#10'    ),1,1,'#39#39'      '#13#10')      '#13#10'--SELECT @QUOTED_DATA      '#13#10 +
+            'SELECT @TEXT= '#39'SELECT '#39#39'INSERT INTO '#39'+@TABLE_NAME+'#39'('#39'+@CSV_COLUM' +
+            'N+'#39')VALUES('#39#39#39'+'#39'+'#39'+SUBSTRING(@QUOTED_DATA,1,LEN(@QUOTED_DATA)-5)' +
+            '+'#39'+'#39'+'#39#39#39')'#39#39#39'+'#39' FROM '#39'+@TABLE_NAME + '#39' '#39' + @FILTER       '#13#10'      ' +
+            '   '#13#10'--SELECT @CSV_COLUMN AS CSV_COLUMN,@QUOTED_DATA AS QUOTED_D' +
+            'ATA,@TEXT TEXT      '#13#10'--SELECT @TEXT      '#13#10'      '#13#10'IF LEN(@SQL_' +
+            'ON) > 0      '#13#10'INSERT INTO @RESULT      '#13#10' SELECT  @SQL_ON  + CH' +
+            'AR(13)       '#13#10'      '#13#10'INSERT INTO @RESULT      '#13#10'EXEC (@TEXT)  ' +
+            '    '#13#10'      '#13#10'IF LEN(@SQL_OFF) > 0      '#13#10'INSERT INTO @RESULT   ' +
+            '   '#13#10'SELECT CHAR(13) + @SQL_OFF       '#13#10'      '#13#10'      '#13#10'SELECT I' +
+            'NSERTS       '#13#10'  FROM @RESULT      '#13#10'      '#13#10'SET NOCOUNT OFF    ' +
+            '  '#13#10'      '#13#10'END'
+        end
+        item
+          ObjectName = 'sp_SaldoProcesso'
+          CreateImplementation = 
+            'CREATE PROCEDURE [dbo].[sp_SaldoProcesso](@customID varchar(18))' +
+            ' as '#13#10'begin'#13#10#13#10'declare @CustomClearance integer'#13#10'declare @TotalN' +
+            'umer'#225'rio float'#13#10'declare @TotalPagamento float'#13#10'declare @SaldoErr' +
+            'adoHj float'#13#10'declare @SaldoProcesso float'#13#10#13#10'select @CustomClear' +
+            'ance = id from CustomClearance where customID= @customID'#13#10#13#10'Sele' +
+            'ct @TotalNumer'#225'rio = isnull(SUM(cr.cashRequestTotal),0) '#13#10'from  ' +
+            'CashRequested cr '#13#10'where customClearance_id=@CustomClearance and' +
+            ' '#13#10'      CR.status='#39'APPROVED'#39' and'#13#10'      cr.id not in (select ca' +
+            'shRequests_id '#13#10'                    from Billing_CashRequested b' +
+            'cr'#13#10'                    inner join Billing b on b.id=bcr.Billing' +
+            '_id'#13#10'                    where status = '#39'INVOICED'#39')'#13#10#13#10'select @T' +
+            'otalPagamento = isnull(sum(pr.paymentTotal),0) '#13#10'from PaymentReq' +
+            'uested pr'#13#10'where pr.status= '#39'APPROVED'#39' and isnull(billing_id,'#39#39')' +
+            ' = '#39#39#13#10'and pr.customClearance_id=@CustomClearance'#13#10#13#10'select @Sal' +
+            'doErradoHj =  Value '#13#10'from Balance b'#13#10'inner join CustomClearance' +
+            ' cc on cc.balance_id=b.id'#13#10'where cc.id=@CustomClearance'#13#10#13#10#13#10'sel' +
+            'ect @SaldoProcesso = isnull(@TotalNumer'#225'rio,0) - isnull(@TotalPa' +
+            'gamento,0)  '#13#10#13#10'update b set value = @SaldoProcesso'#13#10'from Balanc' +
+            'e b'#13#10'inner join CustomClearance cc on cc.balance_id=b.id'#13#10'where ' +
+            'cc.id=@CustomClearance'#13#10#13#10'select Value SaldoErrado,@SaldoProcess' +
+            'o SaldoCorreto'#13#10'from Balance b'#13#10'inner join CustomClearance cc on' +
+            ' cc.balance_id=b.id'#13#10'where cc.id=@CustomClearance'#13#10#13#10#13#10#13#10'end'
+        end
+        item
+          ObjectName = 'AlteraPagamento'
+          CreateImplementation = 
+            'CREATE PROCEDURE [dbo].[AlteraPagamento](@id bigint) AS'#13#10'BEGIN'#13#10 +
+            #9'update PaymentRequested set status='#39'APPROVED'#39#13#10#9'where id=@id'#13#10'E' +
+            'ND'
+        end
+        item
+          ObjectName = 'sp_Pagamento_Criado'
+          CreateImplementation = 
+            'CREATE PROCEDURE [dbo].[sp_Pagamento_Criado](@id bigint) AS'#13#10'BEG' +
+            'IN'#13#10#9'Update PaymentRequested set status='#39'OPEN'#39#13#10#9'where id=@id'#13#10#9 +
+            'Print '#39'T'#237'tulo : '#39' + Cast(@id as varchar(10)) + '#39' alterado para C' +
+            'RIADO com sucesso'#39#13#10'END'
+        end>
+    end
+    item
+      CategoryType = ctView
+      Objects = <
+        item
+          ObjectName = 'VW_TotalReembolsoFatura'
+          CreateImplementation = 
+            'CREATE VIEW [dbo].[VW_TotalReembolsoFatura]'#13#10'AS'#13#10#13#10'SELECT Billin' +
+            'g_id,SUM(price) TotalReembolso FROM Refund  '#13#10'group by Billing_i' +
+            'd'
+        end
+        item
+          ObjectName = 'vw_BeneficiaryOpenPayments'
+          Description = 'Favorecidos com pagamentos pendentes'
+          CreateImplementation = 
+            'CREATE VIEW vw_BeneficiaryOpenPayments'#13#10'AS'#13#10#13#10'SELECT DISTINCT B.' +
+            'id, B.aKey, B.name, B.taxID'#13#10'FROM Beneficiary B '#13#10'JOIN PaymentRe' +
+            'quested P ON P.beneficiary_id = B.id'#13#10'WHERE P.status = '#39'OPEN'#39#13#10
+        end>
+    end>
+  DiagramObj.Diagrams = <
+    item
+      DiagramName = 'Main Diagram'
+      DiagramString = 
+        'object TDiagramClass'#13#10'  NettoExportOffset = 3'#13#10'  AutomaticNodes ' +
+        '= False'#13#10'  AutoScroll = True'#13#10'  Background.Scroll = True'#13#10'  Back' +
+        'ground.Style = biTile'#13#10'  Background.Visible = False'#13#10'  Backgroun' +
+        'd.Gradient.Direction = grTopBottom'#13#10'  Background.Gradient.StartC' +
+        'olor = clWhite'#13#10'  Background.Gradient.EndColor = clYellow'#13#10'  Bac' +
+        'kground.Gradient.Visible = False'#13#10'  Background.PrintGradient = F' +
+        'alse'#13#10'  SnapGrid.Active = False'#13#10'  SnapGrid.Force = False'#13#10'  Sna' +
+        'pGrid.Visible = False'#13#10'  SnapGrid.SizeX = 8.000000000000000000'#13#10 +
+        '  SnapGrid.SizeY = 8.000000000000000000'#13#10'  SnapGrid.Style = gsDo' +
+        'ts'#13#10'  SnapGrid.SnapToRuler = False'#13#10'  LeftRuler.Visible = False'#13 +
+        #10'  LeftRuler.Divisions = 5'#13#10'  LeftRuler.Font.Charset = DEFAULT_C' +
+        'HARSET'#13#10'  LeftRuler.Font.Color = clWindowText'#13#10'  LeftRuler.Font.' +
+        'Height = -9'#13#10'  LeftRuler.Font.Name = '#39'Arial'#39#13#10'  LeftRuler.Font.S' +
+        'tyle = []'#13#10'  LeftRuler.Units = unCenti'#13#10'  LeftRuler.MinorTickLen' +
+        'gth = 4'#13#10'  LeftRuler.MajorTickLength = 6'#13#10'  LeftRuler.Color = cl' +
+        'White'#13#10'  LeftRuler.TickColor = clBlack'#13#10'  LeftRuler.Size = 16'#13#10' ' +
+        ' LeftRuler.AutoFactor = True'#13#10'  LeftRuler.GridColor = clBlack'#13#10' ' +
+        ' TopRuler.Visible = False'#13#10'  TopRuler.Divisions = 5'#13#10'  TopRuler.' +
+        'Font.Charset = DEFAULT_CHARSET'#13#10'  TopRuler.Font.Color = clWindow' +
+        'Text'#13#10'  TopRuler.Font.Height = -9'#13#10'  TopRuler.Font.Name = '#39'Arial' +
+        #39#13#10'  TopRuler.Font.Style = []'#13#10'  TopRuler.Units = unCenti'#13#10'  Top' +
+        'Ruler.MinorTickLength = 4'#13#10'  TopRuler.MajorTickLength = 6'#13#10'  Top' +
+        'Ruler.Color = clWhite'#13#10'  TopRuler.TickColor = clBlack'#13#10'  TopRule' +
+        'r.Size = 16'#13#10'  TopRuler.AutoFactor = True'#13#10'  TopRuler.GridColor ' +
+        '= clBlack'#13#10'  Zoom = 100'#13#10'  BorderColor = clGray'#13#10'  MouseWheelMod' +
+        'e = mwVertical'#13#10'  ActiveLayers = 0'#13#10'  Layers = <>'#13#10'  LinkCursor ' +
+        '= crHandPoint'#13#10'  PanCursor = crHandPoint'#13#10'  ZoomCursor = crDefau' +
+        'lt'#13#10'  IgnoreScreenDPI = False'#13#10'  ShowCrossIndicators = False'#13#10'  ' +
+        'KeyActions = [kaEscape, kaMove, kaPage, kaResize, kaSelect]'#13#10'  S' +
+        'moothMode = smAntiAlias'#13#10'  TextRenderingMode = tmAntiAlias'#13#10'  Se' +
+        'lectionMode = slmMultiple'#13#10'  CanMoveOutOfBounds = True'#13#10'  PageSe' +
+        'ttings.PaperName = '#39'A4'#39#13#10'  PageSettings.PaperId = 9'#13#10'  PageSetti' +
+        'ngs.PaperWidth = 209.888666666666700000'#13#10'  PageSettings.PaperHei' +
+        'ght = 297.053000000000000000'#13#10'  PageSettings.Orientation = dpoPo' +
+        'rtrait'#13#10'  PageSettings.LeftMarginStr = '#39'25.4'#39#13#10'  PageSettings.To' +
+        'pMarginStr = '#39'25.4'#39#13#10'  PageSettings.RightMarginStr = '#39'25.4'#39#13#10'  P' +
+        'ageSettings.BottomMarginStr = '#39'25.4'#39#13#10'  RulerAutoUnit = False'#13#10' ' +
+        ' BorderStyle = bsNone'#13#10'  Color = clWhite'#13#10'  ParentColor = False'#13 +
+        #10'  DisplayRelationshipNames = False'#13#10'  LinkRelationshipsToFields' +
+        ' = False'#13#10'  ShowCaptions = False'#13#10'  StraightRelationshipLines = ' +
+        'True'#13#10'end'#13#10
+    end>
+  AureliusExportOptions = 
+    '<Mappings RegisterEntities="true" DefaultAssociationCascadeDefin' +
+    'ition="allbutremove">'#13#10'  <ProjectFile/>'#13#10'  <OutputDir>C:\Projeto' +
+    's\Delphi\minibroker\mypatterns</OutputDir>'#13#10'  <MainUnitName>MyEn' +
+    'titiesV2</MainUnitName>'#13#10'  <DictionaryName>Dic</DictionaryName>'#13 +
+    #10'  <DictionaryUnitName/>'#13#10'  <Script/>'#13#10'  <TableNaming Source="ca' +
+    'ption" Format="T%s" CamelCase="true" RemoveUnderline="true"/>'#13#10' ' +
+    ' <FieldNaming Source="caption" Format="%s" CamelCase="true" Remo' +
+    'veUnderline="true"/>'#13#10'  <AssociationNaming Source="ChildFieldCap' +
+    'tion" Format="%s" CamelCase="true" RemoveUnderline="true"/>'#13#10'  <' +
+    'ManyValuedNaming Source="ChildTableCaption" Format="%sList" Came' +
+    'lCase="true" RemoveUnderline="true"/>'#13#10'  <Tables>'#13#10'    <Table Ta' +
+    'bleId="6" Exclude="true"/>'#13#10'    <Table TableId="33" Exclude="tru' +
+    'e"/>'#13#10'    <Table TableId="12" Exclude="true"/>'#13#10'    <Table Table' +
+    'Id="32" Exclude="true"/>'#13#10'    <Table TableId="34" Exclude="true"' +
+    '/>'#13#10'    <Table TableId="47" Exclude="true"/>'#13#10'    <Table TableId' +
+    '="52" Exclude="true"/>'#13#10'    <Table TableId="4" Exclude="true"/>'#13 +
+    #10'    <Table TableId="57" Exclude="true"/>'#13#10'    <Table TableId="5' +
+    '" Exclude="true"/>'#13#10'    <Table TableId="19" Exclude="true"/>'#13#10'  ' +
+    '  <Table TableId="59" Exclude="true"/>'#13#10'    <Table TableId="36" ' +
+    'Exclude="true"/>'#13#10'    <Table TableId="54" Exclude="true"/>'#13#10'    ' +
+    '<Table TableId="53" Exclude="true"/>'#13#10'    <Table TableId="35" Ex' +
+    'clude="true"/>'#13#10'    <Table TableId="42" Exclude="true"/>'#13#10'    <T' +
+    'able TableId="2" Exclude="true"/>'#13#10'    <Table TableId="3" Exclud' +
+    'e="true"/>'#13#10'    <Table TableId="29" Exclude="true"/>'#13#10'    <Table' +
+    ' TableId="51" Exclude="true"/>'#13#10'    <Table TableId="55" Exclude=' +
+    '"true"/>'#13#10'    <Table TableId="41" Exclude="true"/>'#13#10'    <Table T' +
+    'ableId="28" Exclude="true"/>'#13#10'    <Table TableId="31" Exclude="t' +
+    'rue"/>'#13#10'    <Table TableId="24" Exclude="true"/>'#13#10'    <Table Tab' +
+    'leId="30" Exclude="true"/>'#13#10'    <Table TableId="23" Exclude="tru' +
+    'e"/>'#13#10'    <Table TableId="56" Exclude="true"/>'#13#10'  </Tables>'#13#10'  <' +
+    'Associations>'#13#10'    <Association AssociationId="46" ManyValuedInc' +
+    'lude="true"/>'#13#10'    <Association AssociationId="27" ManyValuedPro' +
+    'pertyName="GrupoJoin" ManyValuedInclude="true"/>'#13#10'    <Associati' +
+    'on AssociationId="12" ManyValuedInclude="true"/>'#13#10'    <Associati' +
+    'on AssociationId="100" ManyValuedInclude="true"/>'#13#10'    <Associat' +
+    'ion AssociationId="82" ManyValuedInclude="true"/>'#13#10'    <Associat' +
+    'ion AssociationId="38" ManyValuedPropertyName="JoinPaymentReques' +
+    'ted" ManyValuedInclude="true"/>'#13#10'    <Association AssociationId=' +
+    '"7" ManyValuedInclude="true"/>'#13#10'    <Association AssociationId="' +
+    '34" CascadeDefinition="all"/>'#13#10'    <Association AssociationId="5' +
+    '2" ManyValuedPropertyName="JoinCashRequested" ManyValuedInclude=' +
+    '"true"/>'#13#10'    <Association AssociationId="19" ManyValuedInclude=' +
+    '"true"/>'#13#10'    <Association AssociationId="59" ManyValuedInclude=' +
+    '"true"/>'#13#10'    <Association AssociationId="53" ManyValuedProperty' +
+    'Name="JoinItemCashRequested" ManyValuedInclude="true"/>'#13#10'    <As' +
+    'sociation AssociationId="37" ManyValuedInclude="true"/>'#13#10'    <As' +
+    'sociation AssociationId="42" ManyValuedInclude="true"/>'#13#10'    <As' +
+    'sociation AssociationId="40" ManyValuedPropertyName="PerfisJoin"' +
+    ' ManyValuedInclude="true"/>'#13#10'    <Association AssociationId="62"' +
+    ' ManyValuedInclude="true"/>'#13#10'    <Association AssociationId="3" ' +
+    'ManyValuedPropertyName="JoinItemPaymentRequested" ManyValuedIncl' +
+    'ude="true"/>'#13#10'    <Association AssociationId="51" ManyValuedIncl' +
+    'ude="true"/>'#13#10'    <Association AssociationId="31" ManyValuedIncl' +
+    'ude="true"/>'#13#10'    <Association AssociationId="30" FetchMode="eag' +
+    'er"/>'#13#10'    <Association AssociationId="23" ManyValuedInclude="tr' +
+    'ue"/>'#13#10'    <Association AssociationId="11" ManyValuedInclude="tr' +
+    'ue"/>'#13#10'    <Association AssociationId="56" ManyValuedInclude="tr' +
+    'ue"/>'#13#10'  </Associations>'#13#10'</Mappings>'#13#10
+end

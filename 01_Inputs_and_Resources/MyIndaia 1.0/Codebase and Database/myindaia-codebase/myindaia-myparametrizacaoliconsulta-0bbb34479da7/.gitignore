@@ -1,0 +1,8 @@
+*.~dsk
+*.dsk
+*.mes
+*.skincfg
+/myParametrizacaoLIConsulta.stat
+/myParametrizacaoLIConsulta_Icon.ico
+/myParametrizacaoLIConsulta_Icon1.ico
+/myParametrizacaoLIConsulta_Icon2.ico
