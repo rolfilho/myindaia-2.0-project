@@ -1,44 +1,45 @@
-# MyINDAIA Modernization — Dynamic Execution Memory
+# MyINDAIA Modernization — Session Router
 
-**Last updated:** 2026-07-19  
-**Scope:** Dynamic session state, active tasks, and decision log for the MyINDAIA Discovery & Modernization project (`/Users/ricardo/Projects/2026 Indaia`).
-**Structural Reference:** For target architecture baseline, RACI table, and detailed folder pointers, see [AGENTS.md](AGENTS.md).
+**Last updated:** 2026-07-20
 
----
-
-## Current Status & Schedule
-
-| Field | Value |
-| --- | --- |
-| **Phase** | **Discovery Preparation (Fase 1)** — 2-week Discovery Sprint + 60-day accompaniment. |
-| **Target Kickoff** | **2nd week of August 2026** (following Nelson's exit on July 31 and Wagner's team transition). |
-| **Current Focus** | Structuring `02_Discovery_Workstreams/` for Tier-1 triage execution and prepping onboarding checklists. |
-| **Immediate Next Steps** | 1. Finalize technical review agenda for Rodrigo Zayit's architecture validation.<br>2. Track client response to [A2_Client_Information_Request_v2.md](01_Inputs_and_Resources/A2_Client_Information_Request_v2.md) upon August transition.<br>3. Review process inventory against Wagner's existing COMEX backlog. |
+This file is deliberately thin. It carries only what a session needs *before* knowing what it is
+working on, and routes to the file that owns each kind of detail. **Statuses are not tracked here** —
+they live in the files below and are updated there as work progresses.
 
 ---
 
-## Active Workstreams & Task Tracker
+## Where things live
 
-| Workstream | Status | Owner | Notes / Open Tasks |
-| --- | --- | --- | --- |
-| **W1: Kickoff & Alignment** | Prep | Ricardo Leite / Fabricio | Finalize onboarding timeline and team communication. |
-| **W2: Process Inventory Review** | Prep | Ricardo Leite / Wagner | Map ~36 cataloged processes against current 2.0IT backlog. |
-| **W3: Tier-1 Architecture Triage** | Prep | Ricardo Leite / Rodrigo Zayit | Prepare benchmark dataset (~50 docs for OCR) and validation agenda (`n8n` vs `LangGraph`, `Supabase` vs `RDS`). |
-| **W4: Nelson Dashboard Handoff** | Action Required | Nelson / Ricardo | Identify queries and pipelines powering critical Power BI / GD dashboards before July 31 exit. |
+Be selective of reading the files below to avoid loading too much information into context.
+
+
+| If you need…                                                       | Go to                                                               | Owns                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------------------- |
+| Contractual scope, deliverables, insumos                            | [Anexo I](00_Scope/Anexo_I_Escopo_e_Insumos_Discovery.md)           | Definition of done                           |
+| Architecture baseline, binding principles, stakeholders, folder map | [AGENTS.md](AGENTS.md)                                              | Structure & constraints                      |
+| Who is doing what, and its status                                   | [03_Task_Board.md](00_Internal_Work/03_Task_Board.md)               | **Task statuses**                            |
+| What we're deciding, and where each stands                          | [04_Decision_Register.md](00_Internal_Work/04_Decision_Register.md) | **Decision statuses** |
+| What we don't know, and who can answer                              | [05_Open_Questions.md](00_Internal_Work/05_Open_Questions.md)       | **Question statuses**                        |
+| Deliverables → workstreams → timeline → critical path            | [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md)       | Plan                                         |
+| How Ricardo and Rodrigo work together                               | [01_Working_Agreement.md](00_Internal_Work/01_Working_Agreement.md) | Governance                                   |
+| The delivery-strategy argument (DEC-06)                             | [06_Strategy_Tensions.md](00_Internal_Work/06_Strategy_Tensions.md) | Strategy position                            |
+| Everything internal, indexed                                        | [00_Internal_Work/README.md](00_Internal_Work/README.md)            | Entry point                                  |
 
 ---
 
-## Live Decision Log
+## Current state
 
-| Date | Decision | Context / Rationale |
-| --- | --- | --- |
-| 2026-07-16 | Project Go-Ahead & Scope confirmed | Aligned on 2-week Discovery + 60 days accompaniment. Focus 95% of execution on core rewrite ("feijão com arroz") to mitigate legacy risk. |
-| 2026-07-19 | Standalone Workspace Created | Established `/Users/ricardo/Projects/2026 Indaia` with structured folders to share safely with Rodrigo Zayit and client stakeholders. |
 
----
+| Field     | Value                                                                                                                                                                                                               |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Phase** | **P0 — Prep window** (from 2026-07-20, unbilled). Discovery Fase 1 starts the first or second week of August — **target 2 weeks, tolerance up to 4**, since neither Ricardo nor Rodrigo is full-time. Then 60 days accompaniment. |
+| **Focus** | Front-loading everything that converts into depth once the billed clock starts: chasing insumos, landing question lists with the client, building the OCR PoC harness, drafting the process map from legacy material. |
+| **Team**  | Ricardo Leite — accountable for delivery, owns business/product/OCR. Rodrigo Zayit — co-executor, owns five technical decisions. Delivery strategy and plan reconciliation are **joint**. Split in [01_Working_Agreement.md](00_Internal_Work/01_Working_Agreement.md) §2. |
 
-## Open Blockers & Questions
+## The three critical-path dependencies
 
-1. **Data Residency Clauses:** Verify if specific enterprise client contracts (`BASF`, `Nestlé`, `Pirelli`) restrict cloud processing endpoints outside Brazil/Europe.
-2. **Dashboard Transition:** What exact queries and data sources power Nelson's critical operational dashboards?
-3. **Stage-1 Bridge Access:** Confirm exact read-only access prerequisites for Leandro to set up the `pyodbc` / `BROKER` connection.
+Everything else can be worked around. Detail and fallbacks in [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md) §3.
+
+1. **CP-1 — Export repository access.** ❌ Not received. Gates deliverable (a) and through it the schedule.
+2. **CP-2 — Document batch with ground truth.** ❌ Not received. Gates the only empirically tested decision.
+3. **CP-3 — CEO alignment session.** Not scheduled. Cannot be worked around — delivery strategy is the CEO's call.

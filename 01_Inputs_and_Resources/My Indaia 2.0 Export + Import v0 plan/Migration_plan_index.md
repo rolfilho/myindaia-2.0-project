@@ -14,6 +14,8 @@ Use this document as a Table of Contents to navigate the specific plans and stra
     *   *Description*: Details the selected 26-week Greenfield strategy, explains why Strangler Fig was rejected, houses the Gantt timeline, staffing model, CapEx/OpEx cost estimates, and change management procedures.
 *   **[Target System Architecture](01_Strategy_and_Design/target_architecture.md)**
     *   *Description*: Technical specification of the target stack: vibe-coded React UI, self-hosted n8n integration hub, custom Python FastAPI Core API monolith, PostgreSQL/Redis databases, and IAM security controls.
+*   **[Architectural Analysis — Agent Evolution and Orchestration Mapping](2026-07-14%20Architectural%20Analysis%20%E2%80%94%20Agent%20Evolution%20and%20Orchestration%20Mapping.md)**
+    *   *Description*: Mapping and analysis of the 10 autonomous COMEX agents from the CEO vision onto the modernized target architecture, detailing the shift to a hybrid n8n + FastAPI orchestration model.
 
 ---
 

@@ -15,8 +15,12 @@ Este arquivo consolida apenas a camada de visão. Detalhe técnico permanece nos
 | --- | --- | --- |
 | Visão executiva | **este arquivo** | consolidado |
 | Produto / agentes | [PVD_COMEX_AI_INDAIA_v4.md](PVD_COMEX_AI_INDAIA_v4.md) | vigente |
-| Estratégia de entrega | [Parecer_Final_Banca_INDAIA_v2.md](Parecer_Final_Banca_INDAIA_v2.md) | vigente — **não refletido no v4** |
-| Especificação dos agentes | [Especificacao_10_Agentes_IA_COMEX_v2.md](Especificacao_10_Agentes_IA_COMEX_v2.md) | vigente — detalhe operacional |
+| Estratégia de entrega | [Parecer_Final_Banca_INDAIA_v2.md](Roadmap%20v2/Parecer_Final_Banca_INDAIA_v2.md) | vigente — **não refletido no v4** |
+| Especificação dos agentes | [Especificacao_10_Agentes_IA_COMEX_v2.md](Roadmap%20v2/Especificacao_10_Agentes_IA_COMEX_v2.md) | vigente — detalhe operacional |
+| Arquitetura de Transição | [Arquitetura_Transicao_Delphi_Python_v2.md](Roadmap%20v2/Arquitetura_Transicao_Delphi_Python_v2.md) | vigente — coexistência e roteamento |
+| Modelo Relacional | [DiagramaER_PostgreSQL_COMEX_AI_v2.md](Roadmap%20v2/DiagramaER_PostgreSQL_COMEX_AI_v2.md) | vigente — diagrama ER e tabelas |
+| Guia do Desenvolvedor | [DocTecnico_Desenvolvedor_COMEX_AI_v2.md](Roadmap%20v2/DocTecnico_Desenvolvedor_COMEX_AI_v2.md) | vigente — setup, integrações e SPs |
+| Domínios e Sprints | [Dominios_Negocio_Roadmap_Python_v2.md](Roadmap%20v2/Dominios_Negocio_Roadmap_Python_v2.md) | vigente — domínios de negócio e roadmap |
 
 ⚠️ Os arquivos rotulados "v2" **não são versões antigas** — a numeração é por documento, não uma sequência única. `Especificacao_10_Agentes` (§4) e `Dominios_Negocio` (§5) citam explicitamente a "Decisão v4.0", ou seja, foram revisados **depois** do v4. O Parecer da Banca não cita v4.0, mas é da mesma data e sua revisão v2.0 já incorpora as três decisões que o v4 anuncia — é contemporâneo, não anterior.
 
