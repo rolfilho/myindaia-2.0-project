@@ -19,10 +19,10 @@ Be selective of reading the files below to avoid loading too much information in
 | Architecture baseline, binding principles, stakeholders, folder map | [AGENTS.md](AGENTS.md)                                              | Structure & constraints                      |
 | Who is doing what, and its status                                   | [03_Task_Board.md](00_Internal_Work/03_Task_Board.md)               | **Task statuses**                            |
 | What we're deciding, and where each stands                          | [04_Decision_Register.md](00_Internal_Work/04_Decision_Register.md) | **Decision statuses** |
-| What we don't know, and who can answer                              | [05_Open_Questions.md](00_Internal_Work/05_Open_Questions.md)       | **Question statuses**                        |
+| CEO pre-read: premises, metrics, trade-offs, access needs           | [05_Kickoff_Brief.md](00_Internal_Work/05_Kickoff_Brief.md)         | CEO alignment                                |
 | Deliverables → workstreams → timeline → critical path            | [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md)       | Plan                                         |
 | How Ricardo and Rodrigo work together                               | [01_Working_Agreement.md](00_Internal_Work/01_Working_Agreement.md) | Governance                                   |
-| The delivery-strategy argument (DEC-06)                             | [06_Strategy_Tensions.md](00_Internal_Work/06_Strategy_Tensions.md) | Strategy position                            |
+| The delivery-strategy argument (DEC-06), archived                   | [Reference/2026-07-21 Strategy and Delivery Analysis.md](00_Internal_Work/Reference/2026-07-21%20Strategy%20and%20Delivery%20Analysis.md) | Strategy position                            |
 | Everything internal, indexed                                        | [00_Internal_Work/README.md](00_Internal_Work/README.md)            | Entry point                                  |
 
 ---

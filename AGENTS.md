@@ -22,9 +22,8 @@ The **GOAL** of this project is to deliver its contracted deliverables outlined 
 │   ├── 01_Working_Agreement.md      ← Roles, decision rights, governance principles, cadence
 │   ├── 02_Discovery_Plan.md         ← Deliverables → workstreams → timeline → critical path
 │   ├── 03_Task_Board.md             ← Live task tracker (owner, deliverable, status, dependency)
-│   ├── 04_Decision_Register.md      ← The nine Tier-1 decisions (owner, method, status)
-│   ├── 05_Open_Questions.md         ← Open questions filed by addressee
-│   ├── 06_Strategy_Tensions.md      ← Delivery-strategy argument (DEC-06 substance)
+│   ├── 04_Decision_Register.md      ← The eight Tier-1 decisions (owner, method, status)
+│   ├── 05_Kickoff_Brief.md          ← CEO pre-read: premises, metrics, trade-offs, access needs
 │   ├── Process_Map/                 ← T-50 process map derived from the legacy system (has its own README + trust-level table — read it first)
 │   ├── IDP/                         ← OCR / document-extraction proof of concept working files
 │   └── Reference/                   ← Consulted material, not deliverables (RL raw notes, dated architectural analyses)
@@ -109,7 +108,7 @@ authoritative list.
 >
 > The client's principles were drafted with AI assistance. They are a strong starting point, not
 > scripture — several are stated more absolutely than they can be defended. Challenging them is part
-> of the job. Items marked ⏳ are confirmed with the client as specific statements at kickoff (see 05_Open_Questions §1.1) — never as an abstract "do you endorse these principles?", which produces agreement without substance.
+> of the job. Items marked ⏳ are confirmed with the client as specific statements at kickoff (see [05_Kickoff_Brief.md](00_Internal_Work/05_Kickoff_Brief.md) §1) — never as an abstract "do you endorse these principles?", which produces agreement without substance.
 
 ### Tier A — contractual constraints on how we work (binding now)
 
@@ -208,7 +207,7 @@ the state changes** — not batched at the end of a session, and never mirrored 
 | ------------------------------------------------------------------- | -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [03_Task_Board.md](00_Internal_Work/03_Task_Board.md)               | Task statuses                                | Move`Todo → Doing → Blocked/Review → Done` as it happens. A completed task keeps its row — never delete it. When blocked, name what is blocking it and who owns the unblock.                          |
 | [04_Decision_Register.md](00_Internal_Work/04_Decision_Register.md) | Decision statuses | Advance`Open → Analysis → Recommended → Ratified`. Record the recommendation, its confidence level, and what would change it. |
-| [05_Open_Questions.md](00_Internal_Work/05_Open_Questions.md)       | Question statuses                            | When answered, record the answer inline and what it unblocked. Answered questions stay in the file — the answer is the value, not the question.                                                          |
+| [05_Kickoff_Brief.md](00_Internal_Work/05_Kickoff_Brief.md)         | CEO premises, metrics, trade-offs            | Keep it the current pre-read. When Fabricio confirms or corrects a premise, record the outcome in the owning decision (register) and update the brief. Interview seed questions live in [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md) §7.                                                          |
 | [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md)       | Critical path & assumptions                  | When a dependency clears or an assumption is falsified, update it there and reflect any change to the top three in`MEMORY.md`.                                                                            |
 
 **Only update `MEMORY.md` when the phase changes, the critical-path top three change, or the routing
@@ -218,5 +217,5 @@ you are duplicating state — put it in the owning file instead.
 ### Working principles
 
 * Be candid, rigorous, direct, and concise; prefer structured tables and bullet points (`MECE` principle).
-* Do not guess missing technical specifics; ask for clarification or check the reference indexes (`Migration_plan_index.md` or `Report_index.md`). If nobody here can answer, it belongs in [05_Open_Questions.md](00_Internal_Work/05_Open_Questions.md) filed against the person who can.
+* Do not guess missing technical specifics; ask for clarification or check the reference indexes (`Migration_plan_index.md` or `Report_index.md`). If nobody here can answer: a premise for the CEO goes in [05_Kickoff_Brief.md](00_Internal_Work/05_Kickoff_Brief.md) §1, an interview question for Wagner/Leandro in [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md) §7, an access/insumo ask in the client data request (A2) — always filed against the person who can answer it.
 * Distinguish what is **decided** from what is **assumed** from what is **inherited and unverified**. The third category is where this project's risk concentrates.

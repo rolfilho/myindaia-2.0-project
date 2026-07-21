@@ -145,7 +145,7 @@ Assemble waves 1–3 into **deliverable A** (§5). Includes:
 Produce **deliverable B** (§6). Every E4 inference, every MECE violation, and every E0 blind spot
 becomes a numbered, addressed question. Merge into
 [A2_Client_Information_Request_v2.md](../../01_Inputs_and_Resources/A2_Client_Information_Request_v2.md)
-and [05_Open_Questions.md](../05_Open_Questions.md).
+and the interview seed list in [02_Discovery_Plan.md](../02_Discovery_Plan.md) §7.
 
 ### How waves 1–3 were actually executed — and what the delegation cost
 

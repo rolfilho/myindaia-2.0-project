@@ -60,7 +60,7 @@ Three dependencies gate the deliverables. Everything else can be worked around.
 | --- | --- | --- | --- | --- |
 | **CP-1** | **Read access to the export repository** | D-a (can't reconcile a plan against a build we can't see), and through it D-d | ❌ Not received | Highest-severity risk in the engagement. Fallback: reconcile against the export `README` + Wagner walkthrough + our v0 plan, and ship D-a with an explicit confidence penalty and a named revision trigger (P5). Escalate to Fabricio the moment the contract is signed. |
 | **CP-2** | **Document batch with ground truth** | D-a1, and through it the OCR portion of D-c | ❌ Not received | The one empirically tested decision becomes analytical only — a material downgrade of the engagement's evidence base. Needs a client decision on *which* client/document type (see DEC-01) before the batch can even be requested. |
-| **CP-3** | **CEO alignment session** | D-a's strategic frame, D-b3, D-c tolerance, D-d shape, DEC-06, DEC-09, the V-01…V-08 constraint validation | Not scheduled | Cannot be worked around. The delivery-strategy decision is the CEO's to make; we recommend, he chooses. Must land in W1, ideally W1 D1–D2. |
+| **CP-3** | **CEO alignment session** | D-a's strategic frame, D-b3, D-c tolerance, D-d shape, DEC-06, DEC-09, and the premise validation in [05_Kickoff_Brief.md](05_Kickoff_Brief.md) §1 | Not scheduled | Cannot be worked around. The delivery-strategy decision is the CEO's to make; we recommend, he chooses. Must land in W1, ideally W1 D1–D2. Send [05_Kickoff_Brief.md](05_Kickoff_Brief.md) ahead so the session is discussion, not briefing. |
 
 *(Nelson's departure and the continuity of his dashboards sit outside our scope — noted here only so
 it is not mistaken for an oversight.)*
@@ -143,4 +143,38 @@ Recorded so they can be falsified rather than quietly inherited.
 | A3 | Wagner's export build is ~55–60% reusable (per AGENTS.md) | This number is inherited, not verified. CP-1 is what verifies it. If materially lower, D-d changes shape entirely |
 | A4 | Indaiá operates 100% on DUIMP, so legacy DI stays out of scope | Restores ~36 weeks of scope and the project's largest fiscal risk |
 | A5 | The client can supply real documents with ground truth | See CP-2 |
-| A6 | Indaiá needs workflows maintainable by people without deep technical skill | ⚠️ **Must be revalidated, not inherited.** This premise carries the entire n8n half of DEC-02. Ask it plainly in both the CEO session (Q-25 context) and the Wagner walkthrough — the two answers may differ, which is itself the finding. If the real maintenance model is "two senior Python developers own everything", the orchestration split gets simpler and cheaper |
+| A6 | Indaiá needs workflows maintainable by people without deep technical skill | ⚠️ **Must be revalidated, not inherited.** This premise carries the entire n8n half of DEC-02. Ask it plainly in both the CEO session and the Wagner walkthrough — the two answers may differ, which is itself the finding. If the real maintenance model is "two senior Python developers own everything", the orchestration split gets simpler and cheaper |
+
+---
+
+## 7. Discovery interview prep — seed questions
+
+**Rodrigo owns this list and trims it before it is sent (T-52).** It is a superset written without
+having seen the code; a long list makes a walkthrough diffuse. What we want is the handful of
+questions only these people can answer and that actually move a decision. **Q-w6 and Q-w7 must
+survive any cut** — document volumes and the ground-truth batch gate the OCR work, the only empirical
+evidence the engagement produces. Premises for the CEO are in [05_Kickoff_Brief.md](05_Kickoff_Brief.md);
+pure access/insumo asks live in the client data request (A2) and are not repeated here.
+
+**Wagner — code walkthrough and the export build**
+
+| # | Question | Unblocks |
+| --- | --- | --- |
+| Q-w1 | Does the export build follow a stated delivery principle — walking skeleton, vertical slice, strangler fig — or is it feature-by-feature? | DEC-06, D-a |
+| Q-w2 | What is genuinely built and running today, versus scaffolded, versus planned? | D-a, A3 |
+| Q-w3 | The "~55–60% reusable" figure — where does it come from, and against what definition of reuse? | A3, D-a, D-d |
+| Q-w4 | Which architectural decisions are already made implicitly in the export build and now expensive to reverse? | D-a, all DEC |
+| Q-w5 | Who maintains integration workflows day to day once live — developers, or operations people? (Half of DEC-02.) | DEC-02 |
+| **Q-w6** | **Document volumes per month by type** — invoices, B/Ls, packing lists. Needed to extrapolate OCR cost. | D-c, DEC-01 |
+| **Q-w7** | **Can you supply the document batch with ground truth**, and what does Indaiá hold as "ground truth"? Already-keyed structured data is ideal. | CP-2, DEC-01 |
+| Q-w8 | Team size, seniority, real velocity? | D-d |
+| Q-w9 | What exists for CI/CD, environments, automated testing? | D-a, D-b3 |
+
+**Leandro — legacy database (technical; access prerequisites are in A2 / Kickoff §4)**
+
+| # | Question | Unblocks |
+| --- | --- | --- |
+| Q-l1 | Which stored procedures are genuinely load-bearing for export, and which are dead? (~2,419 indexed; we need the live subset.) | DEC-07, D-a |
+| Q-l2 | Which legacy integrations write to production during export, and would collide with a shadow-mode run? | D-b3 |
+| Q-l3 | What do `sp_di_calculo` and the `sp_calc_*` family actually compute, and which are still live? DI calculation may be an uncontested boundary if Indaiá is DUIMP-only; `sp_calc_*` may cover export-side calculations we need to touch. | DEC-07, D-a |
+| Q-l4 | Which fiscal calculations does the **Portal Único (RFB)** perform authoritatively, versus what Indaiá computes itself? This is the line between what may never be reimplemented and what merely hasn't been. | DEC-07 |

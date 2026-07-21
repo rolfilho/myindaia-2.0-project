@@ -117,6 +117,14 @@ What this changes, and what it doesn't:
 | Convergence session | Before consolidation              | Half-day — resolve surviving disagreements, lock recommendations |
 | Fase 2              | 60 days after Discovery           | Weekly async board + decision review; Ricardo runs client cadence |
 
+### Rodrigo — immediate asks (Work methods)
+
+Before Discovery, three things:
+
+- Read the docs in this internal-work folder.
+- Suggest changes to the client data requests and to the questions we will put to Indaiá.
+- Prepare the questions for the code walkthrough (the seed list is [02_Discovery_Plan.md](02_Discovery_Plan.md) §7).
+
 ### Open with Rodrigo — to settle in the first alignment call
 
 The cadence above is a proposal built on assumptions about availability that have not been tested.
@@ -140,8 +148,10 @@ All of it is open:
 - **Tasks** live in [03_Task_Board.md](03_Task_Board.md). Every task names an owner and the
   deliverable it feeds. A task that feeds no deliverable is either scope creep or belongs in the
   strategy notes.
-- **Questions** live in [05_Open_Questions.md](05_Open_Questions.md), filed by *who can answer
-  them*. A question with no named addressee is not yet a question.
+- **Premises and questions for the CEO** live in [05_Kickoff_Brief.md](05_Kickoff_Brief.md);
+  **interview seed questions** for Wagner and Leandro live in [02_Discovery_Plan.md](02_Discovery_Plan.md)
+  §7 (Rodrigo owns them); **pure access/insumo asks** live in the client data request (A2). Every
+  question names who can answer it — a question with no addressee is not yet a question.
 - **Deep analyses** get their own dated file in this folder, named
   `YYYY-MM-DD <Topic>.md`, and are linked from the decision they support.
 - **Dates** are ISO (`2026-08-10`). Relative timelines use `W1 D3` (Discovery week 1, day 3).

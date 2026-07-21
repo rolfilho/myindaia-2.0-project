@@ -18,21 +18,20 @@ recommendations that Ricardo can sign and hand to the client.
 | 2 | [02_Discovery_Plan.md](02_Discovery_Plan.md) | What we deliver, in what order, against which calendar, gated by what |
 | 3 | [03_Task_Board.md](03_Task_Board.md) | Who is doing what right now |
 | 4 | [04_Decision_Register.md](04_Decision_Register.md) | The decisions the project is actually being paid to resolve |
-| 5 | [05_Open_Questions.md](05_Open_Questions.md) | What we don't know, and who is the only person who can tell us |
-| 6 | [06_Strategy_Tensions.md](06_Strategy_Tensions.md) | The speed/risk/value argument — worked into a form worth putting to the CEO |
+| 5 | [05_Kickoff_Brief.md](05_Kickoff_Brief.md) | The CEO pre-read — premises to validate, metrics to prioritize, the trade-offs we bring, and the access we need |
 
 Pending: `IDP/01_OCR_PoC_Plan.md`.
 
 ## Working folders
 
-The six files above are **live state** — they are maintained and should be current. Everything below
+The five files above are **live state** — they are maintained and should be current. Everything below
 is working material: produced once, consulted as needed.
 
 | Folder | What's in it |
 | --- | --- |
 | [Process_Map/](Process_Map/README.md) | T-50 — the operational process map derived from the legacy system. **Has its own README with a trust-level table; read it before quoting any of those files.** Waves 1–3 done, wave 4 blocked on A2 item H |
 | [IDP/](IDP/) | DEC-01 — OCR / document-extraction option space and PoC working files |
-| [Reference/](Reference/) | Material we consulted rather than produced as deliverables: RL's raw capture notes (largely superseded by the task board) and two dated architectural analyses feeding DEC-02 and DEC-06 |
+| [Reference/](Reference/) | Material we consulted rather than produced as deliverables: RL's raw capture notes (largely superseded by the task board), two dated architectural analyses feeding DEC-02 and DEC-06, and the archived **Strategy and Delivery Analysis** (the full worked argument behind DEC-06, formerly a live doc) |
 
 ---
 

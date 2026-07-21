@@ -1,10 +1,14 @@
-# 06 — Strategy Tensions
+# Strategy and Delivery Analysis — one-time reference
 
 **Owner:** RL + RZ jointly (WS4 / DEC-06)
 **Status:** Ricardo's opening position, 2026-07-20. Written to be argued with, not agreed with.
-**Purpose:** This is where Q-01, Q-03 and Q-05 get worked into a form worth putting to the CEO —
-options, trade-offs, a recommendation and a confidence level. Until that happens they stay in
-[05_Open_Questions.md](05_Open_Questions.md) §1.3 and are not asked.
+**Archived 2026-07-21** from live state (was `06_Strategy_Tensions.md`). Its conclusions now live
+in the relevant decision blocks of [../04_Decision_Register.md](../04_Decision_Register.md) —
+principally DEC-06. This file preserves the full worked argument behind those calls; it is consulted,
+not maintained.
+**Purpose:** the speed / risk / value / cutover argument worked into a form worth putting to the CEO —
+options, trade-offs, a recommendation and a confidence level. The CEO-facing distillation is in
+[../05_Kickoff_Brief.md](../05_Kickoff_Brief.md).
 
 ---
 
@@ -160,7 +164,7 @@ proves almost nothing**, which is the failure mode this project is closest to.
 ### 5.2 Applying the framework to Indaiá
 
 Our own decision framework
-([2026-07-20 Architectural and Delivery Patterns.md](Reference/2026-07-20%20Architectural%20and%20Delivery%20Patterns.md))
+([2026-07-20 Architectural and Delivery Patterns.md](2026-07-20%20Architectural%20and%20Delivery%20Patterns.md))
 asks two questions:
 
 - **Is technical / integration risk high?** **Yes** — INTTRA, government portals, A3 certificates in
