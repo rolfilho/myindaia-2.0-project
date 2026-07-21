@@ -7,12 +7,13 @@
 
 ## 1. Roles
 
-| | Ricardo Leite | Rodrigo Zayit |
-| --- | --- | --- |
-| **Contract** | Signatory. Sole accountable party to Indaiá. | Independent technical expert engaged by Ricardo. |
-| **Domain** | Business, product, delivery strategy, commercial framing, OpEx, schedule. | Architecture, infrastructure, orchestration, security, legacy integration. |
-| **Output status** | Deliverables. | Inputs to deliverables — not deliverables themselves. |
-| **Client interface** | Owns all client communication and all decision presentations. | Joins working sessions; does not carry conclusions to the client independently. |
+
+|                      | Ricardo Leite                                                                   | Rodrigo Zayit                                                                      |
+| -------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **Contract**         | Signatory. Sole accountable party to Indaiá.                                   | Independent technical expert engaged by Ricardo.                                   |
+| **Domain**           | Business, product, delivery strategy, commercial framing, OpEx, schedule.       | Architecture, infrastructure, orchestration, security, legacy integration.         |
+| **Output status**    | Deliverables.                                                                   | Inputs to deliverables.                                                            |
+| **Client interface** | Owns client communication and all decision presentations.                       | Joins working sessions; does not carry conclusions to the client independently.    |
 | **Review direction** | Triple-checks Rodrigo's technical recommendations with independent AI analysis. | Challenges Ricardo's business and delivery calls on technical feasibility grounds. |
 
 **Consequence to internalize:** Rodrigo is a peer in the analysis and an input in the delivery.
@@ -24,22 +25,21 @@ ships unaltered.
 ## 2. Governance principles
 
 **P1 — Single delivery owner.**
-Everything that reaches Indaiá passes through Ricardo. No parallel channel, no direct
-recommendation, no "I mentioned to Wagner that…". Rodrigo raises it to Ricardo; Ricardo decides
-whether and how it lands with the client.
+Everything that reaches Indaiá passes through Ricardo.
 
 **P2 — Split by question, not by document.**
 Each of us owns *questions* end-to-end rather than co-editing artifacts. Co-editing a live document
 across two people in a two-week window costs more than it returns. Ownership is in
 [04_Decision_Register.md](04_Decision_Register.md); the working split is:
 
-| Ricardo owns | Rodrigo owns | Joint |
-| --- | --- | --- |
-| OCR / IDP proof of concept (DEC-01) | Agent orchestration engine (DEC-02) | **Delivery strategy & cadence (DEC-06)** |
-| 12-week outcome metrics (DEC-09) — with the CEO | Database infrastructure (DEC-03) | **Plan reconciliation (WS1)** |
-| IT OpEx model (DEC-c) — with Rodrigo's input | RBAC model (DEC-04) | |
-| Schedule, risk register | Scraping hosting + A1/A3 certificate (DEC-05) | |
-| | Stage-1 legacy bridge to BROKER (DEC-07) | |
+
+| Ricardo owns                                     | Rodrigo owns                                  | Joint                                    |
+| ------------------------------------------------ | --------------------------------------------- | ---------------------------------------- |
+| OCR / IDP proof of concept (DEC-01)              | Agent orchestration engine (DEC-02)           | **Delivery strategy & cadence (DEC-06)** |
+| 12-week outcome metrics (DEC-09) — with the CEO | Database infrastructure (DEC-03)              | **Plan reconciliation (WS1)**            |
+| IT OpEx model (DEC-c) — with Rodrigo's input    | RBAC model (DEC-04)                           |                                          |
+| Schedule, risk register                          | Scraping hosting + A1/A3 certificate (DEC-05) |                                          |
+|                                                  | Stage-1 legacy bridge to BROKER (DEC-07)      |                                          |
 
 Reviewer is always the other person. No decision ships single-eyed.
 
@@ -108,13 +108,14 @@ What this changes, and what it doesn't:
 
 ## 4. Cadence
 
-| Ritual | When | Format |
-| --- | --- | --- |
-| Prep sync | 2×/week during the prep window | 45 min call — unblock, align, hand off |
-| Daily check | Each working day during Discovery | 15 min async written note, call only if needed |
-| Mid-point review | ~Halfway through Discovery | 90 min — every decision gets a status and a confidence level |
-| Convergence session | Before consolidation | Half-day — resolve surviving disagreements, lock recommendations |
-| Fase 2 | 60 days after Discovery | Weekly async board + decision review; Ricardo runs client cadence |
+
+| Ritual              | When                              | Format                                                            |
+| ------------------- | --------------------------------- | ----------------------------------------------------------------- |
+| Prep sync           | 2×/week during the prep window   | 45 min call — unblock, align, hand off                           |
+| Daily check         | Each working day during Discovery | 15 min async written note, call only if needed                    |
+| Mid-point review    | ~Halfway through Discovery        | 90 min — every decision gets a status and a confidence level     |
+| Convergence session | Before consolidation              | Half-day — resolve surviving disagreements, lock recommendations |
+| Fase 2              | 60 days after Discovery           | Weekly async board + decision review; Ricardo runs client cadence |
 
 ### Open with Rodrigo — to settle in the first alignment call
 
@@ -151,9 +152,10 @@ All of it is open:
 
 ## 6. Escalation
 
-| Situation | Action |
-| --- | --- |
-| Technical disagreement that survives both analyses | Document both positions; Ricardo decides what ships; both go in the deliverable |
-| Client insumo late, blocking a decision | Ricardo escalates to Fabricio; Rodrigo proceeds under P5 with a stated assumption |
-| Scope pressure from the client during Discovery | Ricardo only. Rodrigo does not accept scope in a session |
-| Finding that changes the commercial shape of the project | Immediate call, same day, regardless of cadence |
+
+| Situation                                                | Action                                                                            |
+| -------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Technical disagreement that survives both analyses       | Document both positions; Ricardo decides what ships; both go in the deliverable   |
+| Client insumo late, blocking a decision                  | Ricardo escalates to Fabricio; Rodrigo proceeds under P5 with a stated assumption |
+| Scope pressure from the client during Discovery          | Ricardo only. Rodrigo does not accept scope in a session                          |
+| Finding that changes the commercial shape of the project | Immediate call, same day, regardless of cadence                                   |
