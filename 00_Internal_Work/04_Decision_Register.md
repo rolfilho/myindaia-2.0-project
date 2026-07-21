@@ -81,11 +81,15 @@ questions:**
    underway and is the first to cut over. This is a **direct disagreement with the CEO's scope
    decision #3**, presented as superseded with the arithmetic shown — softening it would be the
    failure mode.
-2. **Continuous on the capability layer, batched per-client on the core.** Adding agent/capability
+2. **Continuous on the capability layer, batched per block on the core.** Adding agent/capability
    behavior *on top of* Delphi (notifications, dashboards, NCM, booking) is continuous — every block
    adds behavior without removing any, so there is nothing to batch. Replacing the core as the system
-   of record is batched **client by client with rollback** — every cutover is a risk event. This is
-   the CEO's own logic made explicit.
+   of record is batched, always with rollback — every cutover is a risk event. The migration **unit
+   is a group of clients and/or a group of processes** (not strictly one client at a time), sequenced
+   by a deliberate logic, and the legacy system stays live for a block only **as long as that block
+   genuinely needs it — decommission by readiness, not by calendar date.** This generalizes the CEO's
+   "client by client" into the MECE done-block above while honoring his "don't switch off Delphi by
+   date" (we switch off by *readiness* of each block, never by date).
 
 **Technical shape that delivers the principle:** a strangler fig with **one-way data flow** (read
 from legacy, write only in the new system) — not the bidirectional sync our v0 plan rightly rejected.
