@@ -19,8 +19,11 @@ recommendations that Ricardo can sign and hand to the client.
 | 3 | [03_Task_Board.md](03_Task_Board.md) | Who is doing what right now |
 | 4 | [04_Decision_Register.md](04_Decision_Register.md) | The decisions the project is actually being paid to resolve |
 | 5 | [05_Kickoff_Brief.md](05_Kickoff_Brief.md) | The CEO pre-read — premises to validate, metrics to prioritize, the trade-offs we bring, and the access we need |
+| 6 | [06_Questions_and_Validations_for_Indaiá.md](06_Questions_and_Validations_for_Indai%C3%A1.md) | Canonical roll-up of everything to confirm/ask/validate with Indaiá — CEO premises, assumptions, access, interview questions, and the OCR/IDP set (links to IDP/04 for OCR detail) |
 
-Pending: `IDP/01_OCR_PoC_Plan.md`.
+The IDP working files now exist in [IDP/](IDP/): the OCR PoC plan (with the vendor-neutral eval-harness
+spec), the vendor research, the architecture options, the invoice/BL field schemas, and the consolidated
+questions for Indaiá.
 
 ## Working folders
 

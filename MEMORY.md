@@ -1,6 +1,6 @@
 # MyINDAIA Modernization — Session Router
 
-**Last updated:** 2026-07-20
+**Last updated:** 2026-07-22
 
 This file is deliberately thin. It carries only what a session needs *before* knowing what it is
 working on, and routes to the file that owns each kind of detail. **Statuses are not tracked here** —
@@ -20,6 +20,7 @@ Be selective of reading the files below to avoid loading too much information in
 | Who is doing what, and its status                                   | [03_Task_Board.md](00_Internal_Work/03_Task_Board.md)               | **Task statuses**                            |
 | What we're deciding, and where each stands                          | [04_Decision_Register.md](00_Internal_Work/04_Decision_Register.md) | **Decision statuses** |
 | CEO pre-read: premises, metrics, trade-offs, access needs           | [05_Kickoff_Brief.md](00_Internal_Work/05_Kickoff_Brief.md)         | CEO alignment                                |
+| Everything to confirm/ask/validate with Indaiá (canonical roll-up)  | [06_Questions_and_Validations_for_Indaiá.md](00_Internal_Work/06_Questions_and_Validations_for_Indai%C3%A1.md) | **All Indaiá questions**, indexed (OCR detail in IDP/04) |
 | Deliverables → workstreams → timeline → critical path            | [02_Discovery_Plan.md](00_Internal_Work/02_Discovery_Plan.md)       | Plan                                         |
 | How Ricardo and Rodrigo work together                               | [01_Working_Agreement.md](00_Internal_Work/01_Working_Agreement.md) | Governance                                   |
 | The delivery-strategy argument (DEC-06), archived                   | [Reference/2026-07-21 Strategy and Delivery Analysis.md](00_Internal_Work/Reference/2026-07-21%20Strategy%20and%20Delivery%20Analysis.md) | Strategy position                            |

@@ -143,7 +143,7 @@ Recorded so they can be falsified rather than quietly inherited.
 | A3 | Wagner's export build is ~55–60% reusable (per AGENTS.md) | This number is inherited, not verified. CP-1 is what verifies it. If materially lower, D-d changes shape entirely |
 | A4 | Indaiá operates 100% on DUIMP, so legacy DI stays out of scope | Restores ~36 weeks of scope and the project's largest fiscal risk |
 | A5 | The client can supply real documents with ground truth | See CP-2 |
-| A6 | Indaiá needs workflows maintainable by people without deep technical skill | ⚠️ **Must be revalidated, not inherited.** This premise carries the entire n8n half of DEC-02. Ask it plainly in both the CEO session and the Wagner walkthrough — the two answers may differ, which is itself the finding. If the real maintenance model is "two senior Python developers own everything", the orchestration split gets simpler and cheaper |
+| A6 | Indaiá needs workflows maintainable by people without deep technical skill | ⚠️ **Must be revalidated, not inherited.** Carries the entire n8n half of DEC-02 — **and now also weights the OCR vendor's ease of maintenance (DEC-01 / vendor DX).** Ask it plainly in both the CEO session and the Wagner walkthrough (Q-w5); the two answers may differ, which is itself the finding. If the real model is "≥1 capable full-time developer owns everything", the orchestration split gets simpler and cheaper — **but that does not kill the low-code case: n8n still lets non-technical staff edit workflow parameters without pulling in a developer.** Surfaced as a premise to confirm in [05_Kickoff_Brief.md](05_Kickoff_Brief.md) §1 (#5). |
 
 ---
 
@@ -156,6 +156,12 @@ survive any cut** — document volumes and the ground-truth batch gate the OCR w
 evidence the engagement produces. Premises for the CEO are in [05_Kickoff_Brief.md](05_Kickoff_Brief.md);
 pure access/insumo asks live in the client data request (A2) and are not repeated here.
 
+**The full OCR/document question set** — how documents arrive (type pre-identified? digital vs scanned
+split? bundled per shipment?), residency, volumes, per-field accuracy thresholds, the ground-truth
+batch, and the post-handover team — is detailed in [IDP/04 — Questions for Indaiá.md](IDP/04%20%E2%80%94%20Questions%20for%20Indai%C3%A1.md).
+Q-w6/Q-w7 below are the two that gate the empirical work and must survive any trim; the arrival-flow
+questions there unblock classification/routing/batch scope in one answer.
+
 **Wagner — code walkthrough and the export build**
 
 | # | Question | Unblocks |
@@ -164,7 +170,7 @@ pure access/insumo asks live in the client data request (A2) and are not repeate
 | Q-w2 | What is genuinely built and running today, versus scaffolded, versus planned? | D-a, A3 |
 | Q-w3 | The "~55–60% reusable" figure — where does it come from, and against what definition of reuse? | A3, D-a, D-d |
 | Q-w4 | Which architectural decisions are already made implicitly in the export build and now expensive to reverse? | D-a, all DEC |
-| Q-w5 | Who maintains integration workflows day to day once live — developers, or operations people? (Half of DEC-02.) | DEC-02 |
+| Q-w5 | Who maintains integration workflows day to day once live — developers or operations people — and will Indaiá have **≥1 capable full-time developer** after handover? (Half of DEC-02; also weights DEC-01 vendor DX.) | DEC-02, DEC-01 |
 | **Q-w6** | **Document volumes per month by type** — invoices, B/Ls, packing lists. Needed to extrapolate OCR cost. | D-c, DEC-01 |
 | **Q-w7** | **Can you supply the document batch with ground truth**, and what does Indaiá hold as "ground truth"? Already-keyed structured data is ideal. | CP-2, DEC-01 |
 | Q-w8 | Team size, seniority, real velocity? | D-d |

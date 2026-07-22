@@ -1,7 +1,8 @@
 # Questions for Indaiá — IDP / OCR PoC (DEC-01 / D-a1)
 
 **For:** RL to ask Indaiá (in PT-BR when raised; drafted in English for the working record).
-**Feeds:** [00 — OCR PoC plan (D-a1).md](<00 — OCR PoC plan (D-a1).md>) §5 (inputs), §11 (open questions).
+**Canonical for OCR:** the single source for the **OCR/IDP** questions specifically — the OCR section of the project-wide roll-up [06 — Questions & Validations for Indaiá](../06_Questions_and_Validations_for_Indai%C3%A1.md), and referenced from the OCR PoC plan §11 and Discovery Plan §7. Maintain the OCR questions here.
+**Feeds:** [00 — OCR PoC plan (D-a1).md](00%20%E2%80%94%20OCR%20PoC%20plan%20%28D-a1%29.md) §5 (inputs).
 **Drafted:** 2026-07-22
 
 > These gate the empirical work (CP-2). Cluster A is the one that unblocks the most at once —
@@ -61,9 +62,20 @@ One answer here settles three architecture questions — classification, quality
 
 ---
 
+## E. Post-implementation & team (for the CEO — organizational, not operational)
+
+12. **Who owns and maintains the pipeline after go-live, and how senior are they?** Does Indaiá have (or plan to hire) full-time engineers to run and evolve this, or will it be maintained by a small / non-senior team, or largely outsourced?
+    - *Why it matters:* this reweights the whole "DX / buildability" axis. A non-senior or low-code team favours **managed / low-code paths** (a vendor-run HITL surface, a native n8n node, minimal bespoke glue) over a code-heavy build we hand over. It changes which vendor is *operationally* the safest choice, independent of raw extraction quality.
+
+13. **Any existing or preferred automation / orchestration stack?** Is Indaiá already invested in a low-code tool (n8n, Make, Zapier) or a code-first agent framework — or is this greenfield?
+    - *Why it matters:* feeds the **n8n-vs-LangGraph** orchestration decision (a key project architecture choice). If the answer is n8n, vendors with a native n8n node (LlamaCloud has one) gain a real integration edge; if code-first, that edge disappears.
+
+---
+
 ## Priority order for RL
 
 1. **Q7–8 (residency)** — can flip the whole vendor decision; resolve first.
 2. **Q1–3 (arrival flow)** — unblocks classification / routing / batch scope in one shot.
 3. **Q9 (type choice)** + **Q11 (batch)** — gate the empirical run (T-02 → T-03).
 4. **Q5, Q10** — needed to populate the cost model and definition-of-done.
+5. **Q12–13 (team & stack)** — CEO-level; reweights DX/cost and feeds the orchestration decision. Not a gate on the empirical run, but shapes the final recommendation.

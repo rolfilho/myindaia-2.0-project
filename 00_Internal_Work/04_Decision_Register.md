@@ -115,7 +115,7 @@ what comes out?"*
 | --- | --- |
 | **Owner** | RL. Rodrigo reviews. |
 | **Method** | Empirical — the only one this phase. |
-| **Context** | Option space in [IDP/2026-07-20 MECE options for IDP.md](IDP/2026-07-20%20MECE%20options%20for%20IDP.md) · document volumes and ground-truth batch gated on the client (T-02 → T-03). |
+| **Context** | Option space in [IDP/01 — IDP architecture options (MECE).md](IDP/01%20%E2%80%94%20IDP%20architecture%20options%20%28MECE%29.md); vendor research, PoC plan, and eval-harness methodology now drafted in [IDP/](IDP/). Document volumes and ground-truth batch gated on the client (T-02 → T-03). |
 | **Contractual minimum** (Anexo I §1.3) | Select **one** external API provider by high-level analysis. Measure its **accuracy** and **cost** over **one** document type or **one** client. Final provider choice, and the ready-made-vs-build decision, come later — informed by this result. |
 | **Blocked on** | T-02 (target selection) → T-03 (document batch with ground truth). |
 | **Shortlist** | LlamaParse, Reducto, Extend. |
@@ -130,6 +130,15 @@ one. That confirmation is the one remaining input before the batch can be reques
 **What must be measured:** field-level accuracy against ground truth · calibration of the
 confidence score (does low confidence actually predict error?) · cost per page at Indaiá's real
 volumes · latency · LGPD data residency posture.
+
+**Progress (2026-07-22):** vendor shortlist researched (Extend · Reducto · LlamaExtract) — provisional
+lean **Extend**, gated on residency (no vendor offers a Brazil region) and the doc-type choice. The PoC
+eval harness is spec'd **vendor-neutral** — we score against our own ground truth on one ruler, *not* the
+vendors' native eval tools (which aren't comparable, and one vendor has none). Cost is a first-order axis
+(LlamaCloud is cheapest per page, but "true cost = API + review" is calibration-dependent). This decision
+now **interacts with DEC-02**: the n8n-vs-LangGraph orchestration choice and Indaiá's post-handover dev
+capacity (A6 / Q-w5) reweight the vendor's *maintainability* — LlamaCloud ships the only native n8n node.
+Full analysis in [IDP/](IDP/).
 
 ---
 

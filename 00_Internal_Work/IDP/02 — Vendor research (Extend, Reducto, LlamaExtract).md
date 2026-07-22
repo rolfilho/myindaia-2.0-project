@@ -1,7 +1,7 @@
 # Vendor research — LlamaExtract, Reducto, Extend
 
 **For:** DEC-01 / D-a1 — select the **one** IDP vendor to validate empirically (T-13).
-**Companion to:** [00 — OCR PoC plan (D-a1).md](<00 — OCR PoC plan (D-a1).md>) §7 (selection criteria).
+**Companion to:** [00 — OCR PoC plan (D-a1).md](https://github.com/rolfilho/myindaia-2.0-project/blob/main/00_Internal_Work/IDP/00%20%E2%80%94%20OCR%20PoC%20plan%20%28D-a1%29.md) §7 (selection criteria).
 **Method:** desk research from each vendor's public docs, fetched via the tinyfish MCP and delegated to
 three Sonnet agents (one per vendor), 2026-07-21. No sign-ups, no API calls. Pricing/residency claims
 spot-checked by RL against the live pages. **All accuracy numbers are vendor-reported unless noted.**
@@ -18,17 +18,19 @@ spot-checked by RL against the live pages. **All accuracy numbers are vendor-rep
    region. **This makes the client's residency constraint (DEC-03 blocker / BASF·Nestlé·Pirelli) the
    gating question — it must be answered before the vendor choice, not after.** See §Decision gate.
 
-2. **If offshore-EU processing is acceptable** (with a DPA + zero-retention), the vendor choice comes
-   down to HITL, confidence, logistics-document fit, and cost — and the **provisional lean is Extend**,
-   because the PoC must exercise the *never-fail-silently / auditable* requirement and Extend is the
-   only one shipping a production human-review workflow, with the strongest bill-of-lading/customs fit.
-   **Reducto** is a close runner-up (best-documented confidence + published price card + mature on-prem).
-   **LlamaCloud** is third for *this* use case (no logistics proof points; confidence is beta and
-   possibly not returning via API).
-   **Update (2026-07-22):** the deeper research below (new criteria) *softens* the Extend edge — all three
-   return per-field bounding-box citations, so we can build our own MyINDAIA review UI on any of them; Extend's
-   native Review Agent drops to a PoC convenience. Extend's remaining genuine leads are **logistics-doc fit**
-   and the **only self-serve correction-feedback loop**. The lean holds, but on narrower grounds.
+2. **If offshore-EU processing is acceptable** (with a DPA + zero-retention), the choice comes down to four
+   axes — **logistics-document fit, confidence maturity, all-in cost, and buildability given Indaiá's team** —
+   with the **provisional lean Extend**. The ranking is narrower than it first looks: all three return
+   per-field bounding-box citations, so we can build our own MyINDAIA review UI on any of them, which demotes
+   Extend's native Review Agent from a moat to a *PoC convenience*. Extend's remaining genuine leads are
+   **logistics/BOL fit** and the **only self-serve correction-feedback loop**. **Reducto** is the runner-up
+   (most mature confidence + published price card + best on-prem). **LlamaCloud** is third *on capability* —
+   but it is **materially the cheapest per page** and ships the **only native n8n node**. Two decisions taken
+   *outside this doc* can lift it: the project's **n8n-vs-LangGraph orchestration choice** (if n8n, its native
+   node is a real integration edge) and **Indaiá's post-implementation engineering capacity** (a CEO question —
+   a low-code / non-senior team reweights DX and cost upward). And whether the cheaper page-rate even matters is
+   itself open: it turns on the **absolute $ delta at real volume (Q-w6)** and on whether LlamaCloud's beta
+   confidence keeps review load low enough not to erase the saving (§Cost).
 
 ---
 
@@ -46,24 +48,31 @@ spot-checked by RL against the live pages. **All accuracy numbers are vendor-rep
 | **Cost model** | Credits/page, **public**. Parse 2 + Extract 3 = 5 cr/pg. PAYG ≈ **$0.06/pg**; Scale $0.05/pg; Review Agent +1 cr/pg | Credits, **published card**. Parse 1–2 + Extract 2 = 3–4 cr/pg × $0.015 ≈ **$0.045–0.06/pg**; Deep-Extract 4 cr/pg +0.1/field | Credits (1k=$1.25). Extract 6–60 cr/pg ⇒ **$0.0075–0.075/pg**. **Cheapest at low tiers** |
 | **Free tier for PoC** | 10k credits free → ~50-doc PoC ≈ **$0** | 15k credits free → PoC ≈ **$0** | 10k credits/mo free → PoC ≈ **$0–16** |
 | **Logistics / customs fit** | **Dedicated logistics page: BOLs, PODs, freight invoices, customs forms; BOL is the docs' worked example. Strongest** | Logistics page names BOLs, commercial invoices, packing lists, customs declarations. Strong | **No BOL / logistics / customs mention anywhere.** Invoices only |
-| **DX** | REST + Py/TS/Java/Go SDKs, CLI, webhooks, Fern docs | REST + Py/TS/Go SDKs, CLI, Studio. Mature docs | REST + Py/TS SDKs (+Go/Java samples), CLI, webhooks, llms.txt |
+| **DX / buildability & maintainability** | REST + Py/TS/Java/Go SDKs, CLI, webhooks, Fern docs. **No native n8n node** → call from n8n's generic HTTP Request node (feasible; hand-wire file upload + async poll) | REST + Py/TS/Go SDKs, CLI, Studio, mature docs. **No native n8n node** → generic HTTP Request node | REST + Py/TS SDKs, CLI, webhooks, llms.txt. **Verified native n8n node** — one node (Parse/Classify/Split/Extract/Retrieve), `usableAsTool` for n8n AI Agents, managed file + auth. A real edge **iff n8n is the orchestration layer** |
 | **Output provenance** — per-field bbox/citations (enables *our own* HITL UI) | **Yes.** Per-field `citations`: `page` + `polygon` bbox (PDF pts) + `referenceText`, same path-key as `value`; behind `citationsEnabled` (adds latency — extra citation model). Docs ship a polygon→highlight-overlay recipe. Word-level bbox also via Parse `returnOcr.words` | **Yes.** Per-field `citations`: normalized `[0,1]` bbox + `page`/`original_page` + source `content` + dual `granular_confidence` (extract+parse); behind `citations.enabled`; **disables chunking**; empty array if value was inferred/uncitable | **Yes** (verify). Per-leaf-field via `cite_sources`: `page` + `matching_text` + `bounding_boxes {x,y,w,h}` + `page_dimensions`; **bbox may be doc-drift — the live example shows only page+text; confirm in PoC**; slows extraction |
 | **Vendor lock-in / reversibility** | Portable JSON Schema (+`extend:*`); workflows/configs portable JSON **by design** ("self-contained… GitHub-managed"); corrected docs exportable via **Eval-Set API**. Trapped: **Memory + Composer** (no export API) | Portable JSON Schema; **"Direct API" deploy = full config in your repo** (vs opaque "Pipeline ID"); **no export** of corrections/eval-sets/few-shot; usage-export API is billing only | Portable JSON Schema (Pydantic/Zod); configs via beta Configurations API; **licensed BYOC/self-host** (own K8s + own LLM keys) = strongest escape hatch — but Enterprise-licensed, engine not OSS |
 | **Studio ↔ API parity** | High — **stated design goal** ("everything you build in Studio runs on the same API"; "View code" on every screen). Gaps: **Composer + Memory** Studio-only; the correction *act* is UI-only (no submit-correction API) | High — Studio is a thin layer; "Direct API" exports the exact config. Gaps: **Studio Evaluations, pipeline versioning, exec logs** are Studio-only (QA/mgmt, not core extraction) | **Near-total.** Only the no-code Schema Builder is a subset (no Union/Enum → use Raw Editor). No functional API gap found |
 | **Correction-feedback loop** — do corrections improve the engine? | **Best of the three.** Reviewer rationale "used to improve extraction accuracy"; **Composer** re-optimizes prompts against corrected eval-sets; **Memory** = auto-updating few-shot (Classify-only, beta). No fine-tuning | **None self-serve.** Studio Evaluations = QA/regression only; fine-tuning exists only as an **Enterprise, Reducto-run** service | **None.** History is read-only; improvement is manual (edit `description`s / `system_prompt`) |
+| **Native eval tooling** — for measuring *our* metrics, free-tier | Eval Sets via **API** + Composer/Memory optimizers — but they *tune Extend*, not neutrally score; some Studio-only. Usable on free tier | **Studio Evaluations / ground-truth compare — Growth+/Enterprise only → NOT in the free PoC tier** | **None** |
+
+> **None of these is a cross-vendor comparator, and one has nothing usable in the free tier.** We score all
+> vendors ourselves on a single neutral ruler — see the eval-harness spec in
+> [00 — OCR PoC plan (D-a1).md](https://github.com/rolfilho/myindaia-2.0-project/blob/main/00_Internal_Work/IDP/00%20%E2%80%94%20OCR%20PoC%20plan%20%28D-a1%29.md) §3.1. These native tools
+> matter only as (a) a way to *iterate the chosen vendor* during T-22 and (b) a capability axis in their
+> own right (the correction-feedback row above).
 
 Per-page $ in the row above are the *typical extraction pipeline* (parse + extract, mid mode). The
 full method and the split by mode are in the next section — cost swings 5–10× with the options chosen.
 
 ---
 
-## The "build-your-own-HITL" criteria (added 2026-07-22)
+## The "build-your-own-HITL" criteria
 
-These four rows were added after RL's point that **the extraction engine is the asset, not the vendor's UI** —
-we will build the HITL surface inside MyINDAIA regardless, so what matters is (a) whether the engine's output
-is *rich enough to power our own review UI*, and (b) how *reversible* the vendor choice is. Researched from the
-vendors' response-format / deploy / studio docs (one tinyfish agent per vendor, 2026-07-22; source URLs held
-by the agents, spot-check before publishing client-facing).
+These four rows follow from a core premise: **the extraction engine is the asset, not the vendor's UI** — we
+build the HITL surface inside MyINDAIA regardless, so what matters is (a) whether the engine's output is *rich
+enough to power our own review UI*, and (b) how *reversible* the vendor choice is. Researched from the vendors'
+response-format / deploy / studio docs (one tinyfish agent per vendor; source URLs held by the agents,
+spot-check before publishing client-facing).
 
 **Output provenance decides whether "our own HITL UI" is cheap or painful — and all three pass.** A usable
 review UI needs, per field: value + confidence + **the source region on the page** so a reviewer clicks a
@@ -100,6 +109,29 @@ Parse "Auto Mode" with unpredictable cost. **Two methodology consequences:**
 2. **Stratify the PoC results by digital vs scanned** — report field accuracy separately for each. Scanned is
    where accuracy craters and where the "does ready-made survive production?" question actually bites; the mean
    across a mixed batch hides it. This is a measurement cut, not new architecture.
+
+---
+
+## Two decisions outside this doc that move the ranking
+
+**Orchestration framework — n8n (low-code) vs LangGraph (code-first) — is a key project decision, and it
+reweights vendor DX.** LlamaCloud ships an **officially-verified native n8n node** (one node exposing
+Parse/Classify/Split/Extract/Retrieve, `usableAsTool` so it attaches to an n8n AI Agent, managed binary-file
+upload + credential auth) via a signed n8n partnership. Extend and Reducto have no native node — both are
+callable from n8n's generic HTTP Request node, but you hand-wire the fiddly parts (multipart file upload,
+async submit → poll/webhook). So **if the project lands on n8n, LlamaCloud's node is a genuine integration
+edge; if it lands on LangGraph / code-first, the node is moot** and all three are equal via SDK. Caveat: this
+edge is mostly at **PoC / prototyping** altitude — for the production, auditable customs pipeline
+(never-fail-silently + full audit record) and the eval harness, weigh whether low-code n8n is the right
+*production* substrate versus code.
+
+**"DX" here means *maintainability given Indaiá's team*, not raw API ergonomics.** After handover Indaiá may
+not have senior, full-time engineers — unknown, and a **CEO question**. If the maintaining team is non-senior
+or low-code-oriented, that reweights the decision toward **managed / low-code paths** (a native node, a
+vendor-run HITL surface, less bespoke glue) and away from a code-heavy adapter + LangGraph stack — which cuts
+against the "we'll just build our own review UI on any vendor" convenience and partly back toward Extend's
+turnkey Review Agent or LlamaCloud's n8n node. This is a real reweighting, not a footnote: it interacts with
+both the orchestration choice above and the cost trade-off below.
 
 ---
 
@@ -173,10 +205,22 @@ Extend $0.0125 PAYG / ~$0.010 Scale); parse **included** (not cached); no volume
 
 Production figures are list-rate and *before* volume discounts (all "contact sales" above self-serve).
 The full model — every rate, formula, and scenario, editable — is in
-[03 — Vendor cost model.xlsx](<03 — Vendor cost model.xlsx>).
+[03 — Vendor cost model.xlsx](https://github.com/rolfilho/myindaia-2.0-project/blob/main/00_Internal_Work/IDP/03%20%E2%80%94%20Vendor%20cost%20model.xlsx).
 The HITL column is where the vendors diverge on real cost: Extend's Review Agent is a built-in line
 item (+1 cr/pg); with Reducto or LlamaCloud the review workflow is **build-labor you add**, not a vendor
 charge — cheaper per page, more engineering.
+
+**Cost is a first-order axis, and LlamaCloud wins it — but read the two caveats before weighting it.** On list
+per-page rates LlamaCloud is clearly cheapest (mid mode ~$0.031/pg vs Reducto ~$0.045–0.06 and Extend
+~$0.05–0.0625), and at 10,000 pg/mo it lands ~$310 vs Reducto ~$450–600 and Extend ~$500–750.
+**(1) The absolute delta is modest at low volume** — ~$200–450/mo vs Extend, ≈ $2.4k–5.4k/yr — so whether it
+justifies LlamaCloud's capability downsides is **volume-gated: material only once real throughput (Q-w6) is
+large** (at 100k pg/mo the same delta is ~$2k–4.5k/mo). **(2) True cost = API $ + residual review $** (§6),
+and LlamaCloud's **beta, uncalibrated confidence risks a higher review load** — the expensive term is analyst
+time, not credits, so poorly-calibrated confidence can erase the per-page saving outright. Both caveats are
+**measured in the PoC** (cost/page × volume, and the calibration → review-rate curve). Net: LlamaCloud is the
+cheapest *page*, not necessarily the cheapest *pipeline* — don't let the sticker rate outrun the calibration
+result.
 
 ---
 
@@ -216,12 +260,17 @@ page names BOLs and customs docs. Watch-outs: HITL is build/debug (Studio), not 
 queue; headline accuracy is a self-commissioned Deep-Extract (beta) benchmark; no Brazil region; no
 explicit LGPD statement.
 
-### LlamaCloud (LlamaExtract) — third for this use case
-Strong schema flexibility (Pydantic/Zod, per-table-row target) and citations; **cheapest per page** at
-low tiers. But: **no logistics/BOL/customs proof points** (invoices only), confidence is **beta,
-uncalibrated, and reportedly not returning via API** (Feb-2026 GitHub issue), no production review UI,
-no published accuracy, no Brazil region. Best if the PoC document type turns out to be plain invoices
-and cost is the dominant axis.
+### LlamaCloud (LlamaExtract) — third on capability, but the cost + integration wildcard
+Strong schema flexibility (Pydantic/Zod, per-table-row target) and per-field citations; **materially the
+cheapest per page**; the **only vendor with a verified native n8n node**; and licensed BYOC/self-host as a
+Path-B escape hatch. Capability downsides keep it third *for extraction*: **no logistics/BOL/customs proof
+points** (invoices only), confidence is **beta, uncalibrated, and reportedly not returning via API** (Feb-2026
+GitHub issue), no production review UI, no published accuracy, no Brazil region. **Its ranking is the most
+input-sensitive of the three** — it climbs if the PoC type is plain invoices (its logistics gap stops
+mattering), if orchestration lands on **n8n** (its node becomes a real edge), if Indaiá's team is **low-code /
+non-senior** (a managed path lowers operating risk), or if the **cost delta at real volume** proves large
+*and* its confidence calibrates well enough to keep review load down. Several of those are decided outside this
+doc.
 
 ---
 
@@ -264,6 +313,13 @@ and cost is the dominant axis.
   handle invoices, and cost/confidence become the deciding axes (helps Reducto and LlamaCloud).
 - **Extend's Review-Agent score proves an unreliable routing signal** in the PoC → Reducto's mature
   dual-confidence moves ahead on the audit requirement.
+- **Project adopts n8n for orchestration** (the n8n-vs-LangGraph decision) → LlamaCloud's verified native node
+  becomes a real integration edge; nudges toward LlamaCloud, or at least neutralises a LlamaCloud weakness.
+- **Indaiá has no senior in-house engineering after handover** → reweight DX toward managed / low-code (native
+  node, vendor-run HITL, minimal bespoke glue); helps Extend's turnkey Review Agent and LlamaCloud's n8n node
+  over a code-heavy adapter + LangGraph build.
+- **Absolute cost delta proves material at real volume (Q-w6)** *and* LlamaCloud's confidence calibrates well
+  enough to keep review load low → the cost axis can outweigh capability and move LlamaCloud up.
 
 > This file selects the vendor to *test*. The build-vs-buy comparison (chosen vendor vs. the most
 > reasonable in-house alternative) is D4, downstream of the PoC result.

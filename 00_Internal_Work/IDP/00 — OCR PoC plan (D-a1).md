@@ -22,13 +22,15 @@ over **one** document type; produce a high-level comparison against the build al
 - One live PoC pipeline: foreign-trade document → predefined JSON schema, with per-field confidence and a HITL review surface.
 - Empirical accuracy + cost of **one** provider on **one** document type.
 - Extrapolation of cost and expected accuracy to Indaiá's full document volume.
-- High-level cost/complexity comparison vs. the alternative architectures (the five stacks in [01 — IDP architecture options (MECE).md](<01 — IDP architecture options (MECE).md>)). [@claude: here the comparison actually will be one vendor vs. the most reasonable in-house alternative]
+- High-level cost/complexity comparison vs. the alternative architectures (the five stacks in [01 — IDP architecture options (MECE).md](01%20%E2%80%94%20IDP%20architecture%20options%20%28MECE%29.md)). [@claude: here the comparison actually will be one vendor vs. the most reasonable in-house alternative]
 
 ### Out of scope (state these explicitly — they are where an OCR PoC overruns)
 
 - **Final provider choice** — comes later, informed by this result.
 - **The ready-made-vs-build decision itself** — this PoC *informs* it; it does not settle it.
 - **Benchmarking all three shortlisted vendors** — the contract asks for one, selected by analysis.
+  (The neutral eval harness makes a multi-vendor head-to-head cheap and it *is* our internal target, but
+  it stays out of the contracted deliverable — see the scope note in §3.1.)
 - **A production pipeline** — no scaling, retraining, or ops hardening. Building/running software is out of scope per the Binding Principles.
 - **Multiple document types or a full client's document mix** — one type, by deliberate choice (§4).
 
@@ -62,6 +64,53 @@ The five DEC-01 metrics. Each exists to answer a specific question — an unansw
 > **LGPD may outrank accuracy.** If a vendor cannot process in Brazil/EU and a major client's
 > contract forbids offshore processing (open constraint under DEC-03), it is disqualified regardless
 > of how well it extracts. Resolve residency *before* investing in the pipeline. Logged in `MEMORY.md`.
+
+### 3.1 The eval harness — how we score metrics 1–2 (and feed 3)
+
+**Decision (RL, 2026-07-22): we run the evals ourselves, on a vendor-neutral harness. Vendor-native
+eval tooling does not replace it** — it can't measure what we need, and one vendor has none.
+
+Why not native tooling:
+
+- **Not comparable — three different rulers.** Each vendor defines "accuracy" differently (exact vs.
+  fuzzy, field- vs. doc-level, array handling) and every published number is self-run. Three numbers
+  from three methodologies can't be compared; vendors must be scored with **one** definition of correct,
+  against **our** ground truth (§5.1).
+- **Calibration is inherently ours.** Metric 2 requires the vendor's per-field confidence joined to
+  *our* correctness labels, per confidence bin. No vendor computes this — all say "set the threshold
+  yourself" — so it can only live in our harness. It's also the metric HITL routing depends on.
+- **Half-unavailable anyway.** Reducto's Studio Evaluations are **Growth+/Enterprise (not the free PoC
+  tier)**; LlamaCloud has **none**; Extend's eval-sets/Composer are tools for *tuning Extend*, not
+  neutral scoring. See the *Native eval tooling* row in
+  [02 — Vendor research (Extend, Reducto, LlamaExtract).md](02%20%E2%80%94%20Vendor%20research%20%28Extend%2C%20Reducto%2C%20LlamaExtract%29.md).
+- **Neutrality.** A client-facing recommendation scored by the vendor's own tool (its own flattering
+  definition of "accuracy") is a soft conflict; a neutral harness is defensible.
+
+The harness is a thin addition to the Track-A build (T-12): the extract path already emits JSON +
+per-field confidence, so scoring extracted-vs-truth is the increment — not a new workstream.
+
+**Scoring design — the non-trivial parts:**
+
+| Concern | How we handle it |
+| --- | --- |
+| **Match rule is per field class, not global** | Exact for customs-critical IDs (HS code, container no. ISO 6346, B/L no.); normalized for dates/currency/whitespace/casing; tolerant/fuzzy for free-text (descriptions, addresses). Ties to §8 thresholds + the field schemas in [05 — Reference](05%20%E2%80%94%20Reference%20%E2%80%94%20Invoice%20and%20BL%20field%20schemas.md). |
+| **Line-item / container arrays** | Extracted rows may differ in order/count from truth → **align rows first, then score**; report **precision/recall on rows**, not a scalar. This is where invoice evals usually break — budget for it. |
+| **Confidence calibration** | Bin fields by vendor confidence → measure error rate per bin (reliability curve). Metric 2. |
+| **Review-rate curve → cost model** | For candidate thresholds T, report "% of fields below T → routed to a human." This is the exact input the §6 residual-review-cost term needs — the eval harness and the cost model connect here. |
+| **Free-text only: optional LLM-as-judge** | Only for genuinely unstructured fields, flagged as adding its own error + cost; customs-critical fields stay deterministic. |
+
+**Vendor-neutral by construction — one scoring core, per-vendor adapters.** Each vendor is a thin
+adapter (raw doc → their API → normalized JSON in our schema); the scoring/calibration core is shared.
+This is the same adapter layer that limits lock-in in the vendor research. Consequence: adding a vendor
+to the eval is *one adapter*, and all PoC runs fit inside the free tiers (~$0).
+
+> **Scope note (RL / RZ).** The contract requires **one** vendor tested empirically (§1 out-of-scope).
+> The neutral harness makes a true **head-to-head of 2–3 vendors on the same 50-doc batch** cheap (one
+> adapter each, free tiers), and that *is* our internal target — same-ruler evidence beats paper +
+> marketing numbers. **But it is beyond the contracted scope.** So: build the harness neutral from day
+> one, run the **chosen** vendor for the deliverable, and hold multi-vendor as an internal stretch we can
+> execute cheaply *if* the single-vendor result is ambiguous or if it strengthens the D4 build-vs-buy
+> case. Not promised to the client; the deliverable does not depend on it.
 
 ---
 
@@ -141,7 +190,7 @@ chosen for HITL routing.
 ### Vendor selection criteria (for step 2 — pick one, don't benchmark all)
 
 > **Research done (2026-07-21):** all three vendors profiled against these criteria in
-> [02 — Vendor research (Extend, Reducto, LlamaExtract).md](<02 — Vendor research (Extend, Reducto, LlamaExtract).md>).
+> [02 — Vendor research (Extend, Reducto, LlamaExtract).md](02%20%E2%80%94%20Vendor%20research%20%28Extend%2C%20Reducto%2C%20LlamaExtract%29.md).
 > Provisional lean **Extend** (only production HITL + best BOL/customs fit), Reducto runner-up —
 > **but gated on the residency question below: none of the three has a Brazil region.**
 
@@ -156,7 +205,7 @@ weighted:
 | **Native per-field confidence** | No confidence → no targeted HITL → the audit principle fails | Per-field (not per-doc) score; any calibration guidance |
 | **HITL / review support** | Build-vs-buy math shifts if the vendor ships the review surface | Built-in review UI vs. API-only; correction feedback loop |
 | **Latency / throughput** | Must fit the notification/booking cadence | Sync vs. async/batch; typical page latency |
-| **DX / integration** | Affects PoC speed and Track-A harness cost | REST API, SDKs, batch endpoint, docs quality |
+| **DX / buildability & maintainability** | PoC speed + Track-A cost — *and who maintains it after handover*: weigh against Indaiá's post-implementation eng capacity and the n8n-vs-LangGraph decision | REST API, SDKs, batch endpoint, docs quality; **native low-code integrations (e.g. a verified n8n node — LlamaCloud has one; Extend/Reducto don't)**; how much bespoke glue a non-senior team would have to own |
 
 **Cost is a criterion in its own right — and the hardest to pin down.** It is not one number:
 
@@ -217,14 +266,16 @@ recommendation with confidence level → what would change my mind.**
 
 ---
 
-## 11. Open questions (assigned)
+## 11. Open questions & decisions
 
+**Questions for Indaiá → one canonical list.** Everything we need to ask Indaiá (document arrival flow,
+volumes, residency, doc-type choice, per-field accuracy thresholds, ground-truth batch, and the
+post-handover team) lives in **[04 — Questions for Indaiá.md](04%20%E2%80%94%20Questions%20for%20Indai%C3%A1.md)** —
+the single source, also referenced from the Discovery Plan §7. Maintain them there, not here.
 
-| Question                                           | Owner             | Routes to              |
-| -------------------------------------------------- | ----------------- | ---------------------- |
-| Invoice or B/L for the PoC?                        | Indaiá (RL asks) | T-02                   |
-| Monthly volumes by type, pages/doc?                | Indaiá           | Q-w6                   |
-| Which client contracts forbid offshore processing? | Indaiá / DEC-03  | `MEMORY.md` blocker    |
-| Accuracy threshold per field class?                | RL + Indaiá      | §8                    |
-| Which single vendor to test?                       | RL                | T-13 (criteria in §7) |
-| </invoke>                                          |                   |                        |
+**Open internal decisions (ours — tracked elsewhere, listed for line-of-sight):**
+
+| Decision | Owner | Tracked in |
+| --- | --- | --- |
+| Which single vendor to test | RL | T-13 (criteria §7) · [02 — Vendor research](02%20%E2%80%94%20Vendor%20research%20%28Extend%2C%20Reducto%2C%20LlamaExtract%29.md) |
+| Orchestration framework — n8n vs LangGraph | RL + Indaiá | DEC-02 (also weights vendor DX — §7) |
